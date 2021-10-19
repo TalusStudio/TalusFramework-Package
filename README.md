@@ -1,4 +1,4 @@
-This unity project template(ready to prototype) has essential SDK and Plugins implemented:
+# TalusFramework Package
 
 # :exclamation: Requirements 
 - Unity 2020.3.9f1 
