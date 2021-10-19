@@ -2,6 +2,8 @@
 
 # ❗ Requirements 
 - Unity 2020.3.9f1 
+- DOTween Pro
+- Odin Attributes
 
 # 💿 installation
 - Clone repository and extract it.
