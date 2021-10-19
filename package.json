@@ -1,0 +1,17 @@
+{
+  "name": "com.talus.talusframework",
+  "version": "1.0.0",
+  "displayName": "TalusFramework",
+  "description": "TalusFramework",
+  "unity": "2020.3",
+  "unityRelease": "9f1",
+  "dependencies": {
+  },
+  "keywords": [
+  ],
+  "author": {
+    "name": "Emre Kovanci - Talus Studio",
+    "email": "emrekovanci@talusstudio.com",
+    "url": "https://www.talusstudio.com"
+  }
+}
