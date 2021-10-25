@@ -17,7 +17,7 @@ namespace TalusFramework.Editor
 #endif
 
         private const string LIGHTING_SETTINGS_DIR_PATH    = "ScriptableObjects/Polishing";
-        
+
         [MenuItem("TalusKit/Menu Editor %m")]
         private static void OpenWindow()
         {
@@ -27,25 +27,27 @@ namespace TalusFramework.Editor
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            OdinMenuTree tree = new OdinMenuTree(supportsMultiSelect: true)
+            OdinMenuTree tree = new OdinMenuTree(false)
             {
-                //{ "Home", this, EditorIcons.House },
-                { "Player Settings", Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault(), EditorIcons.SettingsCog },
-            };
+                { "Player Settings", Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault(), EditorIcons.SettingsCog }
+			};
 
             tree.AddAllAssetsAtPath("Persistent SO", TALUS_PERSISTENT_SO_DIR_PATH, typeof(ScriptableObject), true)
                 .AddThumbnailIcons();
-            
+
 #if ENABLE_BACKEND
             tree.AddAssetAtPath("Facebook Settings", FACEBOOK_SETTINGS_SO_PATH, typeof(ScriptableObject))
                 .AddThumbnailIcons();
-            
+
             tree.AddAssetAtPath("Elephant Settings",  ELEPHANT_SETTINGS_SO_PATH, typeof(ScriptableObject))
                 .AddThumbnailIcons();
 #endif
 
-            tree.AddAllAssetsAtPath("Lighting Settings", LIGHTING_SETTINGS_DIR_PATH, typeof(ScriptableObject), true);
-            tree.SortMenuItemsByName();
+			tree.AddAllAssetsAtPath("Lighting Settings", LIGHTING_SETTINGS_DIR_PATH, typeof(ScriptableObject), true)
+				.AddThumbnailIcons();
+
+			tree.Config.DrawSearchToolbar = true;
+			tree.SortMenuItemsByName();
 
             return tree;
         }

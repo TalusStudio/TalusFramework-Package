@@ -1,8 +1,12 @@
-using Sirenix.OdinInspector;
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility.Logging;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Utility.Logging;
+using TalusFramework.Runtime.Base;
 
 namespace TalusFramework.Runtime.Managers
 {
@@ -23,7 +27,7 @@ namespace TalusFramework.Runtime.Managers
         [SerializeField]
         private Material SkyboxMaterial;
 #endregion
-        
+
 #region AMBIENT
         [FoldoutGroup("3 - Ambient Settings")]
         [EnumPaging]
@@ -40,26 +44,26 @@ namespace TalusFramework.Runtime.Managers
         [ShowIf("@AmbientType == AmbientMode.Skybox")]
         [SerializeField]
         private float AmbientIntensity;
-        
+
         [FoldoutGroup("3 - Ambient Settings")]
         [ShowIf("@AmbientType == AmbientMode.Trilight")]
         [ColorPalette("Lightnings")]
         [SerializeField]
         private Color TopColor;
-        
+
         [FoldoutGroup("3 - Ambient Settings")]
         [ShowIf("@AmbientType == AmbientMode.Trilight")]
         [ColorPalette("Lightnings")]
         [SerializeField]
         private Color MiddleColor;
-        
+
         [FoldoutGroup("3 - Ambient Settings")]
         [ShowIf("@AmbientType == AmbientMode.Trilight")]
         [ColorPalette("Lightnings")]
         [SerializeField]
         private Color GroundColor;
 #endregion
-        
+
 #region FOG
         [FoldoutGroup("4 - Fog Settings")]
         [SerializeField]
@@ -91,9 +95,9 @@ namespace TalusFramework.Runtime.Managers
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
         public void ApplySettings()
         {
-            RenderSettings.ambientMode = AmbientType;
-            RenderSettings.skybox = SkyboxMaterial;
-            
+			RenderSettings.ambientMode = AmbientType;
+			RenderSettings.skybox = SkyboxMaterial;
+
             switch (AmbientType)
             {
                 case AmbientMode.Skybox:
@@ -117,8 +121,15 @@ namespace TalusFramework.Runtime.Managers
             Volume postProcessVolume = FindObjectOfType<Volume>();
             if (postProcessVolume != null)
             {
-                postProcessVolume.profile = PostProcessVolume;
-                TLog.Log("Post process initialized!");
+				if (postProcessVolume.isGlobal)
+				{
+					postProcessVolume.profile = PostProcessVolume;
+					TLog.Log("Post process initialized!");
+				}
+				else
+				{
+					TLog.Log("Global Post Process volume not found in active scene!", LogType.Error);
+				}
             }
             else
             {
@@ -126,7 +137,7 @@ namespace TalusFramework.Runtime.Managers
             }
 
             RenderSettings.fog = UseFog;
-            
+
             if (UseFog)
             {
                 RenderSettings.fogMode = FogMode;
@@ -139,10 +150,12 @@ namespace TalusFramework.Runtime.Managers
                     RenderSettings.fogEndDistance = FogStartEnd.y;
                 }
             }
-            
+
             // If you change the skybox in playmode, you have to use the DynamicGI.UpdateEnvironment
             // function call to update the ambient probe.
             DynamicGI.UpdateEnvironment();
-        }
-    }
+
+			EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+		}
+	}
 }
