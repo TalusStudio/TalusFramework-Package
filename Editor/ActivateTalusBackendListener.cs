@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 
 using TalusFramework.Editor.Utility;
+using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEditor;
-
-using TalusFramework.Runtime.Utility.Logging;
 
 namespace TalusFramework.Editor
 {

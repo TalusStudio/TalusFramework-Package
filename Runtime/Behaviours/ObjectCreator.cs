@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
+
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.References;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.Behaviours
 {
@@ -49,7 +51,7 @@ namespace TalusFramework.Runtime.Behaviours
 			GameObject obj = Instantiate(ObjectSO.Value,
 					_CachedTransform.position,
 					_CachedTransform.rotation,
-					(CreateAsChild) ? _CachedTransform : null);
+					CreateAsChild ? _CachedTransform : null);
 
 
 			if (UseOffset)
@@ -57,12 +59,12 @@ namespace TalusFramework.Runtime.Behaviours
 				obj.transform.localPosition = Offset;
 			}
 
-			if (DontDestroy &&!CreateAsChild)
+			if (DontDestroy && !CreateAsChild)
 			{
 				DontDestroyOnLoad(obj);
 			}
 		}
 
-		private bool ValidateDestroyInput() => (!DontDestroy || !CreateAsChild);
+		private bool ValidateDestroyInput() => !DontDestroy || !CreateAsChild;
 	}
 }

@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using QFSW.QC;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using QFSW.QC;
+using Object = UnityEngine.Object;
 
 namespace TalusFramework.Runtime.Utility.Commands
 {
@@ -145,10 +147,10 @@ namespace TalusFramework.Runtime.Utility.Commands
 		private static void AddComponent<T>(GameObject target) where T : Component { target.AddComponent<T>(); }
 
 		[Command("destroy-component", "Destroys the component of type T on the specified GameObject")]
-		private static void DestroyComponent<T>(T target) where T : Component { GameObject.Destroy(target); }
+		private static void DestroyComponent<T>(T target) where T : Component { Object.Destroy(target); }
 
 		[Command("destroy", "Destroys a GameObject")]
-		private static void DestroyGO(GameObject target) { GameObject.Destroy(target); }
+		private static void DestroyGO(GameObject target) { Object.Destroy(target); }
 
 		[Command("instantiate", "Instantiates a GameObject")]
 		private static void InstantiateGO(
@@ -159,17 +161,17 @@ namespace TalusFramework.Runtime.Utility.Commands
 				[CommandParameterDescription("The rotation of the instantiated GameObject.")]
 				Quaternion rotation)
 		{
-			GameObject.Instantiate(original, position, rotation);
+			Object.Instantiate(original, position, rotation);
 		}
 
 		[Command("instantiate", "Instantiates a GameObject")]
 		private static void InstantiateGO(GameObject original, Vector3 position)
 		{
-			GameObject.Instantiate(original).transform.position = position;
+			Object.Instantiate(original).transform.position = position;
 		}
 
 		[Command("instantiate", "Instantiates a GameObject")]
-		private static void InstantiateGO(GameObject original) { GameObject.Instantiate(original); }
+		private static void InstantiateGO(GameObject original) { Object.Instantiate(original); }
 
 		[Command("teleport", "Teleports a GameObject")]
 		private static void TeleportGO(GameObject target, Vector3 position) { target.transform.position = position; }

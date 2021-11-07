@@ -1,7 +1,5 @@
 ﻿using System;
 
-using UnityEngine;
-
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
@@ -9,6 +7,8 @@ using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.References;
 using TalusFramework.Runtime.Utility.Logging;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.Managers
 {
@@ -40,6 +40,9 @@ namespace TalusFramework.Runtime.Managers
 		[AssetSelector]
 		public GameEvent ConsoleActivatedEvent;
 
+		[NonSerialized]
+		private int _CurrentTapCount;
+
 		public void CreateDebugView()
 		{
 			if (!_EnableHiddenDebugView)
@@ -57,9 +60,6 @@ namespace TalusFramework.Runtime.Managers
 				TLog.Log("Quantum Console binding already in scene!");
 			}
 		}
-
-		[NonSerialized]
-		private int _CurrentTapCount;
 
 		public void CheckConsoleActivity()
 		{

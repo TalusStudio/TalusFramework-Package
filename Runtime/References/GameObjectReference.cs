@@ -1,10 +1,14 @@
-﻿using TalusFramework.Runtime.References.Interfaces;
+﻿using System;
+
+using TalusFramework.Runtime.References.Interfaces;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.References
 {
-    [System.Serializable]
-    public sealed class GameObjectReference : BaseReference<UnityEngine.GameObject>
-    {
-        public static implicit operator UnityEngine.GameObject(GameObjectReference reference) => reference.Value;
-    }
+	[Serializable]
+	public sealed class GameObjectReference : BaseReference<GameObject>
+	{
+		public static implicit operator GameObject(GameObjectReference reference) => reference.Value;
+	}
 }

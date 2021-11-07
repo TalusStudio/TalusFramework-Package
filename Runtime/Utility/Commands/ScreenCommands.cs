@@ -1,9 +1,9 @@
 ﻿#if ENABLE_COMMANDS
 using System.Collections.Generic;
 
-using UnityEngine;
-
 using QFSW.QC;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.Utility.Commands
 {

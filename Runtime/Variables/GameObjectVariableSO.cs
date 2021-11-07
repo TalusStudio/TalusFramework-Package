@@ -1,7 +1,9 @@
 ﻿using Sirenix.OdinInspector;
+
 using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Utility.Logging;
 using TalusFramework.Runtime.Variables.Interfaces;
+
 using UnityEngine;
 
 namespace TalusFramework.Runtime.Variables
@@ -27,6 +29,7 @@ namespace TalusFramework.Runtime.Variables
 			if (ReferenceEquals(this, value)) { return; }
 
 			BaseValueSO<GameObject> variable = value as BaseValueSO<GameObject>;
+
 			if (variable == null)
 			{
 				TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(GameObject), LogType.Error);

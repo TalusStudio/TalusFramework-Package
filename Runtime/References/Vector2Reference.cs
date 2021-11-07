@@ -1,10 +1,14 @@
-﻿using TalusFramework.Runtime.References.Interfaces;
+﻿using System;
+
+using TalusFramework.Runtime.References.Interfaces;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.References
 {
-    [System.Serializable]
-    public sealed class Vector2Reference : BaseReference<UnityEngine.Vector2>
-    {
-        public static implicit operator UnityEngine.Vector2(Vector2Reference reference) => reference.Value;
-    }
+	[Serializable]
+	public sealed class Vector2Reference : BaseReference<Vector2>
+	{
+		public static implicit operator Vector2(Vector2Reference reference) => reference.Value;
+	}
 }

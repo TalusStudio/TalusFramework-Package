@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+
 using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.Utility.Logging;
 using TalusFramework.Runtime.Variables;
@@ -8,17 +9,17 @@ using UnityEngine.SceneManagement;
 
 namespace TalusFramework.Runtime.SceneManagement
 {
-    /// <summary>
-    /// invokes LevelLoadEvent
-    /// </summary>
-    [HideMonoScript]
-    public class SceneLoadListener : MonoBehaviour
-    {
-        [Required]
-        [AssetSelector]
-        [LabelWidth(110)]
-        [SerializeField]
-        private GameEvent _LevelLoadEvent;
+	/// <summary>
+	///     invokes LevelLoadEvent
+	/// </summary>
+	[HideMonoScript]
+	public class SceneLoadListener : MonoBehaviour
+	{
+		[Required]
+		[AssetSelector]
+		[LabelWidth(110)]
+		[SerializeField]
+		private GameEvent _LevelLoadEvent;
 
 		[Required]
 		[AssetSelector]
@@ -27,21 +28,21 @@ namespace TalusFramework.Runtime.SceneManagement
 		private IntVariableSO _CurrentLevelIndex;
 
 		private void OnEnable()
-        {
-            SceneManager.sceneLoaded += HandleSceneLoad;
-        }
+		{
+			SceneManager.sceneLoaded += HandleSceneLoad;
+		}
 
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= HandleSceneLoad;
-        }
+		private void OnDisable()
+		{
+			SceneManager.sceneLoaded -= HandleSceneLoad;
+		}
 
-        private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
-        {
-            TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
+		private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
+		{
+			TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
 
 			_CurrentLevelIndex.SetValue(scene.buildIndex);
 			_LevelLoadEvent.Raise();
-        }
+		}
 	}
 }

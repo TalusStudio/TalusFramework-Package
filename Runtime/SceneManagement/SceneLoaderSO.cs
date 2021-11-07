@@ -1,10 +1,4 @@
 ﻿using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-#if ENABLE_COMMANDS
-using QFSW.QC;
-#endif
 
 using Sirenix.OdinInspector;
 
@@ -12,19 +6,20 @@ using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Utility;
 using TalusFramework.Runtime.Variables;
 
+using UnityEngine;
+using UnityEngine.SceneManagement;
+#if ENABLE_COMMANDS
+using QFSW.QC;
+#endif
+
 namespace TalusFramework.Runtime.SceneManagement
 {
 	[HideMonoScript]
 #if ENABLE_COMMANDS
 	[CommandPrefix("talus.")]
 #endif
-    public class SceneLoaderSO : BaseSO
+	public class SceneLoaderSO : BaseSO
 	{
-
-#if ENABLE_COMMANDS
-		private void OnEnable() => QuantumRegistry.RegisterObject(this);
-		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
-#endif
 
 		[Button]
 		[DisableInEditorMode]
@@ -44,5 +39,10 @@ namespace TalusFramework.Runtime.SceneManagement
 			AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
 			await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
 		}
+
+#if ENABLE_COMMANDS
+		private void OnEnable() => QuantumRegistry.RegisterObject(this);
+		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+#endif
 	}
 }

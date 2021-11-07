@@ -1,51 +1,21 @@
 ﻿#if ENABLE_COMMANDS
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-using UnityEngine;
-
 using QFSW.QC;
+
+using UnityEngine;
 
 namespace TalusFramework.Runtime.Utility.Commands
 {
 	[CommandPrefix("talus.")]
 	public class KeyBinderModule : MonoBehaviour
 	{
-		private readonly struct Binding
-		{
-			public readonly KeyCode Key;
-			public readonly string Command;
-
-			public Binding(KeyCode key, string command)
-			{
-				Key = key;
-				Command = command;
-			}
-		}
 
 		private readonly List<Binding> _bindings = new List<Binding>();
+		private bool _blocked;
 		private QuantumConsole _consoleInstance;
-		private bool _blocked = false;
-
-		private void BlockInput() { _blocked = true; }
-		private void UnblockInput() { _blocked = false; }
-
-		private void BindToConsoleInstance()
-		{
-			if (!_consoleInstance) { _consoleInstance = FindObjectOfType<QuantumConsole>(); }
-
-			if (_consoleInstance)
-			{
-				_consoleInstance.OnActivate += BlockInput;
-				_consoleInstance.OnDeactivate += UnblockInput;
-
-				_blocked = _consoleInstance.IsActive;
-			}
-			else
-			{
-				UnblockInput();
-			}
-		}
 
 		private void Awake()
 		{
@@ -64,9 +34,29 @@ namespace TalusFramework.Runtime.Utility.Commands
 						{
 							QuantumConsoleProcessor.InvokeCommand(binding.Command);
 						}
-						catch (System.Exception e) { Debug.LogException(e); }
+						catch (Exception e) { Debug.LogException(e); }
 					}
 				}
+			}
+		}
+
+		private void BlockInput() { _blocked = true; }
+		private void UnblockInput() { _blocked = false; }
+
+		private void BindToConsoleInstance()
+		{
+			if (!_consoleInstance) { _consoleInstance = FindObjectOfType<QuantumConsole>(); }
+
+			if (_consoleInstance)
+			{
+				_consoleInstance.OnActivate += BlockInput;
+				_consoleInstance.OnDeactivate += UnblockInput;
+
+				_blocked = _consoleInstance.IsActive;
+			}
+			else
+			{
+				UnblockInput();
 			}
 		}
 
@@ -99,6 +89,18 @@ namespace TalusFramework.Runtime.Utility.Commands
 			foreach (Binding binding in _bindings.OrderBy(x => x.Key))
 			{
 				yield return new KeyValuePair<KeyCode, string>(binding.Key, binding.Command);
+			}
+		}
+
+		private readonly struct Binding
+		{
+			public readonly KeyCode Key;
+			public readonly string Command;
+
+			public Binding(KeyCode key, string command)
+			{
+				Key = key;
+				Command = command;
 			}
 		}
 	}

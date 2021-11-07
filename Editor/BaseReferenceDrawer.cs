@@ -1,8 +1,8 @@
+using TalusFramework.Runtime.References.Interfaces;
+
 using UnityEditor;
 
 using UnityEngine;
-
-using TalusFramework.Runtime.References.Interfaces;
 
 namespace TalusFramework.Editor
 {
@@ -10,7 +10,7 @@ namespace TalusFramework.Editor
 	public class BaseReferenceDrawer : PropertyDrawer
 	{
 		/// <summary>
-		/// Options to display in the popup to select constant or variable.
+		///     Options to display in the popup to select constant or variable.
 		/// </summary>
 		private readonly string[] popupOptions =
 		{
@@ -56,10 +56,10 @@ namespace TalusFramework.Editor
 			int indent = EditorGUI.indentLevel;
 			EditorGUI.indentLevel = 0;
 
-			int index = EditorGUI.Popup(buttonRect, (useConstant.boolValue) ? 1 : 0, popupOptions, popupStyle);
+			int index = EditorGUI.Popup(buttonRect, useConstant.boolValue ? 1 : 0, popupOptions, popupStyle);
 			useConstant.boolValue = index == 1;
 
-			EditorGUI.PropertyField(position, (useConstant.boolValue) ? constantValue : variableValue, GUIContent.none);
+			EditorGUI.PropertyField(position, useConstant.boolValue ? constantValue : variableValue, GUIContent.none);
 
 			if (EditorGUI.EndChangeCheck())
 			{

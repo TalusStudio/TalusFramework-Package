@@ -80,7 +80,8 @@ namespace TalusFramework.Runtime.Utility.Commands
 			{
 				return argcMatches[0];
 			}
-			else if (argcMatches.Length == 0)
+
+			if (argcMatches.Length == 0)
 			{
 				IEnumerable<string> signatures = methods.Select(GenerateSignature);
 				string combinedSignatures = string.Join("\n", signatures);
@@ -201,10 +202,8 @@ namespace TalusFramework.Runtime.Utility.Commands
 		}
 
 		[Command("call-static")]
-		private static object CallStatic(Type classType, string funcName)
-		{
-			return CallStatic(classType, funcName, Array.Empty<string>());
-		}
+		private static object CallStatic(Type classType, string funcName) =>
+				CallStatic(classType, funcName, Array.Empty<string>());
 
 		[Command("call-static")]
 		private static object CallStatic(Type classType, string funcName, string[] args)
@@ -237,10 +236,8 @@ namespace TalusFramework.Runtime.Utility.Commands
 		}
 
 		[Command("call-instance")]
-		private static object CallInstance(Type classType, string funcName, MonoTargetType targetType)
-		{
-			return CallInstance(classType, funcName, targetType, Array.Empty<string>());
-		}
+		private static object CallInstance(Type classType, string funcName, MonoTargetType targetType) =>
+				CallInstance(classType, funcName, targetType, Array.Empty<string>());
 
 		[Command("call-instance")]
 		private static object CallInstance(Type classType, string funcName, MonoTargetType targetType, string[] args)

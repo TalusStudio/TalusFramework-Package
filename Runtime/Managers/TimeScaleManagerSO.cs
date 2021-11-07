@@ -1,12 +1,11 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
 
+using TalusFramework.Runtime.Base;
+
+using UnityEngine;
 #if ENABLE_COMMANDS
 using QFSW.QC;
 #endif
-
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Base;
 
 namespace TalusFramework.Runtime.Managers
 {
@@ -17,15 +16,15 @@ namespace TalusFramework.Runtime.Managers
 #endif
 	public class TimeScaleManagerSO : BaseSO
 	{
+
+		[Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale != 0f")] [GUIColor(1f, 1f, 0f)]
+		public void PauseGame() => Time.timeScale = 0f;
+
+		[Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale == 0f")] [GUIColor(0f, 1f, 0f)]
+		public void UnpauseGame() => Time.timeScale = 1f;
 #if ENABLE_COMMANDS
 		private void OnEnable() => QuantumRegistry.RegisterObject(this);
 		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
 #endif
-
-		[Button(ButtonSizes.Large), EnableIf("@Time.timeScale != 0f"), GUIColor(1f, 1f, 0f)]
-		public void PauseGame() => Time.timeScale = 0f;
-
-		[Button(ButtonSizes.Large), EnableIf("@Time.timeScale == 0f"), GUIColor(0f, 1f, 0f)]
-		public void UnpauseGame() => Time.timeScale = 1f;
 	}
 }

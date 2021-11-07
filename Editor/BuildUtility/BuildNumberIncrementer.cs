@@ -1,10 +1,10 @@
+using TalusFramework.Runtime.Utility.Logging;
+
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 
 using UnityEngine;
-
-using TalusFramework.Runtime.Utility.Logging;
 
 namespace TalusFramework.Editor.BuildUtility
 {
