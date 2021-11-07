@@ -1,11 +1,14 @@
 using System.Linq;
+
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace TalusFramework.Editor
+namespace TalusFramework.Editor.Utility.TalusKit
 {
     public class MenuEditor : OdinMenuEditorWindow
     {

@@ -33,19 +33,16 @@ namespace TalusFramework.Runtime.Behaviours
         public AnimatorParameterType ParameterType = AnimatorParameterType.Float;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
-        [Required]
         [ShowIf("@ParameterType == AnimatorParameterType.Bool")]
         [SerializeField]
         private BoolReference BoolReference;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
-        [Required]
         [ShowIf("@ParameterType == AnimatorParameterType.Float")]
         [SerializeField]
         private FloatReference FloatReference;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
-        [Required]
         [ShowIf("@ParameterType == AnimatorParameterType.Int")]
         [SerializeField]
         private IntReference IntReference;
@@ -55,7 +52,7 @@ namespace TalusFramework.Runtime.Behaviours
         /// </summary>
         private int parameterHash;
 
-        private void Awake()
+		private void Awake()
         {
             parameterHash = Animator.StringToHash(ParameterName);
         }

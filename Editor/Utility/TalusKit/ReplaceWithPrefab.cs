@@ -1,24 +1,34 @@
-using UnityEditor;
-using UnityEngine;
-
 using TalusFramework.Runtime.Utility.Logging;
 
-namespace TalusFramework.Editor
+using UnityEditor;
+
+using UnityEngine;
+
+namespace TalusFramework.Editor.Utility.TalusKit
 {
     public class ReplaceWithPrefab : EditorWindow
     {
         [SerializeField]
-        private GameObject prefab;
+        private GameObject _Prefab;
+
+		[SerializeField]
+		private bool _ReplaceRotation = true;
+
+		[SerializeField]
+		private bool _ReplaceScale = true;
 
         [MenuItem("TalusKit/Replace With Prefab %q", false, -1000)]
         private static void CreateReplaceWithPrefab()
         {
-            GetWindow<ReplaceWithPrefab>().Show();
-        }
+			GetWindow<ReplaceWithPrefab>().titleContent = new GUIContent("Replace with Prefab");
+			GetWindow<ReplaceWithPrefab>().Show();
+		}
 
         private void OnGUI()
         {
-            prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
+            _Prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", _Prefab, typeof(GameObject), false);
+			_ReplaceRotation = EditorGUILayout.Toggle("Replace Rotation", _ReplaceRotation);
+			_ReplaceScale = EditorGUILayout.Toggle("Replace Scale", _ReplaceScale);
 
             if (GUILayout.Button("Replace"))
             {
@@ -29,14 +39,14 @@ namespace TalusFramework.Editor
                     GameObject selected = selection[i];
                     GameObject newObject;
 
-                    if (PrefabUtility.IsPartOfPrefabAsset(prefab))
+                    if (PrefabUtility.IsPartOfPrefabAsset(_Prefab))
                     {
-                        newObject = (GameObject) PrefabUtility.InstantiatePrefab(prefab);
+                        newObject = (GameObject) PrefabUtility.InstantiatePrefab(_Prefab);
                     }
                     else
                     {
-                        newObject = Instantiate(prefab);
-                        newObject.name = prefab.name;
+                        newObject = Instantiate(_Prefab);
+                        newObject.name = _Prefab.name;
                     }
 
                     if (newObject == null)
@@ -48,8 +58,17 @@ namespace TalusFramework.Editor
                     Undo.RegisterCreatedObjectUndo(newObject, "Replace With Prefabs");
                     newObject.transform.parent = selected.transform.parent;
                     newObject.transform.localPosition = selected.transform.localPosition;
-                    newObject.transform.localRotation = selected.transform.localRotation;
-                    newObject.transform.localScale = selected.transform.localScale;
+
+					if (_ReplaceRotation)
+					{
+						newObject.transform.localRotation = selected.transform.localRotation;
+					}
+
+					if (_ReplaceScale)
+					{
+						newObject.transform.localScale = selected.transform.localScale;
+					}
+
                     newObject.transform.SetSiblingIndex(selected.transform.GetSiblingIndex());
                     Undo.DestroyObjectImmediate(selected);
                 }

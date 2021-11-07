@@ -14,15 +14,14 @@ namespace TalusFramework.Runtime.Behaviours
         [LabelWidth(80)]
         public Slider Slider;
 
-        [Required]
-        [LabelWidth(65)]
-        public FloatReference Reference;
+        [LabelWidth(100)]
+        public FloatReference FloatReference;
 
         private void Update()
         {
-            if (Slider != null && Reference != null)
+            if (Slider != null && FloatReference != null)
             {
-                Slider.value = Reference.Value;
+                Slider.value = FloatReference.Value;
             }
         }
     }

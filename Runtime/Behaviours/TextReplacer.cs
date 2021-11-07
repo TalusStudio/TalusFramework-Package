@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using TalusFramework.Runtime.References;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace TalusFramework.Runtime.Behaviours
@@ -12,18 +13,17 @@ namespace TalusFramework.Runtime.Behaviours
         [LabelWidth(80)]
         public Text Text;
 
-        [Required]
-        [LabelWidth(65)]
-        public StringReference Reference;
+		[LabelWidth(65)]
+        public StringReference StringReference;
 
         private void Start()
         {
-            Text.text = Reference.Value;
+            Text.text = StringReference.Value;
         }
 
         private void OnEnable()
         {
-            Text.text = Reference.Value;
+            Text.text = StringReference.Value;
         }
     }
 }

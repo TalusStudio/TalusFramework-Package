@@ -1,6 +1,8 @@
 ﻿using Sirenix.OdinInspector;
 using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.Utility.Logging;
+using TalusFramework.Runtime.Variables;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,12 +15,18 @@ namespace TalusFramework.Runtime.SceneManagement
     public class SceneLoadListener : MonoBehaviour
     {
         [Required]
-        [AssetSelector(DropdownTitle = "Game Events")]
-        [LabelWidth(100)]
+        [AssetSelector]
+        [LabelWidth(110)]
         [SerializeField]
         private GameEvent _LevelLoadEvent;
 
-        private void OnEnable()
+		[Required]
+		[AssetSelector]
+		[LabelWidth(110)]
+		[SerializeField]
+		private IntVariableSO _CurrentLevelIndex;
+
+		private void OnEnable()
         {
             SceneManager.sceneLoaded += HandleSceneLoad;
         }
@@ -32,7 +40,8 @@ namespace TalusFramework.Runtime.SceneManagement
         {
             TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
 
-            _LevelLoadEvent.Raise();
+			_CurrentLevelIndex.SetValue(scene.buildIndex);
+			_LevelLoadEvent.Raise();
         }
-    }
+	}
 }

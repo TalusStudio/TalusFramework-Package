@@ -4,7 +4,7 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Base
 {
     /// <summary>
-    /// Generic Singleton for MonoBehaviours
+    /// Generic Singleton for MonoBehaviours.
     /// </summary>
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {

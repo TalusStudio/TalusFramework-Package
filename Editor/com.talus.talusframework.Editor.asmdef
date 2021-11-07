@@ -2,15 +2,18 @@
     "name": "com.talus.talusFramework.editor",
     "rootNamespace": "",
     "references": [
-		"TalusFramework"
-	],
+        "TalusFramework",
+        "Unity.RenderPipelines.Core.Runtime"
+    ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
-    "precompiledReferences": [],
+    "precompiledReferences": [
+        ""
+    ],
     "autoReferenced": true,
     "defineConstraints": [],
     "versionDefines": [],
