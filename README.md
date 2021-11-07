@@ -18,7 +18,7 @@
   
 ## Behaviours
   - GameEventListener
-  - AnimatorParameterSetter, ImageFillSetter, SliderSetter, TextReplacer
+  - AnimatorParameterSetter, ImageFillSetter, SliderSetter, TextReplacer, Object Creator
   - Thing, ThingDisabler, ThingEnabler
 
 ## Reference Types and Editor Utility
@@ -35,3 +35,4 @@
   - GameObject Replacer (shortcut : CTRL + Q) 
   - Watch Window (shortcut: CTRL + W)
   - Menu Editor (shorcut: CTRL + M)
+  - Player Pref Editor
