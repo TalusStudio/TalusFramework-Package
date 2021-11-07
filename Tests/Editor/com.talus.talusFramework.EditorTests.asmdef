@@ -1,5 +1,5 @@
 {
-    "name": "Tests.EditMode",
+    "name": "com.talus.talusFramework.EditorTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

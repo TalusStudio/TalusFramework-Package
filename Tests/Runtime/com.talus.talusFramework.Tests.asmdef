@@ -1,5 +1,5 @@
 {
-    "name": "Tests.PlayMode",
+    "name": "com.talus.talusFramework.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
