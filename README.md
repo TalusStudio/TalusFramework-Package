@@ -4,6 +4,7 @@
 - Unity 2020.3.9f1 
 - DOTween Pro
 - Odin Attributes
+- Quantum Console
 
 # 💿 installation
 - Clone repository and extract it.
