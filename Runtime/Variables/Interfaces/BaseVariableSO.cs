@@ -1,82 +1,47 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Constants.Interfaces;
 using TalusFramework.Runtime.Utility;
+using TalusFramework.Runtime.Utility.Logging;
 using UnityEngine;
 
 namespace TalusFramework.Runtime.Variables.Interfaces
 {
-    public abstract class BaseVariableSO<TPlainType, TVariableType, TConstantType> : BaseSO, ISerializationCallbackReceiver
-        where TVariableType : BaseVariableSO<TPlainType, TVariableType, TConstantType>
-        where TConstantType : BaseConstantSO<TPlainType>
-    {
-        [HideInPlayMode]
-        [PropertyOrder(1)]
-        [LabelWidth(45)]
-        [Title("Value", "@ToString()", bold: false)]
-        [HideLabel]
-        [SerializeField]
-        private TPlainType _Value;
+	public abstract class BaseVariableSO<TPlainType> : BaseValueSO<TPlainType>
+	{
+		[PropertySpace]
+		[PropertyOrder(2)]
+		[HorizontalGroup(1f)]
+		public ToggleableEvent OnChangeEvent = new ToggleableEvent();
 
-        [HideInEditorMode]
-        [PropertyOrder(1)]
-        [LabelWidth(45)]
-        [Title("Value", "@ToString()", bold: false)]
-        [HideLabel]
-        [SerializeField]
-        private TPlainType _RuntimeValue;
+		public virtual void SetValue(TPlainType value)
+		{
+			if (RuntimeValue.Equals(value)) { return; }
 
-        public TPlainType Value => _RuntimeValue;
+			RuntimeValue = value;
 
-        [PropertySpace]
-        [PropertyOrder(2)]
-        [HorizontalGroup(1f)]
-        public ToggleableEvent OnChangeEvent = new ToggleableEvent();
+			if (OnChangeEvent.Enabled)
+			{
+				OnChangeEvent.Response.Invoke();
+			}
+		}
 
-        public void SetValue(TPlainType value)
-        {
-            if (_RuntimeValue.Equals(value)) { return; }
+		public virtual void SetValue(BaseValueSO value)
+		{
+			BaseValueSO<TPlainType> variable = value as BaseValueSO<TPlainType>;
+			if (variable == null)
+			{
+				TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), LogType.Error);
+				return;
+			}
 
-            _RuntimeValue = value;
+			if (RuntimeValue.Equals(variable.RuntimeValue)) { return; }
 
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.Response.Invoke();
-            }
-        }
+			RuntimeValue = variable.RuntimeValue;
 
-        public void SetValue(TVariableType value)
-        {
-            if (_RuntimeValue.Equals(value.Value)) { return; }
-
-            _RuntimeValue = value.Value;
-
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.Response.Invoke();
-            }
-        }
-
-        public void SetValue(TConstantType value)
-        {
-            if (_RuntimeValue.Equals(value.Value)) { return; }
-
-            _RuntimeValue = value.Value;
-
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.Response.Invoke();
-            }
-        }
-
-        public void OnBeforeSerialize()
-        { }
-
-        public void OnAfterDeserialize()
-        {
-            _RuntimeValue = _Value;
-        }
-
-        public override string ToString() => typeof(TPlainType).ToString();
-    }
+			if (OnChangeEvent.Enabled)
+			{
+				OnChangeEvent.Response.Invoke();
+			}
+		}
+	}
 }

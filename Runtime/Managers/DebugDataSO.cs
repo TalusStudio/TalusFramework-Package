@@ -2,8 +2,6 @@
 
 using UnityEngine;
 
-using QFSW.QC;
-
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
@@ -16,12 +14,8 @@ namespace TalusFramework.Runtime.Managers
 {
 	[CreateAssetMenu]
 	[HideMonoScript]
-	[CommandPrefix("talus.")]
 	public class DebugDataSO : BaseSO
 	{
-		private void OnEnable() => QuantumRegistry.RegisterObject(this);
-		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
-
 		[FoldoutGroup("Debugging")]
 		[ToggleLeft]
 		[SerializeField]
@@ -46,7 +40,6 @@ namespace TalusFramework.Runtime.Managers
 		[AssetSelector]
 		public GameEvent ConsoleActivatedEvent;
 
-		[Command("create-debug-view", MonoTargetType.Registry)]
 		public void CreateDebugView()
 		{
 			if (!_EnableHiddenDebugView)

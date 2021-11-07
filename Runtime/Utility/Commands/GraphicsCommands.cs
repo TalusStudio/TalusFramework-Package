@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if ENABLE_COMMANDS
+using UnityEngine;
 
 using QFSW.QC;
 
@@ -29,3 +30,4 @@ namespace TalusFramework.Runtime.Utility.Commands
 		}
 	}
 }
+#endif

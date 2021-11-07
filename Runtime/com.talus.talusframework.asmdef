@@ -2,7 +2,7 @@
     "name": "TalusFramework",
     "rootNamespace": "",
     "references": [
-        "GUID:df380645f10b7bc4b97d4f5eb6303d95"
+        "QFSW.QC"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -2,7 +2,7 @@
     "name": "com.talus.talusFramework.editor",
     "rootNamespace": "",
     "references": [
-        "Talus.TalusFramework",
+        "TalusFramework",
         "Unity.RenderPipelines.Core.Runtime"
     ],
     "includePlatforms": [

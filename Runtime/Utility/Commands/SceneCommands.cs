@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if ENABLE_COMMANDS
+using System.Collections.Generic;
 using System.Linq;
 
 using QFSW.QC;
@@ -53,3 +54,4 @@ namespace TalusFramework.Runtime.Utility.Commands
         }
 	}
 }
+#endif

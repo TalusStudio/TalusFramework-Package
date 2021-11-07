@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
+#if ENABLE_COMMANDS
 using QFSW.QC;
+#endif
 
 using Sirenix.OdinInspector;
 
@@ -10,11 +12,15 @@ namespace TalusFramework.Runtime.Managers
 {
 	[CreateAssetMenu]
 	[HideMonoScript]
+#if ENABLE_COMMANDS
 	[CommandPrefix("talus.")]
+#endif
 	public class TimeScaleManagerSO : BaseSO
 	{
+#if ENABLE_COMMANDS
 		private void OnEnable() => QuantumRegistry.RegisterObject(this);
 		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+#endif
 
 		[Button(ButtonSizes.Large), EnableIf("@Time.timeScale != 0f"), GUIColor(1f, 1f, 0f)]
 		public void PauseGame() => Time.timeScale = 0f;

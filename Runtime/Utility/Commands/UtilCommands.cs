@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if ENABLE_COMMANDS
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -195,3 +196,4 @@ namespace TalusFramework.Runtime.Utility.Commands
 		private static void SendGOMessage(GameObject target, string methodName) { target.SendMessage(methodName); }
 	}
 }
+#endif

@@ -3,7 +3,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+#if ENABLE_COMMANDS
 using QFSW.QC;
+#endif
 
 using Sirenix.OdinInspector;
 
@@ -15,11 +17,15 @@ namespace TalusFramework.Runtime.Managers
 {
 	[CreateAssetMenu]
 	[HideMonoScript]
+#if ENABLE_COMMANDS
 	[CommandPrefix("talus.")]
+#endif
 	public class GameDataSO : BaseSO
 	{
+#if ENABLE_COMMANDS
 		private void OnEnable() => QuantumRegistry.RegisterObject(this);
 		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+#endif
 
 		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
 		private static void Init()
@@ -45,7 +51,9 @@ namespace TalusFramework.Runtime.Managers
 		[LabelWidth(100)]
 		public StringConstantSO LevelCyclePref;
 
+#if ENABLE_COMMANDS
 		[Command("update-success-state-data", MonoTargetType.Registry)]
+#endif
 		public void SetSuccessData()
 		{
 			PlayerPrefs.SetInt(LevelCyclePref.Value, GetCompletedLevel() + 1);
@@ -82,7 +90,9 @@ namespace TalusFramework.Runtime.Managers
 			}
 		}
 
+#if ENABLE_COMMANDS
 		[Command("get-level-pref", MonoTargetType.Registry)]
+#endif
 		private int GetCompletedLevel()
 		{
 			if (PlayerPrefs.HasKey(LevelCyclePref.Value))

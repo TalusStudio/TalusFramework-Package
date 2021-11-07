@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿#if ENABLE_COMMANDS
+using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
@@ -102,3 +103,4 @@ namespace TalusFramework.Runtime.Utility.Commands
 		}
 	}
 }
+#endif
