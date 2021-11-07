@@ -7,7 +7,5 @@ namespace TalusFramework.Runtime.Constants
     [CreateAssetMenu(fileName = "New String Constant", menuName = "Constants/String", order = 3)]
     [HideMonoScript]
     public sealed class StringConstantSO : BaseConstantSO<string>
-    {
-        public override string ToString() => "Const String";
-    }
+    { }
 }

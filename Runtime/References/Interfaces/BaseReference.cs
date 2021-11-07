@@ -1,5 +1,5 @@
-﻿using TalusFramework.Runtime.Constants.Interfaces;
-using TalusFramework.Runtime.Variables.Interfaces;
+﻿using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Utility.Logging;
 using UnityEngine;
 
 namespace TalusFramework.Runtime.References.Interfaces
@@ -11,33 +11,45 @@ namespace TalusFramework.Runtime.References.Interfaces
     // priority order
     // PlainReference > ConstantReference > VariableReference
     [System.Serializable]
-    public class BaseReference<TPlainType, TVariableType, TConstantType> : BaseReference
-        where TVariableType : BaseVariableSO<TPlainType, TVariableType, TConstantType>
-        where TConstantType : BaseConstantSO<TPlainType>
-    {
-        [SerializeField]
-        private bool UsePlain;
+    public class BaseReference<TPlainType> : BaseReference
+	{
+		[SerializeField]
+        private bool UseConstant = true;
 
         [SerializeField]
-        private bool UseConstant;
+        private TPlainType ConstantValue;
 
         [SerializeField]
-        private TPlainType PlainValue;
-        
-        [SerializeField]
-        private TConstantType ConstantValue;
+        private BaseValueSO Variable;
 
-        [SerializeField]
-        private TVariableType Variable;
-        
-        public BaseReference()
-        { }
+		public BaseReference()
+		{ }
 
         public BaseReference(bool useConst)
         {
             UseConstant = useConst;
         }
 
-        public TPlainType Value => UsePlain ? PlainValue : UseConstant ? ConstantValue.Value : Variable.Value;
-    }
+		public TPlainType Value
+		{
+			get
+			{
+				if (UseConstant)
+				{
+					return ConstantValue;
+				}
+
+				BaseValueSO<TPlainType> value = Variable as BaseValueSO<TPlainType>;
+				if (value != null)
+				{
+					return value.RuntimeValue;
+				}
+
+				TLog.Log("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType), LogType.Error);
+
+				return default;
+			}
+		}
+
+	}
 }

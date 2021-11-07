@@ -1,4 +1,7 @@
 ﻿using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Utility.Logging;
+
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,12 +23,26 @@ namespace TalusFramework.Runtime.Events
 
         private void OnEnable()
         {
-            GameEvent.AddListener(this);
+			if (GameEvent != null)
+			{
+				GameEvent.AddListener(this);
+			}
+			else
+			{
+				TLog.Log("GameEvent reference is null!", LogType.Error);
+			}
         }
 
         private void OnDisable()
         {
-            GameEvent.RemoveListener(this);
+			if (GameEvent != null)
+			{
+				GameEvent.RemoveListener(this);
+			}
+			else
+			{
+				TLog.Log("GameEvent reference is null!", LogType.Error);
+			}
         }
 
         [DisableInEditorMode]

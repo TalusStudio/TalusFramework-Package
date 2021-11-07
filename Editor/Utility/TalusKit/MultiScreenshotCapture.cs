@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+
 using UnityEditor;
+
 using UnityEngine;
 
-namespace TalusFramework.Editor
+namespace TalusFramework.Editor.Utility.TalusKit
 {
 	internal static class ReflectionExtensions
 	{

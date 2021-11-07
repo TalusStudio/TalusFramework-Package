@@ -7,7 +7,5 @@ namespace TalusFramework.Runtime.Constants
     [CreateAssetMenu(fileName = "New Bool Constant", menuName = "Constants/Bool", order = 0)]
     [HideMonoScript]
     public sealed class BoolConstantSO : BaseConstantSO<bool>
-    {
-        public override string ToString() => "Const Bool";
-    }
+    { }
 }

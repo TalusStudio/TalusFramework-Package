@@ -7,7 +7,5 @@ namespace TalusFramework.Runtime.Constants
     [CreateAssetMenu(fileName = "New Float Constant", menuName = "Constants/Float", order = 1)]
     [HideMonoScript]
     public sealed class FloatConstantSO : BaseConstantSO<float>
-    {
-        public override string ToString() => "Const Float";
-    }
+    { }
 }

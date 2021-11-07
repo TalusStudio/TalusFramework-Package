@@ -1,14 +1,15 @@
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Utility.Logging;
+
 using UnityEditor.SceneManagement;
+
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Utility.Logging;
-using TalusFramework.Runtime.Base;
-
-namespace TalusFramework.Runtime.Managers
+namespace TalusFramework.Editor.Utility.TalusKit
 {
     [CreateAssetMenu]
     [HideMonoScript]
@@ -154,7 +155,6 @@ namespace TalusFramework.Runtime.Managers
             // If you change the skybox in playmode, you have to use the DynamicGI.UpdateEnvironment
             // function call to update the ambient probe.
             DynamicGI.UpdateEnvironment();
-
 			EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 		}
 	}

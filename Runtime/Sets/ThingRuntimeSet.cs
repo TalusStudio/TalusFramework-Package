@@ -8,7 +8,5 @@ namespace TalusFramework.Runtime.Sets
     [CreateAssetMenu]
     [HideMonoScript]
     public class ThingRuntimeSet : RuntimeSet<Thing>
-    {
-
-    }
+    { }
 }

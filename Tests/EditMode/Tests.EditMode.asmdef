@@ -1,21 +1,23 @@
 {
-    "name": "com.talus.talusFramework.editor",
+    "name": "Tests.EditMode",
     "rootNamespace": "",
     "references": [
-        "Talus.TalusFramework",
-        "Unity.RenderPipelines.Core.Runtime"
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": false,
+    "overrideReferences": true,
     "precompiledReferences": [
-        ""
+        "nunit.framework.dll"
     ],
-    "autoReferenced": true,
-    "defineConstraints": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
     "versionDefines": [],
     "noEngineReferences": false
 }

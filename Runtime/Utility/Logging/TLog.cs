@@ -4,7 +4,7 @@ namespace TalusFramework.Runtime.Utility.Logging
 {
     public static class TLog
     {
-        //[System.Diagnostics.Conditional("ENABLE_LOGS")]
+        [System.Diagnostics.Conditional("ENABLE_LOGS")]
         public static void Log(string logMsg, LogType logType = LogType.Log)
         {
             switch (logType)

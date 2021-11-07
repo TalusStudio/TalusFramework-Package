@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
-using UnityEditor;
-using UnityEngine;
 
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 
-namespace TalusFramework.Editor
+using UnityEditor;
+
+using UnityEngine;
+
+namespace TalusFramework.Editor.Utility.TalusKit
 {
     public class ScriptableObjectCreator : OdinMenuEditorWindow
     {
@@ -86,8 +88,8 @@ namespace TalusFramework.Editor
 
             foreach (Type type in _scriptableObjectTypes.ToList())
             {
-                if (type == null || type.IsAbstract) { continue; }
-                
+                if (type == null || type.IsAbstract || type.IsGenericType) { continue; }
+
                 ScriptableObjectCreatorMenuItem customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
                 tree.AddMenuItemAtPath(type.Namespace, customMenuItem).AddThumbnailIcons();
             }

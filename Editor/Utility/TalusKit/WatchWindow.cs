@@ -1,14 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
+
 using UnityEditor;
+
 using UnityEngine;
+
 using Object = UnityEngine.Object;
 
-namespace TalusFramework.Editor
+namespace TalusFramework.Editor.Utility.TalusKit
 {
     internal class WatchWindow : OdinEditorWindow
     {

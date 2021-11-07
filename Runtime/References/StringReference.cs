@@ -1,11 +1,9 @@
-﻿using TalusFramework.Runtime.Constants;
-using TalusFramework.Runtime.References.Interfaces;
-using TalusFramework.Runtime.Variables;
+﻿using TalusFramework.Runtime.References.Interfaces;
 
 namespace TalusFramework.Runtime.References
 {
     [System.Serializable]
-    public sealed class StringReference : BaseReference<string, StringVariableSO, StringConstantSO>
+    public sealed class StringReference : BaseReference<string>
     {
         public static implicit operator string(StringReference reference) => reference.Value;
     }
