@@ -11,7 +11,8 @@
     "precompiledReferences": [
         "DOTween.dll",
         "DOTweenPro.dll",
-        "Sirenix.OdinInspector.Attributes.dll"
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.Serialization.dll"
     ],
     "autoReferenced": true,
     "defineConstraints": [],

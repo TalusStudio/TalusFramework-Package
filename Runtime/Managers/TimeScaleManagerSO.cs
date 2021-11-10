@@ -9,7 +9,7 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 2)]
 	[HideMonoScript]
 #if ENABLE_COMMANDS
 	[CommandPrefix("talus.")]

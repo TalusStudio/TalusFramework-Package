@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility;
+using TalusFramework.Runtime.Responses;
 using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace TalusFramework.Runtime.Variables.Interfaces
 		[PropertySpace]
 		[PropertyOrder(2)]
 		[HorizontalGroup(1f)]
-		public ToggleableEvent OnChangeEvent = new ToggleableEvent();
+		public ToggleableResponses OnChangeEvent = new ToggleableResponses();
 
 		public virtual void SetValue(TPlainType value)
 		{
@@ -23,7 +23,7 @@ namespace TalusFramework.Runtime.Variables.Interfaces
 
 			if (OnChangeEvent.Enabled)
 			{
-				OnChangeEvent.Response.Invoke();
+				OnChangeEvent.RaiseAll();
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace TalusFramework.Runtime.Variables.Interfaces
 
 			if (OnChangeEvent.Enabled)
 			{
-				OnChangeEvent.Response.Invoke();
+				OnChangeEvent.RaiseAll();
 			}
 		}
 	}

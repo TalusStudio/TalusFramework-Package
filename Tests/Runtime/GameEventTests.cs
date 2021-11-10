@@ -7,15 +7,13 @@ using TalusFramework.Runtime.Events;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-using Object = UnityEngine.Object;
-
-namespace TalusFramework.Tests.PlayMode
+namespace TalusFramework.Tests.Runtime
 {
 	public class GameEventTests
 	{
+		private GameEventListener _AddTestListenerRef;
 		private GameEvent _EventRef;
 		private GameEventListener _InitialListenerRef;
-		private GameEventListener _AddTestListenerRef;
 
 		[UnitySetUp]
 		public IEnumerator SetUp()
@@ -26,7 +24,9 @@ namespace TalusFramework.Tests.PlayMode
 
 			// prepare test
 			_EventRef = ScriptableObject.CreateInstance<GameEvent>();
-			_InitialListenerRef = new GameObject("Test Event Listener", typeof(GameEventListener)).GetComponent<GameEventListener>();
+
+			_InitialListenerRef = new GameObject("Test Event Listener", typeof(GameEventListener))
+					.GetComponent<GameEventListener>();
 
 			_EventRef.AddListener(_InitialListenerRef);
 			_InitialListenerRef.GameEvent = _EventRef;
@@ -80,6 +80,5 @@ namespace TalusFramework.Tests.PlayMode
 		{
 			yield return null;
 		}
-
 	}
 }

@@ -12,7 +12,7 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Managers
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "New Debug Data", menuName = "Managers/Debug Data", order = 0)]
 	[HideMonoScript]
 	public class DebugDataSO : BaseSO
 	{

@@ -10,8 +10,6 @@ namespace TalusFramework.Runtime.References.Interfaces
 	// Can't get property drawer to work with generic arguments
 	public abstract class BaseReference { }
 
-	// priority order
-	// PlainReference > ConstantReference > VariableReference
 	[Serializable]
 	public class BaseReference<TPlainType> : BaseReference
 	{
@@ -53,5 +51,7 @@ namespace TalusFramework.Runtime.References.Interfaces
 				return default;
 			}
 		}
+
+		public override string ToString() => Value.ToString();
 	}
 }

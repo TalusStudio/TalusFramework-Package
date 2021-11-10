@@ -1,13 +1,10 @@
 ﻿using NUnit.Framework;
 
-namespace TalusFramework.Tests.EditMode
+namespace TalusFramework.Tests.Editor
 {
 	public class TestFoo
 	{
 		[Test]
-		public void Foo()
-		{
-
-		}
+		public void Foo() { }
 	}
 }

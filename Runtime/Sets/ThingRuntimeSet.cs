@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Sets
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "New Thing Runtime Set", menuName = "Collections/Thing Runtime Set", order = 4)]
 	[HideMonoScript]
 	public class ThingRuntimeSet : RuntimeSet<Thing> { }
 }

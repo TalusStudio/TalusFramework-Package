@@ -28,6 +28,11 @@ namespace TalusFramework.Runtime.SceneManagement
 			await LoadScene(sceneIndex.RuntimeValue);
 		}
 
+		public static async void LoadLevel(int sceneIndex)
+		{
+			await LoadScene(sceneIndex);
+		}
+
 #if ENABLE_COMMANDS
 		[Command("load-scene", "loads a scene by name into the game")]
 #endif

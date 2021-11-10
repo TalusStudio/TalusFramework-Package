@@ -2,36 +2,33 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility;
+using TalusFramework.Runtime.Responses;
 using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace TalusFramework.Runtime.Events
 {
 	[CreateAssetMenu]
 	[HideMonoScript]
-	public class GameEvent : BaseSO
+	public class GameEvent : SerializedScriptableObject
 	{
-		[ReadOnly]
-		[HideInEditorMode]
-		[SerializeField]
-		[PropertyOrder(2)]
-		[PropertySpace]
-		[FormerlySerializedAs("_gameEventListeners")]
-		private List<GameEventListener> _GameEventListeners = new List<GameEventListener>();
 
 		[PropertyOrder(1)]
-		public ToggleableEvent GlobalCallback = new ToggleableEvent();
+		public ToggleableResponses GlobalResponses = new ToggleableResponses();
 
 #if ENABLE_LOGS
-		[PropertyOrder(3)]
+		[PropertyOrder(999)]
 		[Space]
 		[ToggleLeft]
-		public bool ConsoleDebug;
+		public bool UseDebug;
 #endif
+		[HideInEditorMode]
+		[PropertyOrder(2)]
+		[PropertySpace]
+		[ReadOnly]
+		[SerializeField]
+		private List<GameEventListener> _GameEventListeners = new List<GameEventListener>();
 
 		public int ListenersCount => _GameEventListeners.Count;
 
@@ -42,12 +39,12 @@ namespace TalusFramework.Runtime.Events
 		public void Raise()
 		{
 #if ENABLE_LOGS
-			if (ConsoleDebug) { TLog.Log(name + " invoked!"); }
+			if (UseDebug) { TLog.Log(name + " invoked!"); }
 #endif
 
-			if (GlobalCallback.Enabled)
+			if (GlobalResponses.Enabled)
 			{
-				GlobalCallback.Response?.Invoke();
+				GlobalResponses.RaiseAll();
 			}
 
 			for (int i = _GameEventListeners.Count - 1; i >= 0; i--)
@@ -56,19 +53,19 @@ namespace TalusFramework.Runtime.Events
 			}
 		}
 
-		public void AddListener(GameEventListener gameEventListener)
+		public void AddListener(GameEventListener listener)
 		{
-			if (!_GameEventListeners.Contains(gameEventListener))
+			if (!_GameEventListeners.Contains(listener))
 			{
-				_GameEventListeners.Add(gameEventListener);
+				_GameEventListeners.Add(listener);
 			}
 		}
 
-		public void RemoveListener(GameEventListener gameEventListener)
+		public void RemoveListener(GameEventListener listener)
 		{
-			if (_GameEventListeners.Contains(gameEventListener))
+			if (_GameEventListeners.Contains(listener))
 			{
-				_GameEventListeners.Remove(gameEventListener);
+				_GameEventListeners.Remove(listener);
 			}
 		}
 	}

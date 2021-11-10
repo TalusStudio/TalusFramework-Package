@@ -14,7 +14,7 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
 	[HideMonoScript]
 #if ENABLE_COMMANDS
 	[CommandPrefix("talus.")]

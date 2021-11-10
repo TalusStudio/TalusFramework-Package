@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 
 namespace TalusFramework.Editor.Utility.TalusKit
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(fileName = "New Lighting Settings", menuName = "Managers/Lighting Settings", order = 3)]
 	[HideMonoScript]
 	public class LightingSettingsSO : BaseSO
 	{

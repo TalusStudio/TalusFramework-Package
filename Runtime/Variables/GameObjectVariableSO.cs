@@ -20,7 +20,7 @@ namespace TalusFramework.Runtime.Variables
 
 			if (OnChangeEvent.Enabled)
 			{
-				OnChangeEvent.Response.Invoke();
+				OnChangeEvent.RaiseAll();
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace TalusFramework.Runtime.Variables
 
 			if (OnChangeEvent.Enabled)
 			{
-				OnChangeEvent.Response.Invoke();
+				OnChangeEvent.RaiseAll();
 			}
 		}
 	}

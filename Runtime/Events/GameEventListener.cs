@@ -47,9 +47,6 @@ namespace TalusFramework.Runtime.Events
 
 		[DisableInEditorMode]
 		[Button("Invoke Response", ButtonSizes.Large)] [GUIColor(0, 1, 0)]
-		public void OnEventRaised()
-		{
-			Response?.Invoke();
-		}
+		public void OnEventRaised() => Response?.Invoke();
 	}
 }
