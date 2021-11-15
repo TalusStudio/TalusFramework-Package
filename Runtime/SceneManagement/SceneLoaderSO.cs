@@ -14,40 +14,39 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.SceneManagement
 {
-	[HideMonoScript]
+    [HideMonoScript]
 #if ENABLE_COMMANDS
-	[CommandPrefix("talus.")]
+    [CommandPrefix("talus.")]
 #endif
-	public class SceneLoaderSO : BaseSO
-	{
+    public class SceneLoaderSO : BaseSO
+    {
+        [Button]
+        [DisableInEditorMode]
+        public async void LoadLevel(IntVariableSO sceneIndex)
+        {
+            await LoadScene(sceneIndex.RuntimeValue);
+        }
 
-		[Button]
-		[DisableInEditorMode]
-		public async void LoadLevel(IntVariableSO sceneIndex)
-		{
-			await LoadScene(sceneIndex.RuntimeValue);
-		}
-
-		public static async void LoadLevel(int sceneIndex)
-		{
-			await LoadScene(sceneIndex);
-		}
-
-#if ENABLE_COMMANDS
-		[Command("load-scene", "loads a scene by name into the game")]
-#endif
-		private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
-		{
-			// wait one frame
-			await Task.Yield();
-
-			AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
-			await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
-		}
+        public static async void LoadLevel(int sceneIndex)
+        {
+            await LoadScene(sceneIndex);
+        }
 
 #if ENABLE_COMMANDS
-		private void OnEnable() => QuantumRegistry.RegisterObject(this);
-		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+        [Command("load-scene", "loads a scene by index into the game")]
 #endif
-	}
+        private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
+        {
+            // wait one frame
+            await Task.Yield();
+
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
+            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+        }
+
+#if ENABLE_COMMANDS
+        private void OnEnable() => QuantumRegistry.RegisterObject(this);
+        private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+#endif
+    }
 }

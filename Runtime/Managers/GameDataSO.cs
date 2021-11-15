@@ -14,37 +14,36 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-	[CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-	[HideMonoScript]
+    [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
+    [HideMonoScript]
 #if ENABLE_COMMANDS
-	[CommandPrefix("talus.")]
+    [CommandPrefix("talus.")]
 #endif
-	public class GameDataSO : BaseSO
-	{
+    public class GameDataSO : BaseSO
+    {
+        [TitleGroup("Variables - Scene Management")]
+        [Required]
+        [AssetSelector(DropdownTitle = "Int Variables")]
+        [LabelWidth(100)]
+        public IntVariableSO NextLevelIndex;
 
-		[TitleGroup("Variables - Scene Management")]
-		[Required]
-		[AssetSelector(DropdownTitle = "Int Variables")]
-		[LabelWidth(100)]
-		public IntVariableSO NextLevelIndex;
+        [TitleGroup("Variables - In Game")]
+        [Required]
+        [AssetSelector(DropdownTitle = "String Variables")]
+        [LabelWidth(100)]
+        public StringVariableSO LevelText;
 
-		[TitleGroup("Variables - In Game")]
-		[Required]
-		[AssetSelector(DropdownTitle = "String Variables")]
-		[LabelWidth(100)]
-		public StringVariableSO LevelText;
+        [TitleGroup("Variables - Scene Management")]
+        [Required]
+        [AssetSelector(DropdownTitle = "String Variables")]
+        [LabelWidth(100)]
+        public StringConstantSO LevelCyclePref;
 
-		[TitleGroup("Variables - Scene Management")]
-		[Required]
-		[AssetSelector(DropdownTitle = "String Variables")]
-		[LabelWidth(100)]
-		public StringConstantSO LevelCyclePref;
-
-		private static List<int> Levels
-		{
-			get
-			{
-				List<int> levelIndexes = new List<int>();
+        private static List<int> Levels
+        {
+            get
+            {
+                List<int> levelIndexes = new List<int>();
 
 #if ENABLE_BACKEND
                 // scene at buildIndex 0 -> elephant
@@ -54,55 +53,56 @@ namespace TalusFramework.Runtime.Managers
                     levelIndexes.Add(i);
                 }
 #else
-				// scene at buildIndex 0 -> forwarder scene
-				for (int i = 1; i < SceneManager.sceneCountInBuildSettings; ++i)
-				{
-					levelIndexes.Add(i);
-				}
+                // scene at buildIndex 0 -> forwarder scene
+                for (int i = 1; i < SceneManager.sceneCountInBuildSettings; ++i)
+                {
+                    levelIndexes.Add(i);
+                }
 #endif
-				return levelIndexes;
-			}
-		}
+                return levelIndexes;
+            }
+        }
 
-		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-		private static void Init()
-		{
-			Application.targetFrameRate = 60;
-		}
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Init()
+        {
+            Application.targetFrameRate = 60;
+        }
 
 #if ENABLE_COMMANDS
-		[Command("update-success-state-data", MonoTargetType.Registry)]
+        [Command("update-success-state-data", MonoTargetType.Registry)]
 #endif
-		public void SetSuccessData()
-		{
-			PlayerPrefs.SetInt(LevelCyclePref.Value, GetCompletedLevel() + 1);
-			PlayerPrefs.Save();
+        public void SetSuccessData()
+        {
+            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, GetCompletedLevel() + 1);
+            PlayerPrefs.Save();
 
-			UpdateNextLevelVariable();
-			UpdateLevelTextVariable();
-		}
+            UpdateNextLevelVariable();
+            UpdateLevelTextVariable();
+        }
 
-		public void UpdateNextLevelVariable() => NextLevelIndex.SetValue(Levels[GetCompletedLevel() % Levels.Count]);
-		public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (GetCompletedLevel() + 1));
+        public void UpdateNextLevelVariable() => NextLevelIndex.SetValue(Levels[GetCompletedLevel() % Levels.Count]);
+        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (GetCompletedLevel() + 1));
 
 #if ENABLE_COMMANDS
-		[Command("get-level-pref", MonoTargetType.Registry)]
+        [Command("get-level-pref", MonoTargetType.Registry)]
 #endif
-		private int GetCompletedLevel()
-		{
-			if (PlayerPrefs.HasKey(LevelCyclePref.Value))
-			{
-				return PlayerPrefs.GetInt(LevelCyclePref.Value);
-			}
+        private int GetCompletedLevel()
+        {
+            if (PlayerPrefs.HasKey(LevelCyclePref.RuntimeValue))
+            {
+                return PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+            }
 
-			PlayerPrefs.SetInt(LevelCyclePref.Value, 0);
-			PlayerPrefs.Save();
+            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, 0);
+            PlayerPrefs.Save();
 
-			return PlayerPrefs.GetInt(LevelCyclePref.Value);
-		}
+            return PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+        }
+
 #if ENABLE_COMMANDS
-		private void OnEnable() => QuantumRegistry.RegisterObject(this);
-		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+        private void OnEnable() => QuantumRegistry.RegisterObject(this);
+        private void OnDisable() => QuantumRegistry.DeregisterObject(this);
 #endif
-	}
+    }
 }

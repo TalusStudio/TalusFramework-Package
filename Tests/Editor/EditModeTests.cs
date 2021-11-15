@@ -2,9 +2,9 @@
 
 namespace TalusFramework.Tests.Editor
 {
-	public class TestFoo
-	{
-		[Test]
-		public void Foo() { }
-	}
+    public class TestFoo
+    {
+        [Test]
+        public void Foo() { }
+    }
 }

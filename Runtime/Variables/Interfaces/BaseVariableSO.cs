@@ -8,43 +8,43 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Variables.Interfaces
 {
-	public abstract class BaseVariableSO<TPlainType> : BaseValueSO<TPlainType>
-	{
-		[PropertySpace]
-		[PropertyOrder(2)]
-		[HorizontalGroup(1f)]
-		public ToggleableResponses OnChangeEvent = new ToggleableResponses();
+    public abstract class BaseVariableSO<TPlainType> : BaseValueSO<TPlainType>
+    {
+        [PropertySpace]
+        [PropertyOrder(2)]
+        [HorizontalGroup(1f)]
+        public ToggleableResponses OnChangeEvent = new ToggleableResponses();
 
-		public virtual void SetValue(TPlainType value)
-		{
-			if (RuntimeValue.Equals(value)) { return; }
+        public virtual void SetValue(TPlainType value)
+        {
+            if (RuntimeValue.Equals(value)) { return; }
 
-			RuntimeValue = value;
+            RuntimeValue = value;
 
-			if (OnChangeEvent.Enabled)
-			{
-				OnChangeEvent.RaiseAll();
-			}
-		}
+            if (OnChangeEvent.Enabled)
+            {
+                OnChangeEvent.SendAll();
+            }
+        }
 
-		public virtual void SetValue(BaseValueSO value)
-		{
-			BaseValueSO<TPlainType> variable = value as BaseValueSO<TPlainType>;
+        public virtual void SetValue(BaseValueSO value)
+        {
+            BaseValueSO<TPlainType> variable = value as BaseValueSO<TPlainType>;
 
-			if (variable == null)
-			{
-				TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), LogType.Error);
-				return;
-			}
+            if (variable == null)
+            {
+                TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), LogType.Error);
+                return;
+            }
 
-			if (RuntimeValue.Equals(variable.RuntimeValue)) { return; }
+            if (RuntimeValue.Equals(variable.RuntimeValue)) { return; }
 
-			RuntimeValue = variable.RuntimeValue;
+            RuntimeValue = variable.RuntimeValue;
 
-			if (OnChangeEvent.Enabled)
-			{
-				OnChangeEvent.RaiseAll();
-			}
-		}
-	}
+            if (OnChangeEvent.Enabled)
+            {
+                OnChangeEvent.SendAll();
+            }
+        }
+    }
 }

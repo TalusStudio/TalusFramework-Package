@@ -7,34 +7,39 @@ using UnityEngine.Events;
 
 namespace TalusFramework.Runtime.Responses.Interfaces
 {
-	public class ResponseSO<T> : BaseResponseSO<T>
-	{
-		[FoldoutGroup("Arguments")]
-		[ToggleLeft]
-		public bool UseDynamicArgument;
+    public class ResponseSO<T> : BaseResponseSO<T>
+    {
+#if UNITY_EDITOR
+        [FoldoutGroup("Arguments")]
+        [ToggleLeft]
+        public bool UseDynamicArgument;
+#endif
 
-		[FoldoutGroup("Arguments")]
-		[ShowIf("@UseDynamicArgument == false")]
-		[LabelWidth(60)]
-		[SerializeField]
-		private BaseReference<T> _Argument;
+        /// <summary>
+        /// </summary>
+        [FoldoutGroup("Arguments")]
+        [ShowIf("@UseDynamicArgument == false")]
+        [LabelWidth(60)]
+        [SerializeField]
+        private BaseReference<T> _Argument;
 
-		[SerializeField]
-		private UnityEvent<T> _Response;
+        /// <summary>
+        /// </summary>
+        [SerializeField]
+        private UnityEvent<T> _Response;
 
-		public override UnityEvent<T> Response
-		{
-			get => _Response;
-			set => _Response = value;
-		}
+        protected override BaseReference<T> Argument => _Argument;
 
-		[DisableInEditorMode]
-		[Button(ButtonSizes.Large, ButtonStyle.FoldoutButton)] [GUIColor(0f, 1f, 0f)]
-		public override void Invoke() => Response.Invoke(_Argument.Value);
+        /// <summary>
+        /// </summary>
+        /// <param name="argument"></param>
+        public override void Send(T argument) => _Response.Invoke(argument);
 
-		[DisableInEditorMode]
-		[Button(ButtonSizes.Small, ButtonStyle.CompactBox)] [GUIColor(1f, 1f, 0f)]
-		[LabelText("Dynamic Context")]
-		public void Invoke(T argument) => Response.Invoke(argument);
-	}
+        /// <summary>
+        /// </summary>
+        [DisableInEditorMode]
+        [Button(ButtonSizes.Small, ButtonStyle.CompactBox)] [GUIColor(1f, 1f, 0f)]
+        [LabelText("Dynamic Context")]
+        public override void Send() => Send(Argument.Value);
+    }
 }

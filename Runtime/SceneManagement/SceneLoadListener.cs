@@ -1,48 +1,48 @@
 ﻿using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Events;
+using TalusFramework.Runtime.References;
+using TalusFramework.Runtime.Responses;
 using TalusFramework.Runtime.Utility.Logging;
-using TalusFramework.Runtime.Variables;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace TalusFramework.Runtime.SceneManagement
 {
-	/// <summary>
-	///     invokes LevelLoadEvent
-	/// </summary>
-	[HideMonoScript]
-	public class SceneLoadListener : MonoBehaviour
-	{
-		[Required]
-		[AssetSelector]
-		[LabelWidth(110)]
-		[SerializeField]
-		private GameEvent _LevelLoadEvent;
+    /// <summary>
+    ///     Send Level Load Response to Update Current Level Index() and Raise Level Load Event.
+    /// </summary>
+    [HideMonoScript]
+    public class SceneLoadListener : MonoBehaviour
+    {
+        [LabelWidth(130)]
+        [AssetSelector]
+        [Required]
+        [SerializeField]
+        private IntResponse _LevelLoadResponse;
 
-		[Required]
-		[AssetSelector]
-		[LabelWidth(110)]
-		[SerializeField]
-		private IntVariableSO _CurrentLevelIndex;
+        [LabelWidth(130)]
+        [AssetSelector]
+        [Required]
+        [SerializeField]
+        private GameEvent _LevelLoadEvent;
 
-		private void OnEnable()
-		{
-			SceneManager.sceneLoaded += HandleSceneLoad;
-		}
+        [LabelWidth(128)]
+        public BoolReference Debug;
 
-		private void OnDisable()
-		{
-			SceneManager.sceneLoaded -= HandleSceneLoad;
-		}
+        private void OnEnable() => SceneManager.sceneLoaded += HandleSceneLoad;
+        private void OnDisable() => SceneManager.sceneLoaded -= HandleSceneLoad;
 
-		private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
-		{
-			TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
+        private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            if (Debug)
+            {
+                TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
+            }
 
-			_CurrentLevelIndex.SetValue(scene.buildIndex);
-			_LevelLoadEvent.Raise();
-		}
-	}
+            _LevelLoadResponse.Send(scene.buildIndex);
+            _LevelLoadEvent.Raise();
+        }
+    }
 }

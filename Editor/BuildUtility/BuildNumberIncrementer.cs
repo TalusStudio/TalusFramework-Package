@@ -8,28 +8,25 @@ using UnityEngine;
 
 namespace TalusFramework.Editor.BuildUtility
 {
-	public class IncrementBuildNumber : IPreprocessBuildWithReport
-	{
-		public int callbackOrder => 0;
+    public class IncrementBuildNumber : IPreprocessBuildWithReport
+    {
+        public int callbackOrder => 0;
 
-		public void OnPreprocessBuild(BuildReport report)
-		{
-			if (report.summary.platform != BuildTarget.iOS)
-			{
-				return;
-			}
+        public void OnPreprocessBuild(BuildReport report)
+        {
+            if (report.summary.platform != BuildTarget.iOS) { return; }
 
-			if (int.TryParse(PlayerSettings.iOS.buildNumber, out int currentBuildNumber))
-			{
-				string nextBuildNumber = (currentBuildNumber + 1).ToString();
-				PlayerSettings.iOS.buildNumber = nextBuildNumber;
+            if (int.TryParse(PlayerSettings.iOS.buildNumber, out int currentBuildNumber))
+            {
+                string nextBuildNumber = (currentBuildNumber + 1).ToString();
+                PlayerSettings.iOS.buildNumber = nextBuildNumber;
 
-				TLog.Log("Setting new iOS build number to " + nextBuildNumber);
-			}
-			else
-			{
-				TLog.Log("Failed to parse build number " + PlayerSettings.iOS.buildNumber + " as int.", LogType.Error);
-			}
-		}
-	}
+                TLog.Log("Setting new iOS build number to " + nextBuildNumber);
+            }
+            else
+            {
+                TLog.Log("Failed to parse build number " + PlayerSettings.iOS.buildNumber + " as int.", LogType.Error);
+            }
+        }
+    }
 }

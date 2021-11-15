@@ -2,15 +2,14 @@
     "name": "TalusFramework",
     "rootNamespace": "",
     "references": [
-        "QFSW.QC"
+        "QFSW.QC",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
     "precompiledReferences": [
-        "DOTween.dll",
-        "DOTweenPro.dll",
         "Sirenix.OdinInspector.Attributes.dll",
         "Sirenix.Serialization.dll"
     ],

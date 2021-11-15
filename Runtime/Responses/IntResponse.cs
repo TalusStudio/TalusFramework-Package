@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Responses
 {
-	[CreateAssetMenu(fileName = "New Int Response", menuName = "Responses/Int", order = 2)]
-	[HideMonoScript]
-	public sealed class IntResponse : ResponseSO<int> { }
+    [CreateAssetMenu(fileName = "New Int Response", menuName = "Responses/Int", order = 2)]
+    [HideMonoScript]
+    public sealed class IntResponse : ResponseSO<int>
+    { }
 }

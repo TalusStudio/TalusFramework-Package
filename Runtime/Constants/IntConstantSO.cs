@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Constants
 {
-	[CreateAssetMenu(fileName = "New Int Constant", menuName = "Constants/Int", order = 2)]
-	[HideMonoScript]
-	public sealed class IntConstantSO : BaseConstantSO<int> { }
+    [CreateAssetMenu(fileName = "New Int Constant", menuName = "Constants/Int", order = 2)]
+    [HideMonoScript]
+    public sealed class IntConstantSO : BaseConstantSO<int>
+    { }
 }

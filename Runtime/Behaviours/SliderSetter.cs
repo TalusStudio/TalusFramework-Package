@@ -7,23 +7,23 @@ using UnityEngine.UI;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-	[ExecuteInEditMode]
-	[HideMonoScript]
-	public class SliderSetter : MonoBehaviour
-	{
-		[Required]
-		[LabelWidth(80)]
-		public Slider Slider;
+    [ExecuteInEditMode]
+    [HideMonoScript]
+    public class SliderSetter : MonoBehaviour
+    {
+        [Required]
+        [LabelWidth(80)]
+        public Slider Slider;
 
-		[LabelWidth(100)]
-		public FloatReference FloatReference;
+        [LabelWidth(100)]
+        public FloatReference FloatReference;
 
-		private void Update()
-		{
-			if (Slider != null && FloatReference != null)
-			{
-				Slider.value = FloatReference.Value;
-			}
-		}
-	}
+        private void Update()
+        {
+            if (Slider != null && FloatReference != null)
+            {
+                Slider.value = FloatReference.Value;
+            }
+        }
+    }
 }

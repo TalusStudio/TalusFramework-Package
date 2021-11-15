@@ -10,28 +10,26 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Responses
 {
+    [Serializable, Toggle("Enabled")]
+    public class ToggleableResponses
+    {
+        public bool Enabled;
 
-	[Serializable]
-	[Toggle("Enabled")]
-	public class ToggleableResponses
-	{
-		public bool Enabled;
+        [LabelWidth(75)]
+        public List<BaseResponseSO> Responses;
 
-		[LabelWidth(75)]
-		public List<BaseResponseSO> Responses;
+        public void SendAll()
+        {
+            if (!Enabled)
+            {
+                TLog.Log("Trying to raise disabled responses!", LogType.Warning);
+                return;
+            }
 
-		public void RaiseAll()
-		{
-			if (!Enabled)
-			{
-				TLog.Log("Trying to raise disabled responses!", LogType.Warning);
-				return;
-			}
-
-			for (int i = 0; i < Responses.Count; ++i)
-			{
-				Responses[i].Invoke();
-			}
-		}
-	}
+            for (int i = 0; i < Responses.Count; ++i)
+            {
+                Responses[i].Send();
+            }
+        }
+    }
 }

@@ -9,22 +9,21 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-	[CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 2)]
-	[HideMonoScript]
+    [CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 2)]
+    [HideMonoScript]
 #if ENABLE_COMMANDS
-	[CommandPrefix("talus.")]
+    [CommandPrefix("talus.")]
 #endif
-	public class TimeScaleManagerSO : BaseSO
-	{
+    public class TimeScaleManagerSO : BaseSO
+    {
+        [Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale != 0f")] [GUIColor(1f, 1f, 0f)]
+        public void PauseGame() => Time.timeScale = 0f;
 
-		[Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale != 0f")] [GUIColor(1f, 1f, 0f)]
-		public void PauseGame() => Time.timeScale = 0f;
-
-		[Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale == 0f")] [GUIColor(0f, 1f, 0f)]
-		public void UnpauseGame() => Time.timeScale = 1f;
+        [Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale == 0f")] [GUIColor(0f, 1f, 0f)]
+        public void UnpauseGame() => Time.timeScale = 1f;
 #if ENABLE_COMMANDS
-		private void OnEnable() => QuantumRegistry.RegisterObject(this);
-		private void OnDisable() => QuantumRegistry.DeregisterObject(this);
+        private void OnEnable() => QuantumRegistry.RegisterObject(this);
+        private void OnDisable() => QuantumRegistry.DeregisterObject(this);
 #endif
-	}
+    }
 }

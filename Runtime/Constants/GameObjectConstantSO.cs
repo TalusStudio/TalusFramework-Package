@@ -6,7 +6,8 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Constants
 {
-	[CreateAssetMenu(fileName = "New GameObject Constant", menuName = "Constants/GameObject", order = 6)]
-	[HideMonoScript]
-	public sealed class GameObjectConstantSO : BaseConstantSO<GameObject> { }
+    [CreateAssetMenu(fileName = "New GameObject Constant", menuName = "Constants/GameObject", order = 6)]
+    [HideMonoScript]
+    public sealed class GameObjectConstantSO : BaseConstantSO<GameObject>
+    { }
 }

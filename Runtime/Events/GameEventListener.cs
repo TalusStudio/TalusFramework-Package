@@ -7,46 +7,47 @@ using UnityEngine.Events;
 
 namespace TalusFramework.Runtime.Events
 {
-	[DefaultExecutionOrder(-9999)]
-	[HideMonoScript]
-	public class GameEventListener : MonoBehaviour
-	{
-		[Tooltip("Event to register with.")]
-		[Required]
-		[AssetSelector(DropdownTitle = "Events")]
-		[LabelWidth(75)]
-		public GameEvent GameEvent;
+    [DefaultExecutionOrder(-9999)]
+    [HideMonoScript]
+    public class GameEventListener : MonoBehaviour
+    {
+        [Tooltip("Event to register with."), LabelWidth(75)]
+        [AssetSelector(DropdownTitle = "Events")]
+        [Required]
+        public GameEvent GameEvent;
 
-		[Tooltip("Response to invoke when Event is raised.")]
-		[PropertySpace]
-		public UnityEvent Response;
+        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
+        [ValidateInput("ValidateResponseInput", "Response required!")]
+        public UnityEvent Response;
 
-		private void OnEnable()
-		{
-			if (GameEvent != null)
-			{
-				GameEvent.AddListener(this);
-			}
-			else
-			{
-				TLog.Log("GameEvent reference is null!", LogType.Error);
-			}
-		}
+#if UNITY_EDITOR
+        private bool ValidateResponseInput => Response.GetPersistentEventCount() != 0;
+#endif
 
-		private void OnDisable()
-		{
-			if (GameEvent != null)
-			{
-				GameEvent.RemoveListener(this);
-			}
-			else
-			{
-				TLog.Log("GameEvent reference is null!", LogType.Error);
-			}
-		}
+        private void OnEnable()
+        {
+            if (GameEvent == null)
+            {
+                TLog.Log("GameEvent reference is null!", LogType.Error);
+                return;
+            }
 
-		[DisableInEditorMode]
-		[Button("Invoke Response", ButtonSizes.Large)] [GUIColor(0, 1, 0)]
-		public void OnEventRaised() => Response?.Invoke();
-	}
+            GameEvent.AddListener(this);
+        }
+
+        private void OnDisable()
+        {
+            if (GameEvent == null)
+            {
+                TLog.Log("GameEvent reference is null!", LogType.Error);
+                return;
+            }
+
+            GameEvent.RemoveListener(this);
+        }
+
+        [DisableInEditorMode]
+        [Button("Invoke Response", ButtonSizes.Large)] [GUIColor(0, 1, 0)]
+        public void OnEventRaised() => Response?.Invoke();
+    }
 }

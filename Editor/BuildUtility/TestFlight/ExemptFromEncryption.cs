@@ -9,28 +9,25 @@ using UnityEditor.iOS.Xcode;
 
 namespace TalusFramework.Editor.BuildUtility.TestFlight
 {
-	public class ExemptFromEncryption : IPostprocessBuildWithReport
-	{
-		public int callbackOrder => 0;
+    public class ExemptFromEncryption : IPostprocessBuildWithReport
+    {
+        public int callbackOrder => 0;
 
-		public void OnPostprocessBuild(BuildReport report)
-		{
-			if (report.summary.platform != BuildTarget.iOS)
-			{
-				return;
-			}
+        public void OnPostprocessBuild(BuildReport report)
+        {
+            if (report.summary.platform != BuildTarget.iOS) { return; }
 
 #if UNITY_IOS
-			string plistPath = report.summary.outputPath + "/Info.plist";
+            string plistPath = report.summary.outputPath + "/Info.plist";
 
-			PlistDocument plist = new PlistDocument();
-			plist.ReadFromString(File.ReadAllText(plistPath));
+            PlistDocument plist = new PlistDocument();
+            plist.ReadFromString(File.ReadAllText(plistPath));
 
-			PlistElementDict rootDict = plist.root;
-			rootDict.SetBoolean("ITSAppUsesNonExemptEncryption", false);
+            PlistElementDict rootDict = plist.root;
+            rootDict.SetBoolean("ITSAppUsesNonExemptEncryption", false);
 
-			File.WriteAllText(plistPath, plist.WriteToString());
+            File.WriteAllText(plistPath, plist.WriteToString());
 #endif
-		}
-	}
+        }
+    }
 }

@@ -1,22 +1,19 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
 
-using UnityEngine.Serialization;
-
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
-    public class TextReplacer : MonoBehaviour
+    public class TMPTextReplacer : MonoBehaviour
     {
         [Required]
         [LabelWidth(80)]
-        public Text Text;
+        public TMP_Text Text;
 
-        [FormerlySerializedAs("TextReference")]
         [LabelWidth(65)]
         [AssetSelector]
         public BaseValueSO Value;
