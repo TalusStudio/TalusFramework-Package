@@ -9,29 +9,39 @@
 - Clone repository and extract it.
 - In Unity, Window->Package Manager->Add Package(Plus Icon)->Add Package From Disk->Select json file in TalusFramework folder.
 
-# 🔨 Talus Framework
-- Scriptable Architecture.
+# 🔨 Talus Framework - Scriptable Architecture
+
 - Ready to use behaviours, scriptable objects, utilities etc.
 
-## Game Events
+  ## Game Events
   
-## Behaviours
+  ## Behaviours
   - GameEventListener
-  - AnimatorParameterSetter, ImageFillSetter, SliderSetter, TextReplacer, Object Creator
-  - Thing, ThingDisabler, ThingEnabler
+  - AnimatorParameterSetter
+  - ImageFillSetter
+  - SliderSetter
+  - TextReplacer
+  - TMPTextReplacer
+  - Object Creator
+  - GameObjectAdder (to add GameObject references to the Collections on Play Mode)
+  - GameObjectEnabler
+  - GameObjectDisabler 
 
-## Reference Types and Editor Utility
+  ## Reference Types and Editor Utility
   
-## Scriptable Objects
+  ## Scriptable Objects
   - Bool, Float, Int, String, Vector2, Vector3, GameObject Variables
-  - Bool, Float, Int, String, Vector3, Vector3, GameObject Constants
-  - Runtime Set / Thing RunTime Set
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject Constants
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject Responses (Unity Event with parameter)
+  - Component, Transform, GameObject Collections
   - GameEvent
-  - TransitionData
-  
-## Editor Utilities & Tools
+    
+  ## Editor Utilities & Tools
   - Scriptable Object Creator (shortcut: CTRL + T)
   - GameObject Replacer (shortcut : CTRL + Q) 
-  - Watch Window (shortcut: CTRL + W)
+  - Player Prefs Editor
   - Menu Editor (shorcut: CTRL + M)
-  - Player Pref Editor
+  - Multi ScreenShot Capture
+  - Watch Window (shortcut: CTRL + W)
+ 
+    
