@@ -5,7 +5,7 @@
 - Odin Attributes
 - Quantum Console
 
-# 💿 installation
+# 💿 Installation
 - Clone repository and extract it.
 - In Unity, Window->Package Manager->Add Package(Plus Icon)->Add Package From Disk->Select json file in TalusFramework folder.
 
