@@ -1,6 +1,6 @@
 {
   "name": "com.talus.talusframework",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "displayName": "TalusFramework",
   "description": "Ready to use behaviours, scriptable objects, utilities etc.",
   "unity": "2020.3",
@@ -11,7 +11,8 @@
 	"scriptable", 
 	"gameevent",
 	"utility",
-	"odin"
+	"odin",
+	"quantum console"
   ],
   "author": {
     "name": "Emre Kovanci - Talus Studio",
