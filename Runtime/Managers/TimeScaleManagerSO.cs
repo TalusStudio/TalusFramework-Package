@@ -10,7 +10,6 @@ using QFSW.QC;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 2)]
-    [HideMonoScript]
 #if ENABLE_COMMANDS
     [CommandPrefix("talus.")]
 #endif
@@ -21,6 +20,7 @@ namespace TalusFramework.Runtime.Managers
 
         [Button(ButtonSizes.Large)] [EnableIf("@Time.timeScale == 0f")] [GUIColor(0f, 1f, 0f)]
         public void UnpauseGame() => Time.timeScale = 1f;
+
 #if ENABLE_COMMANDS
         private void OnEnable() => QuantumRegistry.RegisterObject(this);
         private void OnDisable() => QuantumRegistry.DeregisterObject(this);

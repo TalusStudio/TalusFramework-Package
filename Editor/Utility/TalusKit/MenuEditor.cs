@@ -12,14 +12,14 @@ namespace TalusFramework.Editor.Utility.TalusKit
 {
     public class MenuEditor : OdinMenuEditorWindow
     {
-        private const string TALUS_PERSISTENT_SO_DIR_PATH = "ScriptableObjects/Persistent";
+        private const string TALUS_PERSISTENT_SO_DIR_PATH = "ScriptableObjects/Template_Persistent";
 
 #if ENABLE_BACKEND
         private const string FACEBOOK_SETTINGS_SO_PATH = "FacebookSDK/SDK/Resources/FacebookSettings.asset";
         private const string ELEPHANT_SETTINGS_SO_PATH = "Resources/ElephantSettings.asset";
 #endif
 
-        private const string LIGHTING_SETTINGS_DIR_PATH = "ScriptableObjects/Polishing";
+        private const string LIGHTING_SETTINGS_DIR_PATH = "ScriptableObjects/Template_Polishing";
 
         [MenuItem("TalusKit/Menu Editor %m")]
         private static void OpenWindow()
@@ -30,7 +30,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            OdinMenuTree tree = new OdinMenuTree(false)
+            var tree = new OdinMenuTree(false)
             {
                 {
                     "Player Settings", Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault(),

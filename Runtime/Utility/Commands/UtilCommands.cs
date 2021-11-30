@@ -35,7 +35,10 @@ namespace TalusFramework.Runtime.Utility.Commands
                 builder.AppendLine($"   - child count: {target.transform.childCount}");
             }
 
-            if (target.transform.parent) { builder.AppendLine($"   - parent: {target.transform.parent.name}"); }
+            if (target.transform.parent)
+            {
+                builder.AppendLine($"   - parent: {target.transform.parent.name}");
+            }
 
             Component[] components = target.GetComponents<Component>().OrderBy(x => x.GetType().Name).ToArray();
 
@@ -55,7 +58,10 @@ namespace TalusFramework.Runtime.Utility.Commands
                         i++;
                     }
 
-                    if (componentCount > 1) { builder.Append($" ({componentCount})"); }
+                    if (componentCount > 1)
+                    {
+                        builder.Append($" ({componentCount})");
+                    }
                 }
             }
 
@@ -79,7 +85,7 @@ namespace TalusFramework.Runtime.Utility.Commands
         [Command("get-scene-hierarchy", "Renders the GameObject hierarchy of the currently open scenes")]
         private static string GetSceneHierarchy()
         {
-            List<GameObject> objects = new List<GameObject>();
+            var objects = new List<GameObject>();
             StringBuilder buffer = _builderPool.GetObject();
             buffer.Clear();
 

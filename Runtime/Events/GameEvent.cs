@@ -2,18 +2,22 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Responses;
+using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Responses.Interfaces;
 
 using UnityEngine;
 
 namespace TalusFramework.Runtime.Events
 {
-    [HideMonoScript]
     [CreateAssetMenu]
-    public class GameEvent : ScriptableObject
+    public class GameEvent : BaseSO
     {
+        [ToggleGroup("Responses")]
+        public bool Responses;
+
+        [ToggleGroup("Responses")]
         [PropertyOrder(1)]
-        public ToggleableResponses GlobalResponses = new ToggleableResponses();
+        public List<BaseResponseSO> GlobalResponses = new List<BaseResponseSO>();
 
         [HideInEditorMode]
         [PropertyOrder(2)]
@@ -24,13 +28,37 @@ namespace TalusFramework.Runtime.Events
 
         public int ListenersCount => _GameEventListeners.Count;
 
-        [PropertySpace]
-        [Button(ButtonSizes.Large)] [GUIColor(0, 1, 0)]
-        [PropertyOrder(2)]
-        [DisableInEditorMode]
+        public void Raise<T>(T arg)
+        {
+            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+            {
+                BaseResponseSO response = GlobalResponses[i];
+                var dynamicResponse = response as ResponseSO<T>;
+
+                // capture dynamic responses.
+                if (dynamicResponse != null)
+                {
+                    dynamicResponse.Send(arg);
+                }
+                else // capture void responses.
+                {
+                    response.Send();
+                }
+            }
+
+            for (int i = _GameEventListeners.Count - 1; i >= 0; i--)
+            {
+                _GameEventListeners[i].OnEventRaised();
+            }
+        }
+
         public void Raise()
         {
-            if (GlobalResponses.Enabled) { GlobalResponses.SendAll(); }
+            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+            {
+                BaseResponseSO response = GlobalResponses[i];
+                response.Send();
+            }
 
             for (int i = _GameEventListeners.Count - 1; i >= 0; i--)
             {

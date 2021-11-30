@@ -1,24 +1,21 @@
-using UnityEngine;
-using UnityEngine.UI;
-
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
 
-using UnityEngine.Serialization;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
     public class TextReplacer : MonoBehaviour
     {
-        [Required]
         [LabelWidth(80)]
+        [Required]
         public Text Text;
 
-        [FormerlySerializedAs("TextReference")]
         [LabelWidth(65)]
-        [AssetSelector]
+        [AssetSelector, Required]
         public BaseValueSO Value;
 
         private void Start() => SetText();
@@ -27,6 +24,7 @@ namespace TalusFramework.Runtime.Behaviours
         private void SetText()
         {
             var intValue = Value as BaseValueSO<int>;
+
             if (intValue != null)
             {
                 Text.text = intValue.RuntimeValue.ToString();
@@ -34,6 +32,7 @@ namespace TalusFramework.Runtime.Behaviours
             }
 
             var floatValue = Value as BaseValueSO<float>;
+
             if (floatValue != null)
             {
                 Text.text = floatValue.RuntimeValue.ToString();
@@ -41,10 +40,10 @@ namespace TalusFramework.Runtime.Behaviours
             }
 
             var stringValue = Value as BaseValueSO<string>;
+
             if (stringValue != null)
             {
                 Text.text = stringValue.RuntimeValue;
-                return;
             }
         }
     }

@@ -14,7 +14,10 @@ namespace TalusFramework.Editor.BuildUtility
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            if (report.summary.platform != BuildTarget.iOS) { return; }
+            if (report.summary.platform != BuildTarget.iOS)
+            {
+                return;
+            }
 
             if (int.TryParse(PlayerSettings.iOS.buildNumber, out int currentBuildNumber))
             {

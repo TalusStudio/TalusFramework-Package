@@ -21,19 +21,26 @@ namespace TalusFramework.Editor
         private static void OnImportPackageCompleted(string packageName)
         {
             // todo: add hash logic
-            if (packageName != TALUS_BACKEND_PACKAGE_NAME) { return; }
+            if (packageName != TALUS_BACKEND_PACKAGE_NAME)
+            {
+                return;
+            }
 
             TLog.Log("Activating TalusFramework Backend!");
 
-            // activate TalusFramework-Backend symbol
+            // activate TalusFramework-Backend symbol.
             DefineSymbols.Add(BACKEND_SUPPORT_KEYWORD);
 
             // add elephant scene to the active scenes.
-            List<EditorBuildSettingsScene> editorBuildSettingsScenes =
-                    new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
+            var editorBuildSettingsScenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
+            var elephantScene = new EditorBuildSettingsScene(ELEPHANT_SCENE_PATH, true);
 
-            editorBuildSettingsScenes.Insert(0, new EditorBuildSettingsScene(ELEPHANT_SCENE_PATH, true));
-            EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
+            // check elephant scene is already in build.
+            if (!editorBuildSettingsScenes.Contains(elephantScene))
+            {
+                editorBuildSettingsScenes.Insert(0, elephantScene);
+                EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
+            }
         }
     }
 }

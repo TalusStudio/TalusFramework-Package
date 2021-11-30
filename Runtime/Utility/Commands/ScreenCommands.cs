@@ -31,7 +31,7 @@ namespace TalusFramework.Runtime.Utility.Commands
         [Command("current-resolution", "current resolution of the application or window.")]
         private static Resolution GetCurrentResolution()
         {
-            Resolution resolution = new Resolution
+            var resolution = new Resolution
             {
                 width = Screen.width,
                 height = Screen.height,

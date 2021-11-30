@@ -9,19 +9,18 @@ namespace TalusFramework.Runtime.Behaviours
     [HideMonoScript]
     public class GameObjectAdder : MonoBehaviour
     {
-        [LabelWidth(75)]
-        [AssetSelector]
-        [Required]
-        public GameObjectCollectionSO CollectionSo;
+        [LabelWidth(60)]
+        [AssetSelector, Required]
+        public GameObjectCollectionSO Collection;
 
         private void OnEnable()
         {
-            CollectionSo.Add(gameObject);
+            Collection.Add(gameObject);
         }
 
         private void OnDisable()
         {
-            CollectionSo.Remove(gameObject);
+            Collection.Remove(gameObject);
         }
     }
 }

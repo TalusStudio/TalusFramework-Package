@@ -13,8 +13,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 {
     internal static class ReflectionExtensions
     {
-        internal static object FetchField(this Type type, string field) =>
-                type.GetFieldRecursive(field, true).GetValue(null);
+        internal static object FetchField(this Type type, string field) => type.GetFieldRecursive(field, true).GetValue(null);
 
         internal static object FetchField(this object obj, string field) =>
                 obj.GetType().GetFieldRecursive(field, false).GetValue(obj);
@@ -125,8 +124,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private TargetCamera targetCamera = TargetCamera.GameView;
 
-        private static object SizeHolder =>
-                GetType("GameViewSizes").FetchProperty("instance").FetchProperty("currentGroup");
+        private static object SizeHolder => GetType("GameViewSizes").FetchProperty("instance").FetchProperty("currentGroup");
 
         private static EditorWindow GameView => GetWindow(GetType("GameView"));
 
@@ -150,7 +148,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private void OnDestroy()
         {
-            SessionData sessionData = new SessionData
+            var sessionData = new SessionData
             {
                 resolutions = resolutions,
                 resolutionsEnabled = resolutionsEnabled,
@@ -246,7 +244,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
             EditorGUILayout.Space();
 
             resolutionMultiplier = EditorGUILayout.FloatField("Resolution Multiplier", resolutionMultiplier);
-            targetCamera = (TargetCamera)EditorGUILayout.EnumPopup("Target Camera", targetCamera);
+            targetCamera = (TargetCamera) EditorGUILayout.EnumPopup("Target Camera", targetCamera);
 
             EditorGUILayout.Space();
 
@@ -413,8 +411,8 @@ namespace TalusFramework.Editor.Utility.TalusKit
                     Repaint();
                 }
                 else
+                        // Activate the next resolution immediately
                 {
-                    // Activate the next resolution immediately
                     CaptureQueuedScreenshots();
                 }
             }
@@ -427,7 +425,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
             RenderTexture temp = RenderTexture.active;
             RenderTexture temp2 = camera.targetTexture;
 
-            RenderTexture renderTex = RenderTexture.GetTemporary(width, height, 24);
+            var renderTex = RenderTexture.GetTemporary(width, height, 24);
             Texture2D screenshot = null;
 
             bool allowHDR = camera.allowHDR;
@@ -476,7 +474,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
         {
             RenderTexture temp = RenderTexture.active;
 
-            RenderTexture renderTex = (RenderTexture)GameView.FetchField("m_TargetTexture");
+            var renderTex = (RenderTexture) GameView.FetchField("m_TargetTexture");
             Texture2D screenshot = null;
 
             int width = renderTex.width;
@@ -555,7 +553,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
             if (!string.IsNullOrEmpty(savePath))
             {
-                SaveData saveData = new SaveData
+                var saveData = new SaveData
                 {
                     resolutions = resolutions,
                     resolutionsEnabled = resolutionsEnabled,
@@ -629,13 +627,13 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
                         if (m_isActive)
                         {
-                            originalIndex = (int)GameView.FetchProperty("selectedSizeIndex");
+                            originalIndex = (int) GameView.FetchProperty("selectedSizeIndex");
 
                             object customSize = GetFixedResolution(width, height);
                             SizeHolder.CallMethod("AddCustomSize", customSize);
 
-                            newIndex = (int)SizeHolder.CallMethod("IndexOf", customSize) +
-                                       (int)SizeHolder.CallMethod("GetBuiltinCount");
+                            newIndex = (int) SizeHolder.CallMethod("IndexOf", customSize) +
+                                       (int) SizeHolder.CallMethod("GetBuiltinCount");
 
                             resolutionIndex = newIndex;
                         }

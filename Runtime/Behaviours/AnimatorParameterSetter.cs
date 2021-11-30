@@ -21,30 +21,29 @@ namespace TalusFramework.Runtime.Behaviours
             Trigger
         }
 
-        [Tooltip("Animator to set parameters on.")] [LabelWidth(110)]
+        [Tooltip("Animator to set parameters on."), LabelWidth(110)]
         [Required]
         public Animator Animator;
 
-        [Tooltip("Name of the parameter to set with the value of Variable.")] [LabelWidth(95)]
-        [Required]
+        [Tooltip("Name of the parameter to set with the value of Variable."), LabelWidth(95)]
         public StringReference ParameterName;
 
-        [Tooltip("Parameter type.")] [LabelWidth(100)]
+        [Tooltip("Parameter type."), LabelWidth(100)]
         [EnumToggleButtons]
         [Required]
         public AnimatorParameterType ParameterType = AnimatorParameterType.Float;
 
-        [Tooltip("Variable to read from and send to the Animator as the specified parameter.")] [LabelWidth(95)]
+        [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Bool")]
         [SerializeField]
         private BoolReference BoolReference;
 
-        [Tooltip("Variable to read from and send to the Animator as the specified parameter.")] [LabelWidth(95)]
+        [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Float")]
         [SerializeField]
         private FloatReference FloatReference;
 
-        [Tooltip("Variable to read from and send to the Animator as the specified parameter.")] [LabelWidth(95)]
+        [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Int")]
         [SerializeField]
         private IntReference IntReference;

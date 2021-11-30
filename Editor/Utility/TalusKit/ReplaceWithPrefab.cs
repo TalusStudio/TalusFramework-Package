@@ -19,7 +19,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private void OnGUI()
         {
-            _Prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", _Prefab, typeof(GameObject), false);
+            _Prefab = (GameObject) EditorGUILayout.ObjectField("Prefab", _Prefab, typeof(GameObject), false);
             _ReplaceRotation = EditorGUILayout.Toggle("Replace Rotation", _ReplaceRotation);
             _ReplaceScale = EditorGUILayout.Toggle("Replace Scale", _ReplaceScale);
 
@@ -34,7 +34,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
                     if (PrefabUtility.IsPartOfPrefabAsset(_Prefab))
                     {
-                        newObject = (GameObject)PrefabUtility.InstantiatePrefab(_Prefab);
+                        newObject = (GameObject) PrefabUtility.InstantiatePrefab(_Prefab);
                     }
                     else
                     {

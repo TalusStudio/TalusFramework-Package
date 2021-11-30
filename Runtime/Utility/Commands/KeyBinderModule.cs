@@ -44,7 +44,10 @@ namespace TalusFramework.Runtime.Utility.Commands
 
         private void BindToConsoleInstance()
         {
-            if (!_consoleInstance) { _consoleInstance = FindObjectOfType<QuantumConsole>(); }
+            if (!_consoleInstance)
+            {
+                _consoleInstance = FindObjectOfType<QuantumConsole>();
+            }
 
             if (_consoleInstance)
             {

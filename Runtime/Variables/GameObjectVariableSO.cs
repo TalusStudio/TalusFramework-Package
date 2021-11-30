@@ -1,6 +1,4 @@
-﻿using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Base;
+﻿using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Utility.Logging;
 using TalusFramework.Runtime.Variables.Interfaces;
 
@@ -9,26 +7,27 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Variables
 {
     [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 6)]
-    [HideMonoScript]
     public sealed class GameObjectVariableSO : BaseVariableSO<GameObject>
     {
         public override void SetValue(GameObject value)
         {
-            if (ReferenceEquals(RuntimeValue, value)) { return; }
+            if (ReferenceEquals(RuntimeValue, value))
+            {
+                return;
+            }
 
             RuntimeValue = value;
-
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.SendAll();
-            }
+            InvokeOnChangeEvents(value);
         }
 
         public override void SetValue(BaseValueSO value)
         {
-            if (ReferenceEquals(this, value)) { return; }
+            if (ReferenceEquals(this, value))
+            {
+                return;
+            }
 
-            BaseValueSO<GameObject> variable = value as BaseValueSO<GameObject>;
+            var variable = value as BaseValueSO<GameObject>;
 
             if (variable == null)
             {
@@ -37,11 +36,7 @@ namespace TalusFramework.Runtime.Variables
             }
 
             RuntimeValue = variable.RuntimeValue;
-
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.SendAll();
-            }
+            InvokeOnChangeEvents(variable.RuntimeValue);
         }
     }
 }

@@ -5,39 +5,51 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor.Utility.TalusKit {
-    public static class DeleteEmptyFolders {
+namespace TalusFramework.Editor.Utility.TalusKit
+{
+    public static class DeleteEmptyFolders
+    {
         [MenuItem("TalusKit/VCS/Delete Empty Folders", priority = 9999)]
-        public static void Go() {
+        public static void Go()
+        {
             string[] directories = Directory.GetDirectories("Assets", "*.*", SearchOption.AllDirectories);
 
-            if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", "Sorting...", 0.01f)) {
+            if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", "Sorting...", 0.01f))
+            {
                 return;
             }
 
-            Array.Sort(directories, (d1, d2) => {
+            Array.Sort(directories, (d1, d2) =>
+            {
                 int result = d2.Length.CompareTo(d1.Length);
-                if (result == 0) {
+
+                if (result == 0)
+                {
                     result = string.Compare(d1, d2, StringComparison.OrdinalIgnoreCase);
                 }
+
                 return result;
             });
 
-            if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", "Scanning...", 0.02f)) {
+            if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", "Scanning...", 0.02f))
+            {
                 EditorUtility.ClearProgressBar();
                 return;
             }
 
-            for (int i = 0; i < directories.Length; i++) {
+            for (int i = 0; i < directories.Length; i++)
+            {
                 string directory = directories[i];
-                float progress = i*1f/directories.Length;
+                float progress = i * 1f / directories.Length;
 
-                if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", $"Checking {directory}", progress)) {
+                if (EditorUtility.DisplayCancelableProgressBar("Deleting Empty Folders", $"Checking {directory}", progress))
+                {
                     break;
                 }
 
                 if (string.IsNullOrEmpty(directory) || !Directory.Exists(directory) ||
-                    Directory.GetFileSystemEntries(directory).Length != 0) {
+                    Directory.GetFileSystemEntries(directory).Length != 0)
+                {
                     continue;
                 }
 

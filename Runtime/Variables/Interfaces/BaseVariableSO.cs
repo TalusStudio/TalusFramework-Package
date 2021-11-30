@@ -1,35 +1,45 @@
-﻿using Sirenix.OdinInspector;
+﻿using System.Collections.Generic;
+
+using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Responses;
+using TalusFramework.Runtime.Responses.Interfaces;
 using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TalusFramework.Runtime.Variables.Interfaces
 {
     public abstract class BaseVariableSO<TPlainType> : BaseValueSO<TPlainType>
     {
-        [PropertySpace]
-        [PropertyOrder(2)]
-        [HorizontalGroup(1f)]
-        public ToggleableResponses OnChangeEvent = new ToggleableResponses();
+        [ToggleGroup("UnityEvents")]
+        public bool UnityEvents;
+
+        [ToggleGroup("Responses")]
+        public bool Responses;
+
+        [ToggleGroup("UnityEvents")]
+        public UnityEvent<TPlainType> OnChangeEvent;
+
+        [ToggleGroup("Responses")]
+        [AssetSelector]
+        public List<BaseResponseSO> OnChangeResponses = new List<BaseResponseSO>();
 
         public virtual void SetValue(TPlainType value)
         {
-            if (RuntimeValue.Equals(value)) { return; }
+            if (RuntimeValue.Equals(value))
+            {
+                return;
+            }
 
             RuntimeValue = value;
-
-            if (OnChangeEvent.Enabled)
-            {
-                OnChangeEvent.SendAll();
-            }
+            InvokeOnChangeEvents(value);
         }
 
         public virtual void SetValue(BaseValueSO value)
         {
-            BaseValueSO<TPlainType> variable = value as BaseValueSO<TPlainType>;
+            var variable = value as BaseValueSO<TPlainType>;
 
             if (variable == null)
             {
@@ -37,13 +47,38 @@ namespace TalusFramework.Runtime.Variables.Interfaces
                 return;
             }
 
-            if (RuntimeValue.Equals(variable.RuntimeValue)) { return; }
+            if (RuntimeValue.Equals(variable.RuntimeValue))
+            {
+                return;
+            }
 
             RuntimeValue = variable.RuntimeValue;
+            InvokeOnChangeEvents(RuntimeValue);
+        }
 
-            if (OnChangeEvent.Enabled)
+        protected void InvokeOnChangeEvents(TPlainType value)
+        {
+            if (UnityEvents)
             {
-                OnChangeEvent.SendAll();
+                OnChangeEvent?.Invoke(value);
+            }
+
+            if (Responses)
+            {
+                for (int i = OnChangeResponses.Count - 1; i >= 0; i--)
+                {
+                    // catch dynamic response
+                    var response = OnChangeResponses[i] as ResponseSO<TPlainType>;
+
+                    if (response != null)
+                    {
+                        response.Send(value);
+                    }
+                    else // catch void responses.
+                    {
+                        OnChangeResponses[i].Send();
+                    }
+                }
             }
         }
     }

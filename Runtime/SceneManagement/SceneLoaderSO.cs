@@ -14,22 +14,27 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.SceneManagement
 {
-    [HideMonoScript]
 #if ENABLE_COMMANDS
     [CommandPrefix("talus.")]
 #endif
     public class SceneLoaderSO : BaseSO
     {
-        [Button]
-        [DisableInEditorMode]
+        [Button, DisableInEditorMode]
+        public static async void LoadLevel(int sceneIndex)
+        {
+            await LoadScene(sceneIndex);
+        }
+
+        [Button, DisableInEditorMode]
         public async void LoadLevel(IntVariableSO sceneIndex)
         {
             await LoadScene(sceneIndex.RuntimeValue);
         }
 
-        public static async void LoadLevel(int sceneIndex)
+        [Button, DisableInEditorMode]
+        public async void RestartLevel()
         {
-            await LoadScene(sceneIndex);
+            await LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
 #if ENABLE_COMMANDS
@@ -37,7 +42,7 @@ namespace TalusFramework.Runtime.SceneManagement
 #endif
         private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
         {
-            // wait one frame
+            // wait one frame.
             await Task.Yield();
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);

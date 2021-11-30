@@ -15,12 +15,15 @@ namespace TalusFramework.Editor.BuildUtility.TestFlight
 
         public void OnPostprocessBuild(BuildReport report)
         {
-            if (report.summary.platform != BuildTarget.iOS) { return; }
+            if (report.summary.platform != BuildTarget.iOS)
+            {
+                return;
+            }
 
 #if UNITY_IOS
             string plistPath = report.summary.outputPath + "/Info.plist";
 
-            PlistDocument plist = new PlistDocument();
+            var plist = new PlistDocument();
             plist.ReadFromString(File.ReadAllText(plistPath));
 
             PlistElementDict rootDict = plist.root;

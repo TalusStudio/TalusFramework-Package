@@ -135,8 +135,8 @@ namespace TalusFramework.Editor.Utility.TalusKit
                 Rect titleDragDropRect = titleRect.AlignLeft(30).AlignCenter(20, 20);
                 EditorIcons.List.Draw(titleDragDropRect);
 
-                TreeValuesHolder treedragdrop =
-                        (TreeValuesHolder)DragAndDropUtilities.DragAndDropZone(titleDragDropRect, holder,
+                var treedragdrop =
+                        (TreeValuesHolder) DragAndDropUtilities.DragAndDropZone(titleDragDropRect, holder,
                             typeof(TreeValuesHolder), false, false);
 
                 if (treedragdrop != holder)
@@ -168,7 +168,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
                         EditorIcons.List.Draw(rect1);
 
-                        ValueDragDropHolder dragdrop = (ValueDragDropHolder)DragAndDropUtilities.DragAndDropZone(rect1,
+                        var dragdrop = (ValueDragDropHolder) DragAndDropUtilities.DragAndDropZone(rect1,
                             new ValueDragDropHolder(holder, index), typeof(ValueDragDropHolder), false, false);
 
                         if (dragdrop.TreeValuesHolder == holder && dragdrop.Index != index)
@@ -239,11 +239,11 @@ namespace TalusFramework.Editor.Utility.TalusKit
                 {
                     ShowMenu();
 
-                    PropertyTree tree =
+                    var tree =
                             PropertyTree.Create(new SerializedObject(property.serializedObject.targetObject));
 
                     TreeValuesHolder holder = _instance._properties.FirstOrDefault(o =>
-                            (Object)o.Tree.WeakTargets[0] == property.serializedObject.targetObject);
+                            (Object) o.Tree.WeakTargets[0] == property.serializedObject.targetObject);
 
                     if (holder == null)
                     {
@@ -269,7 +269,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
         {
             ShowMenu();
 
-            PropertyTree tree = PropertyTree.Create(property.Tree.WeakTargets,
+            var tree = PropertyTree.Create(property.Tree.WeakTargets,
                 new SerializedObject(property.Tree.UnitySerializedObject.targetObject));
 
             TreeValuesHolder holder =
@@ -315,7 +315,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
             public TreeValuesHolder(PropertyTree tree)
             {
                 Tree = tree;
-                Target = (Object)tree.WeakTargets[0];
+                Target = (Object) tree.WeakTargets[0];
                 InstanceID = Target.GetInstanceID();
                 GetParentObject();
             }

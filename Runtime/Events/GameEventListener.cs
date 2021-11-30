@@ -7,7 +7,6 @@ using UnityEngine.Events;
 
 namespace TalusFramework.Runtime.Events
 {
-    [DefaultExecutionOrder(-9999)]
     [HideMonoScript]
     public class GameEventListener : MonoBehaviour
     {
@@ -47,7 +46,7 @@ namespace TalusFramework.Runtime.Events
         }
 
         [DisableInEditorMode]
-        [Button("Invoke Response", ButtonSizes.Large)] [GUIColor(0, 1, 0)]
+        [GUIColor(0, 1, 0)]
         public void OnEventRaised() => Response?.Invoke();
     }
 }

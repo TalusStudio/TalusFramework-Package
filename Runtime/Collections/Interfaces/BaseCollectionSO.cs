@@ -10,26 +10,30 @@ namespace TalusFramework.Runtime.Collections.Interfaces
 {
     public abstract class BaseCollectionSO<T> : BaseSO
     {
-        [LabelWidth(45)]
-        [Title("Collection", bold: true)]
-        [HideLabel]
+        [HideLabel, Title("Collection", bold: true), LabelWidth(45)]
         [SerializeField]
         public List<T> Items = new List<T>();
 
-        public void Add(T thing)
-        {
-            if (!Items.Contains(thing))
-            {
-                Items.Add(thing);
-            }
-        }
-
-        public void Remove(T thing)
+        public bool Add(T thing)
         {
             if (Items.Contains(thing))
             {
-                Items.Remove(thing);
+                return false;
             }
+
+            Items.Add(thing);
+            return true;
+        }
+
+        public bool Remove(T thing)
+        {
+            if (!Items.Contains(thing))
+            {
+                return false;
+            }
+
+            Items.Remove(thing);
+            return true;
         }
     }
 }

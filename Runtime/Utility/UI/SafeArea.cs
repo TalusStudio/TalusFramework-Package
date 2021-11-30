@@ -69,7 +69,7 @@ namespace TalusFramework.Runtime.Utility.UI
 
             if (Application.isEditor && Sim != SimDevice.None)
             {
-                Rect nsa = new Rect(0, 0, Screen.width, Screen.height);
+                var nsa = new Rect(0, 0, Screen.width, Screen.height);
 
                 switch (Sim)
                 {

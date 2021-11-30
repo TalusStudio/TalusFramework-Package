@@ -1,5 +1,7 @@
 ﻿using System;
 
+using QFSW.QC;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
@@ -13,31 +15,25 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Debug Data", menuName = "Managers/Debug Data", order = 0)]
-    [HideMonoScript]
     public class DebugDataSO : BaseSO
     {
-        [FoldoutGroup("Debugging")]
         [ToggleLeft]
         [SerializeField]
         private bool _EnableHiddenDebugView;
 
         [ShowIf("_EnableHiddenDebugView")]
-        [FoldoutGroup("Debugging")]
         [LabelWidth(145)]
         [AssetSelector]
         public GameObjectConstantSO DebugView;
 
         [ShowIf("_EnableHiddenDebugView")]
-        [FoldoutGroup("Debugging")]
         [LabelWidth(145)]
         [SerializeField]
         public IntReference RequiredTapCount;
 
         [ShowIf("_EnableHiddenDebugView")]
-        [FoldoutGroup("Debugging")]
         [LabelWidth(145)]
-        [AssetSelector]
-        [Required]
+        [AssetSelector, Required]
         public GameEvent ConsoleActivatedEvent;
 
         [NonSerialized]
@@ -47,26 +43,35 @@ namespace TalusFramework.Runtime.Managers
         {
             if (!_EnableHiddenDebugView)
             {
-                TLog.Log("Quantum Console disabled in Build Settings!!!", LogType.Warning);
+                TLog.Log("Quantum Console disabled in Debug Data SO!!!", LogType.Warning);
                 return;
             }
 
-            if (GameObject.Find("UI_Canvas_Debug") == null)
-            {
-                Instantiate(DebugView.RuntimeValue);
-            }
-            else
+            if (GameObject.Find("UI_Canvas_Debug") != null)
             {
                 TLog.Log("Quantum Console binding already in scene!");
+                return;
             }
+
+            Instantiate(DebugView.RuntimeValue);
         }
 
         public void CheckConsoleActivity()
         {
-            if (++_CurrentTapCount >= RequiredTapCount)
+            if (++_CurrentTapCount < RequiredTapCount)
+            {
+                return;
+            }
+
+            QuantumConsole runtimeConsole = FindObjectOfType<QuantumConsole>();
+
+            if (runtimeConsole != null)
+            {
+                runtimeConsole.Activate();
+            }
+            else
             {
                 _CurrentTapCount = 0;
-
                 ConsoleActivatedEvent.Raise();
             }
         }

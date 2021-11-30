@@ -48,7 +48,7 @@ namespace TalusFramework.Editor
             EditorGUI.BeginChangeCheck();
 
             // Calculate rect for configuration button
-            Rect buttonRect = new Rect(position);
+            var buttonRect = new Rect(position);
             buttonRect.yMin += popupStyle.margin.top;
             buttonRect.width = popupStyle.fixedWidth + popupStyle.margin.right;
             buttonRect.height = popupStyle.fixedHeight + popupStyle.margin.top;

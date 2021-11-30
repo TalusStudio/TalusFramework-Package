@@ -15,35 +15,31 @@ using QFSW.QC;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-    [HideMonoScript]
 #if ENABLE_COMMANDS
     [CommandPrefix("talus.")]
 #endif
     public class GameDataSO : BaseSO
     {
-        [TitleGroup("Variables - Scene Management")]
-        [Required]
-        [AssetSelector(DropdownTitle = "Int Variables")]
-        [LabelWidth(100)]
+        [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
+        [AssetSelector, Required]
         public IntVariableSO NextLevelIndex;
 
-        [TitleGroup("Variables - In Game")]
-        [Required]
-        [AssetSelector(DropdownTitle = "String Variables")]
-        [LabelWidth(100)]
+        [TitleGroup("Variables - In Game"), LabelWidth(100)]
+        [AssetSelector, Required]
         public StringVariableSO LevelText;
 
-        [TitleGroup("Variables - Scene Management")]
-        [Required]
-        [AssetSelector(DropdownTitle = "String Variables")]
-        [LabelWidth(100)]
+        [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
+        [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
-        private static List<int> Levels
+        /// <summary>
+        ///     To reference playable levels.
+        /// </summary>
+        public static List<int> Levels
         {
             get
             {
-                List<int> levelIndexes = new List<int>();
+                var levelIndexes = new List<int>();
 
 #if ENABLE_BACKEND
                 // scene at buildIndex 0 -> elephant
@@ -63,41 +59,23 @@ namespace TalusFramework.Runtime.Managers
             }
         }
 
+#if ENABLE_COMMANDS
+        [Command("get-level-pref", MonoTargetType.Registry)]
+#endif
+        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+
+#if ENABLE_COMMANDS
+        [Command("increment-completed-level", MonoTargetType.Registry)]
+#endif
+        public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
+
+        public void UpdateNextLevelVariable() => NextLevelIndex.SetValue(Levels[CompletedLevelCount % Levels.Count]);
+        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()
         {
             Application.targetFrameRate = 60;
-        }
-
-#if ENABLE_COMMANDS
-        [Command("update-success-state-data", MonoTargetType.Registry)]
-#endif
-        public void SetSuccessData()
-        {
-            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, GetCompletedLevel() + 1);
-            PlayerPrefs.Save();
-
-            UpdateNextLevelVariable();
-            UpdateLevelTextVariable();
-        }
-
-        public void UpdateNextLevelVariable() => NextLevelIndex.SetValue(Levels[GetCompletedLevel() % Levels.Count]);
-        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (GetCompletedLevel() + 1));
-
-#if ENABLE_COMMANDS
-        [Command("get-level-pref", MonoTargetType.Registry)]
-#endif
-        private int GetCompletedLevel()
-        {
-            if (PlayerPrefs.HasKey(LevelCyclePref.RuntimeValue))
-            {
-                return PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-            }
-
-            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, 0);
-            PlayerPrefs.Save();
-
-            return PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         }
 
 #if ENABLE_COMMANDS

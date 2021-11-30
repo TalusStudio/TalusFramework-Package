@@ -23,7 +23,8 @@ namespace TalusFramework.Runtime.References.Interfaces
         [SerializeField]
         private BaseValueSO Variable;
 
-        public BaseReference() { }
+        public BaseReference()
+        { }
 
         public BaseReference(bool useConst) => UseConstant = useConst;
 
@@ -36,15 +37,14 @@ namespace TalusFramework.Runtime.References.Interfaces
                     return ConstantValue;
                 }
 
-                BaseValueSO<TPlainType> value = Variable as BaseValueSO<TPlainType>;
+                var value = Variable as BaseValueSO<TPlainType>;
 
                 if (value != null)
                 {
                     return value.RuntimeValue;
                 }
 
-                TLog.Log("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType),
-                    LogType.Error);
+                TLog.Log("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType), LogType.Error);
 
                 return default;
             }

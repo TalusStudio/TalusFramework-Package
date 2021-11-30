@@ -58,8 +58,8 @@ namespace TalusFramework.Editor.Utility.TalusKit
                 BindingFlags.Static | BindingFlags.NonPublic);
 
             object[] args = { null };
-            bool found = (bool)_tryGetActiveFolderPath.Invoke(null, args);
-            path = (string)args[0];
+            bool found = (bool) _tryGetActiveFolderPath.Invoke(null, args);
+            path = (string) args[0];
             path = path.Trim('/');
             return found;
         }
@@ -84,15 +84,18 @@ namespace TalusFramework.Editor.Utility.TalusKit
             MenuWidth = 250;
             WindowPadding = Vector4.one * 10f;
 
-            OdinMenuTree tree = new OdinMenuTree(false);
+            var tree = new OdinMenuTree(false);
             tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
             tree.Config.DrawSearchToolbar = true;
 
             foreach (Type type in _scriptableObjectTypes.ToList())
             {
-                if (type == null || type.IsAbstract || type.IsGenericType) { continue; }
+                if (type == null || type.IsAbstract || type.IsGenericType)
+                {
+                    continue;
+                }
 
-                ScriptableObjectCreatorMenuItem customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
+                var customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
                 tree.AddMenuItemAtPath(type.Namespace, customMenuItem).AddThumbnailIcons();
             }
 
@@ -176,7 +179,10 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
                     for (int i = 0; i < split.Length; ++i)
                     {
-                        if (split[i].Length <= 1) { continue; }
+                        if (split[i].Length <= 1)
+                        {
+                            continue;
+                        }
 
                         formattedClassName += split[i] + " ";
                     }

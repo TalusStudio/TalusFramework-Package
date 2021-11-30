@@ -10,33 +10,27 @@ namespace TalusFramework.Runtime.Behaviours
     [HideMonoScript]
     public class ObjectCreator : MonoBehaviour
     {
-        [Required]
-        [LabelWidth(60)]
-        [AssetSelector]
-        [Tooltip("Reference for the object to be created.")]
+        [Tooltip("Reference for the object to be created."), LabelWidth(60)]
+        [AssetSelector, Required]
         public GameObjectConstantSO ObjectSO;
 
-        [FoldoutGroup("Properties")]
-        [LabelWidth(95)]
+        [FoldoutGroup("Properties"), LabelWidth(95)]
         [Tooltip("Apply offset to position.")]
         public bool UseOffset;
 
         [ShowIf("UseOffset")]
         [FoldoutGroup("Properties")]
-        [LabelWidth(90)]
-        [Tooltip("Add offset to position.")]
+        [Tooltip("Add offset to position."), LabelWidth(90)]
         public Vector3Reference Offset;
 
         [FoldoutGroup("Properties")]
-        [LabelWidth(95)]
+        [Tooltip("Create as child of this component."), LabelWidth(95)]
         [ValidateInput("ValidateDestroyInput", "Objects with marked DontDestroy can not be a child object!")]
-        [Tooltip("Create as child of this component.")]
         public bool CreateAsChild;
 
         [FoldoutGroup("Properties")]
-        [LabelWidth(95)]
+        [Tooltip("GameObject gonna marked as DontDestroyOnLoad"), LabelWidth(95)]
         [ValidateInput("ValidateDestroyInput", "Objects with marked DontDestroy can not be a child object!")]
-        [Tooltip("GameObject gonna marked as DontDestroyOnLoad")]
         public bool DontDestroy;
 
         private Transform _CachedTransform;
@@ -52,7 +46,6 @@ namespace TalusFramework.Runtime.Behaviours
                 _CachedTransform.position,
                 _CachedTransform.rotation,
                 CreateAsChild ? _CachedTransform : null);
-
 
             if (UseOffset)
             {
