@@ -8,14 +8,14 @@
   "dependencies": {
   },
   "keywords": [
-	"scriptable", 
+	"scriptable",
 	"gameevent",
 	"utility",
 	"odin",
 	"quantum console"
   ],
   "author": {
-    "name": "Emre Kovanci - Talus Studio",
+    "name": "Talus Studio",
     "email": "emrekovanci@talusstudio.com",
     "url": "https://www.talusstudio.com"
   }

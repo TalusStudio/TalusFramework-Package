@@ -11,7 +11,7 @@ namespace TalusFramework.Tests.Runtime
 {
     public class GameEventTests
     {
-        private GameEventListener _AddTestListenerRef;
+        /*private GameEventListener _AddTestListenerRef;
         private GameEvent _EventRef;
         private GameEventListener _InitialListenerRef;
 
@@ -79,6 +79,6 @@ namespace TalusFramework.Tests.Runtime
         public IEnumerator RaisePasses()
         {
             yield return null;
-        }
+        }*/
     }
 }
