@@ -1,20 +1,19 @@
 {
-  "name": "TalusFramework",
-  "rootNamespace": "",
-  "references": [
-    "QFSW.QC",
-    "Unity.TextMeshPro"
-  ],
-  "includePlatforms": [],
-  "excludePlatforms": [],
-  "allowUnsafeCode": false,
-  "overrideReferences": true,
-  "precompiledReferences": [
-    "Sirenix.OdinInspector.Attributes.dll",
-    "Sirenix.Serialization.dll"
-  ],
-  "autoReferenced": true,
-  "defineConstraints": [],
-  "versionDefines": [],
-  "noEngineReferences": false
+    "name": "TalusFramework",
+    "rootNamespace": "",
+    "references": [
+        "QFSW.QC",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Sirenix.OdinInspector.Attributes.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
