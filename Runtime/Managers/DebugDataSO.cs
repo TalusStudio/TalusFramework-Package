@@ -1,6 +1,8 @@
 ﻿using System;
 
+#if ENABLE_COMMANDS
 using QFSW.QC;
+#endif
 
 using Sirenix.OdinInspector;
 
@@ -58,6 +60,7 @@ namespace TalusFramework.Runtime.Managers
 
         public void CheckConsoleActivity()
         {
+#if ENABLE_COMMANDS
             if (++_CurrentTapCount < RequiredTapCount)
             {
                 return;
@@ -74,6 +77,9 @@ namespace TalusFramework.Runtime.Managers
                 _CurrentTapCount = 0;
                 ConsoleActivatedEvent.Raise();
             }
+#else
+            TLog.Log("Quantum Console not enabled!", LogType.Error);
+#endif
         }
     }
 }
