@@ -1,8 +1,8 @@
 {
   "name": "com.talus.talusframework",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "displayName": "TalusFramework",
-  "description": "Ready to use behaviours, scriptable objects, utilities etc.",
+  "description": "Ready to use behaviours, events, scriptable objects, utilities etc.",
   "unity": "2020.3",
   "unityRelease": "9f1",
   "dependencies": {
