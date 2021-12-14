@@ -67,7 +67,6 @@ namespace TalusFramework.Runtime.Base
 
             if (!_IsInitialized)
             {
-                DontDestroyOnLoad(gameObject);
                 _IsInitialized = true;
                 _Instance.Init();
             }
@@ -84,6 +83,12 @@ namespace TalusFramework.Runtime.Base
         ///     This function is called when the instance is used the first time
         ///     Put all the initializations you need here, as you would do in Awake
         /// </summary>
-        public virtual void Init() { }
+        public virtual void Init(bool dontDestroy = true)
+        {
+            if (dontDestroy)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+        }
     }
 }
