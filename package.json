@@ -1,18 +1,16 @@
 {
   "name": "com.talus.talusframework",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "displayName": "TalusFramework",
   "description": "Ready to use behaviours, events, scriptable objects, utilities etc.",
   "unity": "2020.3",
   "unityRelease": "9f1",
-  "dependencies": {
-  },
   "keywords": [
-	"scriptable",
-	"gameevent",
-	"utility",
-	"odin",
-	"quantum console"
+    "scriptable",
+    "gameevent",
+    "utility",
+    "odin",
+    "quantum console"
   ],
   "author": {
     "name": "Talus Studio",
