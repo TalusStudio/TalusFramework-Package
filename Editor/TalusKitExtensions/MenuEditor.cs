@@ -30,15 +30,11 @@ namespace TalusFramework.Editor.TalusKitExtensions
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            var tree = new OdinMenuTree(false)
-            {
-                {
-                    "01_Player Settings", Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault(),
-                    EditorIcons.SettingsCog
-                }
-            };
+            var tree = new OdinMenuTree(false);
 
-            tree.AddAllAssetsAtPath("02_Persistent SO", TALUS_PERSISTENT_SO_DIR_PATH, typeof(ScriptableObject), true)
+            tree.Add("01_Player Settings", Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault());
+
+            tree.AddAllAssetsAtPath("02_Scriptable Objects", TALUS_PERSISTENT_SO_DIR_PATH, typeof(ScriptableObject), true)
                 .AddThumbnailIcons();
 
 #if ENABLE_BACKEND
@@ -49,11 +45,10 @@ namespace TalusFramework.Editor.TalusKitExtensions
                 .AddThumbnailIcons();
 #endif
 
-            tree.AddAllAssetsAtPath("03_Polish", LIGHTING_SETTINGS_DIR_PATH, typeof(ScriptableObject), true)
+            tree.AddAllAssetsAtPath("03_Polishing", LIGHTING_SETTINGS_DIR_PATH, typeof(ScriptableObject), true)
                 .AddThumbnailIcons();
 
             tree.Config.DrawSearchToolbar = true;
-            tree.SortMenuItemsByName();
 
             return tree;
         }
