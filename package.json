@@ -1,6 +1,6 @@
 {
   "name": "com.talus.talusframework",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "displayName": "TalusFramework",
   "description": "Ready to use behaviours, events, scriptable objects, utilities etc.",
   "unity": "2020.3",
