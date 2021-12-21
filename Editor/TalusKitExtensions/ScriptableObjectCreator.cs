@@ -73,7 +73,7 @@ namespace TalusFramework.Editor.TalusKitExtensions
                 path = "Assets/";
             }
 
-            ScriptableObjectCreator window = CreateInstance<ScriptableObjectCreator>();
+            var window = CreateInstance<ScriptableObjectCreator>();
             window.ShowUtility();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 500);
             window.titleContent = new GUIContent("Folder: " + path);

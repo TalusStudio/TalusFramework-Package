@@ -21,7 +21,7 @@ namespace TalusFramework.Editor.TalusKitExtensions
 
         private const string LIGHTING_SETTINGS_DIR_PATH = "ScriptableObjects/Template_Polishing";
 
-        [MenuItem("TalusKit/Menu Editor %m")]
+        [MenuItem("TalusKit/Menu Editor %m", priority = -1000)]
         private static void OpenWindow()
         {
             MenuEditor window = GetWindow<MenuEditor>();
