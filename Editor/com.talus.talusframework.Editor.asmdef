@@ -1,5 +1,5 @@
 {
-    "name": "com.talus.talusframework.editor",
+    "name": "com.talus.talusframework.Editor",
     "rootNamespace": "",
     "references": [
         "TalusFramework",
