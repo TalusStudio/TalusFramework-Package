@@ -3,7 +3,10 @@
 # ❗ Requirements 
 - Unity 2020.3.9f1 
 - Odin Attributes
-- Quantum Console
+
+# 🎁 Extras
+- Quantum Console support.
+  - add ENABLE_COMMANDS definition to Project Settings.
 
 # 💿 Installation
 
@@ -42,8 +45,5 @@
     
   ## Editor Utilities & Tools
   - Scriptable Object Creator (shortcut: CTRL + T)
-  - GameObject Replacer (shortcut : CTRL + Q) 
-  - Player Prefs Editor
   - Menu Editor (shorcut: CTRL + M)
-  - Multi ScreenShot Capture
-  - Watch Window (shortcut: CTRL + W)
+  - Lighting Settings SO
