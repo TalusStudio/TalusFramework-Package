@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
-namespace TalusFramework.Editor.Utility.TalusKit
+namespace TalusFramework.Editor.TalusKitExtensions
 {
     [CreateAssetMenu(fileName = "New Lighting Settings", menuName = "Managers/Lighting Settings", order = 3)]
     [HideMonoScript]

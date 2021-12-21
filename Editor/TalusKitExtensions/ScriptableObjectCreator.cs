@@ -12,13 +12,13 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor.Utility.TalusKit
+namespace TalusFramework.Editor.TalusKitExtensions
 {
     public class ScriptableObjectCreator : OdinMenuEditorWindow
     {
         private const string NAMESPACE_NAME = "Talus";
 
-        private static readonly HashSet<Type> _scriptableObjectTypes = new HashSet<Type>(AssemblyUtilities
+        private static readonly HashSet<Type> _ScriptableObjectTypes = new HashSet<Type>(AssemblyUtilities
                 .GetTypes(AssemblyTypeFlags.CustomTypes)
                 .Where(t =>
                         t.IsClass &&
@@ -29,10 +29,10 @@ namespace TalusFramework.Editor.Utility.TalusKit
                         t.Assembly.GetName().Name.Contains(NAMESPACE_NAME))
                 .OrderBy(t => t.Namespace));
 
-        private string _currentPath;
-        private ScriptableObject _previewObject;
-        private Vector2 _scroll;
-        private Texture2D[] icons;
+        private string _CurrentPath;
+        private ScriptableObject _PreviewObject;
+        private Vector2 _Scroll;
+        private Texture2D[] _Icons;
 
         private Type SelectedType
         {
@@ -45,9 +45,9 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private void UpdatePath()
         {
-            if (!TryGetActiveFolderPath(out _currentPath))
+            if (!TryGetActiveFolderPath(out _CurrentPath))
             {
-                _currentPath = "Assets/";
+                _CurrentPath = "Assets/";
             }
         }
 
@@ -88,7 +88,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
             tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
             tree.Config.DrawSearchToolbar = true;
 
-            foreach (Type type in _scriptableObjectTypes.ToList())
+            foreach (Type type in _ScriptableObjectTypes.ToList())
             {
                 if (type == null || type.IsAbstract || type.IsGenericType)
                 {
@@ -101,9 +101,9 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
             tree.Selection.SelectionChanged += e =>
             {
-                if (_previewObject && !AssetDatabase.Contains(_previewObject))
+                if (_PreviewObject && !AssetDatabase.Contains(_PreviewObject))
                 {
-                    DestroyImmediate(_previewObject);
+                    DestroyImmediate(_PreviewObject);
                 }
 
                 if (e != SelectionChangedType.ItemAdded)
@@ -111,7 +111,7 @@ namespace TalusFramework.Editor.Utility.TalusKit
                     return;
                 }
 
-                _previewObject = CreateInstance(SelectedType);
+                _PreviewObject = CreateInstance(SelectedType);
             };
 
             return tree;
@@ -119,26 +119,26 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private void PopulatePreviewObject(Type type)
         {
-            if (_previewObject != null && !AssetDatabase.Contains(_previewObject))
+            if (_PreviewObject != null && !AssetDatabase.Contains(_PreviewObject))
             {
-                DestroyImmediate(_previewObject);
-                _previewObject = CreateInstance(type);
+                DestroyImmediate(_PreviewObject);
+                _PreviewObject = CreateInstance(type);
             }
 
-            if (_previewObject == null)
+            if (_PreviewObject == null)
             {
-                _previewObject = CreateInstance(type);
+                _PreviewObject = CreateInstance(type);
             }
         }
 
         protected override IEnumerable<object> GetTargets()
         {
-            yield return _previewObject;
+            yield return _PreviewObject;
         }
 
         protected override void DrawEditor(int index)
         {
-            _scroll = GUILayout.BeginScrollView(_scroll);
+            _Scroll = GUILayout.BeginScrollView(_Scroll);
 
             {
                 base.DrawEditor(index);
@@ -150,11 +150,11 @@ namespace TalusFramework.Editor.Utility.TalusKit
 
         private void CreateAsset(Type nextType)
         {
-            string destination = _currentPath + "/New " + nextType.Name + ".asset";
+            string destination = _CurrentPath + "/New " + nextType.Name + ".asset";
             destination = AssetDatabase.GenerateUniqueAssetPath(destination);
-            AssetDatabase.CreateAsset(_previewObject, destination);
+            AssetDatabase.CreateAsset(_PreviewObject, destination);
             AssetDatabase.Refresh();
-            Selection.activeObject = _previewObject;
+            Selection.activeObject = _PreviewObject;
             //EditorApplication.delayCall += Close;
         }
 

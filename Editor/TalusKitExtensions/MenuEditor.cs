@@ -8,7 +8,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor.Utility.TalusKit
+namespace TalusFramework.Editor.TalusKitExtensions
 {
     public class MenuEditor : OdinMenuEditorWindow
     {

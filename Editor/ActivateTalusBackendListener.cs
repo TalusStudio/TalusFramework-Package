@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 
-using TalusFramework.Editor.Utility;
 using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEditor;
