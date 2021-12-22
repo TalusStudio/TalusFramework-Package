@@ -34,6 +34,12 @@ namespace TalusFramework.Runtime.Variables
             return lhs;
         }
 
+        public static IntVariableSO operator ++(IntVariableSO lhs)
+        {
+            lhs.Add(lhs);
+            return lhs;
+        }
+
         public static IntVariableSO operator -(IntVariableSO lhs, IntReference rhs)
         {
             lhs.Subtract(rhs);
@@ -43,6 +49,12 @@ namespace TalusFramework.Runtime.Variables
         public static IntVariableSO operator -(IntVariableSO lhs, int rhs)
         {
             lhs.Subtract(rhs);
+            return lhs;
+        }
+
+        public static IntVariableSO operator --(IntVariableSO lhs)
+        {
+            lhs.Subtract(1);
             return lhs;
         }
 
