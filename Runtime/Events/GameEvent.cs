@@ -52,6 +52,7 @@ namespace TalusFramework.Runtime.Events
             }
         }
 
+        [Button, DisableInEditorMode]
         public void Raise()
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
