@@ -24,12 +24,15 @@
   
   ## Behaviours
   - GameEventListener
+  - 
   - AnimatorParameterSetter
   - ImageFillSetter
   - SliderSetter
   - TextReplacer
   - TMPTextReplacer
+  - 
   - Object Creator
+  - 
   - GameObjectAdder (to add GameObject references to the Collections on Play Mode)
   - GameObjectEnabler
   - GameObjectDisabler 
@@ -37,10 +40,10 @@
   ## Reference Types and Editor Utility
   
   ## Scriptable Objects
-  - Bool, Float, Int, String, Vector2, Vector3, GameObject Variables
-  - Bool, Float, Int, String, Vector2, Vector3, GameObject Constants
-  - Bool, Float, Int, String, Vector2, Vector3, GameObject Responses (Unity Event with parameter)
-  - Component, Transform, GameObject Collections
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Sprite Variables
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Sprite Constants
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject Responses (Unity Event with parameter) and Void Response(classic UnityEvent)
+  - Component, Transform, GameObject, Sprite, AnimationClip, Float, Int Collections
   - GameEvent
     
   ## Editor Utilities & Tools
