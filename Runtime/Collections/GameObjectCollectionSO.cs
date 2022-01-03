@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Collections
 {
-    [CreateAssetMenu(fileName = "New GameObject Runtime Set", menuName = "Collections/GameObject Runtime Set", order = 0)]
+    [CreateAssetMenu(fileName = "New GameObject Collection", menuName = "Collections/GameObject", order = 2)]
     public class GameObjectCollectionSO : BaseCollectionSO<GameObject>
     { }
 }
