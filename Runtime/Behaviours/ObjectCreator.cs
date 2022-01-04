@@ -40,6 +40,8 @@ namespace TalusFramework.Runtime.Behaviours
             _CachedTransform = GetComponent<Transform>();
         }
 
+        [GUIColor(0f, 1f, 0f)]
+        [Button, DisableInEditorMode]
         public void Create()
         {
             GameObject obj = Instantiate(ObjectSO.RuntimeValue,

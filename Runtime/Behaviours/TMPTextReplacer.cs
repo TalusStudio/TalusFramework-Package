@@ -22,6 +22,8 @@ namespace TalusFramework.Runtime.Behaviours
         private void Start() => SetText();
         private void OnEnable() => SetText();
 
+        [GUIColor(0f, 1f, 0f)]
+        [Button, DisableInEditorMode]
         public void SetText()
         {
             var intValue = Value as BaseValueSO<int>;
