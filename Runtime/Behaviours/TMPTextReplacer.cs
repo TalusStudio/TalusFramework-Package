@@ -9,7 +9,7 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
-    [AddComponentMenu("TalusFramework/TMPTextReplacer", 8)]
+    [AddComponentMenu("TalusFramework/Behaviours/TMPTextReplacer", 8)]
     public class TMPTextReplacer : MonoBehaviour
     {
         [LabelWidth(80)]

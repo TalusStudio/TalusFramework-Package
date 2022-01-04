@@ -8,7 +8,7 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
-    [AddComponentMenu("TalusFramework/ObjectCreator", 5)]
+    [AddComponentMenu("TalusFramework/Behaviours/ObjectCreator", 5)]
     public class ObjectCreator : MonoBehaviour
     {
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]

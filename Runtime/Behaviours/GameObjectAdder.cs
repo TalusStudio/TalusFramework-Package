@@ -7,7 +7,7 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
-    [AddComponentMenu("TalusFramework/GameObjectAdder", 1)]
+    [AddComponentMenu("TalusFramework/Behaviours/GameObjectAdder", 1)]
     public class GameObjectAdder : MonoBehaviour
     {
         [LabelWidth(60)]

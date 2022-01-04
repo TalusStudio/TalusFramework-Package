@@ -11,7 +11,7 @@ namespace TalusFramework.Runtime.Behaviours
     ///     every frame on Update.
     /// </summary>
     [HideMonoScript]
-    [AddComponentMenu("TalusFramework/AnimatorParameterSetter", 0)]
+    [AddComponentMenu("TalusFramework/Behaviours/AnimatorParameterSetter", 0)]
     public class AnimatorParameterSetter : MonoBehaviour
     {
         public enum AnimatorParameterType

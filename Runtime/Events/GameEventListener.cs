@@ -8,6 +8,7 @@ using UnityEngine.Events;
 namespace TalusFramework.Runtime.Events
 {
     [HideMonoScript]
+    [AddComponentMenu("TalusFramework/Events/GameEventListener", 0)]
     public class GameEventListener : MonoBehaviour
     {
         [Tooltip("Event to register with."), LabelWidth(75)]

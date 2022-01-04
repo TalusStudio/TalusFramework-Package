@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
-    [AddComponentMenu("TalusFramework/ImageFillSetter", 4)]
+    [AddComponentMenu("TalusFramework/Behaviours/ImageFillSetter", 4)]
     public class ImageFillSetter : MonoBehaviour
     {
         [Tooltip("Image to set the fill amount on.")] [LabelWidth(65)]
