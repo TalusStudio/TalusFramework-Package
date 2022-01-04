@@ -40,10 +40,10 @@
   ## Reference Types and Editor Utility
   
   ## Scriptable Objects
-  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Sprite Variables
-  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Sprite Constants
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Color, Sprite, AnimationClip Variables
+  - Bool, Float, Int, String, Vector2, Vector3, GameObject, Color, Sprite, AnimationClip Constants
   - Bool, Float, Int, String, Vector2, Vector3, GameObject Responses (Unity Event with parameter) and Void Response(classic UnityEvent)
-  - Component, Transform, GameObject, Sprite, AnimationClip, Float, Int Collections
+  - Component, Transform, GameObject, Color, Sprite, AnimationClip, Float, Int Collections
   - GameEvent
     
   ## Editor Utilities & Tools
