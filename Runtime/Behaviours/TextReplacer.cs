@@ -8,6 +8,7 @@ using UnityEngine.UI;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
+    [AddComponentMenu("TalusFramework/TextReplacer", 7)]
     public class TextReplacer : MonoBehaviour
     {
         [LabelWidth(80)]

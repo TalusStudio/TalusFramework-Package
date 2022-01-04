@@ -7,8 +7,9 @@ using UnityEngine.UI;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-    [ExecuteInEditMode]
     [HideMonoScript]
+    [AddComponentMenu("TalusFramework/SliderSetter", 6)]
+    [ExecuteInEditMode]
     public class SliderSetter : MonoBehaviour
     {
         [Required]
