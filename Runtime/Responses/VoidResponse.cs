@@ -14,6 +14,7 @@ namespace TalusFramework.Runtime.Responses
         [SerializeField]
         private UnityEvent _Response;
 
+        [Button, DisableInEditorMode]
         public override void Send() => _Response?.Invoke();
     }
 }

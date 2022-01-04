@@ -18,11 +18,17 @@ namespace TalusFramework.Runtime.Responses.Interfaces
 
         protected override BaseReference<T> Argument => _StaticArgument;
 
+        [FoldoutGroup("Debugging")]
+        [BoxGroup("Debugging/Invoke with Dynamic Parameter(function parameter)")]
+        [Button, DisableInEditorMode]
         public override void Send(T argument)
         {
             _Response?.Invoke(argument);
         }
 
+        [FoldoutGroup("Debugging")]
+        [BoxGroup("Debugging/Invoke with Static Parameter")]
+        [Button, DisableInEditorMode]
         public override void Send()
         {
             Send(Argument.Value);
