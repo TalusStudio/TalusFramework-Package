@@ -6,13 +6,15 @@ using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Variables;
 
-using UnityEditor;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 #if ENABLE_COMMANDS
 using QFSW.QC;
+#endif
+
+#if UNITY_EDITOR
+using UnityEditor;
 #endif
 
 namespace TalusFramework.Runtime.Managers
@@ -23,8 +25,11 @@ namespace TalusFramework.Runtime.Managers
 #endif
     public class GameDataSO : BaseSO
     {
+
+#if ENABLE_BACKEND
         [TitleGroup("Scene Management")]
         public SceneReference ElephantScene;
+#endif
 
         [TitleGroup("Scene Management")]
         public SceneReference ForwarderScene;
