@@ -55,7 +55,7 @@ namespace TalusFramework.Runtime.Managers
             {
                 var levelIndexes = new List<string>();
 
-                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_LEVELS"))
+                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_LEVELS") && TutorialLevels.Count > 0)
                 {
                     for (int i = 0; i < TutorialLevels.Count; ++i)
                     {
