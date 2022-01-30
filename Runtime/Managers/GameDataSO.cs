@@ -20,6 +20,9 @@ namespace TalusFramework.Runtime.Managers
 #endif
     public class GameDataSO : BaseSO
     {
+        public List<SceneReference> PlayableLevels;
+        public List<SceneReference> TutorialLevels;
+
         [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
         [AssetSelector, Required]
         public IntVariableSO NextLevelIndex;
@@ -35,26 +38,25 @@ namespace TalusFramework.Runtime.Managers
         /// <summary>
         ///     To reference playable levels.
         /// </summary>
-        public static List<int> Levels
+        public List<int> Levels
         {
             get
             {
                 var levelIndexes = new List<int>();
 
-#if ENABLE_BACKEND
-                // scene at buildIndex 0 -> elephant
-                // scene at buildIndex 1 -> forwarder scene
-                for (int i = 2; i < SceneManager.sceneCountInBuildSettings; ++i)
+                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_SCENES"))
                 {
-                    levelIndexes.Add(i);
+                    for (int i = 0; i < TutorialLevels.Count; ++i)
+                    {
+                        levelIndexes.Add(SceneManager.GetSceneByPath(TutorialLevels[i].ScenePath).buildIndex);
+                    }
                 }
-#else
-                // scene at buildIndex 0 -> forwarder scene
-                for (int i = 1; i < SceneManager.sceneCountInBuildSettings; ++i)
+
+                for (int i = 0; i < PlayableLevels.Count; ++i)
                 {
-                    levelIndexes.Add(i);
+                    levelIndexes.Add(SceneManager.GetSceneByPath(PlayableLevels[i].ScenePath).buildIndex);
                 }
-#endif
+
                 return levelIndexes;
             }
         }
