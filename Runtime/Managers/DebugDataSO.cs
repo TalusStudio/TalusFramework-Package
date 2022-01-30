@@ -10,6 +10,10 @@ using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
 
+#if ENABLE_COMMANDS
+using QFSW.QC;
+#endif
+
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Debug Data", menuName = "Managers/Debug Data", order = 0)]
