@@ -8,15 +8,9 @@ using TalusFramework.Runtime.Variables;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-#if ENABLE_COMMANDS
-using QFSW.QC;
-#endif
 
 namespace TalusFramework.Runtime.SceneManagement
 {
-#if ENABLE_COMMANDS
-    [CommandPrefix("talus.")]
-#endif
     public class SceneLoaderSO : BaseSO
     {
 #region Level Load
@@ -51,10 +45,6 @@ namespace TalusFramework.Runtime.SceneManagement
             await LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
-
-#if ENABLE_COMMANDS
-        [Command("load-scene", "loads a scene by index into the game")]
-#endif
         private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
         {
             // wait one frame.
@@ -64,9 +54,6 @@ namespace TalusFramework.Runtime.SceneManagement
             await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
         }
 
-#if ENABLE_COMMANDS
-        [Command("load-scene", "loads a scene by index into the game")]
-#endif
         private static async Task LoadScene(string scene, LoadSceneMode loadMode = LoadSceneMode.Single)
         {
             // wait one frame.
@@ -75,10 +62,5 @@ namespace TalusFramework.Runtime.SceneManagement
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene, loadMode);
             await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
         }
-
-#if ENABLE_COMMANDS
-        private void OnEnable() => QuantumRegistry.RegisterObject(this);
-        private void OnDisable() => QuantumRegistry.DeregisterObject(this);
-#endif
     }
 }

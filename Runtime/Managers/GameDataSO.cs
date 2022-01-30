@@ -9,10 +9,6 @@ using TalusFramework.Runtime.Variables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-#if ENABLE_COMMANDS
-using QFSW.QC;
-#endif
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -20,11 +16,13 @@ using UnityEditor;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-#if ENABLE_COMMANDS
-    [CommandPrefix("talus.")]
-#endif
     public class GameDataSO : BaseSO
     {
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void Init()
+        {
+            Application.targetFrameRate = 60;
+        }
 
 #if ENABLE_BACKEND
         [TitleGroup("Scene Management")]
@@ -70,10 +68,25 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
+        public void DisableCurrentLevel()
+        {
+            if (DisabledLevels.Contains(SceneManager.GetActiveScene().path))
+            {
+                return;
+            }
 
-        /// <summary>
-        ///     To reference playable levels.
-        /// </summary>
+            PlayerPrefs.SetString("DISABLE_LEVEL_" + DisabledLevelCount, SceneManager.GetActiveScene().path);
+            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
+        }
+
+        public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
+        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
+        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
+
+        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+        private int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
+
+
         private List<string> PlayableLevels
         {
             get
@@ -94,7 +107,6 @@ namespace TalusFramework.Runtime.Managers
             }
         }
 
-        private int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
 
         private List<string> DisabledLevels
         {
@@ -111,39 +123,5 @@ namespace TalusFramework.Runtime.Managers
             }
         }
 
-        public void DisableCurrentLevel()
-        {
-            if (DisabledLevels.Contains(SceneManager.GetActiveScene().path))
-            {
-                return;
-            }
-
-            PlayerPrefs.SetString("DISABLE_LEVEL_" + DisabledLevelCount, SceneManager.GetActiveScene().path);
-            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
-        }
-
-#if ENABLE_COMMANDS
-        [Command("get-level-pref", MonoTargetType.Registry)]
-#endif
-        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-
-#if ENABLE_COMMANDS
-        [Command("increment-completed-level", MonoTargetType.Registry)]
-#endif
-        public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
-
-        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
-        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void Init()
-        {
-            Application.targetFrameRate = 60;
-        }
-
-#if ENABLE_COMMANDS
-        private void OnEnable() => QuantumRegistry.RegisterObject(this);
-        private void OnDisable() => QuantumRegistry.DeregisterObject(this);
-#endif
     }
 }
