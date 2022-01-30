@@ -21,16 +21,15 @@ namespace TalusFramework.Runtime.Managers
     public class GameDataSO : BaseSO
     {
         [FoldoutGroup("Levels")]
-        public List<SceneReference> PlayableLevels;
-
-        [FoldoutGroup("Levels")]
-        public List<SceneReference> TutorialLevels;
+        public List<SceneReference> LevelsInBuild;
 
         [FoldoutGroup("Levels")]
         [Button(ButtonSizes.Large)]
-        public void DisableTutorialLevels()
+        public void DisableLevel(SceneReference scene)
         {
-            PlayerPrefs.SetInt("DISABLE_TUTORIAL_LEVELS", 1);
+            int disabledLevelCount = PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
+            PlayerPrefs.SetString("DISABLE_LEVEL_" + disabledLevelCount, scene.ScenePath);
+            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", ++disabledLevelCount);
         }
 
         [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
@@ -49,26 +48,38 @@ namespace TalusFramework.Runtime.Managers
         /// <summary>
         ///     To reference playable levels.
         /// </summary>
-        public List<string> Levels
+        private List<string> PlayableLevels
         {
             get
             {
                 var levelIndexes = new List<string>();
 
-                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_LEVELS") && TutorialLevels.Count > 0)
+                for (int i = 0; i < LevelsInBuild.Count; ++i)
                 {
-                    for (int i = 0; i < TutorialLevels.Count; ++i)
+                    if (DisabledLevels.Contains(LevelsInBuild[i].ScenePath))
                     {
-                        levelIndexes.Add(TutorialLevels[i].ScenePath);
+                        continue;
                     }
-                }
 
-                for (int i = 0; i < PlayableLevels.Count; ++i)
-                {
-                    levelIndexes.Add(PlayableLevels[i].ScenePath);
+                    levelIndexes.Add(LevelsInBuild[i].ScenePath);
                 }
 
                 return levelIndexes;
+            }
+        }
+
+        private List<string> DisabledLevels
+        {
+            get
+            {
+                var disabledLevels = new List<string>();
+
+                for (int i = 0; i < PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT"); ++i)
+                {
+                    disabledLevels.Add(PlayerPrefs.GetString("DISABLE_LEVEL_" + i));
+                }
+
+                return disabledLevels;
             }
         }
 
@@ -82,7 +93,7 @@ namespace TalusFramework.Runtime.Managers
 #endif
         public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
 
-        public void UpdateNextLevelVariable() => NextLevel.SetValue(Levels[CompletedLevelCount % Levels.Count]);
+        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[CompletedLevelCount % PlayableLevels.Count]);
         public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
