@@ -66,7 +66,7 @@ namespace TalusFramework.Runtime.Managers
             {
                 var disabledLevels = new List<string>();
 
-                for (int i = 0; i < PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT"); ++i)
+                for (int i = 0; i < PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT") + 1; ++i)
                 {
                     disabledLevels.Add(PlayerPrefs.GetString("DISABLE_LEVEL_" + i));
                 }
