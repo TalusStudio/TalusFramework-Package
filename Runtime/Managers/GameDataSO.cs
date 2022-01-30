@@ -132,7 +132,7 @@ namespace TalusFramework.Runtime.Managers
 #endif
         public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
 
-        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[CompletedLevelCount % PlayableLevels.Count]);
+        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
         public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
