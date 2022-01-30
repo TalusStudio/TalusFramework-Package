@@ -25,7 +25,7 @@ namespace TalusFramework.Runtime.Managers
 
         [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
         [AssetSelector, Required]
-        public IntVariableSO NextLevelIndex;
+        public StringVariableSO NextLevel;
 
         [TitleGroup("Variables - In Game"), LabelWidth(100)]
         [AssetSelector, Required]
@@ -35,26 +35,32 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
+        [Button]
+        public void TestLevels()
+        {
+            Debug.Log("Level count:" + Levels.Count);
+        }
+
         /// <summary>
         ///     To reference playable levels.
         /// </summary>
-        public List<int> Levels
+        public List<string> Levels
         {
             get
             {
-                var levelIndexes = new List<int>();
+                var levelIndexes = new List<string>();
 
                 if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_SCENES"))
                 {
                     for (int i = 0; i < TutorialLevels.Count; ++i)
                     {
-                        levelIndexes.Add(SceneManager.GetSceneByPath(TutorialLevels[i].ScenePath).buildIndex);
+                        levelIndexes.Add(TutorialLevels[i].ScenePath);
                     }
                 }
 
                 for (int i = 0; i < PlayableLevels.Count; ++i)
                 {
-                    levelIndexes.Add(SceneManager.GetSceneByPath(PlayableLevels[i].ScenePath).buildIndex);
+                    levelIndexes.Add(PlayableLevels[i].ScenePath);
                 }
 
                 return levelIndexes;
@@ -71,7 +77,7 @@ namespace TalusFramework.Runtime.Managers
 #endif
         public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
 
-        public void UpdateNextLevelVariable() => NextLevelIndex.SetValue(Levels[CompletedLevelCount % Levels.Count]);
+        public void UpdateNextLevelVariable() => NextLevel.SetValue(Levels[CompletedLevelCount % Levels.Count]);
         public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]

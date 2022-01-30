@@ -19,6 +19,13 @@ namespace TalusFramework.Runtime.SceneManagement
 #endif
     public class SceneLoaderSO : BaseSO
     {
+#region Level Load
+        [Button, DisableInEditorMode]
+        public static async void LoadLevel(string scene)
+        {
+            await LoadScene(scene);
+        }
+
         [Button, DisableInEditorMode]
         public static async void LoadLevel(int sceneIndex)
         {
@@ -30,12 +37,14 @@ namespace TalusFramework.Runtime.SceneManagement
         {
             await LoadScene(sceneIndex.RuntimeValue);
         }
+#endregion
 
         [Button, DisableInEditorMode]
         public async void RestartLevel()
         {
             await LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+
 
 #if ENABLE_COMMANDS
         [Command("load-scene", "loads a scene by index into the game")]
@@ -46,6 +55,18 @@ namespace TalusFramework.Runtime.SceneManagement
             await Task.Yield();
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
+            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+        }
+
+#if ENABLE_COMMANDS
+        [Command("load-scene", "loads a scene by index into the game")]
+#endif
+        private static async Task LoadScene(string scene, LoadSceneMode loadMode = LoadSceneMode.Single)
+        {
+            // wait one frame.
+            await Task.Yield();
+
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene, loadMode);
             await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
         }
 

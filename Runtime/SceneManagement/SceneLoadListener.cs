@@ -22,7 +22,7 @@ namespace TalusFramework.Runtime.SceneManagement
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
             TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
-            _LevelLoadEvent.Raise(scene.buildIndex);
+            _LevelLoadEvent.Raise(scene.name);
         }
     }
 }
