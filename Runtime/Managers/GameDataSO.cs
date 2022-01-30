@@ -20,8 +20,18 @@ namespace TalusFramework.Runtime.Managers
 #endif
     public class GameDataSO : BaseSO
     {
+        [FoldoutGroup("Levels")]
         public List<SceneReference> PlayableLevels;
+
+        [FoldoutGroup("Levels")]
         public List<SceneReference> TutorialLevels;
+
+        [FoldoutGroup("Levels")]
+        [Button(ButtonSizes.Large)]
+        public void DisableTutorialLevels()
+        {
+            PlayerPrefs.SetInt("DISABLE_TUTORIAL_LEVELS", 1);
+        }
 
         [TitleGroup("Variables - Scene Management"), LabelWidth(100)]
         [AssetSelector, Required]
@@ -35,11 +45,6 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
-        [Button]
-        public void TestLevels()
-        {
-            Debug.Log("Level count:" + Levels.Count);
-        }
 
         /// <summary>
         ///     To reference playable levels.
@@ -50,7 +55,7 @@ namespace TalusFramework.Runtime.Managers
             {
                 var levelIndexes = new List<string>();
 
-                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_SCENES"))
+                if (!PlayerPrefs.HasKey("DISABLE_TUTORIAL_LEVELS"))
                 {
                     for (int i = 0; i < TutorialLevels.Count; ++i)
                     {
