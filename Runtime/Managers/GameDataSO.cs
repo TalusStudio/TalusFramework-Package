@@ -104,7 +104,7 @@ namespace TalusFramework.Runtime.Managers
 
                 for (int i = 0; i < DisabledLevelCount; ++i)
                 {
-                    disabledLevels.Add(PlayerPrefs.GetString("DISABLE_LEVEL_" + (i - 1)));
+                    disabledLevels.Add(PlayerPrefs.GetString("DISABLE_LEVEL_" + i));
                 }
 
                 return disabledLevels;
@@ -118,8 +118,8 @@ namespace TalusFramework.Runtime.Managers
                 return;
             }
 
-            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
             PlayerPrefs.SetString("DISABLE_LEVEL_" + DisabledLevelCount, SceneManager.GetActiveScene().path);
+            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
         }
 
 #if ENABLE_COMMANDS
