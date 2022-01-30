@@ -39,7 +39,7 @@ namespace TalusFramework.Runtime.Managers
 
 #if UNITY_EDITOR
         [TitleGroup("Scene Management")]
-        [Button(ButtonSizes.Large)]
+        [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
         public void SyncBuildSettings()
         {
             var scenes = new List<EditorBuildSettingsScene>();
