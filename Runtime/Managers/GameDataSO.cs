@@ -77,7 +77,7 @@ namespace TalusFramework.Runtime.Managers
 
         public void DisableCurrentLevel()
         {
-            int disabledLevelCount = PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
+            int disabledLevelCount = PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT") + 1;
             PlayerPrefs.SetString("DISABLE_LEVEL_" + disabledLevelCount, SceneManager.GetActiveScene().path);
             PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", disabledLevelCount);
         }
