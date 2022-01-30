@@ -39,15 +39,10 @@ namespace TalusFramework.Runtime.Managers
         {
             var scenes = new List<EditorBuildSettingsScene>();
 
-            if (ElephantScene != null)
-            {
-                scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
-            }
-
-            if (ForwarderScene != null)
-            {
-                scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
-            }
+#if ENABLE_BACKEND
+            scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
+#endif
+            scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
 
             for (int i = 0; i < Levels.Count; ++i)
             {
