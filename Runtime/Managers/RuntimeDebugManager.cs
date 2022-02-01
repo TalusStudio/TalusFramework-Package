@@ -16,8 +16,8 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-    [CreateAssetMenu(fileName = "New Debug Data", menuName = "Managers/Debug Data", order = 0)]
-    public class DebugDataSO : BaseSO
+    [CreateAssetMenu(fileName = "New Runtime Debug Manager", menuName = "Managers/Runtime Debug Manager", order = 0)]
+    public class RuntimeDebugManager : BaseSO, IInitiable
     {
         [ToggleLeft]
         [SerializeField]
@@ -41,7 +41,7 @@ namespace TalusFramework.Runtime.Managers
         [NonSerialized]
         private int _CurrentTapCount;
 
-        public void CreateDebugView()
+        public void Initialize()
         {
             if (!_EnableHiddenDebugView)
             {
@@ -66,8 +66,7 @@ namespace TalusFramework.Runtime.Managers
                 return;
             }
 
-            QuantumConsole runtimeConsole = FindObjectOfType<QuantumConsole>();
-
+            var runtimeConsole = FindObjectOfType<QuantumConsole>();
             if (runtimeConsole != null)
             {
                 runtimeConsole.Activate();
