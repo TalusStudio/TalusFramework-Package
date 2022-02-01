@@ -3,6 +3,7 @@
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Base.Interfaces;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.References;

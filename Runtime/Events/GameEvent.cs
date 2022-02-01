@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Events
 {
+    /// <summary>
+    ///     Be careful about execution.
+    /// </summary>
     [CreateAssetMenu]
     public class GameEvent : BaseSO
     {
@@ -34,16 +37,15 @@ namespace TalusFramework.Runtime.Events
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponseSO response = GlobalResponses[i];
-                var dynamicResponse = response as ResponseSO<T>;
 
-                // capture dynamic responses.
-                if (dynamicResponse != null)
+                var dynamicResponse = response as ResponseSO<T>;
+                if (dynamicResponse != null) // capture dynamic responses.
                 {
                     dynamicResponse.Send(arg);
                 }
-                else // capture void responses.
+                else
                 {
-                    response.Send();
+                    response.Send(); // capture void responses.
                 }
             }
 

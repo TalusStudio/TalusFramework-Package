@@ -3,7 +3,7 @@
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
-using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Base.Interfaces;
 
 using UnityEngine;
 

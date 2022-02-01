@@ -24,7 +24,7 @@ namespace TalusFramework.Editor.TalusKitExtensions
         [MenuItem("TalusKit/Menu Editor %m", priority = -1000)]
         private static void OpenWindow()
         {
-            MenuEditor window = GetWindow<MenuEditor>();
+            var window = GetWindow<MenuEditor>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(800, 600);
         }
 
