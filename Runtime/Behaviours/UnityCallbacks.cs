@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
+    [AddComponentMenu("TalusFramework/Behaviours/UnityCallbacks", 9)]
     public class UnityCallbacks : MonoBehaviour
     {
         public UnityEvent OnAwakeEvent;
