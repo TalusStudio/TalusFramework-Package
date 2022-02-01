@@ -37,26 +37,23 @@ namespace TalusFramework.Runtime.Behaviours
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Bool")]
         [SerializeField]
-        private BoolReference BoolReference;
+        public BoolReference BoolValue;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Float")]
         [SerializeField]
-        private FloatReference FloatReference;
+        public FloatReference FloatValue;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Int")]
         [SerializeField]
-        private IntReference IntReference;
+        public IntReference IntValue;
 
-        /// <summary>
-        ///     Animator Hash of ParameterName, automatically generated.
-        /// </summary>
-        private int parameterHash;
+        private int _ParameterHash;
 
         private void Awake()
         {
-            parameterHash = Animator.StringToHash(ParameterName);
+            _ParameterHash = Animator.StringToHash(ParameterName);
         }
 
         private void Update()
@@ -64,19 +61,19 @@ namespace TalusFramework.Runtime.Behaviours
             switch (ParameterType)
             {
                 case AnimatorParameterType.Float:
-                    Animator.SetFloat(parameterHash, FloatReference.Value);
+                    Animator.SetFloat(_ParameterHash, FloatValue);
                     break;
 
                 case AnimatorParameterType.Int:
-                    Animator.SetInteger(parameterHash, IntReference.Value);
+                    Animator.SetInteger(_ParameterHash, IntValue);
                     break;
 
                 case AnimatorParameterType.Bool:
-                    Animator.SetBool(parameterHash, BoolReference.Value);
+                    Animator.SetBool(_ParameterHash, BoolValue);
                     break;
 
                 case AnimatorParameterType.Trigger:
-                    Animator.SetTrigger(parameterHash);
+                    Animator.SetTrigger(_ParameterHash);
                     break;
             }
         }

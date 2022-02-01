@@ -60,8 +60,11 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
-        public void Initialize()
+        public void Initialize() => UpdateGameData();
+
+        public void LevelUp()
         {
+            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
             UpdateGameData();
         }
 
@@ -76,17 +79,17 @@ namespace TalusFramework.Runtime.Managers
             PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
         }
 
-        public void LevelUp()
+        private void UpdateGameData()
         {
-            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
-            UpdateGameData();
+            LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
+            NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-        private int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
+        private static int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
 
         private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
-        private List<string> DisabledLevels
+        private static List<string> DisabledLevels
         {
             get
             {
@@ -101,11 +104,5 @@ namespace TalusFramework.Runtime.Managers
             }
         }
 
-
-        private void UpdateGameData()
-        {
-            LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-            NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
-        }
     }
 }

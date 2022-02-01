@@ -23,7 +23,7 @@ namespace TalusFramework.Runtime.Behaviours
         {
             if (Slider != null && FloatReference != null)
             {
-                Slider.value = FloatReference.Value;
+                Slider.value = FloatReference;
             }
         }
     }

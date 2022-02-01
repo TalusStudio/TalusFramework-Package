@@ -1,7 +1,7 @@
-﻿using Sirenix.OdinInspector;
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
+
+using Sirenix.OdinInspector;
 
 namespace TalusFramework.Runtime.Behaviours
 {
