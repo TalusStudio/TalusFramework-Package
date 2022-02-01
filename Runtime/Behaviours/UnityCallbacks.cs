@@ -8,17 +8,23 @@ namespace TalusFramework.Runtime.Behaviours
     [HideMonoScript]
     public class UnityCallbacks : MonoBehaviour
     {
-        public UnityEvent OnAwake;
-        public UnityEvent OnStart;
+        public UnityEvent OnAwakeEvent;
+        public UnityEvent OnStartEvent;
+        public UnityEvent OnDestroyEvent;
 
         private void Awake()
         {
-            OnAwake.Invoke();
+            OnAwakeEvent.Invoke();
         }
 
         private void Start()
         {
-            OnStart.Invoke();
+            OnStartEvent.Invoke();
+        }
+
+        private void OnDestroy()
+        {
+            OnDestroyEvent.Invoke();
         }
     }
 }

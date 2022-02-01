@@ -38,14 +38,12 @@ namespace TalusFramework.Runtime.References.Interfaces
                 }
 
                 var value = Variable as BaseValueSO<TPlainType>;
-
                 if (value != null)
                 {
                     return value.RuntimeValue;
                 }
 
                 TLog.Log("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType), LogType.Error);
-
                 return default;
             }
         }
