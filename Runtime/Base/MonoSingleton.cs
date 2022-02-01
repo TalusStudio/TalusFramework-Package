@@ -2,7 +2,7 @@ using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Base.Interfaces
+namespace TalusFramework.Runtime.Base
 {
     /// <summary>
     ///     Generic Singleton for MonoBehaviours.

@@ -4,7 +4,6 @@ using System.Linq;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Base.Interfaces;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Variables;
 
@@ -18,7 +17,7 @@ using UnityEditor;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-    public class GameDataManager : BaseSO, IInitiable
+    public class GameDataManager : BaseSO, IInitializable
     {
 
 #if ENABLE_BACKEND

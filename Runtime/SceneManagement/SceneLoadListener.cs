@@ -14,7 +14,7 @@ namespace TalusFramework.Runtime.SceneManagement
         [LabelWidth(100)]
         [AssetSelector, Required]
         [SerializeField]
-        private GameEvent _LevelLoadEvent;
+        public GameEvent LevelLoadEvent;
 
         private void OnEnable() => SceneManager.sceneLoaded += HandleSceneLoad;
         private void OnDisable() => SceneManager.sceneLoaded -= HandleSceneLoad;
@@ -22,7 +22,7 @@ namespace TalusFramework.Runtime.SceneManagement
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
             TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
-            _LevelLoadEvent.Raise(scene.name);
+            LevelLoadEvent.Raise(scene.name);
         }
     }
 }

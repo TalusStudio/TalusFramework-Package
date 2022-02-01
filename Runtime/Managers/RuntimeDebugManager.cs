@@ -3,7 +3,6 @@
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Base.Interfaces;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.References;
@@ -18,7 +17,7 @@ using QFSW.QC;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Runtime Debug Manager", menuName = "Managers/Runtime Debug Manager", order = 0)]
-    public class RuntimeDebugManager : BaseSO, IInitiable
+    public class RuntimeDebugManager : BaseSO, IInitializable
     {
         [ToggleLeft]
         [SerializeField]
