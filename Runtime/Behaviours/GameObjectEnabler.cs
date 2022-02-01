@@ -12,6 +12,9 @@ namespace TalusFramework.Runtime.Behaviours
         [Required]
         public GameObject GameObject;
 
-        public void Enable() => GameObject.SetActive(true);
+        public void Enable()
+        {
+            GameObject.SetActive(true);
+        }
     }
 }

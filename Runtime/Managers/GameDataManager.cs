@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Sirenix.OdinInspector;
 
@@ -16,27 +17,22 @@ using UnityEditor;
 namespace TalusFramework.Runtime.Managers
 {
     [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-    public class GameDataSO : BaseSO
+    public class GameDataManager : BaseSO, IInitializable
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void Init()
-        {
-            Application.targetFrameRate = 60;
-        }
 
 #if ENABLE_BACKEND
-        [TitleGroup("Scene Management")]
+        [FoldoutGroup("Scene Management")]
         public SceneReference ElephantScene;
 #endif
 
-        [TitleGroup("Scene Management")]
+        [FoldoutGroup("Scene Management")]
         public SceneReference ForwarderScene;
 
-        [TitleGroup("Scene Management")]
+        [FoldoutGroup("Scene Management")]
         public List<SceneReference> Levels;
 
 #if UNITY_EDITOR
-        [TitleGroup("Scene Management")]
+        [FoldoutGroup("Scene Management")]
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
         public void SyncBuildSettings()
         {
@@ -45,13 +41,9 @@ namespace TalusFramework.Runtime.Managers
 #if ENABLE_BACKEND
             scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
 #endif
+
             scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
-
-            for (int i = 0; i < Levels.Count; ++i)
-            {
-                scenes.Add(new EditorBuildSettingsScene(Levels[i].ScenePath, true));
-            }
-
+            scenes.AddRange(Levels.Select(t => new EditorBuildSettingsScene(t.ScenePath, true)));
             EditorBuildSettings.scenes = scenes.ToArray();
         }
 #endif
@@ -68,6 +60,14 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
+        public void Initialize() => UpdateGameData();
+
+        public void LevelUp()
+        {
+            PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
+            UpdateGameData();
+        }
+
         public void DisableCurrentLevel()
         {
             if (DisabledLevels.Contains(SceneManager.GetActiveScene().path))
@@ -79,36 +79,17 @@ namespace TalusFramework.Runtime.Managers
             PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
         }
 
-        public void IncrementCompletedLevel() => PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
-        public void UpdateNextLevelVariable() => NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
-        public void UpdateLevelTextVariable() => LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-
-        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-        private int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
-
-
-        private List<string> PlayableLevels
+        private void UpdateGameData()
         {
-            get
-            {
-                var levelIndexes = new List<string>();
-
-                for (int i = 0; i < Levels.Count; ++i)
-                {
-                    if (DisabledLevels.Contains(Levels[i].ScenePath))
-                    {
-                        continue;
-                    }
-
-                    levelIndexes.Add(Levels[i].ScenePath);
-                }
-
-                return levelIndexes;
-            }
+            LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
+            NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
         }
 
+        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+        private static int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
 
-        private List<string> DisabledLevels
+        private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
+        private static List<string> DisabledLevels
         {
             get
             {

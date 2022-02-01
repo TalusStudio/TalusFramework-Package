@@ -9,11 +9,16 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Events
 {
+    /// <summary>
+    ///     Be careful about execution.
+    /// </summary>
     [CreateAssetMenu]
     public class GameEvent : BaseSO
     {
+#if UNITY_EDITOR
         [ToggleGroup("Responses")]
         public bool Responses;
+#endif
 
         [ToggleGroup("Responses")]
         [PropertyOrder(1)]
@@ -24,31 +29,29 @@ namespace TalusFramework.Runtime.Events
         [PropertySpace]
         [ReadOnly]
         [SerializeField]
-        private List<GameEventListener> _GameEventListeners = new List<GameEventListener>();
-
-        public int ListenersCount => _GameEventListeners.Count;
+        private List<GameEventListener> _Listeners = new List<GameEventListener>();
+        public List<GameEventListener> Listeners => _Listeners;
 
         public void Raise<T>(T arg)
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponseSO response = GlobalResponses[i];
-                var dynamicResponse = response as ResponseSO<T>;
 
-                // capture dynamic responses.
-                if (dynamicResponse != null)
+                var dynamicResponse = response as ResponseSO<T>;
+                if (dynamicResponse != null) // capture dynamic responses.
                 {
                     dynamicResponse.Send(arg);
                 }
-                else // capture void responses.
+                else
                 {
-                    response.Send();
+                    response.Send(); // capture void responses.
                 }
             }
 
-            for (int i = _GameEventListeners.Count - 1; i >= 0; i--)
+            for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
-                _GameEventListeners[i].OnEventRaised();
+                _Listeners[i].OnEventRaised();
             }
         }
 
@@ -61,26 +64,30 @@ namespace TalusFramework.Runtime.Events
                 response.Send();
             }
 
-            for (int i = _GameEventListeners.Count - 1; i >= 0; i--)
+            for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
-                _GameEventListeners[i].OnEventRaised();
+                _Listeners[i].OnEventRaised();
             }
         }
 
         public void AddListener(GameEventListener listener)
         {
-            if (!_GameEventListeners.Contains(listener))
+            if (_Listeners.Contains(listener))
             {
-                _GameEventListeners.Add(listener);
+                return;
             }
+
+            _Listeners.Add(listener);
         }
 
         public void RemoveListener(GameEventListener listener)
         {
-            if (_GameEventListeners.Contains(listener))
+            if (!_Listeners.Contains(listener))
             {
-                _GameEventListeners.Remove(listener);
+                return;
             }
+
+            _Listeners.Remove(listener);
         }
     }
 }

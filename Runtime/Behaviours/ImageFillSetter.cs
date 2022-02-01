@@ -26,7 +26,7 @@ namespace TalusFramework.Runtime.Behaviours
 
         private void Update()
         {
-            Image.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(Min.Value, Max.Value, Variable.Value));
+            Image.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(Min, Max, Variable));
         }
     }
 }

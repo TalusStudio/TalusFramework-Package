@@ -26,7 +26,6 @@ namespace TalusFramework.Runtime.Base
         [AssetsOnly]
         [SerializeField]
         private TPlainType _RuntimeValue;
-
         public TPlainType RuntimeValue
         {
             get => _RuntimeValue;

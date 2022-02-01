@@ -13,7 +13,7 @@ namespace TalusFramework.Runtime.SceneManagement
 {
     public class SceneLoaderSO : BaseSO
     {
-#region Level Load
+#region LEVEL_LOADING
         [Button, DisableInEditorMode]
         public static async void LoadLevel(string scene)
         {
