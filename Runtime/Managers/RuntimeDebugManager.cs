@@ -16,7 +16,7 @@ using QFSW.QC;
 
 namespace TalusFramework.Runtime.Managers
 {
-    [CreateAssetMenu(fileName = "New Runtime Debug Manager", menuName = "Managers/Runtime Debug Manager", order = 0)]
+    [CreateAssetMenu(fileName = "New Runtime Debug Manager", menuName = "Managers/Runtime Debug Manager", order = 2)]
     public class RuntimeDebugManager : BaseSO, IInitializable
     {
         [ToggleLeft]
@@ -45,7 +45,6 @@ namespace TalusFramework.Runtime.Managers
         {
             if (!_EnableHiddenDebugView)
             {
-                TLog.Log("Quantum Console disabled in Debug Data SO!!!", LogType.Warning);
                 return;
             }
 
@@ -77,7 +76,7 @@ namespace TalusFramework.Runtime.Managers
                 ConsoleActivatedEvent.Raise();
             }
 #else
-            TLog.Log("Quantum Console not enabled!", LogType.Error);
+            TLog.Log("'ENABLE_COMMANDS' definition not fount!", LogType.Error);
 #endif
         }
     }
