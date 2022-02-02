@@ -4,7 +4,6 @@ using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.References;
 
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace TalusFramework.Runtime.Behaviours
 {
@@ -12,7 +11,6 @@ namespace TalusFramework.Runtime.Behaviours
     [AddComponentMenu("TalusFramework/Behaviours/ObjectCreator", 5)]
     public class ObjectCreator : MonoBehaviour
     {
-        [FormerlySerializedAs("ObjectSO")]
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]
         [AssetSelector, Required]
         public GameObjectConstant Object;
