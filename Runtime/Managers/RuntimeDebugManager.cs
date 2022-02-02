@@ -72,9 +72,10 @@ namespace TalusFramework.Runtime.Managers
             }
             else
             {
-                _CurrentTapCount = 0;
                 ConsoleActivatedEvent.Raise();
             }
+
+            _CurrentTapCount = 0;
 #else
             TLog.Log("'ENABLE_COMMANDS' definition not fount!", LogType.Error);
 #endif
