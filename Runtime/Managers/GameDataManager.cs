@@ -86,7 +86,7 @@ namespace TalusFramework.Runtime.Managers
             }
 
             PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, SceneManager.GetActiveScene().path);
-            PlayerPrefs.SetInt(DisabledLevelPref.RuntimeValue, DisabledLevelCount + 1);
+            PlayerPrefs.SetInt(DisabledLevelCountPref.RuntimeValue, DisabledLevelCount + 1);
         }
 
         private void UpdateGameData()
