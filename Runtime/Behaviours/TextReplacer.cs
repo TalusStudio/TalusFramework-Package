@@ -17,7 +17,7 @@ namespace TalusFramework.Runtime.Behaviours
 
         [LabelWidth(65)]
         [AssetSelector, Required]
-        public BaseValueSO Value;
+        public BaseValue Value;
 
         private void Start() => SetText();
         private void OnEnable() => SetText();
@@ -26,21 +26,21 @@ namespace TalusFramework.Runtime.Behaviours
         [Button, DisableInEditorMode]
         public void SetText()
         {
-            var intValue = Value as BaseValueSO<int>;
+            var intValue = Value as BaseValue<int>;
             if (intValue != null)
             {
                 Text.text = intValue.RuntimeValue.ToString();
                 return;
             }
 
-            var floatValue = Value as BaseValueSO<float>;
+            var floatValue = Value as BaseValue<float>;
             if (floatValue != null)
             {
                 Text.text = floatValue.RuntimeValue.ToString();
                 return;
             }
 
-            var stringValue = Value as BaseValueSO<string>;
+            var stringValue = Value as BaseValue<string>;
             if (stringValue != null)
             {
                 Text.text = stringValue.RuntimeValue;

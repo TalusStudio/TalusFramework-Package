@@ -21,7 +21,7 @@ namespace TalusFramework.Runtime.References.Interfaces
         private TPlainType ConstantValue;
 
         [SerializeField]
-        private BaseValueSO Variable;
+        private BaseValue Variable;
 
         public BaseReference()
         { }
@@ -37,7 +37,7 @@ namespace TalusFramework.Runtime.References.Interfaces
                     return ConstantValue;
                 }
 
-                var value = Variable as BaseValueSO<TPlainType>;
+                var value = Variable as BaseValue<TPlainType>;
                 if (value != null)
                 {
                     return value.RuntimeValue;

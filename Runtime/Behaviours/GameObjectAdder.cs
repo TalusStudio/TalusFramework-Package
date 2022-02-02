@@ -12,7 +12,7 @@ namespace TalusFramework.Runtime.Behaviours
     {
         [LabelWidth(60)]
         [AssetSelector, Required]
-        public GameObjectCollectionSO Collection;
+        public GameObjectCollection Collection;
 
         private void OnEnable()
         {

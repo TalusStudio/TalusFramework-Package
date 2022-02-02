@@ -49,23 +49,23 @@ namespace TalusFramework.Runtime.Managers
 
         [FoldoutGroup("Variables")]
         [AssetSelector, Required]
-        public StringVariableSO NextLevel;
+        public StringVariable NextLevel;
 
         [FoldoutGroup("Variables")]
         [AssetSelector, Required]
-        public StringVariableSO LevelText;
+        public StringVariable LevelText;
 
         [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
-        public StringConstantSO LevelCyclePref;
+        public StringConstant LevelCyclePref;
 
         [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
-        public StringConstantSO DisabledLevelCountPref;
+        public StringConstant DisabledLevelCountPref;
 
         [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
-        public StringConstantSO DisabledLevelPref;
+        public StringConstant DisabledLevelPref;
 
         public void Initialize()
         {

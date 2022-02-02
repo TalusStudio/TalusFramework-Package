@@ -4,6 +4,7 @@ using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.References;
 
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace TalusFramework.Runtime.Behaviours
 {
@@ -11,9 +12,10 @@ namespace TalusFramework.Runtime.Behaviours
     [AddComponentMenu("TalusFramework/Behaviours/ObjectCreator", 5)]
     public class ObjectCreator : MonoBehaviour
     {
+        [FormerlySerializedAs("ObjectSO")]
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]
         [AssetSelector, Required]
-        public GameObjectConstantSO ObjectSO;
+        public GameObjectConstant Object;
 
         [FoldoutGroup("Properties"), LabelWidth(95)]
         [Tooltip("Apply offset to position.")]
@@ -45,7 +47,7 @@ namespace TalusFramework.Runtime.Behaviours
         [Button, DisableInEditorMode]
         public void Create()
         {
-            GameObject obj = Instantiate(ObjectSO.RuntimeValue,
+            GameObject obj = Instantiate(Object.RuntimeValue,
                 _CachedTransform.position,
                 _CachedTransform.rotation,
                 CreateAsChild ? _CachedTransform : null);

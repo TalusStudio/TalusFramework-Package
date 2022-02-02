@@ -5,6 +5,6 @@ using UnityEngine;
 namespace TalusFramework.Runtime.Responses
 {
     [CreateAssetMenu(fileName = "New Int Response", menuName = "Responses/Int", order = 2)]
-    public sealed class IntResponse : ResponseSO<int>
+    public sealed class IntResponse : Response<int>
     { }
 }

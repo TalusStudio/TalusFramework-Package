@@ -26,7 +26,7 @@ namespace TalusFramework.Runtime.Managers
         [ShowIf("_EnableHiddenDebugView")]
         [LabelWidth(145)]
         [AssetSelector]
-        public GameObjectConstantSO DebugView;
+        public GameObjectConstant DebugView;
 
         [ShowIf("_EnableHiddenDebugView")]
         [LabelWidth(145)]

@@ -22,7 +22,7 @@ namespace TalusFramework.Runtime.Events
 
         [ToggleGroup("Responses")]
         [PropertyOrder(1)]
-        public List<BaseResponseSO> GlobalResponses = new List<BaseResponseSO>();
+        public List<BaseResponse> GlobalResponses = new List<BaseResponse>();
 
         [HideInEditorMode]
         [PropertyOrder(2)]
@@ -36,9 +36,9 @@ namespace TalusFramework.Runtime.Events
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
-                BaseResponseSO response = GlobalResponses[i];
+                BaseResponse response = GlobalResponses[i];
 
-                var dynamicResponse = response as ResponseSO<T>;
+                var dynamicResponse = response as Response<T>;
                 if (dynamicResponse != null) // capture dynamic responses.
                 {
                     dynamicResponse.Send(arg);
@@ -60,7 +60,7 @@ namespace TalusFramework.Runtime.Events
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
-                BaseResponseSO response = GlobalResponses[i];
+                BaseResponse response = GlobalResponses[i];
                 response.Send();
             }
 
