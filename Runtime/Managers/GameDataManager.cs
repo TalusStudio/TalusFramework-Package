@@ -19,18 +19,6 @@ namespace TalusFramework.Runtime.Managers
     [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
     public class GameDataManager : BaseSO, IInitializable
     {
-
-#if ENABLE_BACKEND
-        [FoldoutGroup("Scene Management")]
-        public SceneReference ElephantScene;
-#endif
-
-        [FoldoutGroup("Scene Management")]
-        public SceneReference ForwarderScene;
-
-        [FoldoutGroup("Scene Management")]
-        public List<SceneReference> Levels;
-
 #if UNITY_EDITOR
         [FoldoutGroup("Scene Management")]
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
@@ -48,6 +36,17 @@ namespace TalusFramework.Runtime.Managers
         }
 #endif
 
+#if ENABLE_BACKEND
+        [FoldoutGroup("Scene Management")]
+        public SceneReference ElephantScene;
+#endif
+
+        [FoldoutGroup("Scene Management")]
+        public SceneReference ForwarderScene;
+
+        [FoldoutGroup("Scene Management")]
+        public List<SceneReference> Levels;
+
         [FoldoutGroup("Variables")]
         [AssetSelector, Required]
         public StringVariableSO NextLevel;
@@ -56,11 +55,22 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringVariableSO LevelText;
 
-        [FoldoutGroup("Variables")]
+        [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
         public StringConstantSO LevelCyclePref;
 
-        public void Initialize() => UpdateGameData();
+        [FoldoutGroup("Variables - Player Prefs")]
+        [AssetSelector, Required]
+        public StringConstantSO DisabledLevelCountPref;
+
+        [FoldoutGroup("Variables - Player Prefs")]
+        [AssetSelector, Required]
+        public StringConstantSO DisabledLevelPref;
+
+        public void Initialize()
+        {
+            UpdateGameData();
+        }
 
         public void LevelUp()
         {
@@ -75,8 +85,8 @@ namespace TalusFramework.Runtime.Managers
                 return;
             }
 
-            PlayerPrefs.SetString("DISABLE_LEVEL_" + DisabledLevelCount, SceneManager.GetActiveScene().path);
-            PlayerPrefs.SetInt("DISABLED_LEVEL_COUNT", DisabledLevelCount + 1);
+            PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, SceneManager.GetActiveScene().path);
+            PlayerPrefs.SetInt(DisabledLevelPref.RuntimeValue, DisabledLevelCount + 1);
         }
 
         private void UpdateGameData()
@@ -86,11 +96,11 @@ namespace TalusFramework.Runtime.Managers
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-        private static int DisabledLevelCount => PlayerPrefs.GetInt("DISABLED_LEVEL_COUNT");
+        private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
         private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
-        private static List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
-                                                                .Select(i => PlayerPrefs.GetString("DISABLE_LEVEL_" + i))
+        private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
+                                                                .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
                                                                 .ToList();
 
     }
