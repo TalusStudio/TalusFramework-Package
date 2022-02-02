@@ -3,6 +3,7 @@
 # ❗ Requirements 
 - Unity 2020.3.9f1 
 - Odin Attributes
+- Odin Serialization
 
 # 🎁 Extras
 - Quantum Console support.
