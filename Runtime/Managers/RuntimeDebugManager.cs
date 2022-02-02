@@ -54,6 +54,8 @@ namespace TalusFramework.Runtime.Managers
                 return;
             }
 
+            _CurrentTapCount = 0;
+
             Instantiate(DebugView.RuntimeValue);
         }
 
@@ -65,6 +67,8 @@ namespace TalusFramework.Runtime.Managers
                 return;
             }
 
+            _CurrentTapCount = 0;
+
             var runtimeConsole = FindObjectOfType<QuantumConsole>();
             if (runtimeConsole != null)
             {
@@ -74,8 +78,6 @@ namespace TalusFramework.Runtime.Managers
             {
                 ConsoleActivatedEvent.Raise();
             }
-
-            _CurrentTapCount = 0;
 #else
             TLog.Log("'ENABLE_COMMANDS' definition not fount!", LogType.Error);
 #endif
