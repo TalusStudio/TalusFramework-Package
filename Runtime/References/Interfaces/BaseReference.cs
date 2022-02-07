@@ -1,6 +1,4 @@
-﻿using System;
-
-using TalusFramework.Runtime.Base;
+﻿using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
@@ -11,7 +9,7 @@ namespace TalusFramework.Runtime.References.Interfaces
     public abstract class BaseReference
     { }
 
-    [Serializable]
+    [System.Serializable]
     public class BaseReference<TPlainType> : BaseReference
     {
         [SerializeField]
@@ -26,7 +24,10 @@ namespace TalusFramework.Runtime.References.Interfaces
         public BaseReference()
         { }
 
-        public BaseReference(bool useConst) => UseConstant = useConst;
+        public BaseReference(bool useConst)
+        {
+            UseConstant = useConst;
+        }
 
         public TPlainType Value
         {
