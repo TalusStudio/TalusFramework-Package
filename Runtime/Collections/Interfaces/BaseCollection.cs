@@ -38,9 +38,9 @@ namespace TalusFramework.Runtime.Collections.Interfaces
 
         public void ForEach(System.Action<T> action)
         {
-            for (int i = 0; i < Items.Count; ++i)
+            for (int i = Items.Count - 1; i >= 0; i--)
             {
-                action.Invoke(Items[i]);
+                action(Items[i]);
             }
         }
     }
