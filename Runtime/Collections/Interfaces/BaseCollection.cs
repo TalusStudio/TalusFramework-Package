@@ -35,5 +35,13 @@ namespace TalusFramework.Runtime.Collections.Interfaces
             Items.Remove(thing);
             return true;
         }
+
+        public void ForEach(System.Action<T> action)
+        {
+            for (int i = 0; i < Items.Count; ++i)
+            {
+                action.Invoke(Items[i]);
+            }
+        }
     }
 }
