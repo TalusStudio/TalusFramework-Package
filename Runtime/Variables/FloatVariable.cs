@@ -10,17 +10,17 @@ namespace TalusFramework.Runtime.Variables
     [CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float", order = 1)]
     public sealed class FloatVariable : BaseVariable<float>
     {
-        public void Add(FloatVariable variable) => SetValue(RuntimeValue + variable.RuntimeValue);
-        public void Add(float variable) => SetValue(RuntimeValue + variable);
+        public void Add(FloatVariable variable) => RuntimeValue += variable.RuntimeValue;
+        public void Add(float variable) => RuntimeValue += variable;
 
-        public void Subtract(FloatVariable variable) => SetValue(RuntimeValue - variable.RuntimeValue);
-        public void Subtract(float variable) => SetValue(RuntimeValue - variable);
+        public void Subtract(FloatVariable variable) => RuntimeValue -= variable.RuntimeValue;
+        public void Subtract(float variable) => RuntimeValue -= variable;
 
-        public void Multiply(FloatVariable variable) => SetValue(RuntimeValue * variable.RuntimeValue);
-        public void Multiply(float variable) => SetValue(RuntimeValue * variable);
+        public void Multiply(FloatVariable variable) => RuntimeValue *= variable.RuntimeValue;
+        public void Multiply(float variable) => RuntimeValue *= variable;
 
-        public void Divide(FloatVariable variable) => SetValue(RuntimeValue / variable.RuntimeValue);
-        public void Divide(float variable) => SetValue(RuntimeValue / variable);
+        public void Divide(FloatVariable variable) => RuntimeValue /= variable.RuntimeValue;
+        public void Divide(float variable) => RuntimeValue /= variable;
 
         public static FloatVariable operator +(FloatVariable lhs, FloatReference rhs)
         {
