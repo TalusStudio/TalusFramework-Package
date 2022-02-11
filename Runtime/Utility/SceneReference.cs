@@ -174,7 +174,7 @@ public class SceneReferencePropertyDrawer : PropertyDrawer
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         // Move this up
-        EditorGUI.BeginProperty(position, GUIContent.none, property);
+        label = EditorGUI.BeginProperty(position, label, property);
         {
             // Here we add the foldout using a single line height, the label and change
             // the value of property.isExpanded
@@ -198,10 +198,6 @@ public class SceneReferencePropertyDrawer : PropertyDrawer
                 GUI.Box(EditorGUI.IndentedRect(position), GUIContent.none, EditorStyles.helpBox);
                 position = boxPadding.Remove(position);
                 position.height = lineHeight;
-
-                // Draw the main Object field
-                label.tooltip = "The actual Scene Asset reference.\nOn serialize this is also stored as the asset's path.";
-
 
                 var sceneControlID = GUIUtility.GetControlID(FocusType.Passive);
                 EditorGUI.BeginChangeCheck();
@@ -229,6 +225,7 @@ public class SceneReferencePropertyDrawer : PropertyDrawer
                 //EditorGUI.indentLevel--;
             }
         }
+
         EditorGUI.EndProperty();
     }
 
