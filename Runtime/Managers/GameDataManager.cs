@@ -100,8 +100,8 @@ namespace TalusFramework.Runtime.Managers
 
         private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
-                                                                .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
-                                                                .ToList();
+                                                         .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
+                                                         .ToList();
 
     }
 }

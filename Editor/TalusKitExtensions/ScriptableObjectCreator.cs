@@ -25,8 +25,8 @@ namespace TalusFramework.Editor.TalusKitExtensions
                         typeof(ScriptableObject).IsAssignableFrom(t) &&
                         !typeof(EditorWindow).IsAssignableFrom(t) &&
                         !typeof(UnityEditor.Editor).IsAssignableFrom(t))
-                .Where(t =>
-                        t.Assembly.GetName().Name.Contains(NAMESPACE_NAME))
+                .Where(t => t.Assembly.GetName().Name.Contains(NAMESPACE_NAME))
+                .Where(t => !t.Assembly.GetName().Name.Contains("Editor"))
                 .OrderBy(t => t.Namespace));
 
         private string _CurrentPath;
@@ -54,11 +54,11 @@ namespace TalusFramework.Editor.TalusKitExtensions
 
         private static bool TryGetActiveFolderPath(out string path)
         {
-            MethodInfo _tryGetActiveFolderPath = typeof(ProjectWindowUtil).GetMethod("TryGetActiveFolderPath",
+            MethodInfo tryGetActiveFolderPath = typeof(ProjectWindowUtil).GetMethod("TryGetActiveFolderPath",
                 BindingFlags.Static | BindingFlags.NonPublic);
 
             object[] args = { null };
-            bool found = (bool) _tryGetActiveFolderPath.Invoke(null, args);
+            bool found = (bool) tryGetActiveFolderPath.Invoke(null, args);
             path = (string) args[0];
             path = path.Trim('/');
             return found;
@@ -84,9 +84,11 @@ namespace TalusFramework.Editor.TalusKitExtensions
             MenuWidth = 250;
             WindowPadding = Vector4.one * 10f;
 
-            var tree = new OdinMenuTree(false);
-            tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
-            tree.Config.DrawSearchToolbar = true;
+            var tree = new OdinMenuTree(false)
+            {
+                DefaultMenuStyle = OdinMenuStyle.TreeViewStyle,
+                Config = { DrawSearchToolbar = true }
+            };
 
             foreach (Type type in _ScriptableObjectTypes.ToList())
             {
@@ -160,34 +162,21 @@ namespace TalusFramework.Editor.TalusKitExtensions
 
         private class ScriptableObjectCreatorMenuItem : OdinMenuItem
         {
-            private readonly ScriptableObjectCreator _creator;
-            private readonly Type _type;
+            private readonly ScriptableObjectCreator _Creator;
+            private readonly Type _Type;
 
-            public ScriptableObjectCreatorMenuItem(OdinMenuTree tree, Type type, ScriptableObjectCreator creator) :
-                    base(tree, type.Name, type)
+            public ScriptableObjectCreatorMenuItem(OdinMenuTree tree, Type type, ScriptableObjectCreator creator) : base(tree, type.Name, type)
             {
-                _type = type;
-                _creator = creator;
+                _Type = type;
+                _Creator = creator;
             }
 
             public override string SmartName
             {
                 get
                 {
-                    string[] split = Regex.Split(_type.Name, @"(?<!^)(?=[A-Z])");
-                    string formattedClassName = "";
-
-                    for (int i = 0; i < split.Length; ++i)
-                    {
-                        if (split[i].Length <= 1)
-                        {
-                            continue;
-                        }
-
-                        formattedClassName += split[i] + " ";
-                    }
-
-                    return formattedClassName;
+                    string[] split = Regex.Split(_Type.Name, @"(?<!^)(?=[A-Z])");
+                    return split.Where(t1 => t1.Length > 1).Aggregate("", (current, t1) => current + (t1 + " "));
                 }
             }
 
@@ -195,9 +184,9 @@ namespace TalusFramework.Editor.TalusKitExtensions
             {
                 if (SirenixEditorGUI.IconButton(labelRect.AlignMiddle(18).AlignRight(65), EditorIcons.Plus))
                 {
-                    _creator.UpdatePath();
-                    _creator.PopulatePreviewObject(_type);
-                    _creator.CreateAsset(_type);
+                    _Creator.UpdatePath();
+                    _Creator.PopulatePreviewObject(_Type);
+                    _Creator.CreateAsset(_Type);
                 }
             }
         }
