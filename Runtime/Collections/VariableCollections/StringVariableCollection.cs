@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Collections.VariableCollections
 {
-    [CreateAssetMenu(fileName = "New Vector3 Variable Collection", menuName = "Collections/Variable Collections/Vector3", order = 8)]
-    public class Vector3VariableCollection : BaseCollection<Vector3Variable>
+    [CreateAssetMenu(fileName = "New String Variable Collection", menuName = "Collections/Variable Collections/String", order = 6)]
+    public class StringVariableCollection : BaseCollection<StringVariable>
     {
         [FoldoutGroup("Actions")]
         [Button]
-        public void ResetAllValues(Vector3 value)
+        public void ResetAllValues(string value)
         {
             for (int i = 0; i < Items.Count; ++i)
             {
