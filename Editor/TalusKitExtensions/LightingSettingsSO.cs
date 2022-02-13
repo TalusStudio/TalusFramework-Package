@@ -33,76 +33,6 @@ namespace TalusFramework.Editor.TalusKitExtensions
 
 #endregion
 
-        [Button(ButtonSizes.Large)] [GUIColor(0f, 1f, 0f)]
-        public void ApplySettings()
-        {
-            RenderSettings.ambientMode = AmbientType;
-            RenderSettings.skybox = SkyboxMaterial;
-
-            switch (AmbientType)
-            {
-                case AmbientMode.Skybox:
-                    RenderSettings.ambientIntensity = AmbientIntensity;
-                    break;
-
-                case AmbientMode.Flat:
-                    RenderSettings.ambientLight = AmbientColor;
-                    break;
-
-                case AmbientMode.Trilight:
-                    RenderSettings.ambientSkyColor = TopColor;
-                    RenderSettings.ambientEquatorColor = MiddleColor;
-                    RenderSettings.ambientGroundColor = GroundColor;
-                    break;
-
-                default:
-                    RenderSettings.ambientMode = AmbientMode.Flat;
-                    RenderSettings.ambientLight = AmbientColor;
-                    break;
-            }
-
-            TLog.Log("Ambient settings initialized!");
-
-            Volume postProcessVolume = FindObjectOfType<Volume>();
-
-            if (postProcessVolume != null)
-            {
-                if (postProcessVolume.isGlobal)
-                {
-                    postProcessVolume.profile = PostProcessVolume;
-                    TLog.Log("Post process initialized!");
-                }
-                else
-                {
-                    TLog.Log("Global Post Process volume not found in active scene!", LogType.Error);
-                }
-            }
-            else
-            {
-                TLog.Log("Post process volume not found in active scene!", LogType.Error);
-            }
-
-            RenderSettings.fog = UseFog;
-
-            if (UseFog)
-            {
-                RenderSettings.fogMode = FogMode;
-                RenderSettings.fogColor = FogColor;
-                RenderSettings.fogDensity = FogIntensity;
-
-                if (FogMode == FogMode.Linear)
-                {
-                    RenderSettings.fogStartDistance = FogStartEnd.x;
-                    RenderSettings.fogEndDistance = FogStartEnd.y;
-                }
-            }
-
-            // If you change the skybox in playmode, you have to use the DynamicGI.UpdateEnvironment
-            // function call to update the ambient probe.
-            DynamicGI.UpdateEnvironment();
-            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-        }
-
 #region AMBIENT
 
         [FoldoutGroup("3 - Ambient Settings")]
@@ -171,5 +101,74 @@ namespace TalusFramework.Editor.TalusKitExtensions
         private Vector2 FogStartEnd;
 
 #endregion
+
+        [Button(ButtonSizes.Large)] [GUIColor(0f, 1f, 0f)]
+        public void ApplySettings()
+        {
+            RenderSettings.ambientMode = AmbientType;
+            RenderSettings.skybox = SkyboxMaterial;
+
+            switch (AmbientType)
+            {
+                case AmbientMode.Skybox:
+                    RenderSettings.ambientIntensity = AmbientIntensity;
+                    break;
+
+                case AmbientMode.Flat:
+                    RenderSettings.ambientLight = AmbientColor;
+                    break;
+
+                case AmbientMode.Trilight:
+                    RenderSettings.ambientSkyColor = TopColor;
+                    RenderSettings.ambientEquatorColor = MiddleColor;
+                    RenderSettings.ambientGroundColor = GroundColor;
+                    break;
+
+                default:
+                    RenderSettings.ambientMode = AmbientMode.Flat;
+                    RenderSettings.ambientLight = AmbientColor;
+                    break;
+            }
+
+            TLog.Log("Ambient settings initialized!");
+
+            var postProcessVolume = FindObjectOfType<Volume>();
+            if (postProcessVolume != null)
+            {
+                if (postProcessVolume.isGlobal)
+                {
+                    postProcessVolume.profile = PostProcessVolume;
+                    TLog.Log("Post process initialized!");
+                }
+                else
+                {
+                    TLog.Log("Global Post Process volume not found in active scene!", LogType.Error);
+                }
+            }
+            else
+            {
+                TLog.Log("Post process volume not found in active scene!", LogType.Error);
+            }
+
+            RenderSettings.fog = UseFog;
+
+            if (UseFog)
+            {
+                RenderSettings.fogMode = FogMode;
+                RenderSettings.fogColor = FogColor;
+                RenderSettings.fogDensity = FogIntensity;
+
+                if (FogMode == FogMode.Linear)
+                {
+                    RenderSettings.fogStartDistance = FogStartEnd.x;
+                    RenderSettings.fogEndDistance = FogStartEnd.y;
+                }
+            }
+
+            // If you change the skybox in playmode, you have to use the DynamicGI.UpdateEnvironment
+            // function call to update the ambient probe.
+            DynamicGI.UpdateEnvironment();
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        }
     }
 }

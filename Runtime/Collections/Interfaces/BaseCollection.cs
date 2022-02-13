@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 using Sirenix.OdinInspector;
 
@@ -42,6 +43,34 @@ namespace TalusFramework.Runtime.Collections.Interfaces
             {
                 action(Items[i]);
             }
+        }
+
+        [FoldoutGroup("Actions")]
+        [Button]
+        public void ResetAllValues(T value)
+        {
+            for (int i = 0; i < Items.Count; ++i)
+            {
+                Items[i] = value;
+            }
+        }
+
+        [FoldoutGroup("Actions")]
+        [Button(ButtonSizes.Large), GUIColor(1f, 1f, 0f)]
+        public void ResetAllValuesToDefault()
+        {
+            for (int i = 0; i < Items.Count; ++i)
+            {
+                Items[i] = default;
+            }
+        }
+
+        [FoldoutGroup("Actions")]
+        [Button(ButtonSizes.Large), GUIColor(1f, 1f, 0f)]
+        public void Clear()
+        {
+            Items.Clear();
+            Items = null;
         }
     }
 }

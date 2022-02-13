@@ -1,19 +1,10 @@
 ﻿using TalusFramework.Runtime.Collections.Interfaces;
-using TalusFramework.Runtime.Variables;
 
 using UnityEngine;
 
 namespace TalusFramework.Runtime.Collections
 {
-    [CreateAssetMenu(fileName = "New Float Variable Collection", menuName = "Collections/Float Variable", order = 4)]
-    public class FloatCollection : BaseCollection<FloatVariable>
-    {
-        public void ResetAllValues(float value)
-        {
-            for (int i = 0; i < Items.Count; ++i)
-            {
-                Items[i].SetValue(value);
-            }
-        }
-    }
+    [CreateAssetMenu(fileName = "New Float Collection", menuName = "Collections/Float", order = 3)]
+    public class FloatCollection : BaseCollection<float>
+    { }
 }

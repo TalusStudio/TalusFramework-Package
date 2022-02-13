@@ -9,20 +9,16 @@ namespace TalusFramework.Runtime.Base
     /// </summary>
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T>
     {
-        private static T _Instance;
-
-        private static bool _IsInitialized;
+        public static bool IsTemporaryInstance { private set; get; }
 
         public static T Instance
         {
             get
             {
-                // Instance required for the first time, we look for it
                 if (_Instance == null)
                 {
                     _Instance = FindObjectOfType(typeof(T)) as T;
 
-                    // Object not found, we create a temporary one
                     if (_Instance == null)
                     {
                         TLog.Log("No instance of " + typeof(T) + ", a temporary one is created.", LogType.Warning);
@@ -48,7 +44,10 @@ namespace TalusFramework.Runtime.Base
             }
         }
 
-        public static bool IsTemporaryInstance { private set; get; }
+        private static T _Instance;
+
+        private static bool _IsInitialized;
+
 
         // If no other monobehaviour request the instance in an awake function
         // executing before this one, no need to search the object.
@@ -72,7 +71,6 @@ namespace TalusFramework.Runtime.Base
             }
         }
 
-        /// Make sure the instance isn't referenced anymore when the user quit, just in case.
         private void OnApplicationQuit()
         {
             _Instance = null;

@@ -98,7 +98,8 @@ namespace TalusFramework.Editor.TalusKitExtensions
                 }
 
                 var customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
-                tree.AddMenuItemAtPath(type.Namespace, customMenuItem).AddThumbnailIcons();
+                string[] splittedNamespaceName = type.Namespace.Split('.');
+                tree.AddMenuItemAtPath(splittedNamespaceName[splittedNamespaceName.Length - 1], customMenuItem).AddThumbnailIcons();
             }
 
             tree.Selection.SelectionChanged += e =>
