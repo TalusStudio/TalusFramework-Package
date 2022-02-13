@@ -74,9 +74,8 @@ namespace TalusFramework.Editor.TalusKitExtensions
             }
 
             var window = CreateInstance<ScriptableObjectCreator>();
-            window.ShowUtility();
-            window.position = GUIHelper.GetEditorWindowRect().AlignCenter(600, 500);
             window.titleContent = new GUIContent("Folder: " + path);
+            window.ShowUtility();
         }
 
         protected override OdinMenuTree BuildMenuTree()
