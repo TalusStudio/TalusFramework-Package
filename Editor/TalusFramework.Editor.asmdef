@@ -2,8 +2,7 @@
     "name": "TalusFramework.Editor",
     "rootNamespace": "",
     "references": [
-        "TalusFramework",
-        "Unity.RenderPipelines.Core.Runtime"
+        "TalusFramework"
     ],
     "includePlatforms": [
         "Editor"
