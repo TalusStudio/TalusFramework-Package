@@ -10,13 +10,6 @@ namespace TalusFramework.Runtime.Utility.Commands
     [CommandPrefix("talus.")]
     public static class ScreenCommands
     {
-        [Command("fullscreen", "fullscreen state of the application.")]
-        private static bool Fullscreen
-        {
-            get => Screen.fullScreen;
-            set => Screen.fullScreen = value;
-        }
-
         [Command("screen-dpi", "dpi of the current device's screen.")]
         private static float DPI => Screen.dpi;
 
@@ -49,19 +42,6 @@ namespace TalusFramework.Runtime.Utility.Commands
             {
                 yield return resolution;
             }
-        }
-
-        [Command("set-resolution")]
-        private static void SetResolution(int x, int y)
-        {
-            SetResolution(x, y, Screen.fullScreen);
-        }
-
-        [Command("set-resolution",
-            "sets the resolution of the current application, optionally setting the fullscreen state too.")]
-        private static void SetResolution(int x, int y, bool fullscreen)
-        {
-            Screen.SetResolution(x, y, fullscreen);
         }
 
         [Command("capture-screenshot")]
