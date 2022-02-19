@@ -12,7 +12,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor.TalusKitExtensions
+namespace TalusFramework.Editor
 {
     public class ScriptableObjectCreator : OdinMenuEditorWindow
     {
