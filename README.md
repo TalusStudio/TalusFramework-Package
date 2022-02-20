@@ -43,4 +43,4 @@
   - Game Event
     
   ## Editor Utilities & Tools
-  - Scriptable Object Creator (shortcut: CTRL + T)
+  - Scriptable Object Creator
