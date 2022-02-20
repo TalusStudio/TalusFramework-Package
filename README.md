@@ -20,20 +20,15 @@
 # 🔨 Talus Framework - Scriptable Architecture
 
 - Ready to use behaviours, scriptable objects, utilities etc.
-
-  ## Game Events
   
   ## Behaviours
   - GameEventListener
-  - 
   - AnimatorParameterSetter
   - ImageFillSetter
   - SliderSetter
   - TextReplacer
   - TMPTextReplacer
-  - 
   - Object Creator
-  - 
   - GameObjectAdder (to add GameObject references to the Collections on Play Mode)
   - GameObjectEnabler
   - GameObjectDisabler 
@@ -45,9 +40,7 @@
   - Bool, Float, Int, String, Vector2, Vector3, GameObject, Color, Sprite, AnimationClip Constants
   - Bool, Float, Int, String, Vector2, Vector3, GameObject Responses (Unity Event with parameter) and Void Response(classic UnityEvent)
   - Component, Transform, GameObject, Color, Sprite, AnimationClip, Float, Int Collections
-  - GameEvent
+  - Game Event
     
   ## Editor Utilities & Tools
   - Scriptable Object Creator (shortcut: CTRL + T)
-  - Menu Editor (shorcut: CTRL + M)
-  - Lighting Settings SO
