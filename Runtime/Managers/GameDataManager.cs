@@ -91,6 +91,7 @@ namespace TalusFramework.Runtime.Managers
 
         private void UpdateGameData()
         {
+
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
             NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
         }
@@ -98,7 +99,9 @@ namespace TalusFramework.Runtime.Managers
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
-        private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
+        private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) &&
+                                                                       !t.ScenePath.Contains("elephant") select t.ScenePath).ToList();
+
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
                                                          .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
                                                          .ToList();
