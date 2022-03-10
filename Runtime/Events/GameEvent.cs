@@ -7,6 +7,8 @@ using TalusFramework.Runtime.Responses.Interfaces;
 
 using UnityEngine;
 
+using Logger = TalusFramework.Runtime.Utility.Logging.Logger;
+
 namespace TalusFramework.Runtime.Events
 {
     /// <summary>
@@ -32,26 +34,37 @@ namespace TalusFramework.Runtime.Events
         private List<GameEventListener> _Listeners = new List<GameEventListener>();
         public List<GameEventListener> Listeners => _Listeners;
 
+        [FoldoutGroup("Debugging")]
+        [SerializeField]
+        private Logger _Logger;
+        
         public void Raise<T>(T arg)
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponse response = GlobalResponses[i];
-
                 var dynamicResponse = response as Response<T>;
-                if (dynamicResponse != null) // capture dynamic responses.
+
+                // capture dynamic responses.
+                if (dynamicResponse != null) 
                 {
                     dynamicResponse.Send(arg);
                 }
                 else
                 {
-                    response.Send(); // capture void responses.
+                    // capture void responses.
+                    response.Send(); 
                 }
             }
 
             for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
                 _Listeners[i].OnEventRaised();
+            }
+
+            if (_Logger != null)
+            {
+                _Logger.Log(name + " raised!", this);
             }
         }
 
@@ -67,6 +80,11 @@ namespace TalusFramework.Runtime.Events
             for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
                 _Listeners[i].OnEventRaised();
+            }
+
+            if (_Logger != null)
+            {
+                _Logger.Log(name + " raised!", this);
             }
         }
 

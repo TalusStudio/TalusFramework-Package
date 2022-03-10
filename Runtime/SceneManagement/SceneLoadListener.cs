@@ -1,10 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Events;
-using TalusFramework.Runtime.Utility.Logging;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using Logger = TalusFramework.Runtime.Utility.Logging.Logger;
 
 namespace TalusFramework.Runtime.SceneManagement
 {
@@ -15,13 +16,21 @@ namespace TalusFramework.Runtime.SceneManagement
         [AssetSelector, Required]
         [SerializeField]
         public GameEvent LevelLoadEvent;
+        
+        [FoldoutGroup("Debugging")]
+        [SerializeField]
+        private Logger _Logger;
 
         private void OnEnable() => SceneManager.sceneLoaded += HandleSceneLoad;
         private void OnDisable() => SceneManager.sceneLoaded -= HandleSceneLoad;
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
-            TLog.Log("<color=yellow>SceneListener: " + scene.name + " loaded!</color>");
+            if (_Logger != null)
+            {
+                _Logger.Log(scene.name + " loaded!", this);
+            }
+            
             LevelLoadEvent.Raise(scene.name);
         }
     }

@@ -43,7 +43,7 @@ namespace TalusFramework.Runtime.Variables.Interfaces
 
             if (variable == null)
             {
-                TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), LogType.Error);
+                TLog.Log("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), this, LogType.Error);
                 return;
             }
 

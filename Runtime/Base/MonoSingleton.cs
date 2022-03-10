@@ -21,15 +21,14 @@ namespace TalusFramework.Runtime.Base
 
                     if (_Instance == null)
                     {
-                        TLog.Log("No instance of " + typeof(T) + ", a temporary one is created.", LogType.Warning);
-
                         IsTemporaryInstance = true;
                         _Instance = new GameObject("Temp Instance of " + typeof(T), typeof(T)).GetComponent<T>();
+                        TLog.Log("No instance of " + typeof(T) + ", a temporary one is created.", _Instance, LogType.Warning);
 
                         // Problem during the creation, this should not happen
                         if (_Instance == null)
                         {
-                            TLog.Log("Problem during the creation of " + typeof(T), LogType.Error);
+                            TLog.Log("Problem during the creation of " + typeof(T), null, LogType.Error);
                         }
                     }
 
@@ -59,7 +58,7 @@ namespace TalusFramework.Runtime.Base
             }
             else if (_Instance != this)
             {
-                TLog.Log("Another instance of " + GetType() + " is already exist! Destroying self...", LogType.Error);
+                TLog.Log("Another instance of " + GetType() + " is already exist! Destroying self...", this, LogType.Error);
                 DestroyImmediate(this);
                 return;
             }
