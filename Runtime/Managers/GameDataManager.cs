@@ -66,7 +66,7 @@ namespace TalusFramework.Runtime.Managers
         [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
         public StringConstant DisabledLevelPref;
-
+        
         public void Initialize()
         {
             UpdateGameData();
@@ -92,7 +92,7 @@ namespace TalusFramework.Runtime.Managers
         private void UpdateGameData()
         {
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-            NextLevel.SetValue(PlayableLevels[(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
+            NextLevel.SetValue(PlayableLevels[Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
