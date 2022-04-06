@@ -23,8 +23,15 @@ namespace TalusFramework.Runtime.SceneManagement
         [SerializeField]
         private Logger _Logger;
 
-        private void OnEnable() => SceneManager.sceneLoaded += HandleSceneLoad;
-        private void OnDisable() => SceneManager.sceneLoaded -= HandleSceneLoad;
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += HandleSceneLoad;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= HandleSceneLoad;
+        }
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
