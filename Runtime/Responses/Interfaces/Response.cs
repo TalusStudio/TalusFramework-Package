@@ -9,6 +9,7 @@ namespace TalusFramework.Runtime.Responses.Interfaces
 {
     public abstract class Response<T> : BaseResponse<T>
     {
+        [BoxGroup]
         [LabelWidth(90)]
         [SerializeField]
         private BaseReference<T> _StaticArgument;
@@ -19,16 +20,14 @@ namespace TalusFramework.Runtime.Responses.Interfaces
         protected override BaseReference<T> Argument => _StaticArgument;
 
         [FoldoutGroup("Debugging")]
-        [BoxGroup("Debugging/Invoke with Dynamic Parameter(function parameter)")]
-        [Button, DisableInEditorMode]
+        [Button("Send (dynamic parameter)"), DisableInEditorMode]
         public override void Send(T argument)
         {
             _Response?.Invoke(argument);
         }
 
         [FoldoutGroup("Debugging")]
-        [BoxGroup("Debugging/Invoke with Static Parameter")]
-        [Button, DisableInEditorMode]
+        [Button("Send (static parameter)"), DisableInEditorMode]
         public override void Send()
         {
             Send(Argument.Value);
