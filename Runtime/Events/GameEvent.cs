@@ -21,14 +21,12 @@ namespace TalusFramework.Runtime.Events
         [HideLabel]
         public List<BaseResponse> GlobalResponses = new List<BaseResponse>();
 
-
         [ToggleGroup("Debugging")]
         public bool Debugging;
 
         [ToggleGroup("Debugging"), LabelWidth(60)]
         [SerializeField, AssetSelector]
         private Logger _Logger;
-
 
         public List<GameEventListener> Listeners => _Listeners;
 

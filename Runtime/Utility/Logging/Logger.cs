@@ -29,14 +29,14 @@ namespace TalusFramework.Runtime.Utility.Logging
         public void Log(object message, Object sender)
         {
             if (!_ShowLogs) { return; }
-            
+
             TLog.Log($"<color={_HexColor}>{_Prefix}: {message}</color>", sender);
         }
 
         public void Log(string message)
         {
             if (!_ShowLogs) { return; }
-            
+
             TLog.Log($"<color={_HexColor}>{_Prefix}: {message}</color", this);
         }
     }

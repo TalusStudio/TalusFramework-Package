@@ -16,8 +16,10 @@ namespace TalusFramework.Runtime.SceneManagement
         [AssetSelector, Required]
         [SerializeField]
         public GameEvent LevelLoadEvent;
-        
+
         [FoldoutGroup("Debugging")]
+        [LabelWidth(45)]
+        [AssetSelector, Required]
         [SerializeField]
         private Logger _Logger;
 
@@ -26,11 +28,8 @@ namespace TalusFramework.Runtime.SceneManagement
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
-            if (_Logger != null)
-            {
-                _Logger.Log(scene.name + " loaded!", this);
-            }
-            
+            _Logger.Log(scene.name + " loaded!", this);
+
             LevelLoadEvent.Raise(scene.name);
         }
     }
