@@ -14,7 +14,8 @@ namespace TalusFramework.Runtime.Responses
         [SerializeField]
         private UnityEvent _Response;
 
-        [Button, DisableInEditorMode]
+        [GUIColor(0f, 1f, 0f)]
+        [Button(ButtonSizes.Large), DisableInEditorMode]
         public override void Send() => _Response?.Invoke();
     }
 }

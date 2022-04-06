@@ -11,49 +11,49 @@ using Logger = TalusFramework.Runtime.Utility.Logging.Logger;
 
 namespace TalusFramework.Runtime.Events
 {
-    /// <summary>
-    ///     Be careful about execution.
-    /// </summary>
     [CreateAssetMenu]
     public class GameEvent : BaseSO
     {
-#if UNITY_EDITOR
         [ToggleGroup("Responses")]
         public bool Responses;
-#endif
 
         [ToggleGroup("Responses")]
+        [HideLabel]
         [PropertyOrder(1)]
         public List<BaseResponse> GlobalResponses = new List<BaseResponse>();
-
-        [HideInEditorMode]
-        [PropertyOrder(2)]
-        [PropertySpace]
-        [ReadOnly]
-        [SerializeField]
-        private List<GameEventListener> _Listeners = new List<GameEventListener>();
         public List<GameEventListener> Listeners => _Listeners;
 
-        [FoldoutGroup("Debugging")]
-        [SerializeField]
+        [GUIColor(1f, 1f, 0.5f)]
+        [HideInEditorMode]
+        [PropertyOrder(2), PropertySpace]
+        [SerializeField, ReadOnly]
+        private List<GameEventListener> _Listeners = new List<GameEventListener>();
+
+        [ToggleGroup("Debugging")]
+        public bool Debugging;
+
+        [ToggleGroup("Debugging")]
+        [LabelWidth(60)]
+        [SerializeField, AssetSelector]
         private Logger _Logger;
         
         public void Raise<T>(T arg)
         {
-            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+            if (Responses)
             {
-                BaseResponse response = GlobalResponses[i];
-                var dynamicResponse = response as Response<T>;
+                for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+                {
+                    BaseResponse response = GlobalResponses[i];
+                    var dynamicResponse = response as Response<T>;
 
-                // capture dynamic responses.
-                if (dynamicResponse != null) 
-                {
-                    dynamicResponse.Send(arg);
-                }
-                else
-                {
-                    // capture void responses.
-                    response.Send(); 
+                    if (dynamicResponse != null) // capture dynamic responses.
+                    {
+                        dynamicResponse.Send(arg);
+                    }
+                    else // capture void responses.
+                    {
+                        response.Send();
+                    }
                 }
             }
 
@@ -62,19 +62,23 @@ namespace TalusFramework.Runtime.Events
                 _Listeners[i].OnEventRaised();
             }
 
-            if (_Logger != null)
+            if (Debugging && _Logger != null)
             {
                 _Logger.Log(name + " raised!", this);
             }
         }
 
-        [Button, DisableInEditorMode]
+        [GUIColor(0f, 1f, 0f)]
+        [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Raise()
         {
-            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+            if (Responses)
             {
-                BaseResponse response = GlobalResponses[i];
-                response.Send();
+                for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+                {
+                    BaseResponse response = GlobalResponses[i];
+                    response.Send();
+                }
             }
 
             for (int i = _Listeners.Count - 1; i >= 0; i--)
@@ -82,7 +86,7 @@ namespace TalusFramework.Runtime.Events
                 _Listeners[i].OnEventRaised();
             }
 
-            if (_Logger != null)
+            if (Debugging && _Logger != null)
             {
                 _Logger.Log(name + " raised!", this);
             }
