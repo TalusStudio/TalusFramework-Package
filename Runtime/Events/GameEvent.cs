@@ -19,24 +19,23 @@ namespace TalusFramework.Runtime.Events
 
         [ToggleGroup("Responses")]
         [HideLabel]
-        [PropertyOrder(1)]
         public List<BaseResponse> GlobalResponses = new List<BaseResponse>();
-        public List<GameEventListener> Listeners => _Listeners;
 
-        [GUIColor(1f, 1f, 0.5f)]
-        [HideInEditorMode]
-        [PropertyOrder(2), PropertySpace]
-        [SerializeField, ReadOnly]
-        private List<GameEventListener> _Listeners = new List<GameEventListener>();
 
         [ToggleGroup("Debugging")]
         public bool Debugging;
 
-        [ToggleGroup("Debugging")]
-        [LabelWidth(60)]
+        [ToggleGroup("Debugging"), LabelWidth(60)]
         [SerializeField, AssetSelector]
         private Logger _Logger;
-        
+
+
+        public List<GameEventListener> Listeners => _Listeners;
+
+        [GUIColor(1f, 1f, 0.5f), HideInEditorMode]
+        [SerializeField, ReadOnly]
+        private List<GameEventListener> _Listeners = new List<GameEventListener>();
+
         public void Raise<T>(T arg)
         {
             if (Responses)
