@@ -38,5 +38,17 @@ namespace TalusFramework.Runtime.Utility.Logging
                     break;
             }
         }
+
+        [Conditional("ENABLE_LOGS")]
+        public static void LogError(string logMsg, Object sender = null)
+        {
+            Debug.LogError(logMsg, sender);
+        }
+
+        [Conditional("ENABLE_LOGS")]
+        public static void LogWarning(string logMsg, Object sender = null)
+        {
+            Debug.LogWarning(logMsg, sender);
+        }
     }
 }
