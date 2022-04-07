@@ -41,7 +41,6 @@ namespace TalusFramework.Runtime.Managers
         [FoldoutGroup("Scene Management")]
         public SceneReference ForwarderScene;
 
-        [FoldoutGroup("Scene Management")]
         public List<SceneReference> Levels;
 
         [FoldoutGroup("Variables")]
