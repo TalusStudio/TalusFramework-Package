@@ -35,11 +35,8 @@ namespace TalusFramework.Runtime.Managers
             EditorBuildSettings.scenes = scenes.ToArray();
         }
 #endif
-
-#if ENABLE_BACKEND
         [FoldoutGroup("Scene Management")]
         public SceneReference ElephantScene;
-#endif
 
         [FoldoutGroup("Scene Management")]
         public SceneReference ForwarderScene;
