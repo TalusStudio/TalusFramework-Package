@@ -27,7 +27,7 @@ namespace TalusFramework.Runtime.Managers
             var scenes = new List<EditorBuildSettingsScene>();
 
     #if ENABLE_BACKEND
-            scenes.Add(new EditorBuildSettingsScene("Packages/com.talus.taluselephant/elephant_scene.unity", true));
+            scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
     #endif
 
             scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
@@ -35,6 +35,8 @@ namespace TalusFramework.Runtime.Managers
             EditorBuildSettings.scenes = scenes.ToArray();
         }
 #endif
+        [FoldoutGroup("Scene Management")]
+        public SceneReference ElephantScene;
 
         [FoldoutGroup("Scene Management")]
         public SceneReference ForwarderScene;
