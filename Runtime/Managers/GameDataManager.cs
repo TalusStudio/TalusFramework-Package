@@ -66,7 +66,7 @@ namespace TalusFramework.Runtime.Managers
         [FoldoutGroup("Variables - Player Prefs")]
         [AssetSelector, Required]
         public StringConstant DisabledLevelPref;
-        
+
         public void Initialize()
         {
             UpdateGameData();
