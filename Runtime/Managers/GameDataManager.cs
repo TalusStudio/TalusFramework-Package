@@ -20,7 +20,6 @@ namespace TalusFramework.Runtime.Managers
     public class GameDataManager : BaseSO, IInitializable
     {
 #if UNITY_EDITOR
-        [FoldoutGroup("Scene Management")]
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
         public void SyncBuildSettings()
         {
