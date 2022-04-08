@@ -25,15 +25,26 @@ namespace TalusFramework.Runtime.Managers
         {
             var scenes = new List<EditorBuildSettingsScene>();
 
-    #if ENABLE_BACKEND
-            scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
-    #endif
+            if (IsBackendActivated())
+            {
+                scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
+            }
 
             scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
             scenes.AddRange(Levels.Select(t => new EditorBuildSettingsScene(t.ScenePath, true)));
             EditorBuildSettings.scenes = scenes.ToArray();
         }
+
+        private bool IsBackendActivated()
+        {
+            #if ENABLE_BACKEND
+            return true;
+            #else
+            return false;
+            #endif
+        }
 #endif
+        [ShowIf("@IsBackendActivated() == true")]
         [FoldoutGroup("Scene Management")]
         public SceneReference ElephantScene;
 
