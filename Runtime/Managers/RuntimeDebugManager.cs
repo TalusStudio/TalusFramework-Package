@@ -50,7 +50,7 @@ namespace TalusFramework.Runtime.Managers
 
             if (GameObject.Find("UI_Canvas_Debug") != null)
             {
-                TLog.Log("Quantum Console binding already in scene!");
+                TLog.Log("Debugging Canvas(hidden) already in scene!", this);
                 return;
             }
 
@@ -79,7 +79,7 @@ namespace TalusFramework.Runtime.Managers
                 ConsoleActivatedEvent.Raise();
             }
 #else
-            TLog.Log("'ENABLE_COMMANDS' definition not fount!", LogType.Error);
+            TLog.Log("'ENABLE_COMMANDS' definition not found!", this, LogType.Error);
 #endif
         }
     }
