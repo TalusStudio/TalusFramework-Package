@@ -64,7 +64,7 @@ namespace TalusFramework.Editor
             return found;
         }
 
-        [MenuItem("TalusKit/Create Scriptable Object %l", priority = -1001)]
+        [MenuItem("TalusKit/Create Scriptable Object %l", false, -8000)]
         private static void ShowDialog()
         {
             if (!TryGetActiveFolderPath(out string path))
