@@ -4,6 +4,7 @@
 - Unity 2020.3.9f1 
 - Odin Attributes
 - Odin Serialization
+- Text Mesh PRO
 
 # 🎁 Extras
 - Quantum Console support.
