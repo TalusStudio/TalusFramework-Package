@@ -32,7 +32,6 @@ namespace TalusFramework.Editor
         private string _CurrentPath;
         private ScriptableObject _PreviewObject;
         private Vector2 _Scroll;
-        private Texture2D[] _Icons;
 
         private Type SelectedType
         {
@@ -50,7 +49,6 @@ namespace TalusFramework.Editor
                 _CurrentPath = "Assets/";
             }
         }
-
 
         private static bool TryGetActiveFolderPath(out string path)
         {
@@ -147,7 +145,6 @@ namespace TalusFramework.Editor
 
             GUILayout.EndScrollView();
         }
-
 
         private void CreateAsset(Type nextType)
         {
