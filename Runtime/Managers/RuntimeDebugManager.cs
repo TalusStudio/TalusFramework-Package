@@ -43,6 +43,7 @@ namespace TalusFramework.Runtime.Managers
 
         public void Initialize()
         {
+#if ENABLE_COMMANDS
             if (!_EnableHiddenDebugView)
             {
                 return;
@@ -57,6 +58,7 @@ namespace TalusFramework.Runtime.Managers
             _CurrentTapCount = 0;
 
             Instantiate(DebugView.RuntimeValue);
+#endif
         }
 
         public void CheckConsoleActivity()
