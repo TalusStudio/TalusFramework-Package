@@ -58,6 +58,8 @@ namespace TalusFramework.Runtime.Managers
             _CurrentTapCount = 0;
 
             Instantiate(DebugView.RuntimeValue);
+#else
+            TLog.Log("'ENABLE_COMMANDS' definition not found!", this, LogType.Error);
 #endif
         }
 
