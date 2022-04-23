@@ -63,12 +63,9 @@ namespace TalusFramework.Runtime.Managers
 
         public void Initialize()
         {
-#if ENABLE_COMMANDS
-            if (!_EnableHiddenDebugView)
-            {
-                return;
-            }
+            if (!_EnableHiddenDebugView) { return; }
 
+#if ENABLE_COMMANDS
             if (GameObject.Find("UI_Canvas_Debug") != null)
             {
                 TLog.Log("Debugging Canvas(hidden) already in scene!", this);
