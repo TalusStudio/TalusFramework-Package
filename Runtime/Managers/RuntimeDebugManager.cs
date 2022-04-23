@@ -29,7 +29,7 @@ namespace TalusFramework.Runtime.Managers
             #endif
         }
 
-        [ShowIf("@IsCommandsActivated() == false")]
+        [ShowIf("@IsCommandsActivated() == false && _EnableHiddenDebugView == true")]
         [Title("Command definition can not found!")]
         [GUIColor(0f, 1f, 0f)]
         [Button(ButtonSizes.Large)]
