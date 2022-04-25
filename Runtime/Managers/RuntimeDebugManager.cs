@@ -1,5 +1,7 @@
 ﻿using System;
 
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
@@ -8,7 +10,9 @@ using TalusFramework.Runtime.Events;
 using TalusFramework.Runtime.References;
 using TalusFramework.Runtime.Utility.Logging;
 
-using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 #if ENABLE_COMMANDS
 using QFSW.QC;
@@ -35,7 +39,12 @@ namespace TalusFramework.Runtime.Managers
         [Button(ButtonSizes.Large)]
         public void AddCommandDefinition()
         {
+            string symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS);
 
+            if (!symbols.Contains("ENABLE_COMMANDS"))
+            {
+                PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS, symbols + ";ENABLE_COMMANDS");
+            }
         }
 #endif
 
