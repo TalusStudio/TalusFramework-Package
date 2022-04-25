@@ -8,7 +8,7 @@
 
 # 🎁 Extras
 - Quantum Console support.
-  - add ENABLE_COMMANDS definition to Project Settings.
+  - add ```ENABLE_COMMANDS``` definition to Project Settings.
 
 # 💿 Installation
 
