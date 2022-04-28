@@ -1,5 +1,5 @@
 {
-    "name": "com.talus.talusFramework.Tests",
+    "name": "TalusFramework.Tests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",

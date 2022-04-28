@@ -8,13 +8,13 @@ namespace TalusFramework.Tests.Editor
 {
     public class CollectionTests
     {
-        private GameObjectCollectionSO _Collection;
+        private GameObjectCollection _Collection;
         private List<GameObject> _Objects;
 
         [SetUp]
         public void SetUp()
         {
-            _Collection = ScriptableObject.CreateInstance<GameObjectCollectionSO>();
+            _Collection = ScriptableObject.CreateInstance<GameObjectCollection>();
             _Objects = new List<GameObject>
             {
                 new GameObject("Test GameObject 1"),

@@ -1,11 +1,10 @@
 {
-    "name": "com.talus.talusFramework.EditorTests",
+    "name": "TalusFramework.EditorTests",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "TalusFramework",
-        "com.talus.talusframework.editor"
+        "TalusFramework"
     ],
     "includePlatforms": [
         "Editor"
