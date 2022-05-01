@@ -7,10 +7,6 @@
 - Odin Serialization
 - Text Mesh PRO
 
-# 🎁 Extras
-- Quantum Console support.
-  - add ```ENABLE_COMMANDS``` definition to Project Settings.
-
 # 💿 Installation
 
 - Clone repository and extract it.
