@@ -16,8 +16,8 @@ using UnityEditor;
 
 namespace TalusFramework.Runtime.Managers
 {
-    [CreateAssetMenu(fileName = "New Game Data", menuName = "Managers/Game Data", order = 1)]
-    public class GameDataManager : BaseSO, IInitializable
+    [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
+    public class RuntimeDataManager : BaseSO, IInitializable
     {
 #if UNITY_EDITOR
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
@@ -106,8 +106,7 @@ namespace TalusFramework.Runtime.Managers
 
         private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
-                                                         .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
-                                                         .ToList();
-
+            .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
+            .ToList();
     }
 }
