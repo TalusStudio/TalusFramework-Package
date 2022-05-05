@@ -35,9 +35,7 @@ namespace TalusFramework.Runtime.Utility.Logging
 
         public void Log(string message)
         {
-            if (!_ShowLogs) { return; }
-
-            TLog.Log($"<color={_HexColor}>{_Prefix}: {message}</color", this);
+            Log(message, this);
         }
     }
 }
