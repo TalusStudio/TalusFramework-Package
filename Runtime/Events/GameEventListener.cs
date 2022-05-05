@@ -21,7 +21,7 @@ namespace TalusFramework.Runtime.Events
         public UnityEvent Response;
 
 #if UNITY_EDITOR
-        private bool ValidateResponseInput => Response.GetPersistentEventCount() != 0;
+        private bool ValidateResponseInput => Response.GetPersistentEventCount() > 0 && Response.GetPersistentTarget(0) != null;
 #endif
 
         private void OnEnable()
