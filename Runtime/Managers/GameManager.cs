@@ -21,7 +21,7 @@ namespace TalusFramework.Runtime.Managers
 
         [Required]
         [OdinSerialize]
-        private List<IInitializable> _Initializables;
+        private readonly List<IInitializable> _Initializables;
 
         public void Initialize()
         {
