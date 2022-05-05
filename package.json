@@ -7,10 +7,9 @@
   "unityRelease": "9f1",
   "keywords": [
     "scriptable",
-    "gameevent",
-    "utility",
-    "odin",
-    "quantum console"
+    "game event",
+    "odin inspector",
+    "odin serialization"
   ],
   "author": {
     "name": "Talus Studio",
