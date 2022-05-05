@@ -39,16 +39,46 @@ namespace TalusFramework.Runtime.Utility.Logging
             }
         }
 
+        public static void Log(this GameObject obj, string logMsg)
+        {
+            Log(logMsg, obj);
+        }
+
+        public static void Log(this ScriptableObject obj, string logMsg)
+        {
+            Log(logMsg, obj);
+        }
+
         [Conditional("ENABLE_LOGS")]
         public static void LogError(string logMsg, Object sender = null)
         {
             Debug.LogError(logMsg, sender);
         }
 
+        public static void LogError(this GameObject obj, string logMsg)
+        {
+            LogError(logMsg, obj);
+        }
+
+        public static void LogError(this ScriptableObject obj, string logMsg)
+        {
+            LogError(logMsg, obj);
+        }
+
         [Conditional("ENABLE_LOGS")]
         public static void LogWarning(string logMsg, Object sender = null)
         {
             Debug.LogWarning(logMsg, sender);
+        }
+
+        public static void LogWarning(this GameObject obj, string logMsg)
+        {
+            LogWarning(logMsg, obj);
+        }
+
+        public static void LogWarning(this ScriptableObject obj, string logMsg)
+        {
+            LogWarning(logMsg, obj);
         }
     }
 }

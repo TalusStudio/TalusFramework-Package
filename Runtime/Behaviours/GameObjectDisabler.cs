@@ -18,14 +18,14 @@ namespace TalusFramework.Runtime.Behaviours
         {
             for (int i = Collection.Items.Count - 1; i >= 0; i--)
             {
-                Collection.Items[i].gameObject.SetActive(false);
+                Collection.Items[i].SetActive(false);
             }
         }
 
         public void DisableRandom()
         {
             int index = Random.Range(0, Collection.Items.Count);
-            Collection.Items[index].gameObject.SetActive(false);
+            Collection.Items[index].SetActive(false);
         }
     }
 }

@@ -6,7 +6,6 @@ using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Responses.Interfaces;
 using TalusFramework.Runtime.Utility.Logging;
 
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace TalusFramework.Runtime.Variables.Interfaces
@@ -43,7 +42,7 @@ namespace TalusFramework.Runtime.Variables.Interfaces
 
             if (variable == null)
             {
-                TLog.LogError("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType), this);
+                this.LogError("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType));
                 return;
             }
 

@@ -1,8 +1,6 @@
-﻿using TalusFramework.Runtime.Base;
+﻿using UnityEngine;
 
-using UnityEngine;
-
-using Object = UnityEngine.Object;
+using TalusFramework.Runtime.Base;
 
 namespace TalusFramework.Runtime.Utility.Logging
 {

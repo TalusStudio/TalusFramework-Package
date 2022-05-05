@@ -23,13 +23,7 @@ namespace TalusFramework.Runtime.Base
                     {
                         IsTemporaryInstance = true;
                         _Instance = new GameObject("Temp Instance of " + typeof(T), typeof(T)).GetComponent<T>();
-                        TLog.Log("No instance of " + typeof(T) + ", a temporary one is created.", _Instance, LogType.Warning);
-
-                        // Problem during the creation, this should not happen
-                        if (_Instance == null)
-                        {
-                            TLog.Log("Problem during the creation of " + typeof(T), null, LogType.Error);
-                        }
+                        _Instance.gameObject.LogWarning("No instance of " + typeof(T) + ", a temporary one is created.");
                     }
 
                     if (!_IsInitialized)
@@ -43,13 +37,21 @@ namespace TalusFramework.Runtime.Base
             }
         }
 
-        private static T _Instance;
+        /// <summary>
+        ///     This function is called when the instance is used the first time
+        ///     Put all the initializations you need here, as you would do in Awake.
+        /// </summary>
+        public virtual void Init(bool dontDestroy = true)
+        {
+            if (dontDestroy)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+        }
 
+        private static T _Instance;
         private static bool _IsInitialized;
 
-
-        // If no other monobehaviour request the instance in an awake function
-        // executing before this one, no need to search the object.
         private void Awake()
         {
             if (_Instance == null)
@@ -58,7 +60,7 @@ namespace TalusFramework.Runtime.Base
             }
             else if (_Instance != this)
             {
-                TLog.Log("Another instance of " + GetType() + " is already exist! Destroying self...", this, LogType.Error);
+                gameObject.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
                 DestroyImmediate(this);
                 return;
             }
@@ -73,19 +75,6 @@ namespace TalusFramework.Runtime.Base
         private void OnApplicationQuit()
         {
             _Instance = null;
-        }
-
-
-        /// <summary>
-        ///     This function is called when the instance is used the first time
-        ///     Put all the initializations you need here, as you would do in Awake
-        /// </summary>
-        public virtual void Init(bool dontDestroy = true)
-        {
-            if (dontDestroy)
-            {
-                DontDestroyOnLoad(gameObject);
-            }
         }
     }
 }

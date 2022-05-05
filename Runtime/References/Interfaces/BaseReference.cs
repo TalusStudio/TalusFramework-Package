@@ -44,7 +44,7 @@ namespace TalusFramework.Runtime.References.Interfaces
                     return value.RuntimeValue;
                 }
 
-                TLog.LogError("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType), Variable);
+                Variable.LogError("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType));
                 return default;
             }
         }

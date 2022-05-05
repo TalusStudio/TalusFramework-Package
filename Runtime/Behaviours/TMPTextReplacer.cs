@@ -20,9 +20,6 @@ namespace TalusFramework.Runtime.Behaviours
         [AssetSelector, Required]
         public BaseValue Value;
 
-        private void Start() => SetText();
-        private void OnEnable() => SetText();
-
         [GUIColor(0f, 1f, 0f)]
         [Button, DisableInEditorMode]
         public void SetText()
@@ -46,6 +43,16 @@ namespace TalusFramework.Runtime.Behaviours
             {
                 Text.text = stringValue.RuntimeValue;
             }
+        }
+
+        private void OnEnable()
+        {
+            SetText();
+        }
+
+        private void Start()
+        {
+            SetText();
         }
     }
 }

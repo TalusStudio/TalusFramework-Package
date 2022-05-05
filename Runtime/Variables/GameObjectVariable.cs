@@ -31,7 +31,7 @@ namespace TalusFramework.Runtime.Variables
 
             if (variable == null)
             {
-                TLog.LogError("Type mismatch in " + name + ". Expected type:" + typeof(GameObject), this);
+                this.LogError("Type mismatch in " + name + ". Expected type:" + typeof(GameObject));
                 return;
             }
 
