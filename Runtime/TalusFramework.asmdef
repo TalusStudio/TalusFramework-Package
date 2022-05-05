@@ -2,7 +2,6 @@
     "name": "TalusFramework",
     "rootNamespace": "",
     "references": [
-        "QFSW.QC",
         "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
