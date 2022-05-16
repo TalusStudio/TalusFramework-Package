@@ -2,20 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using UnityEditor;
 using UnityEngine;
 
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
-using Sirenix.Utilities.Editor;
 
 namespace TalusFramework.Editor
 {
-    public class ScriptableObjectCreator : OdinMenuEditorWindow
+    internal class ScriptableObjectCreator : OdinMenuEditorWindow
     {
-        private const string NAMESPACE_NAME = "Talus";
+        private const string _NamespaceName = "Talus";
 
         private static readonly HashSet<Type> _ScriptableObjectTypes = new HashSet<Type>(AssemblyUtilities
                 .GetTypes(AssemblyTypeFlags.CustomTypes)
@@ -23,11 +21,11 @@ namespace TalusFramework.Editor
                     typeof(ScriptableObject).IsAssignableFrom(t) &&
                     !typeof(EditorWindow).IsAssignableFrom(t) &&
                     !typeof(UnityEditor.Editor).IsAssignableFrom(t))
-                .Where(t => t.Assembly.GetName().Name.Contains(NAMESPACE_NAME))
+                .Where(t => t.Assembly.GetName().Name.Contains(_NamespaceName))
                 .Where(t => !t.Assembly.GetName().Name.Contains("Editor"))
                 .OrderBy(t => t.Namespace));
 
-        private string _CurrentPath;
+        private static string _CurrentPath;
         private ScriptableObject _PreviewObject;
         private Vector2 _Scroll;
 
@@ -40,36 +38,13 @@ namespace TalusFramework.Editor
             }
         }
 
-        private void UpdatePath()
-        {
-            if (!TryGetActiveFolderPath(out _CurrentPath))
-            {
-                _CurrentPath = "Assets/";
-            }
-        }
-
-        private static bool TryGetActiveFolderPath(out string path)
-        {
-            MethodInfo tryGetActiveFolderPath = typeof(ProjectWindowUtil).GetMethod("TryGetActiveFolderPath",
-                BindingFlags.Static | BindingFlags.NonPublic);
-
-            object[] args = { null };
-            bool found = (bool) tryGetActiveFolderPath.Invoke(null, args);
-            path = (string) args[0];
-            path = path.Trim('/');
-            return found;
-        }
-
         [MenuItem("TalusKit/Create Scriptable Object %l", false, -8000)]
         private static void ShowDialog()
         {
-            if (!TryGetActiveFolderPath(out string path))
-            {
-                path = "Assets/";
-            }
+            UpdatePath();
 
             var window = CreateInstance<ScriptableObjectCreator>();
-            window.titleContent = new GUIContent("Folder: " + path);
+            window.titleContent = new GUIContent("Folder:" + _CurrentPath);
             window.ShowUtility();
         }
 
@@ -116,7 +91,7 @@ namespace TalusFramework.Editor
             return tree;
         }
 
-        private void PopulatePreviewObject(Type type)
+        public void PopulatePreviewObject(Type type)
         {
             if (_PreviewObject != null && !AssetDatabase.Contains(_PreviewObject))
             {
@@ -146,9 +121,11 @@ namespace TalusFramework.Editor
             GUILayout.EndScrollView();
         }
 
-        private void CreateAsset(Type nextType)
+        public void CreateAsset(Type type)
         {
-            string destination = _CurrentPath + "/New " + nextType.Name + ".asset";
+            UpdatePath();
+
+            string destination = _CurrentPath + "/New " + type.Name + ".asset";
             destination = AssetDatabase.GenerateUniqueAssetPath(destination);
             AssetDatabase.CreateAsset(_PreviewObject, destination);
             AssetDatabase.Refresh();
@@ -156,35 +133,24 @@ namespace TalusFramework.Editor
             //EditorApplication.delayCall += Close;
         }
 
-        private class ScriptableObjectCreatorMenuItem : OdinMenuItem
+        private static void UpdatePath()
         {
-            private readonly ScriptableObjectCreator _Creator;
-            private readonly Type _Type;
-
-            public ScriptableObjectCreatorMenuItem(OdinMenuTree tree, Type type, ScriptableObjectCreator creator) : base(tree, type.Name, type)
+            if (!TryGetActiveFolderPath(out _CurrentPath))
             {
-                _Type = type;
-                _Creator = creator;
+                _CurrentPath = "Assets/";
             }
+        }
 
-            public override string SmartName
-            {
-                get
-                {
-                    string[] split = Regex.Split(_Type.Name, @"(?<!^)(?=[A-Z])");
-                    return split.Where(t1 => t1.Length > 1).Aggregate("", (current, t1) => current + (t1 + " "));
-                }
-            }
+        private static bool TryGetActiveFolderPath(out string path)
+        {
+            MethodInfo tryGetActiveFolderPath = typeof(ProjectWindowUtil)
+                .GetMethod("TryGetActiveFolderPath", BindingFlags.Static | BindingFlags.NonPublic);
 
-            protected override void OnDrawMenuItem(Rect rect, Rect labelRect)
-            {
-                if (SirenixEditorGUI.IconButton(labelRect.AlignMiddle(18).AlignRight(65), EditorIcons.Plus))
-                {
-                    _Creator.UpdatePath();
-                    _Creator.PopulatePreviewObject(_Type);
-                    _Creator.CreateAsset(_Type);
-                }
-            }
+            object[] args = { null };
+            bool found = (bool) tryGetActiveFolderPath.Invoke(null, args);
+            path = (string) args[0];
+            path = path.Trim('/');
+            return found;
         }
     }
 }
