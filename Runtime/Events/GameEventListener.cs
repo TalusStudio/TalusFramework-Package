@@ -28,7 +28,7 @@ namespace TalusFramework.Runtime.Events
         {
             if (GameEvent == null)
             {
-                gameObject.LogError("GameEvent reference is null!");
+                this.LogError("GameEvent reference is null!");
                 return;
             }
 
@@ -39,7 +39,7 @@ namespace TalusFramework.Runtime.Events
         {
             if (GameEvent == null)
             {
-                gameObject.LogError("GameEvent reference is null!");
+                this.LogError("GameEvent reference is null!");
                 return;
             }
 

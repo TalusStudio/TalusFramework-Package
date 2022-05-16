@@ -49,10 +49,15 @@ namespace TalusFramework.Runtime.Utility.Logging
             Log(logMsg, obj);
         }
 
-        [Conditional("ENABLE_LOGS")]
+        public static void Log(this MonoBehaviour obj, string logMsg)
+        {
+            Log(logMsg, obj);
+        }
+
+#region ERRORS
         public static void LogError(string logMsg, Object sender = null)
         {
-            Debug.LogError(logMsg, sender);
+            Log(logMsg, sender, LogType.Error);
         }
 
         public static void LogError(this GameObject obj, string logMsg)
@@ -65,10 +70,16 @@ namespace TalusFramework.Runtime.Utility.Logging
             LogError(logMsg, obj);
         }
 
-        [Conditional("ENABLE_LOGS")]
+        public static void LogError(this MonoBehaviour obj, string logMsg)
+        {
+            LogError(logMsg, obj);
+        }
+#endregion
+
+#region WARNINGS
         public static void LogWarning(string logMsg, Object sender = null)
         {
-            Debug.LogWarning(logMsg, sender);
+            Log(logMsg, sender, LogType.Warning);
         }
 
         public static void LogWarning(this GameObject obj, string logMsg)
@@ -80,5 +91,11 @@ namespace TalusFramework.Runtime.Utility.Logging
         {
             LogWarning(logMsg, obj);
         }
+
+        public static void LogWarning(this MonoBehaviour obj, string logMsg)
+        {
+            LogWarning(logMsg, obj);
+        }
+#endregion
     }
 }

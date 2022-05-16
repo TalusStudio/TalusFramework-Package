@@ -17,13 +17,13 @@ namespace TalusFramework.Runtime.Base
             {
                 if (_Instance == null)
                 {
-                    _Instance = FindObjectOfType(typeof(T)) as T;
+                    _Instance = FindObjectOfType<T>();
 
                     if (_Instance == null)
                     {
                         IsTemporaryInstance = true;
                         _Instance = new GameObject("Temp Instance of " + typeof(T), typeof(T)).GetComponent<T>();
-                        _Instance.gameObject.LogWarning("No instance of " + typeof(T) + ", a temporary one is created.");
+                        _Instance.LogWarning("No instance of " + typeof(T) + ", a temporary one is created.");
                     }
 
                     if (!_IsInitialized)
@@ -60,7 +60,7 @@ namespace TalusFramework.Runtime.Base
             }
             else if (_Instance != this)
             {
-                gameObject.LogError("Another instance of " + GetType() + " is already exist! Destroying self...");
+                this.LogError(GetType() + " singleton is already exist! Destroying self...");
                 DestroyImmediate(this);
                 return;
             }
@@ -70,11 +70,6 @@ namespace TalusFramework.Runtime.Base
                 _IsInitialized = true;
                 _Instance.Init();
             }
-        }
-
-        private void OnApplicationQuit()
-        {
-            _Instance = null;
         }
     }
 }
