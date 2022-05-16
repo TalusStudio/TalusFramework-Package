@@ -1,15 +1,15 @@
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Base;
-
 using UnityEngine;
 using UnityEngine.UI;
 
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Behaviours.Interfaces;
+
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/TextReplacer", 7)]
-    public class TextReplacer : MonoBehaviour
+    public class TextReplacer : BaseBehaviour
     {
         [LabelWidth(80)]
         [Required]

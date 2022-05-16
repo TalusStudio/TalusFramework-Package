@@ -1,16 +1,16 @@
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.References;
-
 using UnityEngine;
 using UnityEngine.UI;
 
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.References;
+using TalusFramework.Runtime.Behaviours.Interfaces;
+
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/SliderSetter", 6)]
     [ExecuteInEditMode]
-    public class SliderSetter : MonoBehaviour
+    public class SliderSetter : BaseBehaviour
     {
         [Required]
         [LabelWidth(80)]

@@ -1,14 +1,14 @@
-﻿using Sirenix.OdinInspector;
+﻿using UnityEngine;
+
+using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Collections;
-
-using UnityEngine;
+using TalusFramework.Runtime.Behaviours.Interfaces;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/GameObjectDisabler", 2)]
-    public class GameObjectDisabler : MonoBehaviour
+    public class GameObjectDisabler : BaseBehaviour
     {
         [LabelWidth(60)]
         [AssetSelector, Required]

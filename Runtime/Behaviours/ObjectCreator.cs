@@ -1,15 +1,15 @@
-﻿using Sirenix.OdinInspector;
+﻿using UnityEngine;
+
+using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.References;
-
-using UnityEngine;
+using TalusFramework.Runtime.Behaviours.Interfaces;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/ObjectCreator", 5)]
-    public class ObjectCreator : MonoBehaviour
+    public class ObjectCreator : BaseBehaviour
     {
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]
         [AssetSelector, Required]

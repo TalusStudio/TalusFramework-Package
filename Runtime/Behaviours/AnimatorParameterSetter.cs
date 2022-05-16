@@ -1,8 +1,9 @@
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.References;
-
-using UnityEngine;
+using TalusFramework.Runtime.Behaviours.Interfaces;
 
 namespace TalusFramework.Runtime.Behaviours
 {
@@ -10,9 +11,8 @@ namespace TalusFramework.Runtime.Behaviours
     ///     Takes a Float Reference and sends its value to an Animator parameter
     ///     every frame on Update.
     /// </summary>
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/AnimatorParameterSetter", 0)]
-    public class AnimatorParameterSetter : MonoBehaviour
+    public class AnimatorParameterSetter : BaseBehaviour
     {
         public enum AnimatorParameterType
         {

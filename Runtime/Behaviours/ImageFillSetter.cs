@@ -1,15 +1,15 @@
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.References;
-
 using UnityEngine;
 using UnityEngine.UI;
 
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.References;
+using TalusFramework.Runtime.Behaviours.Interfaces;
+
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/ImageFillSetter", 4)]
-    public class ImageFillSetter : MonoBehaviour
+    public class ImageFillSetter : BaseBehaviour
     {
         [Tooltip("Image to set the fill amount on.")] [LabelWidth(65)]
         [Required]

@@ -1,12 +1,13 @@
-﻿using Sirenix.OdinInspector;
+﻿using UnityEngine;
 
-using UnityEngine;
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Behaviours.Interfaces;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/GameObjectEnabler", 3)]
-    public class GameObjectEnabler : MonoBehaviour
+    public class GameObjectEnabler : BaseBehaviour
     {
         [LabelWidth(90)]
         [Required]

@@ -1,16 +1,16 @@
-using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Base;
+using UnityEngine;
 
 using TMPro;
 
-using UnityEngine;
+using Sirenix.OdinInspector;
+
+using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Behaviours.Interfaces;
 
 namespace TalusFramework.Runtime.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/TMPTextReplacer", 8)]
-    public class TMPTextReplacer : MonoBehaviour
+    public class TMPTextReplacer : BaseBehaviour
     {
         [LabelWidth(80)]
         [Required]

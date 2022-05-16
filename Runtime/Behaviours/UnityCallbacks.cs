@@ -3,11 +3,13 @@ using UnityEngine.Events;
 
 using Sirenix.OdinInspector;
 
+using TalusFramework.Runtime.Behaviours.Interfaces;
+
 namespace TalusFramework.Runtime.Behaviours
 {
     [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/UnityCallbacks", 9)]
-    public class UnityCallbacks : MonoBehaviour
+    public class UnityCallbacks : BaseBehaviour
     {
         public UnityEvent OnAwakeEvent;
         public UnityEvent OnEnableEvent;
