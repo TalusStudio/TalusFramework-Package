@@ -4,13 +4,12 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
+using UnityEditor;
+using UnityEngine;
+
 using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
-
-using UnityEditor;
-
-using UnityEngine;
 
 namespace TalusFramework.Editor
 {
@@ -20,11 +19,10 @@ namespace TalusFramework.Editor
 
         private static readonly HashSet<Type> _ScriptableObjectTypes = new HashSet<Type>(AssemblyUtilities
                 .GetTypes(AssemblyTypeFlags.CustomTypes)
-                .Where(t =>
-                        t.IsClass &&
-                        typeof(ScriptableObject).IsAssignableFrom(t) &&
-                        !typeof(EditorWindow).IsAssignableFrom(t) &&
-                        !typeof(UnityEditor.Editor).IsAssignableFrom(t))
+                .Where(t => t.IsClass &&
+                    typeof(ScriptableObject).IsAssignableFrom(t) &&
+                    !typeof(EditorWindow).IsAssignableFrom(t) &&
+                    !typeof(UnityEditor.Editor).IsAssignableFrom(t))
                 .Where(t => t.Assembly.GetName().Name.Contains(NAMESPACE_NAME))
                 .Where(t => !t.Assembly.GetName().Name.Contains("Editor"))
                 .OrderBy(t => t.Namespace));
@@ -88,12 +86,14 @@ namespace TalusFramework.Editor
 
             foreach (Type type in _ScriptableObjectTypes.ToList())
             {
-                if (type == null || type.IsAbstract || type.IsGenericType)
+                if (type == null || type.Namespace == null || type.IsAbstract || type.IsGenericType)
                 {
                     continue;
                 }
 
                 var customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
+
+                // type.Namespace => TalusFramework.RunTime.Variables etc.
                 string[] splittedNamespaceName = type.Namespace.Split('.');
                 tree.AddMenuItemAtPath(splittedNamespaceName[splittedNamespaceName.Length - 1], customMenuItem).AddThumbnailIcons();
             }
