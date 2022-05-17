@@ -4,12 +4,12 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
 using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Managers.Interfaces;
 
 using UnityEngine;
 
 namespace TalusFramework.Runtime.Managers
 {
-    [HideMonoScript]
     [CreateAssetMenu(fileName = "New Game Manager", menuName = "Managers/Game Manager", order = 0)]
     public class GameManager : BaseSerializedSO, IInitializable
     {

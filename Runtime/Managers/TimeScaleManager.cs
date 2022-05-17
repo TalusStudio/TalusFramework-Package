@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
+using TalusFramework.Runtime.Managers.Interfaces;
 
 using UnityEngine;
 
