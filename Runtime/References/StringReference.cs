@@ -1,10 +1,8 @@
-﻿using System;
-
-using TalusFramework.Runtime.References.Interfaces;
+﻿using TalusFramework.Runtime.References.Interfaces;
 
 namespace TalusFramework.Runtime.References
 {
-    [Serializable]
+    [System.Serializable]
     public sealed class StringReference : BaseReference<string>
     {
         public static implicit operator string(StringReference reference) => reference.Value;

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using UnityEngine;
 
 using TalusFramework.Runtime.References.Interfaces;
 
-using UnityEngine;
-
 namespace TalusFramework.Runtime.References
 {
-    [Serializable]
+    [System.Serializable]
     public sealed class ColorReference : BaseReference<Color>
     {
         public static implicit operator Color(ColorReference reference) => reference.Value;
