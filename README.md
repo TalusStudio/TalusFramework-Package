@@ -1,5 +1,5 @@
-# 🔨 TalusFramework Package - Scriptable Architecture
-- Ready to use behaviours, scriptable objects, utilities etc.
+# 🔨 TalusFramework Package
+- Scriptable Architecture. Ready to use behaviours, scriptable objects, utilities etc.
 
 # ❗ Requirements 
 - Unity 2020.3.9f1 
