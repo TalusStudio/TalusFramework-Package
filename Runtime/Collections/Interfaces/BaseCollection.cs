@@ -69,7 +69,7 @@ namespace TalusFramework.Runtime.Collections.Interfaces
         public void Clear()
         {
             Items.Clear();
-            Items = null;
+            Items = new List<T>();
         }
     }
 }
