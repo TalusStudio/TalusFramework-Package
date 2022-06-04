@@ -14,7 +14,6 @@ namespace TalusFramework.Runtime.SceneManagement
     {
         [LabelWidth(100)]
         [AssetSelector, Required]
-        [SerializeField]
         public GameEvent LevelLoadEvent;
 
         [FoldoutGroup("Debugging")]
