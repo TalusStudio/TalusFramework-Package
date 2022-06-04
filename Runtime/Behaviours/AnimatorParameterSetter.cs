@@ -36,17 +36,14 @@ namespace TalusFramework.Runtime.Behaviours
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Bool")]
-        [SerializeField]
         public BoolReference BoolValue;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Float")]
-        [SerializeField]
         public FloatReference FloatValue;
 
         [Tooltip("Variable to read from and send to the Animator as the specified parameter."), LabelWidth(95)]
         [ShowIf("@ParameterType == AnimatorParameterType.Int")]
-        [SerializeField]
         public IntReference IntValue;
 
         private int _ParameterHash;
