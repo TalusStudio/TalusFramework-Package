@@ -10,17 +10,17 @@ namespace TalusFramework.Runtime.Variables
     [CreateAssetMenu(fileName = "New Int Variable", menuName = "Variables/Int", order = 2)]
     public sealed class IntVariable : BaseVariable<int>
     {
-        public void Add(IntVariable variable) => RuntimeValue += variable.RuntimeValue;
-        public void Add(int variable) => RuntimeValue += variable;
+        public void Add(IntVariable variable) => SetValue(RuntimeValue + variable.RuntimeValue);
+        public void Add(int variable) => SetValue(RuntimeValue + variable);
 
-        public void Subtract(IntVariable variable) => RuntimeValue -= variable.RuntimeValue;
-        public void Subtract(int variable) => RuntimeValue -= variable;
+        public void Subtract(IntVariable variable) => SetValue(RuntimeValue - variable.RuntimeValue);
+        public void Subtract(int variable) => SetValue(RuntimeValue - variable);
 
-        public void Multiply(IntVariable variable) => RuntimeValue *= variable.RuntimeValue;
-        public void Multiply(int variable) => RuntimeValue *= variable;
+        public void Multiply(IntVariable variable) => SetValue(RuntimeValue * variable.RuntimeValue);
+        public void Multiply(int variable) => SetValue(RuntimeValue * variable);
 
-        public void Divide(IntVariable variable) => RuntimeValue /= variable.RuntimeValue;
-        public void Divide(int variable) => RuntimeValue /= variable;
+        public void Divide(IntVariable variable) => SetValue(RuntimeValue / variable.RuntimeValue);
+        public void Divide(int variable) => SetValue(RuntimeValue / variable);
 
         public static IntVariable operator +(IntVariable lhs, IntReference rhs)
         {
@@ -36,7 +36,7 @@ namespace TalusFramework.Runtime.Variables
 
         public static IntVariable operator ++(IntVariable lhs)
         {
-            lhs.Add(lhs);
+            lhs.Add(1);
             return lhs;
         }
 
