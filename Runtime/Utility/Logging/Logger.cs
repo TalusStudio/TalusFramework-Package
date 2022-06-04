@@ -28,7 +28,7 @@ namespace TalusFramework.Runtime.Utility.Logging
         {
             if (!_ShowLogs) { return; }
 
-            TLog.Log($"<color={_HexColor}>{_Prefix}: {message}</color>", sender);
+            TLog.Log(sender, $"<color={_HexColor}>{_Prefix}: {message}</color>");
         }
 
         public void Log(string message)

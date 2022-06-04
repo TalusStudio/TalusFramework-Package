@@ -9,93 +9,44 @@ namespace TalusFramework.Runtime.Utility.Logging
     public static class TLog
     {
         [Conditional("ENABLE_LOGS")]
-        public static void Log(string logMsg, Object sender = null, LogType logType = LogType.Log)
+        public static void Log<T>(this T sender, string msg, LogType logType = LogType.Log) where T : Object
         {
             switch (logType)
             {
                 case LogType.Log:
-                    Debug.Log(logMsg, sender);
+                    Debug.Log(msg, sender);
                     break;
 
                 case LogType.Error:
-                    Debug.LogError(logMsg, sender);
+                    Debug.LogError(msg, sender);
                     break;
 
                 case LogType.Warning:
-                    Debug.LogWarning(logMsg, sender);
+                    Debug.LogWarning(msg, sender);
                     break;
 
                 case LogType.Assert:
-                    Debug.LogAssertion(logMsg, sender);
+                    Debug.LogAssertion(msg, sender);
                     break;
 
                 case LogType.Exception:
-                    Debug.LogError(logMsg, sender);
+                    Debug.LogError(msg, sender);
                     break;
 
                 default:
-                    Debug.Log(logMsg, sender);
+                    Debug.Log(msg, sender);
                     break;
             }
         }
 
-        public static void Log(this GameObject obj, string logMsg)
+        public static void LogError<T>(this T sender, string msg) where T : Object
         {
-            Log(logMsg, obj);
+            Log(sender, msg, LogType.Error);
         }
 
-        public static void Log(this ScriptableObject obj, string logMsg)
+        public static void LogWarning<T>(this T sender, string msg) where T : Object
         {
-            Log(logMsg, obj);
+            Log(sender, msg, LogType.Warning);
         }
-
-        public static void Log(this MonoBehaviour obj, string logMsg)
-        {
-            Log(logMsg, obj);
-        }
-
-#region ERRORS
-        public static void LogError(string logMsg, Object sender = null)
-        {
-            Log(logMsg, sender, LogType.Error);
-        }
-
-        public static void LogError(this GameObject obj, string logMsg)
-        {
-            LogError(logMsg, obj);
-        }
-
-        public static void LogError(this ScriptableObject obj, string logMsg)
-        {
-            LogError(logMsg, obj);
-        }
-
-        public static void LogError(this MonoBehaviour obj, string logMsg)
-        {
-            LogError(logMsg, obj);
-        }
-#endregion
-
-#region WARNINGS
-        public static void LogWarning(string logMsg, Object sender = null)
-        {
-            Log(logMsg, sender, LogType.Warning);
-        }
-
-        public static void LogWarning(this GameObject obj, string logMsg)
-        {
-            LogWarning(logMsg, obj);
-        }
-
-        public static void LogWarning(this ScriptableObject obj, string logMsg)
-        {
-            LogWarning(logMsg, obj);
-        }
-
-        public static void LogWarning(this MonoBehaviour obj, string logMsg)
-        {
-            LogWarning(logMsg, obj);
-        }
-#endregion
     }
 }
