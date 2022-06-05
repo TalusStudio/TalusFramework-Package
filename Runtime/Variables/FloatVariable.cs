@@ -34,6 +34,12 @@ namespace TalusFramework.Variables
             return lhs;
         }
 
+        public static FloatVariable operator ++(FloatVariable lhs)
+        {
+            lhs.Add(1.0f);
+            return lhs;
+        }
+
         public static FloatVariable operator -(FloatVariable lhs, FloatReference rhs)
         {
             lhs.Subtract(rhs);
@@ -43,6 +49,12 @@ namespace TalusFramework.Variables
         public static FloatVariable operator -(FloatVariable lhs, float rhs)
         {
             lhs.Subtract(rhs);
+            return lhs;
+        }
+
+        public static FloatVariable operator --(FloatVariable lhs)
+        {
+            lhs.Subtract(1.0f);
             return lhs;
         }
 
