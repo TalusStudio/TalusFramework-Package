@@ -6,49 +6,49 @@ namespace TalusFramework.Runtime.Utility.Logging
     {
         [System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
         [System.Diagnostics.Conditional("UNITY_EDITOR")]
-        public static void Log<T>(this T sender, string msg, LogType logType = LogType.Log) where T : Object
+        public static void Log<T>(this T sender, string message, LogType type = LogType.Log) where T : Object
         {
-            switch (logType)
+            switch (type)
             {
                 case LogType.Log:
-                    Debug.Log(msg, sender);
+                    Debug.Log(message, sender);
                     break;
 
                 case LogType.Error:
-                    Debug.LogError(msg, sender);
+                    Debug.LogError(message, sender);
                     break;
 
                 case LogType.Warning:
-                    Debug.LogWarning(msg, sender);
+                    Debug.LogWarning(message, sender);
                     break;
 
                 case LogType.Assert:
-                    Debug.LogAssertion(msg, sender);
+                    Debug.LogAssertion(message, sender);
                     break;
 
                 case LogType.Exception:
-                    Debug.LogError(msg, sender);
+                    Debug.LogError(message, sender);
                     break;
 
                 default:
-                    Debug.Log(msg, sender);
+                    Debug.Log(message, sender);
                     break;
             }
         }
 
-        public static void LogError<T>(this T sender, string msg) where T : Object
+        public static void LogError<T>(this T sender, string message) where T : Object
         {
-            Log(sender, msg, LogType.Error);
+            Log(sender, message, LogType.Error);
         }
 
-        public static void LogWarning<T>(this T sender, string msg) where T : Object
+        public static void LogWarning<T>(this T sender, string message) where T : Object
         {
-            Log(sender, msg, LogType.Warning);
+            Log(sender, message, LogType.Warning);
         }
 
-        public static void LogAssert<T>(this T sender, string msg) where T : Object
+        public static void LogAssert<T>(this T sender, string message) where T : Object
         {
-            Log(sender, msg, LogType.Assert);
+            Log(sender, message, LogType.Assert);
         }
     }
 }
