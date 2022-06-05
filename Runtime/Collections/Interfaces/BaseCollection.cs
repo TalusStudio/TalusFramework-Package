@@ -6,7 +6,7 @@ using TalusFramework.Base;
 
 namespace TalusFramework.Collections.Interfaces
 {
-    public abstract class BaseCollection<T> : BaseSO, ICollection
+    public abstract class BaseCollection<T> : BaseSO, ICollection<T>
     {
         [HideLabel, LabelWidth(45)]
         [Title("Collection:", bold: true)]
