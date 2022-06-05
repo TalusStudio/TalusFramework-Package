@@ -31,27 +31,27 @@ namespace TalusTemplate.Editor
             var tree = new OdinMenuTree(false);
             tree.Config.DrawSearchToolbar = true;
 
-            tree.AddAllAssetsAtPath("Managers", _SOPath, typeof(IInitializable), true, true)
+            tree.AddAllAssetsAtPath("# Managers", _SOPath, typeof(IInitializable), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Collections", _SOPath, typeof(ICollection), true, true)
+            tree.AddAllAssetsAtPath("# Collections", _SOPath, typeof(ICollection), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Events", _SOPath, typeof(GameEvent), true, true)
+            tree.AddAllAssetsAtPath("# Events", _SOPath, typeof(GameEvent), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
 #if ENABLE_BACKEND
-            tree.AddAssetAtPath("Backend/Facebook Settings", _FacebookSettingsPath, typeof(UnityEngine.ScriptableObject))
+            tree.AddAssetAtPath("# Backend/Facebook Settings", _FacebookSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
 
-            tree.AddAssetAtPath("Backend/Elephant Settings", _ElephantSettingsPath, typeof(UnityEngine.ScriptableObject))
+            tree.AddAssetAtPath("# Backend/Elephant Settings", _ElephantSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
 #else
-            tree.Add("Backend (not active)/Facebook Settings", null);
-            tree.Add("Backend (not active)/Elephant Settings", null);
+            tree.Add("# Backend (not active)/Facebook Settings", null);
+            tree.Add("# Backend (not active)/Elephant Settings", null);
 #endif
 
             return tree;
