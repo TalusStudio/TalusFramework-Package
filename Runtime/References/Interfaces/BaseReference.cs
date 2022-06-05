@@ -1,9 +1,9 @@
-﻿using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility.Logging;
+﻿using TalusFramework.Base;
+using TalusFramework.Utility.Logging;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.References.Interfaces
+namespace TalusFramework.References.Interfaces
 {
     // Can't get property drawer to work with generic arguments
     public abstract class BaseReference

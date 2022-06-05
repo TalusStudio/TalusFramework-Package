@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TalusFramework.Runtime.Utility.Logging
+namespace TalusFramework.Utility.Logging
 {
     public static class TLog
     {
@@ -11,44 +11,44 @@ namespace TalusFramework.Runtime.Utility.Logging
             switch (type)
             {
                 case LogType.Log:
-                    Debug.Log(message, sender);
-                    break;
+                Debug.Log(message, sender);
+                break;
 
                 case LogType.Error:
-                    Debug.LogError(message, sender);
-                    break;
+                Debug.LogError(message, sender);
+                break;
 
                 case LogType.Warning:
-                    Debug.LogWarning(message, sender);
-                    break;
+                Debug.LogWarning(message, sender);
+                break;
 
                 case LogType.Assert:
-                    Debug.LogAssertion(message, sender);
-                    break;
+                Debug.LogAssertion(message, sender);
+                break;
 
                 case LogType.Exception:
-                    Debug.LogError(message, sender);
-                    break;
+                Debug.LogError(message, sender);
+                break;
 
                 default:
-                    Debug.Log(message, sender);
-                    break;
+                Debug.Log(message, sender);
+                break;
             }
         }
 
         public static void LogError<T>(this T sender, string message) where T : Object
         {
-            Log(sender, message, LogType.Error);
+            sender.Log(message, LogType.Error);
         }
 
         public static void LogWarning<T>(this T sender, string message) where T : Object
         {
-            Log(sender, message, LogType.Warning);
+            sender.Log(message, LogType.Warning);
         }
 
         public static void LogAssert<T>(this T sender, string message) where T : Object
         {
-            Log(sender, message, LogType.Assert);
+            sender.Log(message, LogType.Assert);
         }
     }
 }

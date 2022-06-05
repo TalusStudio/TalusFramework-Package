@@ -1,8 +1,8 @@
-using Sirenix.OdinInspector;
-
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Base
+using Sirenix.OdinInspector;
+
+namespace TalusFramework.Base
 {
     /// <summary>
     ///     Base class for Scriptable Objects in Talus Framework.

@@ -1,11 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Collections.Interfaces;
-using TalusFramework.Runtime.Variables;
+using TalusFramework.Collections.Interfaces;
+using TalusFramework.Variables;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Collections.VariableCollections
+namespace TalusFramework.Collections.VariableCollections
 {
     [CreateAssetMenu(fileName = "New Animation Clip Variable Collection", menuName = "Collections/Variable Collections/Animation Clip", order = 0)]
     public class AnimationClipVariableCollection : BaseCollection<AnimationClipVariable>

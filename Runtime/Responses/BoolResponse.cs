@@ -1,8 +1,8 @@
-﻿using TalusFramework.Runtime.Responses.Interfaces;
+﻿using TalusFramework.Responses.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Responses
+namespace TalusFramework.Responses
 {
     [CreateAssetMenu(fileName = "New Bool Response", menuName = "Responses/Bool", order = 0)]
     public sealed class BoolResponse : Response<bool>

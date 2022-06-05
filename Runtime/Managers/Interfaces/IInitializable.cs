@@ -1,4 +1,4 @@
-﻿namespace TalusFramework.Runtime.Managers.Interfaces
+﻿namespace TalusFramework.Managers.Interfaces
 {
     public interface IInitializable
     {

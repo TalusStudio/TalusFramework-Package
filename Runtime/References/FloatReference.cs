@@ -1,6 +1,6 @@
-using TalusFramework.Runtime.References.Interfaces;
+using TalusFramework.References.Interfaces;
 
-namespace TalusFramework.Runtime.References
+namespace TalusFramework.References
 {
     [System.Serializable]
     public sealed class FloatReference : BaseReference<float>

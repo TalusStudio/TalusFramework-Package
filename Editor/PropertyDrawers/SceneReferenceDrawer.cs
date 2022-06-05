@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-using TalusFramework.Runtime.Utility;
+using TalusFramework.Utility;
 
 namespace TalusFramework.Editor.PropertyDrawers
 {

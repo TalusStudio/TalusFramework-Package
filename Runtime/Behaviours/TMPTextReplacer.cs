@@ -3,11 +3,10 @@ using UnityEngine;
 using TMPro;
 
 using Sirenix.OdinInspector;
+using TalusFramework.Base;
+using TalusFramework.Behaviours.Interfaces;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Behaviours.Interfaces;
-
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/TMPTextReplacer", 8)]
     public class TMPTextReplacer : BaseBehaviour

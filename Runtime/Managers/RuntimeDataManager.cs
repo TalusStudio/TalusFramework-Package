@@ -2,17 +2,16 @@
 using System.Linq;
 
 using Sirenix.OdinInspector;
-
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Managers.Interfaces;
-using TalusFramework.Runtime.Collections;
-using TalusFramework.Runtime.Constants;
-using TalusFramework.Runtime.Variables;
+using TalusFramework.Constants;
+using TalusFramework.Variables;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TalusFramework.Base;
+using TalusFramework.Collections;
+using TalusFramework.Managers.Interfaces;
 
-namespace TalusFramework.Runtime.Managers
+namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitializable

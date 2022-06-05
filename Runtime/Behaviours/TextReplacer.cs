@@ -2,11 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Sirenix.OdinInspector;
+using TalusFramework.Base;
+using TalusFramework.Behaviours.Interfaces;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Behaviours.Interfaces;
-
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/TextReplacer", 7)]
     public class TextReplacer : BaseBehaviour

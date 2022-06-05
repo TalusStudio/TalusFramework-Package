@@ -1,10 +1,10 @@
-﻿using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility.Logging;
-using TalusFramework.Runtime.Variables.Interfaces;
+﻿using TalusFramework.Base;
+using TalusFramework.Utility.Logging;
+using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Variables
+namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 6)]
     public sealed class GameObjectVariable : BaseVariable<GameObject>

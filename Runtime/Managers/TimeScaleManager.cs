@@ -1,11 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Managers.Interfaces;
+using TalusFramework.Base;
+using TalusFramework.Managers.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Managers
+namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 3)]
     public class TimeScaleManager : BaseSO, IInitializable

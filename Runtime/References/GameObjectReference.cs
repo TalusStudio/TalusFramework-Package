@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
+using TalusFramework.References.Interfaces;
 
-using TalusFramework.Runtime.References.Interfaces;
-
-namespace TalusFramework.Runtime.References
+namespace TalusFramework.References
 {
     [System.Serializable]
     public sealed class GameObjectReference : BaseReference<GameObject>

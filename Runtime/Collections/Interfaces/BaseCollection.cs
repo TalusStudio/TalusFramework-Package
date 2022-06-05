@@ -2,9 +2,9 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
+using TalusFramework.Base;
 
-namespace TalusFramework.Runtime.Collections.Interfaces
+namespace TalusFramework.Collections.Interfaces
 {
     public abstract class BaseCollection<T> : BaseSO
     {

@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-using Sirenix.OdinInspector;
+using TalusFramework.Behaviours.Interfaces;
 
-using TalusFramework.Runtime.Behaviours.Interfaces;
-
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
-    [HideMonoScript]
     [AddComponentMenu("TalusFramework/Behaviours/UnityCallbacks", 9)]
     public class UnityCallbacks : BaseBehaviour
     {

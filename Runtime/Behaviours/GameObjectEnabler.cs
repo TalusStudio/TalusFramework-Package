@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 
 using Sirenix.OdinInspector;
+using TalusFramework.Behaviours.Interfaces;
 
-using TalusFramework.Runtime.Behaviours.Interfaces;
-
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/GameObjectEnabler", 3)]
     public class GameObjectEnabler : BaseBehaviour

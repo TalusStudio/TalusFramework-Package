@@ -1,8 +1,8 @@
-﻿using TalusFramework.Runtime.Variables.Interfaces;
+﻿using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Variables
+namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New Color Variable", menuName = "Variables/Color", order = 8)]
     public sealed class ColorVariable : BaseVariable<Color>

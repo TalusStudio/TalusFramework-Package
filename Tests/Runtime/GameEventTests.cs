@@ -5,7 +5,7 @@ using UnityEngine.TestTools;
 
 using NUnit.Framework;
 
-using TalusFramework.Runtime.Events;
+using TalusFramework.Events;
 
 namespace TalusFramework.Tests.Runtime
 {

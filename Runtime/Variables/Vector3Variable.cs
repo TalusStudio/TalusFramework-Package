@@ -1,11 +1,11 @@
 using System;
 
-using TalusFramework.Runtime.References;
-using TalusFramework.Runtime.Variables.Interfaces;
+using TalusFramework.References;
+using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Variables
+namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New Vector3 Variable", menuName = "Variables/Vector3", order = 5)]
     public sealed class Vector3Variable : BaseVariable<Vector3>

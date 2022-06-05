@@ -1,8 +1,8 @@
-﻿using TalusFramework.Runtime.Responses.Interfaces;
+﻿using TalusFramework.Responses.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Responses
+namespace TalusFramework.Responses
 {
     [CreateAssetMenu(fileName = "New Float Response", menuName = "Responses/float", order = 1)]
     public sealed class FloatResponse : Response<float>

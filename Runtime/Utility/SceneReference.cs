@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Utility
+namespace TalusFramework.Utility
 {
 	/// <summary>
 	/// Keeps reference to a scene asset and tracks it's path, so it can be used in the game runtime.

@@ -1,9 +1,9 @@
-﻿using TalusFramework.Runtime.References;
-using TalusFramework.Runtime.Variables.Interfaces;
+﻿using TalusFramework.References;
+using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Variables
+namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New String Variable", menuName = "Variables/String", order = 3)]
     public sealed class StringVariable : BaseVariable<string>

@@ -2,10 +2,10 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Collections;
-using TalusFramework.Runtime.Behaviours.Interfaces;
+using TalusFramework.Collections;
+using TalusFramework.Behaviours.Interfaces;
 
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/GameObjectAdder", 1)]
     public class GameObjectAdder : BaseBehaviour

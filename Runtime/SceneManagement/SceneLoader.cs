@@ -2,18 +2,18 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Utility;
-using TalusFramework.Runtime.Variables;
+using TalusFramework.Base;
+using TalusFramework.Utility;
+using TalusFramework.Variables;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TalusFramework.Runtime.SceneManagement
+namespace TalusFramework.SceneManagement
 {
     public class SceneLoader : BaseSO
     {
-#region LEVEL_LOADING
+        #region LEVEL_LOADING
         [Button, DisableInEditorMode]
         public static async void LoadLevel(string scene)
         {
@@ -37,7 +37,7 @@ namespace TalusFramework.Runtime.SceneManagement
         {
             await LoadScene(sceneIndex.RuntimeValue);
         }
-#endregion
+        #endregion
 
         [Button, DisableInEditorMode]
         public async void RestartLevel()

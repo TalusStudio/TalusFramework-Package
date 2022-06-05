@@ -1,6 +1,6 @@
-using TalusFramework.Runtime.Base;
+using TalusFramework.Base;
 
-namespace TalusFramework.Runtime.Constants.Interfaces
+namespace TalusFramework.Constants.Interfaces
 {
     public abstract class BaseConstant<TPlainType> : BaseValue<TPlainType>
     { }

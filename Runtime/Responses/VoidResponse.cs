@@ -1,11 +1,11 @@
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Responses.Interfaces;
+using TalusFramework.Responses.Interfaces;
 
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TalusFramework.Runtime.Responses
+namespace TalusFramework.Responses
 {
     [CreateAssetMenu(fileName = "New Void Response", menuName = "Responses/Void", order = 10)]
     public sealed class VoidResponse : BaseResponse

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 
-using TalusFramework.Runtime.Collections;
-using UnityEngine;
 using NUnit.Framework;
+
+using UnityEngine;
+
+using TalusFramework.Collections;
 
 namespace TalusFramework.Tests.Editor
 {

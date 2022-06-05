@@ -1,8 +1,8 @@
-﻿using TalusFramework.Runtime.Responses.Interfaces;
+﻿using TalusFramework.Responses.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Responses
+namespace TalusFramework.Responses
 {
     [CreateAssetMenu(fileName = "New GameObject Response", menuName = "Responses/GameObject", order = 6)]
     public sealed class GameObjectResponse : Response<GameObject>

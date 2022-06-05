@@ -2,14 +2,14 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Responses.Interfaces;
+using TalusFramework.Base;
+using TalusFramework.Responses.Interfaces;
 
 using UnityEngine;
 
-using Logger = TalusFramework.Runtime.Utility.Logging.Logger;
+using Logger = TalusFramework.Utility.Logging.Logger;
 
-namespace TalusFramework.Runtime.Events
+namespace TalusFramework.Events
 {
     [CreateAssetMenu]
     public class GameEvent : BaseSO

@@ -2,10 +2,10 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.References;
-using TalusFramework.Runtime.Behaviours.Interfaces;
+using TalusFramework.References;
+using TalusFramework.Behaviours.Interfaces;
 
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     /// <summary>
     ///     Takes a reference and sends its value to an Animator parameter
@@ -58,20 +58,20 @@ namespace TalusFramework.Runtime.Behaviours
             switch (ParameterType)
             {
                 case AnimatorParameterType.Float:
-                    Animator.SetFloat(_ParameterHash, FloatValue);
-                    break;
+                Animator.SetFloat(_ParameterHash, FloatValue);
+                break;
 
                 case AnimatorParameterType.Int:
-                    Animator.SetInteger(_ParameterHash, IntValue);
-                    break;
+                Animator.SetInteger(_ParameterHash, IntValue);
+                break;
 
                 case AnimatorParameterType.Bool:
-                    Animator.SetBool(_ParameterHash, BoolValue);
-                    break;
+                Animator.SetBool(_ParameterHash, BoolValue);
+                break;
 
                 case AnimatorParameterType.Trigger:
-                    Animator.SetTrigger(_ParameterHash);
-                    break;
+                Animator.SetTrigger(_ParameterHash);
+                break;
             }
         }
     }

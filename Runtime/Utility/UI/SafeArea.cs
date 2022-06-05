@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Utility.UI
+namespace TalusFramework.Utility.UI
 {
     /// <summary>
     ///     Safe area implementation for notched mobile devices. Usage:

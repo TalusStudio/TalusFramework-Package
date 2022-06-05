@@ -2,7 +2,7 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
-namespace TalusFramework.Runtime.Behaviours.Interfaces
+namespace TalusFramework.Behaviours.Interfaces
 {
     [HideMonoScript]
     public class BaseBehaviour : MonoBehaviour

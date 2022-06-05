@@ -1,13 +1,13 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Events;
+using TalusFramework.Events;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-using Logger = TalusFramework.Runtime.Utility.Logging.Logger;
+using Logger = TalusFramework.Utility.Logging.Logger;
 
-namespace TalusFramework.Runtime.SceneManagement
+namespace TalusFramework.SceneManagement
 {
     [HideMonoScript]
     public class SceneLoadListener : MonoBehaviour

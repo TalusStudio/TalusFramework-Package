@@ -2,13 +2,13 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.Responses.Interfaces;
-using TalusFramework.Runtime.Utility.Logging;
+using TalusFramework.Base;
+using TalusFramework.Responses.Interfaces;
+using TalusFramework.Utility.Logging;
 
 using UnityEngine.Events;
 
-namespace TalusFramework.Runtime.Variables.Interfaces
+namespace TalusFramework.Variables.Interfaces
 {
     public abstract class BaseVariable<TPlainType> : BaseValue<TPlainType>
     {

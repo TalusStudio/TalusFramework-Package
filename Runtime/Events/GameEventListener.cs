@@ -1,11 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Utility.Logging;
+using TalusFramework.Utility.Logging;
 
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TalusFramework.Runtime.Events
+namespace TalusFramework.Events
 {
     [HideMonoScript]
     [AddComponentMenu("TalusFramework/Events/GameEventListener", 0)]

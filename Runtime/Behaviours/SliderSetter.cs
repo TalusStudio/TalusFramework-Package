@@ -3,10 +3,10 @@ using UnityEngine.UI;
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.References;
-using TalusFramework.Runtime.Behaviours.Interfaces;
+using TalusFramework.References;
+using TalusFramework.Behaviours.Interfaces;
 
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/SliderSetter", 6)]
     [ExecuteInEditMode]

@@ -2,10 +2,10 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.Collections;
-using TalusFramework.Runtime.Behaviours.Interfaces;
+using TalusFramework.Collections;
+using TalusFramework.Behaviours.Interfaces;
 
-namespace TalusFramework.Runtime.Behaviours
+namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/GameObjectDisabler", 2)]
     public class GameObjectDisabler : BaseBehaviour

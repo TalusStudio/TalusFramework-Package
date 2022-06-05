@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿using TalusFramework.Base;
 
-using TalusFramework.Runtime.Base;
+using UnityEngine;
 
-namespace TalusFramework.Runtime.Utility.Logging
+namespace TalusFramework.Utility.Logging
 {
     [CreateAssetMenu]
     public class Logger : BaseSO
@@ -28,7 +28,7 @@ namespace TalusFramework.Runtime.Utility.Logging
         {
             if (!_ShowLogs) { return; }
 
-            TLog.Log(sender, $"<color={_HexColor}>{_Prefix}: {message}</color>");
+            sender.Log($"<color={_HexColor}>{_Prefix}: {message}</color>");
         }
 
         public void Log(string message)

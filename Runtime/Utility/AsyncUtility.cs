@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TalusFramework.Runtime.Utility
+namespace TalusFramework.Utility
 {
     public static class AsyncUtility
     {

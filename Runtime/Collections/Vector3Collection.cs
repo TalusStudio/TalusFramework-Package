@@ -1,8 +1,8 @@
-﻿using TalusFramework.Runtime.Collections.Interfaces;
+﻿using TalusFramework.Collections.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Collections
+namespace TalusFramework.Collections
 {
     [CreateAssetMenu(fileName = "New Vector3 Collection", menuName = "Collections/Vector3", order = 11)]
     public class Vector3Collection : BaseCollection<Vector3>

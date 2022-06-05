@@ -1,11 +1,11 @@
 ﻿using System;
 
-using TalusFramework.Runtime.References;
-using TalusFramework.Runtime.Variables.Interfaces;
+using TalusFramework.References;
+using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
 
-namespace TalusFramework.Runtime.Variables
+namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New Int Variable", menuName = "Variables/Int", order = 2)]
     public sealed class IntVariable : BaseVariable<int>

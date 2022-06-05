@@ -1,11 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Runtime.References.Interfaces;
+using TalusFramework.References.Interfaces;
 
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TalusFramework.Runtime.Responses.Interfaces
+namespace TalusFramework.Responses.Interfaces
 {
     public abstract class Response<T> : BaseResponse<T>
     {

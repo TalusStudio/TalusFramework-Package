@@ -1,7 +1,7 @@
-﻿using TalusFramework.Runtime.Base;
-using TalusFramework.Runtime.References.Interfaces;
+﻿using TalusFramework.Base;
+using TalusFramework.References.Interfaces;
 
-namespace TalusFramework.Runtime.Responses.Interfaces
+namespace TalusFramework.Responses.Interfaces
 {
     public abstract class BaseResponse : BaseSO
     {
