@@ -1,14 +1,11 @@
-﻿using System.Diagnostics;
-
-using UnityEngine;
-
-using Debug = UnityEngine.Debug;
+﻿using UnityEngine;
 
 namespace TalusFramework.Runtime.Utility.Logging
 {
     public static class TLog
     {
-        [Conditional("ENABLE_LOGS")]
+        [System.Diagnostics.Conditional("DEVELOPMENT_BUILD")]
+        [System.Diagnostics.Conditional("UNITY_EDITOR")]
         public static void Log<T>(this T sender, string msg, LogType logType = LogType.Log) where T : Object
         {
             switch (logType)
