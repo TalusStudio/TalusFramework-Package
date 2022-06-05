@@ -38,7 +38,8 @@ namespace TalusFramework.Runtime.Managers
         public StringConstant DisabledLevelPref;
 
         [AssetSelector, Required]
-        [LabelWidth(50)]
+        [LabelWidth(70)]
+        [InlineEditor]
         public SceneCollection Scenes;
 
         public void Initialize()
