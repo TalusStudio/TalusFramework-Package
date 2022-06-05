@@ -9,7 +9,7 @@ namespace TalusFramework.Runtime.Collections.Interfaces
     public abstract class BaseCollection<T> : BaseSO
     {
         [HideLabel, LabelWidth(45)]
-        [Title("Collection", bold: true)]
+        [Title("Collection:", bold: true)]
         public List<T> Items = new List<T>();
 
         public T this[int index]
@@ -69,7 +69,6 @@ namespace TalusFramework.Runtime.Collections.Interfaces
         public void Clear()
         {
             Items.Clear();
-            Items = new List<T>();
         }
     }
 }
