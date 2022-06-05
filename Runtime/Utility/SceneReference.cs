@@ -201,10 +201,15 @@ namespace TalusFramework.Runtime.Utility
 			EditorGUI.BeginProperty(position, label, property);
 			position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
+			const float buildSettingsWidth = 20f;
+			const float padding = 2f;
+
 			Rect assetPos = position;
+			assetPos.width -= buildSettingsWidth + padding;
 
 			Rect buildSettingsPos = position;
-			buildSettingsPos.x += position.width;
+			buildSettingsPos.x += position.width - buildSettingsWidth + padding;
+			buildSettingsPos.width = buildSettingsWidth;
 
 			var sceneAssetProperty = property.FindPropertyRelative("m_SceneAsset");
 			bool hadReference = sceneAssetProperty.objectReferenceValue != null;
@@ -227,7 +232,7 @@ namespace TalusFramework.Runtime.Utility
 				property.FindPropertyRelative("m_ScenePath").stringValue = string.Empty;
 			}
 
-			/*GUIContent settingsContent = indexInSettings != -1
+			GUIContent settingsContent = indexInSettings != -1
 				? new GUIContent("-", "Scene is already in the Editor Build Settings. Click here to remove it.")
 				: new GUIContent("+", "Scene is missing in the Editor Build Settings. Click here to add it.")
 				;
@@ -256,7 +261,6 @@ namespace TalusFramework.Runtime.Utility
 			}
 
 			GUI.backgroundColor = prevBackgroundColor;
-			*/
 
 			EditorGUI.EndProperty();
 		}
