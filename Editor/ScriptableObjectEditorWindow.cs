@@ -8,7 +8,7 @@ using TalusFramework.Events;
 
 namespace TalusTemplate.Editor
 {
-    public class SOEditorWindow : OdinMenuEditorWindow
+    public class ScriptableObjectEditorWindow : OdinMenuEditorWindow
     {
         private const string _SOPath = "Assets/ScriptableObjects";
 
@@ -20,7 +20,7 @@ namespace TalusTemplate.Editor
         [MenuItem("TalusKit/SO Editor %m", false, -9000)]
         private static void OpenWindow()
         {
-            var window = GetWindow<SOEditorWindow>();
+            var window = GetWindow<ScriptableObjectEditorWindow>();
             window.minSize = new UnityEngine.Vector2(800, 600);
             window.Show();
         }
