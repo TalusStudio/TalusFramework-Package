@@ -44,8 +44,6 @@ namespace TalusFramework.Runtime.Collections.Interfaces
             }
         }
 
-        [FoldoutGroup("Actions")]
-        [Button]
         public void ResetAllValues(T value)
         {
             for (int i = Count - 1; i >= 0; i--)
@@ -54,8 +52,6 @@ namespace TalusFramework.Runtime.Collections.Interfaces
             }
         }
 
-        [FoldoutGroup("Actions")]
-        [Button(ButtonSizes.Large), GUIColor(1f, 1f, 0f)]
         public void ResetAllValuesToDefault()
         {
             for (int i = Count - 1; i >= 0; i--)
@@ -64,8 +60,6 @@ namespace TalusFramework.Runtime.Collections.Interfaces
             }
         }
 
-        [FoldoutGroup("Actions")]
-        [Button(ButtonSizes.Large), GUIColor(1f, 1f, 0f)]
         public void Clear()
         {
             Items.Clear();
