@@ -6,7 +6,7 @@ using TalusFramework.Managers.Interfaces;
 using TalusFramework.Collections.Interfaces;
 using TalusFramework.Events;
 
-namespace TalusTemplate.Editor
+namespace TalusTemplate.Editor.ScriptableObjectEditor
 {
     public class ScriptableObjectEditorWindow : OdinMenuEditorWindow
     {

@@ -8,7 +8,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using Sirenix.Utilities;
 
-namespace TalusFramework.Editor
+namespace TalusFramework.Editor.ScriptableObjectCreator
 {
     internal class ScriptableObjectCreatorMenuItem : OdinMenuItem
     {
