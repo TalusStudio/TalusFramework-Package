@@ -37,10 +37,10 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstant DisabledLevelPref;
 
-        [AssetSelector, Required]
-        [LabelWidth(70)]
+        [LabelWidth(100)]
         [InlineEditor]
-        public SceneCollection Scenes;
+        [AssetSelector, Required]
+        public SceneCollection LevelCollection;
 
         public void Initialize()
         {
@@ -73,7 +73,7 @@ namespace TalusFramework.Runtime.Managers
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
-        private List<string> PlayableLevels => (from t in Scenes.Items where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
+        private List<string> PlayableLevels => (from t in LevelCollection.Items where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
             .ToList();
