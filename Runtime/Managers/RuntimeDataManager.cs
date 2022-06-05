@@ -7,6 +7,7 @@ using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Managers.Interfaces;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Variables;
+using TalusFramework.Runtime.Utility;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,26 @@ namespace TalusFramework.Runtime.Managers
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitializable
     {
+        [FoldoutGroup("Initialization")]
+        [AssetSelector, Required]
+        public StringVariable NextLevel;
+
+        [FoldoutGroup("Initialization")]
+        [AssetSelector, Required]
+        public StringVariable LevelText;
+
+        [FoldoutGroup("Initialization")]
+        [AssetSelector, Required]
+        public StringConstant LevelCyclePref;
+
+        [FoldoutGroup("Initialization")]
+        [AssetSelector, Required]
+        public StringConstant DisabledLevelCountPref;
+
+        [FoldoutGroup("Initialization")]
+        [AssetSelector, Required]
+        public StringConstant DisabledLevelPref;
+
 #if UNITY_EDITOR
         [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
         public void SyncBuildSettings()
@@ -45,34 +66,14 @@ namespace TalusFramework.Runtime.Managers
             #endif
         }
 #endif
-        [ShowIf("@IsBackendActivated() == true")]
-        [FoldoutGroup("Scene Management")]
+        [EnableIf("@IsBackendActivated() == true")]
+        [LabelWidth(100)]
         public SceneReference ElephantScene;
 
-        [FoldoutGroup("Scene Management")]
+        [LabelWidth(100)]
         public SceneReference ForwarderScene;
 
         public List<SceneReference> Levels;
-
-        [FoldoutGroup("Variables")]
-        [AssetSelector, Required]
-        public StringVariable NextLevel;
-
-        [FoldoutGroup("Variables")]
-        [AssetSelector, Required]
-        public StringVariable LevelText;
-
-        [FoldoutGroup("Variables - Player Prefs")]
-        [AssetSelector, Required]
-        public StringConstant LevelCyclePref;
-
-        [FoldoutGroup("Variables - Player Prefs")]
-        [AssetSelector, Required]
-        public StringConstant DisabledLevelCountPref;
-
-        [FoldoutGroup("Variables - Player Prefs")]
-        [AssetSelector, Required]
-        public StringConstant DisabledLevelPref;
 
         public void Initialize()
         {
