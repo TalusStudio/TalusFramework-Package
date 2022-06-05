@@ -8,7 +8,6 @@ using TalusFramework.Runtime.Managers.Interfaces;
 using TalusFramework.Runtime.Collections;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Variables;
-using TalusFramework.Runtime.Utility;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
