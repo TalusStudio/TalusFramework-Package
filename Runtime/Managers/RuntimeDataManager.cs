@@ -5,16 +5,13 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
 using TalusFramework.Runtime.Managers.Interfaces;
+using TalusFramework.Runtime.Collections;
 using TalusFramework.Runtime.Constants;
 using TalusFramework.Runtime.Variables;
 using TalusFramework.Runtime.Utility;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace TalusFramework.Runtime.Managers
 {
@@ -41,39 +38,9 @@ namespace TalusFramework.Runtime.Managers
         [AssetSelector, Required]
         public StringConstant DisabledLevelPref;
 
-#if UNITY_EDITOR
-        [Button(ButtonSizes.Large), GUIColor(0f, 1f, 0f)]
-        public void SyncBuildSettings()
-        {
-            var scenes = new List<EditorBuildSettingsScene>();
-
-            if (IsBackendActivated())
-            {
-                scenes.Add(new EditorBuildSettingsScene(ElephantScene.ScenePath, true));
-            }
-
-            scenes.Add(new EditorBuildSettingsScene(ForwarderScene.ScenePath, true));
-            scenes.AddRange(Levels.Select(t => new EditorBuildSettingsScene(t.ScenePath, true)));
-            EditorBuildSettings.scenes = scenes.ToArray();
-        }
-
-        private bool IsBackendActivated()
-        {
-            #if ENABLE_BACKEND
-            return true;
-            #else
-            return false;
-            #endif
-        }
-#endif
-        [EnableIf("@IsBackendActivated() == true")]
-        [LabelWidth(100)]
-        public SceneReference ElephantScene;
-
-        [LabelWidth(100)]
-        public SceneReference ForwarderScene;
-
-        public List<SceneReference> Levels;
+        [AssetSelector, Required]
+        [LabelWidth(50)]
+        public SceneCollection Scenes;
 
         public void Initialize()
         {
@@ -106,7 +73,7 @@ namespace TalusFramework.Runtime.Managers
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
-        private List<string> PlayableLevels => (from t in Levels where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
+        private List<string> PlayableLevels => (from t in Scenes.Items where !DisabledLevels.Contains(t.ScenePath) select t.ScenePath).ToList();
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
             .ToList();

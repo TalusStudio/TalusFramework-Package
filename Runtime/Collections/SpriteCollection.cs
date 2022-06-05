@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TalusFramework.Runtime.Collections
 {
-    [CreateAssetMenu(fileName = "New Sprite Collection", menuName = "Collections/Sprite", order = 6)]
+    [CreateAssetMenu(fileName = "New Sprite Collection", menuName = "Collections/Sprite", order = 7)]
     public class SpriteCollection : BaseCollection<Sprite>
     { }
 }
