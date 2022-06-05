@@ -1,5 +1,6 @@
 # 🔨 TalusFramework Package
 - Scriptable Architecture. Ready to use behaviours, scriptable objects, utilities etc.
+- Don't forget the update ```_SOPath``` in ```ScriptableObjectEditorWindow.cs```
 
 # ❗ Requirements 
 - Unity 2020.3.9f1 
