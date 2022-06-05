@@ -5,7 +5,6 @@ using Sirenix.OdinInspector.Editor;
 using TalusFramework.Managers.Interfaces;
 using TalusFramework.Collections.Interfaces;
 using TalusFramework.Events;
-using TalusFramework.Utility.Logging;
 
 namespace TalusTemplate.Editor
 {
