@@ -11,9 +11,11 @@ namespace TalusTemplate.Editor
 {
     public class SOEditorWindow : OdinMenuEditorWindow
     {
+        private const string _SOPath = "Assets/ScriptableObjects";
+
 #if ENABLE_BACKEND
-        private const string _facebookSettingsPath = "Resources/FacebookSettings.asset";
-        private const string _elephantSettingsPath = "Resources/ElephantSettings.asset";
+        private const string _FacebookSettingsPath = "Resources/FacebookSettings.asset";
+        private const string _ElephantSettingsPath = "Resources/ElephantSettings.asset";
 #endif
 
         [MenuItem("TalusKit/SO Editor %m", false, -9000)]
@@ -29,27 +31,27 @@ namespace TalusTemplate.Editor
             var tree = new OdinMenuTree(false);
             tree.Config.DrawSearchToolbar = true;
 
-            tree.AddAllAssetsAtPath("Managers", "Assets/", typeof(IInitializable), true, true)
+            tree.AddAllAssetsAtPath("Managers", _SOPath, typeof(IInitializable), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Collections", "Assets/", typeof(ICollection), true, true)
+            tree.AddAllAssetsAtPath("Collections", _SOPath, typeof(ICollection), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Events", "Assets/", typeof(GameEvent), true, true)
+            tree.AddAllAssetsAtPath("Events", _SOPath, typeof(GameEvent), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Debugging", "Assets/", typeof(Logger), true, true)
+            tree.AddAllAssetsAtPath("Debugging", _SOPath, typeof(Logger), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
 #if ENABLE_BACKEND
-            tree.AddAssetAtPath("Backend/Facebook Settings", _facebookSettingsPath, typeof(UnityEngine.ScriptableObject))
+            tree.AddAssetAtPath("Backend/Facebook Settings", _FacebookSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
 
-            tree.AddAssetAtPath("Backend/Elephant Settings", _elephantSettingsPath, typeof(UnityEngine.ScriptableObject))
+            tree.AddAssetAtPath("Backend/Elephant Settings", _ElephantSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
 #else
             tree.Add("Backend (not active)/Facebook Settings", null);
