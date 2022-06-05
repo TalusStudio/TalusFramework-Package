@@ -52,8 +52,8 @@ namespace TalusTemplate.Editor
             tree.AddAssetAtPath("Backend/Elephant Settings", _elephantSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
 #else
-            tree.Add("Backend(not activated)/Facebook Settings", null);
-            tree.Add("Backend(not activated)/Elephant Settings", null);
+            tree.Add("Backend (not active)/Facebook Settings", null);
+            tree.Add("Backend (not active)/Elephant Settings", null);
 #endif
 
             return tree;
