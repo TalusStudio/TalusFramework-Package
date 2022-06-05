@@ -27,11 +27,13 @@ namespace TalusFramework.Editor
         {
             if (popupStyle == null)
             {
-                popupStyle = new GUIStyle(GUI.skin.GetStyle("PaneOptions"))
-                {
-                    imagePosition = ImagePosition.ImageOnly
-                };
+                popupStyle = new GUIStyle(GUI.skin.GetStyle("PaneOptions"));
+                popupStyle.imagePosition = ImagePosition.ImageOnly;
             }
+
+            // Store old indent level and set it to 0, the PrefixLabel takes care of it
+            int indent = EditorGUI.indentLevel;
+            EditorGUI.indentLevel = 0;
 
             // Get condition properties
             SerializedProperty useConstant = property.FindPropertyRelative("UseConstant");
@@ -53,10 +55,6 @@ namespace TalusFramework.Editor
             buttonRect.width = popupStyle.fixedWidth + popupStyle.margin.right;
             buttonRect.height = popupStyle.fixedHeight + popupStyle.margin.top;
             position.xMin = buttonRect.xMax;
-
-            // Store old indent level and set it to 0, the PrefixLabel takes care of it
-            int indent = EditorGUI.indentLevel;
-            EditorGUI.indentLevel = 0;
 
             int index = EditorGUI.Popup(buttonRect, useConstant.boolValue ? 1 : 0, popupOptions, popupStyle);
             useConstant.boolValue = index == 1;

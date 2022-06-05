@@ -36,48 +36,58 @@ namespace TalusFramework.Runtime.Events
 
         public void Raise<T>(T arg)
         {
-            if (Responses)
-            {
-                for (int i = GlobalResponses.Count - 1; i >= 0; i--)
-                {
-                    BaseResponse response = GlobalResponses[i];
-                    var dynamicResponse = response as Response<T>;
+            if (!Responses) { return; }
 
-                    if (dynamicResponse != null) // capture dynamic responses.
-                    {
-                        dynamicResponse.Send(arg);
-                    }
-                    else // capture void responses.
-                    {
-                        response.Send();
-                    }
+            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
+            {
+                BaseResponse response = GlobalResponses[i];
+                var dynamicResponse = response as Response<T>;
+
+                // capture dynamic responses.
+                if (dynamicResponse != null)
+                {
+                    dynamicResponse.Send(arg);
+                }
+                else // capture void responses.
+                {
+                    response.Send();
                 }
             }
 
-            for (int i = _Listeners.Count - 1; i >= 0; i--)
-            {
-                _Listeners[i].OnEventRaised();
-            }
-
-            if (Debugging && _Logger != null)
-            {
-                _Logger.Log(name + " raised!", this);
-            }
+            RaiseEvent();
         }
 
         [GUIColor(0f, 1f, 0f)]
         [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Raise()
         {
-            if (Responses)
+            if (!Responses) { return; }
+
+            for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
-                for (int i = GlobalResponses.Count - 1; i >= 0; i--)
-                {
-                    BaseResponse response = GlobalResponses[i];
-                    response.Send();
-                }
+                BaseResponse response = GlobalResponses[i];
+                response.Send();
             }
 
+            RaiseEvent();
+        }
+
+        public void AddListener(GameEventListener listener)
+        {
+            if (_Listeners.Contains(listener)) { return; }
+
+            _Listeners.Add(listener);
+        }
+
+        public void RemoveListener(GameEventListener listener)
+        {
+            if (!_Listeners.Contains(listener)) { return; }
+
+            _Listeners.Remove(listener);
+        }
+
+        private void RaiseEvent()
+        {
             for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
                 _Listeners[i].OnEventRaised();
@@ -87,26 +97,6 @@ namespace TalusFramework.Runtime.Events
             {
                 _Logger.Log(name + " raised!", this);
             }
-        }
-
-        public void AddListener(GameEventListener listener)
-        {
-            if (_Listeners.Contains(listener))
-            {
-                return;
-            }
-
-            _Listeners.Add(listener);
-        }
-
-        public void RemoveListener(GameEventListener listener)
-        {
-            if (!_Listeners.Contains(listener))
-            {
-                return;
-            }
-
-            _Listeners.Remove(listener);
         }
     }
 }

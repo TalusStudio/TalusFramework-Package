@@ -8,7 +8,7 @@ using TalusFramework.Runtime.Behaviours.Interfaces;
 namespace TalusFramework.Runtime.Behaviours
 {
     /// <summary>
-    ///     Takes a Float Reference and sends its value to an Animator parameter
+    ///     Takes a reference and sends its value to an Animator parameter
     ///     every frame on Update.
     /// </summary>
     [AddComponentMenu("TalusFramework/Behaviours/AnimatorParameterSetter", 0)]
