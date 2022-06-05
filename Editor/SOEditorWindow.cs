@@ -43,10 +43,6 @@ namespace TalusTemplate.Editor
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
 
-            tree.AddAllAssetsAtPath("Debugging", _SOPath, typeof(Logger), true, true)
-                .AddThumbnailIcons()
-                .SortMenuItemsByName();
-
 #if ENABLE_BACKEND
             tree.AddAssetAtPath("Backend/Facebook Settings", _FacebookSettingsPath, typeof(UnityEngine.ScriptableObject))
                 .AddThumbnailIcons();
