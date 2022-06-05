@@ -4,7 +4,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor
+namespace TalusFramework.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(BaseReference))]
     public class BaseReferenceDrawer : PropertyDrawer
