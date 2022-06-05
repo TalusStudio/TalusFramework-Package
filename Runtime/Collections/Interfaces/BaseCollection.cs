@@ -4,22 +4,25 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Runtime.Base;
 
-using UnityEngine;
-
 namespace TalusFramework.Runtime.Collections.Interfaces
 {
     public abstract class BaseCollection<T> : BaseSO
     {
-        [HideLabel, Title("Collection", bold: true), LabelWidth(45)]
-        [SerializeField]
+        [HideLabel, LabelWidth(45)]
+        [Title("Collection", bold: true)]
         public List<T> Items = new List<T>();
+
+        public T this[int index]
+        {
+            get => Items[index];
+            set => Items[index] = value;
+        }
+
+        public int Count => Items.Count;
 
         public bool Add(T thing)
         {
-            if (Items.Contains(thing))
-            {
-                return false;
-            }
+            if (Items.Contains(thing)) { return false; }
 
             Items.Add(thing);
             return true;
@@ -27,10 +30,7 @@ namespace TalusFramework.Runtime.Collections.Interfaces
 
         public bool Remove(T thing)
         {
-            if (!Items.Contains(thing))
-            {
-                return false;
-            }
+            if (!Items.Contains(thing)) { return false; }
 
             Items.Remove(thing);
             return true;
@@ -48,7 +48,7 @@ namespace TalusFramework.Runtime.Collections.Interfaces
         [Button]
         public void ResetAllValues(T value)
         {
-            for (int i = 0; i < Items.Count; ++i)
+            for (int i = Count - 1; i >= 0; i--)
             {
                 Items[i] = value;
             }
@@ -58,7 +58,7 @@ namespace TalusFramework.Runtime.Collections.Interfaces
         [Button(ButtonSizes.Large), GUIColor(1f, 1f, 0f)]
         public void ResetAllValuesToDefault()
         {
-            for (int i = 0; i < Items.Count; ++i)
+            for (int i = Count - 1; i >= 0; i--)
             {
                 Items[i] = default;
             }
