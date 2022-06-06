@@ -10,14 +10,7 @@ using UnityEngine;
 namespace TalusFramework.Utility
 {
 	/// <summary>
-	/// Keeps reference to a scene asset and tracks it's path, so it can be used in the game runtime.
-	///
-	/// It's a well known fact that scenes can't be referenced like prefabs etc.
-	/// The <see cref="UnityEngine.SceneManagement.SceneManager"/> API works with relative scene paths or names.
-	/// Use this class to avoid manually typing and updating scene path strings - it will try to do it for you as best as it can,
-	/// including when <b>building the player</b>.
-	///
-	/// Using <see cref="ISerializationCallbackReceiver" /> was inspired by the <see cref="https://github.com/JohannesMP/unity-scene-reference">unity-scene-reference</see> implementation.
+	/// https://github.com/NibbleByte/UnitySceneReference
 	/// </summary>
 	[System.Serializable]
 	public class SceneReference : ISerializationCallbackReceiver
