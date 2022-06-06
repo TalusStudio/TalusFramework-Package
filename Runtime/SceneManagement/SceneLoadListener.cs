@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 
+using TalusFramework.Behaviours.Interfaces;
 using TalusFramework.Events;
 
 using UnityEngine;
@@ -9,8 +10,7 @@ using Logger = TalusFramework.Utility.Logging.Logger;
 
 namespace TalusFramework.SceneManagement
 {
-    [HideMonoScript]
-    public class SceneLoadListener : MonoBehaviour
+    public class SceneLoadListener : BaseBehaviour
     {
         [LabelWidth(100)]
         [AssetSelector, Required]
