@@ -3,10 +3,7 @@
 using TalusFramework.Behaviours.Interfaces;
 using TalusFramework.Events;
 
-using UnityEngine;
 using UnityEngine.SceneManagement;
-
-using Logger = TalusFramework.Utility.Logging.Logger;
 
 namespace TalusFramework.SceneManagement
 {
@@ -15,12 +12,6 @@ namespace TalusFramework.SceneManagement
         [LabelWidth(100)]
         [AssetSelector, Required]
         public GameEvent LevelLoadEvent;
-
-        [FoldoutGroup("Debugging")]
-        [LabelWidth(45)]
-        [AssetSelector, Required]
-        [SerializeField]
-        private Logger _Logger;
 
         private void OnEnable()
         {
@@ -34,8 +25,6 @@ namespace TalusFramework.SceneManagement
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
-            _Logger.Log(scene.name + " loaded!", this);
-
             LevelLoadEvent.Raise(scene.name);
         }
     }
