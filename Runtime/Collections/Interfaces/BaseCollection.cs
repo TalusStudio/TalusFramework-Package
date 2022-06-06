@@ -36,6 +36,11 @@ namespace TalusFramework.Collections.Interfaces
             return true;
         }
 
+        public bool Contains(T thing)
+        {
+            return Items.Contains(thing);
+        }
+
         public void ForEach(System.Action<T> action)
         {
             for (int i = Items.Count - 1; i >= 0; i--)

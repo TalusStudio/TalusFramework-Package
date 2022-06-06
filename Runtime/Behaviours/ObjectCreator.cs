@@ -26,12 +26,12 @@ namespace TalusFramework.Behaviours
 
         [FoldoutGroup("Properties")]
         [Tooltip("Create as child of this component."), LabelWidth(95)]
-        [ValidateInput("ValidateDestroyInput", "Objects with marked DontDestroy can not be a child object!")]
+        [ValidateInput(nameof(ValidateDestroyInput), "Objects with marked DontDestroy can not be a child object!")]
         public bool CreateAsChild;
 
         [FoldoutGroup("Properties")]
         [Tooltip("GameObject gonna marked as DontDestroyOnLoad"), LabelWidth(95)]
-        [ValidateInput("ValidateDestroyInput", "Objects with marked DontDestroy can not be a child object!")]
+        [ValidateInput(nameof(ValidateDestroyInput), "Objects with marked DontDestroy can not be a child object!")]
         public bool DontDestroy;
 
         private Transform _CachedTransform;

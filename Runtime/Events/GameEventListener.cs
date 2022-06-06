@@ -17,7 +17,7 @@ namespace TalusFramework.Events
         public GameEvent GameEvent;
 
         [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        [ValidateInput("ValidateResponseInput", "Response required!")]
+        [ValidateInput(nameof(ValidateResponseInput), "Response required!")]
         public UnityEvent Response;
 
 #if UNITY_EDITOR

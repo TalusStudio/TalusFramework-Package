@@ -13,6 +13,7 @@ namespace TalusFramework.Collections.Interfaces
 
         bool Add(T thing);
         bool Remove(T thing);
+        bool Contains(T thing);
         void ForEach(System.Action<T> action);
     }
 }
