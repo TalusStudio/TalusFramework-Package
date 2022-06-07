@@ -14,7 +14,7 @@ namespace TalusFramework.Base
     ///     Base Variable Class, use RunTimeValue property if u need reference.
     /// </summary>
     /// <typeparam name="TPlainType">Serializable type.</typeparam>
-    public class BaseValue<TPlainType> : BaseValue, ISerializationCallbackReceiver
+    public abstract class BaseValue<TPlainType> : BaseValue, ISerializationCallbackReceiver
     {
         [DisableInPlayMode]
         [AssetsOnly]
