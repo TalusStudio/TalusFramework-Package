@@ -11,6 +11,7 @@ namespace TalusFramework.Behaviours.Interfaces
         [FoldoutGroup("Developer Description")]
         [TextArea(5, 10)]
         [SerializeField]
+        [HideLabel]
         private string _DeveloperDescription = "";
 #pragma warning restore 0414
     }
