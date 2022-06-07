@@ -11,27 +11,27 @@ namespace TalusFramework.Utility.Logging
             switch (type)
             {
                 case LogType.Log:
-                Debug.Log(message, sender);
+                    Debug.Log(message, sender);
                 break;
 
                 case LogType.Error:
-                Debug.LogError(message, sender);
+                    Debug.LogError(message, sender);
                 break;
 
                 case LogType.Warning:
-                Debug.LogWarning(message, sender);
+                    Debug.LogWarning(message, sender);
                 break;
 
                 case LogType.Assert:
-                Debug.LogAssertion(message, sender);
+                    Debug.LogAssertion(message, sender);
                 break;
 
                 case LogType.Exception:
-                Debug.LogError(message, sender);
+                    Debug.LogError(message, sender);
                 break;
 
                 default:
-                Debug.Log(message, sender);
+                    Debug.Log(message, sender);
                 break;
             }
         }
