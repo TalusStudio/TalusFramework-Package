@@ -10,7 +10,10 @@ namespace TalusFramework.Constants
     {
         public override void ResetValueAfterDeserialize()
         {
-            RuntimeValue = Value.Clone();
+            if (Value != null && !Value.IsEmpty)
+            {
+                RuntimeValue = Value.Clone();
+            }
         }
     }
 }
