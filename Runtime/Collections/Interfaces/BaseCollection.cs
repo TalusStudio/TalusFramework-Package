@@ -9,8 +9,15 @@ namespace TalusFramework.Collections.Interfaces
 {
     public abstract class BaseCollection<T> : BaseSO, ICollection<T>, IEnumerable<T>
     {
-        [HideLabel, LabelWidth(45)]
-        [Title("Collection:", bold: true)]
+        [LabelWidth(45)]
+        [LabelText("@this.ToString()")]
+        [ListDrawerSettings(DraggableItems = true,
+            Expanded = true,
+            ShowIndexLabels = true,
+            ShowPaging = true,
+            ShowItemCount = true,
+            NumberOfItemsPerPage = 10
+        )]
         public List<T> Items = new List<T>();
 
         public T this[int index]
@@ -79,6 +86,11 @@ namespace TalusFramework.Collections.Interfaces
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            return $"{typeof(T).Name} Collection";
         }
     }
 }
