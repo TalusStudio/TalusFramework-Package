@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 6)]
+    [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 9)]
     public sealed class GameObjectVariable : BaseVariable<GameObject>
     {
         public override void SetValue(GameObject value)

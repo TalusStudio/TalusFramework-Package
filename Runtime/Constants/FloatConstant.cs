@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TalusFramework.Constants
 {
-    [CreateAssetMenu(fileName = "New Float Constant", menuName = "Constants/Float", order = 1)]
+    [CreateAssetMenu(fileName = "New Float Constant", menuName = "Constants/Float", order = 2)]
     public sealed class FloatConstant : BaseConstant<float>
     { }
 }

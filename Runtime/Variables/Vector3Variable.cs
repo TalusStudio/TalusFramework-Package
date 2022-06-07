@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New Vector3 Variable", menuName = "Variables/Vector3", order = 5)]
+    [CreateAssetMenu(fileName = "New Vector3 Variable", menuName = "Variables/Vector3", order = 4)]
     public sealed class Vector3Variable : BaseVariable<Vector3>
     {
         public void Add(Vector3Variable variable) => SetValue(RuntimeValue + variable.RuntimeValue);

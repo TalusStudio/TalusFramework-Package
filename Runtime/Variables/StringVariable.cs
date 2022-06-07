@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New String Variable", menuName = "Variables/String", order = 3)]
+    [CreateAssetMenu(fileName = "New String Variable", menuName = "Variables/String", order = 5)]
     public sealed class StringVariable : BaseVariable<string>
     {
         public void Add(StringVariable variable) => SetValue(RuntimeValue + variable.RuntimeValue);

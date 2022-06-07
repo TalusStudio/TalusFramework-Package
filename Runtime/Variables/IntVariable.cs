@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New Int Variable", menuName = "Variables/Int", order = 2)]
+    [CreateAssetMenu(fileName = "New Int Variable", menuName = "Variables/Int", order = 1)]
     public sealed class IntVariable : BaseVariable<int>
     {
         public void Add(IntVariable variable) => SetValue(RuntimeValue + variable.RuntimeValue);

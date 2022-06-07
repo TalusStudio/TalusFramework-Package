@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New Color Variable", menuName = "Variables/Color", order = 8)]
+    [CreateAssetMenu(fileName = "New Color Variable", menuName = "Variables/Color", order = 6)]
     public sealed class ColorVariable : BaseVariable<Color>
     { }
 }

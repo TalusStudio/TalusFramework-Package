@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float", order = 1)]
+    [CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float", order = 2)]
     public sealed class FloatVariable : BaseVariable<float>
     {
         public void Add(FloatVariable variable) => SetValue(RuntimeValue + variable.RuntimeValue);
