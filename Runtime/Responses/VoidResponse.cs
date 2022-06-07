@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace TalusFramework.Responses
 {
-    [CreateAssetMenu(fileName = "New Void Response", menuName = "Responses/Void", order = 10)]
+    [CreateAssetMenu(fileName = "New Void Response", menuName = "Responses/Void", order = 0)]
     public sealed class VoidResponse : BaseResponse
     {
         [LabelWidth(85)]
