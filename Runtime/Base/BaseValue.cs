@@ -36,10 +36,10 @@ namespace TalusFramework.Base
 
         protected virtual void OnEnable()
         {
-            ResetValueAfterDeserialize();
+            ResetRuntimeValue();
         }
 
-        public virtual void ResetValueAfterDeserialize()
+        public virtual void ResetRuntimeValue()
         {
             RuntimeValue = _Value;
         }

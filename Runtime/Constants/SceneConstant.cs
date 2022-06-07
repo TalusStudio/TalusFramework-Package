@@ -8,7 +8,7 @@ namespace TalusFramework.Constants
     [CreateAssetMenu(fileName = "New Scene Constant", menuName = "Constants/Scene", order = 10)]
     public sealed class SceneConstant : BaseConstant<SceneReference>
     {
-        public override void ResetValueAfterDeserialize()
+        public override void ResetRuntimeValue()
         {
             if (Value != null && !Value.IsEmpty)
             {
