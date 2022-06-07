@@ -17,7 +17,6 @@ namespace TalusFramework.Base
     public class BaseValue<TPlainType> : BaseValue, ISerializationCallbackReceiver
     {
         [DisableInPlayMode]
-        [OnValueChanged("@RuntimeValue = _Value")]
         [AssetsOnly]
         [SerializeField]
         private TPlainType _Value;
