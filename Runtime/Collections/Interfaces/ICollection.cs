@@ -3,8 +3,6 @@ namespace TalusFramework.Collections.Interfaces
     public interface ICollection
     {
         int Count { get; }
-
-        void Clear();
     }
 
     public interface ICollection<T> : ICollection
@@ -15,5 +13,6 @@ namespace TalusFramework.Collections.Interfaces
         bool Remove(T thing);
         bool Contains(T thing);
         void ForEach(System.Action<T> action);
+        void Clear();
     }
 }
