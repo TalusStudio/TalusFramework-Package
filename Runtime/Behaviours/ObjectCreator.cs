@@ -61,8 +61,6 @@ namespace TalusFramework.Behaviours
             }
         }
 
-#if UNITY_EDITOR
         private bool ValidateDestroyInput() => !(DontDestroy && CreateAsChild);
-#endif
     }
 }

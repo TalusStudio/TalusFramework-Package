@@ -20,10 +20,6 @@ namespace TalusFramework.Events
         [ValidateInput(nameof(ValidateResponseInput), "Response required!")]
         public UnityEvent Response;
 
-#if UNITY_EDITOR
-        private bool ValidateResponseInput => Response.GetPersistentEventCount() > 0 && Response.GetPersistentTarget(0) != null;
-#endif
-
         private void OnEnable()
         {
             if (GameEvent == null)
@@ -49,5 +45,7 @@ namespace TalusFramework.Events
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
         public void OnEventRaised() => Response?.Invoke();
+
+        private bool ValidateResponseInput => Response.GetPersistentEventCount() > 0 && Response.GetPersistentTarget(0) != null;
     }
 }
