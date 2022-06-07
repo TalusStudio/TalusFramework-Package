@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 using Sirenix.OdinInspector;
 
@@ -6,7 +7,7 @@ using TalusFramework.Base;
 
 namespace TalusFramework.Collections.Interfaces
 {
-    public abstract class BaseCollection<T> : BaseSO, ICollection<T>
+    public abstract class BaseCollection<T> : BaseSO, ICollection<T>, IEnumerable<T>
     {
         [HideLabel, LabelWidth(45)]
         [Title("Collection:", bold: true)]
@@ -68,6 +69,16 @@ namespace TalusFramework.Collections.Interfaces
         public void Clear()
         {
             Items.Clear();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return Items.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }
