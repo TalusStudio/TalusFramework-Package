@@ -50,13 +50,13 @@ namespace TalusFramework.Tests.Editor
                 Assert.IsTrue(success);
             }
 
-            Assert.AreEqual(3, _Collection.Items.Count);
+            Assert.AreEqual(3, _Collection.Count);
 
             int bits = 0;
 
             _Collection.Items.ForEach(item =>
             {
-                int index = _Objects.IndexOf(item.gameObject);
+                int index = _Objects.IndexOf(item);
                 Assert.GreaterOrEqual(index, 0);
                 bits |= 1 << index;
             });
@@ -81,7 +81,7 @@ namespace TalusFramework.Tests.Editor
             {
                 _Collection.Remove(obj);
                 count--;
-                Assert.AreEqual(count, _Collection.Items.Count);
+                Assert.AreEqual(count, _Collection.Count);
             }
         }
     }
