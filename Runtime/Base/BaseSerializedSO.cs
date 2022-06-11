@@ -14,7 +14,7 @@ namespace TalusFramework.Base
         [HideLabel, PropertyOrder(0), FoldoutGroup("Developer Description")]
         [TextArea(5, 10)]
         [SerializeField]
-        private string _DeveloperDescription = "";
+        private string _DeveloperDescription = default;
 #pragma warning restore 0414
     }
 }

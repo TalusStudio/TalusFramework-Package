@@ -1,5 +1,5 @@
 ﻿using TalusFramework.Base;
-using TalusFramework.Utility.Logging;
+using TalusFramework.Utility.Assertions;
 using TalusFramework.Variables.Interfaces;
 
 using UnityEngine;
@@ -11,10 +11,7 @@ namespace TalusFramework.Variables
     {
         public override void SetValue(GameObject value)
         {
-            if (ReferenceEquals(RuntimeValue, value))
-            {
-                return;
-            }
+            if (ReferenceEquals(RuntimeValue, value)) { return; }
 
             RuntimeValue = value;
             InvokeOnChangeEvents(value);
@@ -22,18 +19,14 @@ namespace TalusFramework.Variables
 
         public override void SetValue(BaseValue value)
         {
-            if (ReferenceEquals(this, value))
-            {
-                return;
-            }
+            if (ReferenceEquals(this, value)) { return; }
 
             var variable = value as BaseValue<GameObject>;
 
-            if (variable == null)
-            {
-                this.LogError("Type mismatch in " + name + ". Expected type:" + typeof(GameObject));
-                return;
-            }
+            this.Assert(variable != null, $@"Type mismatch in {name}.
+                Expected: {typeof(GameObject)}
+                Given: {value.GetType()}"
+            );
 
             RuntimeValue = variable.RuntimeValue;
             InvokeOnChangeEvents(variable.RuntimeValue);

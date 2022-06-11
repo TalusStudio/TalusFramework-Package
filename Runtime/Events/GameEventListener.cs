@@ -1,6 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 
-using TalusFramework.Utility.Logging;
+using TalusFramework.Utility.Assertions;
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,22 +22,14 @@ namespace TalusFramework.Events
 
         private void OnEnable()
         {
-            if (GameEvent == null)
-            {
-                this.LogError("GameEvent reference is null!");
-                return;
-            }
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
 
             GameEvent.AddListener(this);
         }
 
         private void OnDisable()
         {
-            if (GameEvent == null)
-            {
-                this.LogError("GameEvent reference is null!");
-                return;
-            }
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
 
             GameEvent.RemoveListener(this);
         }

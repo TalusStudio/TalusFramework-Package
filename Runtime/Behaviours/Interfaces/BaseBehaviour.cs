@@ -12,7 +12,7 @@ namespace TalusFramework.Behaviours.Interfaces
         [TextArea(5, 10)]
         [SerializeField]
         [HideLabel]
-        private string _DeveloperDescription = "";
+        private string _DeveloperDescription = default;
 #pragma warning restore 0414
     }
 }

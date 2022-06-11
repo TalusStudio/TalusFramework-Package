@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Responses.Interfaces;
-using TalusFramework.Utility.Logging;
+using TalusFramework.Utility.Assertions;
 
 using UnityEngine.Events;
 
@@ -40,11 +40,10 @@ namespace TalusFramework.Variables.Interfaces
         {
             var variable = value as BaseValue<TPlainType>;
 
-            if (variable == null)
-            {
-                this.LogError("Type mismatch in " + name + ". Expected type:" + typeof(TPlainType));
-                return;
-            }
+            this.Assert(variable != null, $@"Type mismatch in {name}.
+                Expected: {typeof(TPlainType)}
+                Given: {value.GetType()}"
+            );
 
             if (RuntimeValue.Equals(variable.RuntimeValue))
             {

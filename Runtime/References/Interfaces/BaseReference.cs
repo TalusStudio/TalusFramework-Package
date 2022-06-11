@@ -1,11 +1,10 @@
-﻿using TalusFramework.Base;
-using TalusFramework.Utility.Logging;
+﻿using UnityEngine;
 
-using UnityEngine;
+using TalusFramework.Base;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.References.Interfaces
 {
-    // Can't get property drawer to work with generic arguments
     public abstract class BaseReference
     { }
 
@@ -38,17 +37,16 @@ namespace TalusFramework.References.Interfaces
                     return ConstantValue;
                 }
 
-                var value = Variable as BaseValue<TPlainType>;
-                if (value != null)
-                {
-                    return value.RuntimeValue;
-                }
+                Variable.Assert(Variable != null, $"{GetType()} value is null!");
 
-                Variable.LogError("Type mismatch in " + Variable.name + " reference, expected: " + typeof(TPlainType));
-                return default;
+                var value = Variable as BaseValue<TPlainType>;
+                Variable.Assert(value != null, $@"Type mismatch in {Variable.name} reference.
+                    Expected: {typeof(TPlainType)}
+                    Given: {Variable.GetType()}"
+                );
+
+                return value.RuntimeValue;
             }
         }
-
-        public override string ToString() => Value.ToString();
     }
 }
