@@ -26,10 +26,10 @@ namespace TalusFramework.Base
         [AssetsOnly]
         [SerializeField]
         private TPlainType _RuntimeValue;
-        public TPlainType RuntimeValue
+        public virtual TPlainType RuntimeValue
         {
             get => _RuntimeValue;
-            protected set => _RuntimeValue = value;
+            set => _RuntimeValue = value;
         }
 
         protected virtual void OnEnable()
