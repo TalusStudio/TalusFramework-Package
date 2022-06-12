@@ -17,27 +17,27 @@ namespace TalusFramework.Managers
     public class RuntimeDataManager : BaseSO, IInitializable
     {
         [FoldoutGroup("Initialization")]
-        [AssetSelector, Required]
+        [Required]
         public StringVariable NextLevel;
 
         [FoldoutGroup("Initialization")]
-        [AssetSelector, Required]
+        [Required]
         public StringVariable LevelText;
 
         [FoldoutGroup("Initialization")]
-        [AssetSelector, Required]
+        [Required]
         public StringConstant LevelCyclePref;
 
         [FoldoutGroup("Initialization")]
-        [AssetSelector, Required]
+        [Required]
         public StringConstant DisabledLevelCountPref;
 
         [FoldoutGroup("Initialization")]
-        [AssetSelector, Required]
+        [Required]
         public StringConstant DisabledLevelPref;
 
         [LabelWidth(100)]
-        [AssetSelector, Required]
+        [Required]
         public SceneCollection LevelCollection;
 
         public void Initialize()

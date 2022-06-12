@@ -34,7 +34,6 @@ namespace TalusFramework.Variables.Interfaces
         public UnityEvent<TPlainType> OnChangeEvent;
 
         [ToggleGroup("Responses")]
-        [AssetSelector]
         public List<BaseResponse> OnChangeResponses = new List<BaseResponse>();
 
         public virtual void SetValue(TPlainType value)
