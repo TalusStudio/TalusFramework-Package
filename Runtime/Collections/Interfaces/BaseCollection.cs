@@ -57,14 +57,6 @@ namespace TalusFramework.Collections.Interfaces
             }
         }
 
-        public void ResetAllValues(T value)
-        {
-            for (int i = Count - 1; i >= 0; i--)
-            {
-                Items[i] = value;
-            }
-        }
-
         public void Clear()
         {
             Items.Clear();
