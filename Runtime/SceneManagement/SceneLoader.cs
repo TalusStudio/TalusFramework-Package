@@ -12,6 +12,7 @@ using TalusFramework.Variables;
 
 namespace TalusFramework.SceneManagement
 {
+    [CreateAssetMenu(fileName = "New Scene Loader", menuName = "Others/Scene Loader", order = 1)]
     public class SceneLoader : BaseSO
     {
         [Button, DisableInEditorMode]
@@ -25,16 +26,7 @@ namespace TalusFramework.SceneManagement
         [Button, DisableInEditorMode]
         public async void RestartLevel()
         {
-            await LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
-        private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
-        {
-            // wait one frame.
-            await Task.Yield();
-
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
-            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+            await LoadScene(SceneManager.GetActiveScene().name);
         }
 
         private static async Task LoadScene(string scene, LoadSceneMode loadMode = LoadSceneMode.Single)
