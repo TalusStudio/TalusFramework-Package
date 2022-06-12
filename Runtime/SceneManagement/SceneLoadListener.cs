@@ -2,6 +2,7 @@
 
 using TalusFramework.Behaviours.Interfaces;
 using TalusFramework.Events;
+using TalusFramework.Utility.Assertions;
 
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,8 @@ namespace TalusFramework.SceneManagement
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
+            this.Assert(LevelLoadEvent != null, "Level Load Event is null!");
+
             LevelLoadEvent.Raise(scene.name);
         }
     }
