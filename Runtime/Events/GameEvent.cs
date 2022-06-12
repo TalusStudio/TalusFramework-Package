@@ -14,18 +14,13 @@ namespace TalusFramework.Events
     [CreateAssetMenu]
     public class GameEvent : BaseSO
     {
-        [ToggleGroup("Responses")]
-        public bool Responses;
-
-        [ToggleGroup("Responses")]
+        [FoldoutGroup("Responses")]
         [HideLabel]
         public List<BaseResponse> GlobalResponses = new List<BaseResponse>();
 
-        [ToggleGroup("Debugging")]
-        public bool Debugging;
-
-        [ToggleGroup("Debugging"), LabelWidth(60)]
-        [SerializeField, AssetSelector]
+        [FoldoutGroup("Debugging")]
+        [LabelWidth(50)]
+        [SerializeField]
         private Logger _Logger;
 
         public List<GameEventListener> Listeners => _Listeners;
@@ -36,8 +31,6 @@ namespace TalusFramework.Events
 
         public void Raise<T>(T arg)
         {
-            if (!Responses) { return; }
-
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponse response = GlobalResponses[i];
@@ -61,8 +54,6 @@ namespace TalusFramework.Events
         [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Raise()
         {
-            if (!Responses) { return; }
-
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponse response = GlobalResponses[i];
@@ -93,7 +84,7 @@ namespace TalusFramework.Events
                 _Listeners[i].OnEventRaised();
             }
 
-            if (Debugging && _Logger != null)
+            if (_Logger != null)
             {
                 _Logger.Log(name + " raised!", this);
             }
