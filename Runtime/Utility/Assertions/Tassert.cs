@@ -1,7 +1,6 @@
 using System.Diagnostics;
 
 using UnityEngine;
-using UnityEditor;
 
 using Object = UnityEngine.Object;
 using Debug = UnityEngine.Debug;
@@ -22,10 +21,12 @@ namespace TalusFramework.Utility.Assertions
         {
             Assert(condition, message, sender);
 
+#if UNITY_EDITOR
             if (!condition)
             {
-                EditorApplication.isPaused = Application.isEditor && !Application.isBatchMode;
+                UnityEditor.EditorApplication.isPaused = Application.isEditor && !Application.isBatchMode;
             }
+#endif
         }
     }
 }
