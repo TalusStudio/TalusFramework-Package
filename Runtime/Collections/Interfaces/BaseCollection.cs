@@ -65,14 +65,6 @@ namespace TalusFramework.Collections.Interfaces
             }
         }
 
-        public void ResetAllValuesToDefault()
-        {
-            for (int i = Count - 1; i >= 0; i--)
-            {
-                Items[i] = default;
-            }
-        }
-
         public void Clear()
         {
             Items.Clear();
