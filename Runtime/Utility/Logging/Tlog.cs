@@ -50,10 +50,5 @@ namespace TalusFramework.Utility.Logging
         {
             sender.Log(message, LogType.Warning);
         }
-
-        public static void LogAssert<T>(this T sender, string message) where T : Object
-        {
-            sender.Log(message, LogType.Assert);
-        }
     }
 }
