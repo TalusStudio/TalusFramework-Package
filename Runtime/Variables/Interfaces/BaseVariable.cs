@@ -60,22 +60,23 @@ namespace TalusFramework.Variables.Interfaces
                 OnChangeEvent?.Invoke(value);
             }
 
-            if (Responses)
-            {
-                for (int i = OnChangeResponses.Count - 1; i >= 0; i--)
-                {
-                    // catch dynamic response
-                    var response = OnChangeResponses[i] as Response<TPlainType>;
+            if (!Responses) { return; }
 
-                    if (response != null)
-                    {
-                        response.Send(value);
-                    }
-                    else // catch void responses.
-                    {
-                        OnChangeResponses[i].Send();
-                    }
+            for (int i = OnChangeResponses.Count - 1; i >= 0; i--)
+            {
+                var responseReference = OnChangeResponses[i];
+                this.Assert(responseReference != null, "There is an invalid response reference!");
+
+                // catch -> dynamic response
+                var response = responseReference as Response<TPlainType>;
+                if (response != null)
+                {
+                    response.Send(value);
+                    continue;
                 }
+
+                // catch -> void response
+                responseReference.Send();
             }
         }
     }

@@ -16,13 +16,14 @@ namespace TalusFramework.Base
     /// <typeparam name="TPlainType">Serializable type.</typeparam>
     public abstract class BaseValue<TPlainType> : BaseValue
     {
-        [LabelWidth(90), DisableInPlayMode]
+        [DisableInPlayMode]
+        [LabelWidth(90)]
         [AssetsOnly]
         [SerializeField]
         private TPlainType _Value;
         public TPlainType Value => _Value;
 
-        [LabelWidth(90), DisableInEditorMode]
+        [LabelWidth(90)]
         [AssetsOnly]
         [SerializeField]
         private TPlainType _RuntimeValue;
