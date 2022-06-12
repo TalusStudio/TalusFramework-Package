@@ -2,10 +2,13 @@
 - Scriptable Architecture. Ready to use behaviours, scriptable objects, utilities etc.
 
 # ❗ Requirements 
-- Unity 2020.3.9f1 
-- Odin Attributes
-- Odin Serialization
-- Text Mesh PRO
+- Unity 2020.3.9f1
+- [Git](https://git-scm.com/downloads)
+
+# ❗ Dependencies
+- [Odin Attributes](https://odininspector.com/)
+- [Odin Serialization](https://odininspector.com/)
+- Text Mesh PRO v3.0.6
 
 # 💿 Installation
 - In Unity,
