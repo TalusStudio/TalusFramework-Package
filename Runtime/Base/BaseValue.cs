@@ -39,7 +39,7 @@ namespace TalusFramework.Base
 
         public virtual void ResetRuntimeValue()
         {
-            RuntimeValue = _Value;
+            RuntimeValue = Value;
         }
     }
 }
