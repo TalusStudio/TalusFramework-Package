@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Responses.Interfaces;
-
-using UnityEngine;
-
 using Logger = TalusFramework.Utility.Logging.Logger;
 
 namespace TalusFramework.Events

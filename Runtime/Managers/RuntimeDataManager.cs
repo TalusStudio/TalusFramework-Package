@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-using Sirenix.OdinInspector;
-using TalusFramework.Constants;
-using TalusFramework.Variables;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+using Sirenix.OdinInspector;
+
 using TalusFramework.Base;
-using TalusFramework.Collections;
 using TalusFramework.Managers.Interfaces;
+using TalusFramework.Constants;
+using TalusFramework.Variables;
+using TalusFramework.Collections;
 
 namespace TalusFramework.Managers
 {
@@ -72,10 +73,10 @@ namespace TalusFramework.Managers
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
         private List<string> PlayableLevels => (
-                from scene in LevelCollection
-                where !DisabledLevels.Contains(scene.ScenePath)
-                select scene.ScenePath
-            ).ToList();
+            from scene in LevelCollection
+            where !DisabledLevels.Contains(scene.ScenePath)
+            select scene.ScenePath
+        ).ToList();
 
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))

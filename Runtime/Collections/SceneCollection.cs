@@ -1,7 +1,7 @@
+using UnityEngine;
+
 using TalusFramework.Collections.Interfaces;
 using TalusFramework.Utility;
-
-using UnityEngine;
 
 namespace TalusFramework.Collections
 {

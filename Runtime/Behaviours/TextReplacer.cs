@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using Sirenix.OdinInspector;
+
 using TalusFramework.Base;
 using TalusFramework.Behaviours.Interfaces;
 

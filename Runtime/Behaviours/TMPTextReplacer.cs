@@ -1,8 +1,8 @@
 using UnityEngine;
-
 using TMPro;
 
 using Sirenix.OdinInspector;
+
 using TalusFramework.Base;
 using TalusFramework.Behaviours.Interfaces;
 

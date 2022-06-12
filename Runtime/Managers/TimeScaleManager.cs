@@ -1,9 +1,9 @@
-﻿using Sirenix.OdinInspector;
+﻿using UnityEngine;
+
+using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Managers.Interfaces;
-
-using UnityEngine;
 
 namespace TalusFramework.Managers
 {

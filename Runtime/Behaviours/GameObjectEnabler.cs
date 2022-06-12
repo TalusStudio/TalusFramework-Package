@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 using Sirenix.OdinInspector;
+
 using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
