@@ -1,43 +1,26 @@
 ﻿using System.Threading.Tasks;
 
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Utility;
+using TalusFramework.Utility.Assertions;
 using TalusFramework.Variables;
-
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TalusFramework.SceneManagement
 {
     public class SceneLoader : BaseSO
     {
-#region LEVEL_LOADING
-        [Button, DisableInEditorMode]
-        public static async void LoadLevel(string scene)
-        {
-            await LoadScene(scene);
-        }
-
         [Button, DisableInEditorMode]
         public async void LoadLevel(StringVariable scene)
         {
+            this.Assert(scene.RuntimeValue != string.Empty, "There is an invalid scene reference!");
+
             await LoadScene(scene.RuntimeValue);
         }
-
-        [Button, DisableInEditorMode]
-        public static async void LoadLevel(int sceneIndex)
-        {
-            await LoadScene(sceneIndex);
-        }
-
-        [Button, DisableInEditorMode]
-        public async void LoadLevel(IntVariable sceneIndex)
-        {
-            await LoadScene(sceneIndex.RuntimeValue);
-        }
-#endregion
 
         [Button, DisableInEditorMode]
         public async void RestartLevel()
