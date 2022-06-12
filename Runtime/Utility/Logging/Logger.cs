@@ -1,6 +1,6 @@
-﻿using TalusFramework.Base;
+﻿using UnityEngine;
 
-using UnityEngine;
+using TalusFramework.Base;
 
 namespace TalusFramework.Utility.Logging
 {
@@ -8,14 +8,9 @@ namespace TalusFramework.Utility.Logging
     public class Logger : BaseSO
     {
         [Header("Settings")]
-        [SerializeField]
-        private bool _ShowLogs;
-
-        [SerializeField]
-        private string _Prefix;
-
-        [SerializeField]
-        private Color _PrefixColor;
+        [SerializeField] private bool _ShowLogs;
+        [SerializeField] private string _Prefix;
+        [SerializeField] private Color _PrefixColor;
 
         private string _HexColor;
 
@@ -28,7 +23,7 @@ namespace TalusFramework.Utility.Logging
         {
             if (!_ShowLogs) { return; }
 
-            sender.Log($"<color={_HexColor}>{_Prefix}: {message}</color>");
+            sender.Log($"<color={_HexColor}>{_Prefix}:</color> {message}");
         }
 
         public void Log(string message)
