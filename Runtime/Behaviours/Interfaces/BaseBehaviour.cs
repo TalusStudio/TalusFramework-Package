@@ -10,7 +10,7 @@ namespace TalusFramework.Behaviours.Interfaces
     public class BaseBehaviour : MonoBehaviour
     {
 #if UNITY_EDITOR
-        public Description Description;
+        public Description Description = default;
 #endif
     }
 }

@@ -9,7 +9,7 @@ namespace TalusFramework.Base
     public abstract class BaseSerializedSO : SerializedScriptableObject
     {
 #if UNITY_EDITOR
-        public Description Description;
+        public Description Description = default;
 #endif
     }
 }

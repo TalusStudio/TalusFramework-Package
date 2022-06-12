@@ -11,7 +11,7 @@ namespace TalusFramework.Base
     public abstract class BaseSO : ScriptableObject
     {
 #if UNITY_EDITOR
-        public Description Description;
+        public Description Description = default;
 #endif
     }
 }
