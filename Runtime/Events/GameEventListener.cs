@@ -20,6 +20,10 @@ namespace TalusFramework.Events
         [ValidateInput(nameof(ValidateResponseInput), "Response required!")]
         public UnityEvent Response;
 
+        [DisableInEditorMode]
+        [GUIColor(0, 1, 0)]
+        public void OnEventRaised() => Response?.Invoke();
+
         private void OnEnable()
         {
             this.Assert(GameEvent != null, "GameEvent reference is null!");
@@ -33,10 +37,6 @@ namespace TalusFramework.Events
 
             GameEvent.RemoveListener(this);
         }
-
-        [DisableInEditorMode]
-        [GUIColor(0, 1, 0)]
-        public void OnEventRaised() => Response?.Invoke();
 
         private bool ValidateResponseInput => Response.GetPersistentEventCount() > 0 && Response.GetPersistentTarget(0) != null;
     }

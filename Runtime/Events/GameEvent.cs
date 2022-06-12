@@ -25,7 +25,8 @@ namespace TalusFramework.Events
 
         public List<GameEventListener> Listeners => _Listeners;
 
-        [GUIColor(1f, 1f, 0.5f), HideInEditorMode]
+        [HideInEditorMode]
+        [GUIColor(1f, 1f, 0.5f)]
         [SerializeField, ReadOnly]
         private List<GameEventListener> _Listeners = new List<GameEventListener>();
 
