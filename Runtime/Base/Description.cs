@@ -13,7 +13,7 @@ namespace TalusFramework.Base
         [PropertyOrder(0)]
         [TextArea(5, 10)]
         [HideLabel]
-        public string Text;
+        public string Text = default;
 #pragma warning restore 0414
     }
 }
