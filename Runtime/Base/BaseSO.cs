@@ -10,11 +10,8 @@ namespace TalusFramework.Base
     [HideMonoScript]
     public abstract class BaseSO : ScriptableObject
     {
-#pragma warning disable 0414
-        [HideLabel, PropertyOrder(0), FoldoutGroup("Developer Description")]
-        [TextArea(5, 10)]
-        [SerializeField]
-        private string _DeveloperDescription = default;
-#pragma warning restore 0414
+#if UNITY_EDITOR
+        public Description Description;
+#endif
     }
 }

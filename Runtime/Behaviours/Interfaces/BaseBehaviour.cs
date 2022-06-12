@@ -2,17 +2,15 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
+using TalusFramework.Base;
+
 namespace TalusFramework.Behaviours.Interfaces
 {
     [HideMonoScript]
     public class BaseBehaviour : MonoBehaviour
     {
-#pragma warning disable 0414
-        [FoldoutGroup("Developer Description")]
-        [TextArea(5, 10)]
-        [SerializeField]
-        [HideLabel]
-        private string _DeveloperDescription = default;
-#pragma warning restore 0414
+#if UNITY_EDITOR
+        public Description Description;
+#endif
     }
 }
