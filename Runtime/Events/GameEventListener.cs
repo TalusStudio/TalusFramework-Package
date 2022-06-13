@@ -9,7 +9,5 @@ namespace TalusFramework.Events
     [HideMonoScript]
     [AddComponentMenu("TalusFramework/Events/GameEventListener", 0)]
     public class GameEventListener : BaseGameEventListener
-    {
-
-    }
+    { }
 }
