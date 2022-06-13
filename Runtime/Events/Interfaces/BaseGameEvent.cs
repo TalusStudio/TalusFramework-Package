@@ -35,11 +35,11 @@ namespace TalusFramework.Events.Interfaces
         private readonly List<IGameEventListener<T>> _Listeners = new List<IGameEventListener<T>>();
 
         [Button]
-        public void Raise(T param)
+        public void Raise(T parameter)
         {
             for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
-                _Listeners[i].Send(param);
+                _Listeners[i].Send(parameter);
             }
         }
 

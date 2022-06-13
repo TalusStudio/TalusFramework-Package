@@ -11,6 +11,6 @@ namespace TalusFramework.Events.Interfaces
     {
         public void AddListener(IGameEventListener<T> listener);
         public void RemoveListener(IGameEventListener<T> listener);
-        public void Raise(T param);
+        public void Raise(T parameter);
     }
 }
