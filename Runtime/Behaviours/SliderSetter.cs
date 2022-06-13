@@ -8,7 +8,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/SliderSetter", 6)]
+    [AddComponentMenu("TalusFramework/Behaviours/Slider Setter", 6)]
     [ExecuteInEditMode]
     public class SliderSetter : BaseBehaviour
     {

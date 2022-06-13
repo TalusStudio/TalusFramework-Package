@@ -8,7 +8,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/ObjectCreator", 5)]
+    [AddComponentMenu("TalusFramework/Behaviours/Object Creator", 5)]
     public class ObjectCreator : BaseBehaviour
     {
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]

@@ -8,7 +8,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/ImageFillSetter", 4)]
+    [AddComponentMenu("TalusFramework/Behaviours/Image Fill Setter", 4)]
     public class ImageFillSetter : BaseBehaviour
     {
         [Tooltip("Image to set the fill amount on.")]

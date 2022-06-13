@@ -5,7 +5,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/UnityCallbacks", 9)]
+    [AddComponentMenu("TalusFramework/Behaviours/Unity Callbacks", 9)]
     public class UnityCallbacks : BaseBehaviour
     {
         public UnityEvent OnAwakeEvent;

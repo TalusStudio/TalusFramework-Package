@@ -8,7 +8,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/TMPTextReplacer", 8)]
+    [AddComponentMenu("TalusFramework/Behaviours/TMP Text Replacer", 8)]
     public class TMPTextReplacer : BaseBehaviour
     {
         [LabelWidth(80)]

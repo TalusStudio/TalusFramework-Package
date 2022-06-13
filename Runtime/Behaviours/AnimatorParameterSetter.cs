@@ -11,7 +11,7 @@ namespace TalusFramework.Behaviours
     ///     Takes a reference and sends its value to an Animator parameter
     ///     every frame on Update.
     /// </summary>
-    [AddComponentMenu("TalusFramework/Behaviours/AnimatorParameterSetter", 0)]
+    [AddComponentMenu("TalusFramework/Behaviours/Animator Parameter Setter", 0)]
     public class AnimatorParameterSetter : BaseBehaviour
     {
         public enum AnimatorParameterType

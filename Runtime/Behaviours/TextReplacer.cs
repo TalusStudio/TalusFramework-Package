@@ -8,7 +8,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/TextReplacer", 7)]
+    [AddComponentMenu("TalusFramework/Behaviours/Text Replacer", 7)]
     public class TextReplacer : BaseBehaviour
     {
         [LabelWidth(80)]

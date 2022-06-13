@@ -6,7 +6,7 @@ using TalusFramework.Behaviours.Interfaces;
 
 namespace TalusFramework.Behaviours
 {
-    [AddComponentMenu("TalusFramework/Behaviours/GameObjectEnabler", 3)]
+    [AddComponentMenu("TalusFramework/Behaviours/GameObject Enabler", 3)]
     public class GameObjectEnabler : BaseBehaviour
     {
         [LabelWidth(90)]
