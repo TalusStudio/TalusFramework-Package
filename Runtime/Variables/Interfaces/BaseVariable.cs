@@ -14,7 +14,7 @@ namespace TalusFramework.Variables.Interfaces
             get => base.RuntimeValue;
             set
             {
-                if (base.RuntimeValue != null || base.RuntimeValue.Equals(value)) { return; }
+                if (base.RuntimeValue != null && base.RuntimeValue.Equals(value)) { return; }
 
                 base.RuntimeValue = value;
                 InvokeOnChangeEvents(value);
