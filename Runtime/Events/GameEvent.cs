@@ -30,18 +30,18 @@ namespace TalusFramework.Events
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
-                BaseResponse response = GlobalResponses[i];
-                var dynamicResponse = response as Response<T>;
+                BaseResponse voidResponse = GlobalResponses[i];
+                var dynamicResponse = voidResponse as Response<T>;
 
-                // capture dynamic responses.
+                // send dynamics
                 if (dynamicResponse != null)
                 {
                     dynamicResponse.Send(arg);
+                    continue;
                 }
-                else // capture void responses.
-                {
-                    response.Send();
-                }
+
+                // send voids
+                voidResponse.Send();
             }
 
             RaiseEvent();
@@ -53,8 +53,8 @@ namespace TalusFramework.Events
         {
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
-                BaseResponse response = GlobalResponses[i];
-                response.Send();
+                BaseResponse voidResponse = GlobalResponses[i];
+                voidResponse.Send();
             }
 
             RaiseEvent();
@@ -62,14 +62,20 @@ namespace TalusFramework.Events
 
         public void AddListener(IGameEventListener listener)
         {
-            if (_Listeners.Contains(listener)) { return; }
+            if (_Listeners.Contains(listener))
+            {
+                return;
+            }
 
             _Listeners.Add(listener);
         }
 
         public void RemoveListener(IGameEventListener listener)
         {
-            if (!_Listeners.Contains(listener)) { return; }
+            if (!_Listeners.Contains(listener))
+            {
+                return;
+            }
 
             _Listeners.Remove(listener);
         }
