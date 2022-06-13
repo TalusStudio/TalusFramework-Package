@@ -8,7 +8,6 @@ using Sirenix.OdinInspector;
 using TalusFramework.Base;
 using TalusFramework.Utility;
 using TalusFramework.Utility.Assertions;
-using TalusFramework.Variables;
 
 namespace TalusFramework.SceneManagement
 {
@@ -16,11 +15,11 @@ namespace TalusFramework.SceneManagement
     public class SceneLoader : BaseSO
     {
         [Button, DisableInEditorMode]
-        public async void LoadLevel(StringVariable scene)
+        public async void LoadLevel(SceneReference scene)
         {
-            this.Assert(scene.RuntimeValue != string.Empty, "There is an invalid scene reference!");
+            this.Assert(!scene.IsEmpty, "There is an invalid scene reference!");
 
-            await LoadScene(scene.RuntimeValue);
+            await LoadScene(scene.ScenePath);
         }
 
         [Button, DisableInEditorMode]
