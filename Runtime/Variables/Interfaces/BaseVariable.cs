@@ -12,7 +12,7 @@ namespace TalusFramework.Variables.Interfaces
         public override TPlainType RuntimeValue
         {
             get => base.RuntimeValue;
-            set
+            protected set
             {
                 if (base.RuntimeValue != null && base.RuntimeValue.Equals(value)) { return; }
 

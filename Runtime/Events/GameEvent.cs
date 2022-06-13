@@ -31,9 +31,9 @@ namespace TalusFramework.Events
             for (int i = GlobalResponses.Count - 1; i >= 0; i--)
             {
                 BaseResponse voidResponse = GlobalResponses[i];
-                var dynamicResponse = voidResponse as Response<T>;
 
                 // send dynamics
+                var dynamicResponse = voidResponse as Response<T>;
                 if (dynamicResponse != null)
                 {
                     dynamicResponse.Send(arg);
