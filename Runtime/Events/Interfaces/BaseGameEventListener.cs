@@ -3,56 +3,66 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Utility.Assertions;
+using UnityEngine.Events;
 
 namespace TalusFramework.Events.Interfaces
 {
     [HideMonoScript]
     public abstract class BaseGameEventListener : MonoBehaviour, IGameEventListener
     {
-        public EventResponsePair Pair;
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
+        [Required]
+        public VoidEvent GameEvent;
+        public UnityEvent Response;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
         public void Send()
         {
-            Pair.Response?.Invoke();
+            Response?.Invoke();
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-            Pair.GameEvent.AddListener(this);
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-            Pair.GameEvent.RemoveListener(this);
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            GameEvent.RemoveListener(this);
         }
     }
 
     [HideMonoScript]
-    public abstract class BaseGameEventListener<T> : MonoBehaviour, IGameEventListener<T>
+    public abstract class BaseGameEventListener<TPlainType, TEventType> : MonoBehaviour, IGameEventListener<TPlainType>
+        where TEventType : IGameEvent<TPlainType>
     {
-        public EventResponsePair<T> Pair;
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
+        [Required]
+        public TEventType GameEvent;
+        public UnityEvent<TPlainType> Response;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
-        public void Send(T param)
+        public void Send(TPlainType param)
         {
-            Pair.Response?.Invoke(param);
+            Response?.Invoke(param);
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-            Pair.GameEvent.AddListener(this);
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-            Pair.GameEvent.RemoveListener(this);
+            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            GameEvent.RemoveListener(this);
         }
     }
 }
