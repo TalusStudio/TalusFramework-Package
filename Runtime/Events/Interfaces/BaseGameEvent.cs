@@ -14,7 +14,8 @@ namespace TalusFramework.Events.Interfaces
     {
         private readonly List<IGameEventListener> _Listeners = new List<IGameEventListener>();
 
-        [Button]
+        [GUIColor(0f, 1f, 0f)]
+        [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Raise()
         {
             for (int i = _Listeners.Count - 1; i >= 0; i--)
@@ -37,7 +38,8 @@ namespace TalusFramework.Events.Interfaces
     {
         private readonly List<IGameEventListener<T>> _Listeners = new List<IGameEventListener<T>>();
 
-        [Button]
+        [GUIColor(0f, 1f, 0f)]
+        [Button, DisableInEditorMode]
         public void Raise(T parameter)
         {
             for (int i = _Listeners.Count - 1; i >= 0; i--)
