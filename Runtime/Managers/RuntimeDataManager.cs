@@ -11,15 +11,15 @@ using TalusFramework.Managers.Interfaces;
 using TalusFramework.Constants;
 using TalusFramework.Variables;
 using TalusFramework.Collections;
+using TalusFramework.Utility;
 
 namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitializable
     {
-        [FoldoutGroup("Initialization")]
         [Required]
-        public StringVariable NextLevel;
+        public SceneVariable NextLevel;
 
         [FoldoutGroup("Initialization")]
         [Required]
@@ -66,7 +66,7 @@ namespace TalusFramework.Managers
         private void UpdateGameData()
         {
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-            NextLevel.SetValue(PlayableLevels[Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
+            NextLevel.SetValue(new SceneReference(PlayableLevels[Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]));
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
