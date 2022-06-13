@@ -1,15 +1,12 @@
 namespace TalusFramework.Events.Interfaces
 {
-    public interface IListener
-    { }
-
-    public interface IGameEventListener : IListener
+    public interface IGameEventListener
     {
         public void Send();
     }
 
-    public interface IGameEventListener<T> : IListener
+    public interface IGameEventListener<T>
     {
-        public void Send(T param);
+        public void Send(T parameter);
     }
 }

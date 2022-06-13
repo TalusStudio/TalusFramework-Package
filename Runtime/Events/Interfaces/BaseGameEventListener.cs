@@ -1,8 +1,8 @@
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Utility.Assertions;
-
-using UnityEngine;
 using UnityEngine.Events;
 
 namespace TalusFramework.Events.Interfaces
@@ -10,12 +10,10 @@ namespace TalusFramework.Events.Interfaces
     [HideMonoScript]
     public abstract class BaseGameEventListener : MonoBehaviour, IGameEventListener
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
         [Required]
-        public GameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
+        public VoidEvent GameEvent;
         public UnityEvent Response;
 
         [DisableInEditorMode]
@@ -28,32 +26,29 @@ namespace TalusFramework.Events.Interfaces
         protected virtual void OnEnable()
         {
             this.Assert(GameEvent != null, "GameEvent reference is null!");
-
             GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
             this.Assert(GameEvent != null, "GameEvent reference is null!");
-
             GameEvent.RemoveListener(this);
         }
     }
 
     [HideMonoScript]
-    public abstract class BaseGameEventListener<T> : MonoBehaviour, IGameEventListener<T>
+    public abstract class BaseGameEventListener<TPlainType, TEventType> : MonoBehaviour, IGameEventListener<TPlainType>
+        where TEventType : IGameEvent<TPlainType>
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
         [Required]
-        public GameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent<T> Response;
+        public TEventType GameEvent;
+        public UnityEvent<TPlainType> Response;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
-        public void Send(T param)
+        public void Send(TPlainType param)
         {
             Response?.Invoke(param);
         }
@@ -61,14 +56,12 @@ namespace TalusFramework.Events.Interfaces
         protected virtual void OnEnable()
         {
             this.Assert(GameEvent != null, "GameEvent reference is null!");
-
             GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
             this.Assert(GameEvent != null, "GameEvent reference is null!");
-
             GameEvent.RemoveListener(this);
         }
     }
