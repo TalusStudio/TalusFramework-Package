@@ -5,6 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
+using TalusFramework.Events.Interfaces;
 using TalusFramework.Responses.Interfaces;
 using Logger = TalusFramework.Utility.Logging.Logger;
 
@@ -22,12 +23,8 @@ namespace TalusFramework.Events
         [SerializeField]
         private Logger _Logger;
 
-        public List<GameEventListener> Listeners => _Listeners;
-
-        [HideInEditorMode]
-        [GUIColor(1f, 1f, 0.5f)]
-        [SerializeField, ReadOnly]
-        private List<GameEventListener> _Listeners = new List<GameEventListener>();
+        public List<IGameEventListener> Listeners => _Listeners;
+        private readonly List<IGameEventListener> _Listeners = new List<IGameEventListener>();
 
         public void Raise<T>(T arg)
         {
@@ -63,14 +60,14 @@ namespace TalusFramework.Events
             RaiseEvent();
         }
 
-        public void AddListener(GameEventListener listener)
+        public void AddListener(IGameEventListener listener)
         {
             if (_Listeners.Contains(listener)) { return; }
 
             _Listeners.Add(listener);
         }
 
-        public void RemoveListener(GameEventListener listener)
+        public void RemoveListener(IGameEventListener listener)
         {
             if (!_Listeners.Contains(listener)) { return; }
 
