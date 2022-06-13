@@ -21,14 +21,12 @@ namespace TalusFramework.Events.Interfaces
         protected virtual void OnEnable()
         {
             this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-
             Pair.GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
             this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-
             Pair.GameEvent.RemoveListener(this);
         }
     }
@@ -48,21 +46,13 @@ namespace TalusFramework.Events.Interfaces
         protected virtual void OnEnable()
         {
             this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-
-            var gameEventType = Pair.GameEvent as BaseGameEvent<T>;
-            this.Assert(gameEventType != null, "Event type mis-match!");
-
-            gameEventType.AddListener(this);
+            Pair.GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
             this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
-
-            var gameEventType = Pair.GameEvent as BaseGameEvent<T>;
-            this.Assert(gameEventType != null, "Event type mis-match!");
-
-            gameEventType.RemoveListener(this);
+            Pair.GameEvent.RemoveListener(this);
         }
     }
 }
