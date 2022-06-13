@@ -1,9 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 using Sirenix.OdinInspector;
 
 using TalusFramework.Utility.Assertions;
-using UnityEngine.Events;
 
 namespace TalusFramework.Events.Interfaces
 {
