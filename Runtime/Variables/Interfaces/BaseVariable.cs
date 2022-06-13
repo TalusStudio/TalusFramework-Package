@@ -27,14 +27,8 @@ namespace TalusFramework.Variables.Interfaces
         [ToggleGroup("UnityEvents")]
         public bool UnityEvents;
 
-        [ToggleGroup("Responses")]
-        public bool Responses;
-
         [ToggleGroup("UnityEvents")]
         public UnityEvent<TPlainType> OnChangeEvent;
-
-        [ToggleGroup("Responses")]
-        public List<BaseResponse> OnChangeResponses = new List<BaseResponse>();
 
         public virtual void SetValue(TPlainType value)
         {
@@ -58,25 +52,6 @@ namespace TalusFramework.Variables.Interfaces
             if (UnityEvents)
             {
                 OnChangeEvent?.Invoke(value);
-            }
-
-            if (!Responses) { return; }
-
-            for (int i = OnChangeResponses.Count - 1; i >= 0; i--)
-            {
-                var responseReference = OnChangeResponses[i];
-                this.Assert(responseReference != null, "There is an invalid response reference!");
-
-                // catch -> dynamic response
-                var response = responseReference as Response<TPlainType>;
-                if (response != null)
-                {
-                    response.Send(value);
-                    continue;
-                }
-
-                // catch -> void response
-                responseReference.Send();
             }
         }
     }
