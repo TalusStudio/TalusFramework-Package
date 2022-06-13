@@ -20,6 +20,7 @@ namespace TalusFramework.Base
         [LabelWidth(90)]
         [AssetsOnly]
         [SerializeField]
+        [OnValueChanged(nameof(ResetRuntimeValue))]
         private TPlainType _Value;
         public TPlainType Value => _Value;
 
