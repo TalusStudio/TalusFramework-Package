@@ -18,9 +18,6 @@ namespace TalusFramework.Managers
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitializable
     {
-        [Required]
-        public SceneVariable NextLevel;
-
         [FoldoutGroup("Initialization")]
         [Required]
         public StringVariable LevelText;
@@ -36,6 +33,10 @@ namespace TalusFramework.Managers
         [FoldoutGroup("Initialization")]
         [Required]
         public StringConstant DisabledLevelPref;
+
+        [LabelWidth(100)]
+        [Required]
+        public SceneVariable NextLevel;
 
         [LabelWidth(100)]
         [Required]
