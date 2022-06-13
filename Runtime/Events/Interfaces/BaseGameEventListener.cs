@@ -1,16 +1,15 @@
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Utility.Assertions;
-
-using UnityEngine;
-using UnityEngine.Events;
 
 namespace TalusFramework.Events.Interfaces
 {
     [HideMonoScript]
     public abstract class BaseGameEventListener : MonoBehaviour, IGameEventListener
     {
-        public GameEventPair Pair;
+        public EventResponsePair Pair;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
@@ -37,7 +36,7 @@ namespace TalusFramework.Events.Interfaces
     [HideMonoScript]
     public abstract class BaseGameEventListener<T> : MonoBehaviour, IGameEventListener<T>
     {
-        public GameEventPair<T> Pair;
+        public EventResponsePair<T> Pair;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
@@ -65,29 +64,5 @@ namespace TalusFramework.Events.Interfaces
 
             gameEventType.RemoveListener(this);
         }
-    }
-
-    [System.Serializable]
-    [HideLabel]
-    public class GameEventPair
-    {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [Required]
-        public BaseGameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent Response;
-    }
-
-    [System.Serializable]
-    [HideLabel]
-    public class GameEventPair<T>
-    {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [Required]
-        public BaseGameEvent<T> GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent<T> Response;
     }
 }
