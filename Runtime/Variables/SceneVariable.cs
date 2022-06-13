@@ -15,11 +15,10 @@ namespace TalusFramework.Variables
             get => base.RuntimeValue;
             protected set
             {
-                if (!base.RuntimeValue.IsEmpty && !base.RuntimeValue.Equals(value))
-                {
-                    base.RuntimeValue = new SceneReference(value);
-                    InvokeOnChangeEvents(base.RuntimeValue);
-                }
+                if (!base.RuntimeValue.IsEmpty && base.RuntimeValue.Equals(value)) { return; }
+
+                base.RuntimeValue = value;
+                InvokeOnChangeEvents(value);
             }
         }
 
