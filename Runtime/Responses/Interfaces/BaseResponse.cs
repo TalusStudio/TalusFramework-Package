@@ -1,5 +1,4 @@
 ﻿using TalusFramework.Base;
-using TalusFramework.References.Interfaces;
 
 namespace TalusFramework.Responses.Interfaces
 {
