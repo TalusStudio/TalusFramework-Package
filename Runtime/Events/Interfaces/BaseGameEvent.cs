@@ -50,7 +50,7 @@ namespace TalusFramework.Events.Interfaces
     /// <summary>
     ///     Helper class to populate listeners
     /// </summary>
-    public class EventUtility
+    internal class EventUtility
     {
         public static void AddListener<TContainer, TListener>(TContainer container, TListener listener)
             where TContainer : ICollection<TListener>
