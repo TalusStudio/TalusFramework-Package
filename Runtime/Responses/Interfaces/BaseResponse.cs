@@ -8,11 +8,8 @@ namespace TalusFramework.Responses.Interfaces
         public abstract void Send();
     }
 
-    public abstract class BaseResponse<T> : BaseResponse
+    public abstract class BaseResponse<T> : BaseSO
     {
-        protected abstract BaseReference<T> Argument { get; }
-
-        public override void Send() { Send(Argument.Value); }
         public abstract void Send(T argument);
     }
 }
