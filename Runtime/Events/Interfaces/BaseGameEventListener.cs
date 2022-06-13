@@ -10,66 +10,84 @@ namespace TalusFramework.Events.Interfaces
     [HideMonoScript]
     public abstract class BaseGameEventListener : MonoBehaviour, IGameEventListener
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
-        [Required]
-        public GameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent Response;
+        public GameEventPair Pair;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
         public void Send()
         {
-            Response?.Invoke();
+            Pair.Response?.Invoke();
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
 
-            GameEvent.AddListener(this);
+            Pair.GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
 
-            GameEvent.RemoveListener(this);
+            Pair.GameEvent.RemoveListener(this);
         }
     }
 
     [HideMonoScript]
     public abstract class BaseGameEventListener<T> : MonoBehaviour, IGameEventListener<T>
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
-        [Required]
-        public GameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent<T> Response;
+        public GameEventPair<T> Pair;
 
         [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
         public void Send(T param)
         {
-            Response?.Invoke(param);
+            Pair.Response?.Invoke(param);
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
 
-            GameEvent.AddListener(this);
+            var gameEventType = Pair.GameEvent as BaseGameEvent<T>;
+            this.Assert(gameEventType != null, "Event type mis-match!");
+
+            gameEventType.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(Pair.GameEvent != null, "GameEvent reference is null!");
 
-            GameEvent.RemoveListener(this);
+            var gameEventType = Pair.GameEvent as BaseGameEvent<T>;
+            this.Assert(gameEventType != null, "Event type mis-match!");
+
+            gameEventType.RemoveListener(this);
         }
+    }
+
+    [System.Serializable]
+    [HideLabel]
+    public class GameEventPair
+    {
+        [Tooltip("Event to register with."), LabelWidth(75)]
+        [Required]
+        public BaseGameEvent GameEvent;
+
+        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
+        public UnityEvent Response;
+    }
+
+    [System.Serializable]
+    [HideLabel]
+    public class GameEventPair<T>
+    {
+        [Tooltip("Event to register with."), LabelWidth(75)]
+        [Required]
+        public BaseGameEvent<T> GameEvent;
+
+        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
+        public UnityEvent<T> Response;
     }
 }
