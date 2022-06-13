@@ -12,7 +12,7 @@ using Logger = TalusFramework.Utility.Logging.Logger;
 namespace TalusFramework.Events
 {
     [CreateAssetMenu]
-    public class GameEvent : BaseSO
+    public class GameEvent : BaseSO, IGameEvent
     {
         [FoldoutGroup("Responses")]
         [HideLabel]
@@ -23,8 +23,8 @@ namespace TalusFramework.Events
         [SerializeField]
         private Logger _Logger;
 
-        public List<IGameEventListener> Listeners => _Listeners;
-        private readonly List<IGameEventListener> _Listeners = new List<IGameEventListener>();
+        public List<IListener> Listeners => _Listeners;
+        private readonly List<IListener> _Listeners = new List<IListener>();
 
         public void Raise<T>(T arg)
         {
@@ -60,7 +60,7 @@ namespace TalusFramework.Events
             RaiseEvent();
         }
 
-        public void AddListener(IGameEventListener listener)
+        public void AddListener(IListener listener)
         {
             if (_Listeners.Contains(listener))
             {
@@ -70,7 +70,7 @@ namespace TalusFramework.Events
             _Listeners.Add(listener);
         }
 
-        public void RemoveListener(IGameEventListener listener)
+        public void RemoveListener(IListener listener)
         {
             if (!_Listeners.Contains(listener))
             {
@@ -84,7 +84,8 @@ namespace TalusFramework.Events
         {
             for (int i = _Listeners.Count - 1; i >= 0; i--)
             {
-                _Listeners[i].OnEventRaised();
+                var listener = _Listeners[i] as IGameEventListener;
+                listener.Send();
             }
 
             if (_Logger != null)
