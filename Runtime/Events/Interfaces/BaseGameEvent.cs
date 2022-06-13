@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
+using Logger = TalusFramework.Utility.Logging.Logger;
 
 namespace TalusFramework.Events.Interfaces
 {
     /// <summary>
     ///     Base Void GameEvent
     /// </summary>
-    public abstract class BaseGameEvent : BaseSO, IGameEvent
+    public abstract class BaseGameEvent : BaseEvent, IGameEvent
     {
         private readonly List<IGameEventListener> _Listeners = new List<IGameEventListener>();
 
@@ -20,6 +21,8 @@ namespace TalusFramework.Events.Interfaces
             {
                 _Listeners[i].Send();
             }
+
+            EventUtility.LogEvent(Logger, $"{name} raised!");
         }
 
         public void AddListener(IGameEventListener listener) => EventUtility.AddListener(_Listeners, listener);
@@ -30,7 +33,7 @@ namespace TalusFramework.Events.Interfaces
     ///     Base Typed GameEvent
     /// </summary>
     /// <typeparam name="T">Type</typeparam>
-    public abstract class BaseGameEvent<T> : BaseSO, IGameEvent<T>
+    public abstract class BaseGameEvent<T> : BaseEvent, IGameEvent<T>
     {
         private readonly List<IGameEventListener<T>> _Listeners = new List<IGameEventListener<T>>();
 
@@ -41,6 +44,8 @@ namespace TalusFramework.Events.Interfaces
             {
                 _Listeners[i].Send(parameter);
             }
+
+            EventUtility.LogEvent(Logger, $"{name} raised!");
         }
 
         public void AddListener(IGameEventListener<T> listener) => EventUtility.AddListener(_Listeners, listener);
@@ -72,6 +77,16 @@ namespace TalusFramework.Events.Interfaces
             }
 
             container.Remove(listener);
+        }
+
+        public static void LogEvent<T>(T logger, string message) where T : Logger
+        {
+            if (logger == null)
+            {
+                return;
+            }
+
+            logger.Log(message);
         }
     }
 }
