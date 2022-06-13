@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine.Events;
 
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
-using TalusFramework.Responses.Interfaces;
 using TalusFramework.Utility.Assertions;
-
-using UnityEngine.Events;
 
 namespace TalusFramework.Variables.Interfaces
 {
@@ -15,7 +12,7 @@ namespace TalusFramework.Variables.Interfaces
         public override TPlainType RuntimeValue
         {
             get => base.RuntimeValue;
-            set
+            protected set
             {
                 if (base.RuntimeValue != null && base.RuntimeValue.Equals(value)) { return; }
 
@@ -24,10 +21,10 @@ namespace TalusFramework.Variables.Interfaces
             }
         }
 
-        [ToggleGroup("UnityEvents")]
+        [ToggleGroup(nameof(UnityEvents))]
         public bool UnityEvents;
 
-        [ToggleGroup("UnityEvents")]
+        [ToggleGroup(nameof(UnityEvents))]
         public UnityEvent<TPlainType> OnChangeEvent;
 
         public virtual void SetValue(TPlainType value)
@@ -49,10 +46,12 @@ namespace TalusFramework.Variables.Interfaces
 
         protected void InvokeOnChangeEvents(TPlainType value)
         {
-            if (UnityEvents)
+            if (!UnityEvents)
             {
-                OnChangeEvent?.Invoke(value);
+                return;
             }
+
+            OnChangeEvent?.Invoke(value);
         }
     }
 }

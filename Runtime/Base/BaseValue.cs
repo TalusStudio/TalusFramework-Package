@@ -31,7 +31,7 @@ namespace TalusFramework.Base
         public virtual TPlainType RuntimeValue
         {
             get => _RuntimeValue;
-            set => _RuntimeValue = value;
+            protected set => _RuntimeValue = value;
         }
 
         protected virtual void OnEnable()

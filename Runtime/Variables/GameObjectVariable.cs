@@ -12,7 +12,7 @@ namespace TalusFramework.Variables
         public override GameObject RuntimeValue
         {
             get => base.RuntimeValue;
-            set
+            protected set
             {
                 if (!ReferenceEquals(RuntimeValue, value))
                 {
