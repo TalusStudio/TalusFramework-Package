@@ -16,7 +16,7 @@ using TalusFramework.Utility;
 namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
-    public class RuntimeDataManager : BaseSO, IInitializable
+    public class RuntimeDataManager : BaseSO, IInitable
     {
         [FoldoutGroup("Initialization")]
         [Required]

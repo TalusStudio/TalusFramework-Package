@@ -1,6 +1,6 @@
 ﻿namespace TalusFramework.Managers.Interfaces
 {
-    public interface IInitializable
+    public interface IInitable
     {
         void Initialize();
     }

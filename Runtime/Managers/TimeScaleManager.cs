@@ -8,7 +8,7 @@ using TalusFramework.Managers.Interfaces;
 namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New TimeScale Manager", menuName = "Managers/TimeScale Manager", order = 3)]
-    public class TimeScaleManager : BaseSO, IInitializable
+    public class TimeScaleManager : BaseSO, IInitable
     {
         public void Initialize()
         { }

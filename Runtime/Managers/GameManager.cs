@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 
+using UnityEngine;
+
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
 using TalusFramework.Base;
 using TalusFramework.Managers.Interfaces;
 
-using UnityEngine;
-
 namespace TalusFramework.Managers
 {
     [CreateAssetMenu(fileName = "New Game Manager", menuName = "Managers/Game Manager", order = 0)]
-    public class GameManager : BaseSerializedSO, IInitializable
+    public class GameManager : BaseSerializedSO, IInitable
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()
@@ -21,7 +21,7 @@ namespace TalusFramework.Managers
 
         [Required]
         [OdinSerialize]
-        private readonly List<IInitializable> _Initializables = new List<IInitializable>();
+        private readonly List<IInitable> _Initializables = new List<IInitable>();
 
         public void Initialize()
         {
