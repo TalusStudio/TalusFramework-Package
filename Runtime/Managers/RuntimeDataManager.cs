@@ -55,12 +55,10 @@ namespace TalusFramework.Managers
 
         public void DisableCurrentLevel()
         {
-            if (DisabledLevels.Contains(SceneManager.GetActiveScene().path))
-            {
-                return;
-            }
+            string currentScenePath = SceneManager.GetActiveScene().path;
+            if (DisabledLevels.Contains(currentScenePath)) { return; }
 
-            PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, SceneManager.GetActiveScene().path);
+            PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, currentScenePath);
             PlayerPrefs.SetInt(DisabledLevelCountPref.RuntimeValue, DisabledLevelCount + 1);
         }
 
