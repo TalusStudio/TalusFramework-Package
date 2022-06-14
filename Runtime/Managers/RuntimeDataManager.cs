@@ -31,13 +31,13 @@ namespace TalusFramework.Managers
 
         public void Initialize()
         {
-            UpdateGameData();
+            RefreshLevelData();
         }
 
         public void LevelUp()
         {
             PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
-            UpdateGameData();
+            RefreshLevelData();
         }
 
         public void DisableCurrentLevel()
@@ -49,7 +49,7 @@ namespace TalusFramework.Managers
             PlayerPrefs.SetInt(DisabledLevelCountPref.RuntimeValue, DisabledLevelCount + 1);
         }
 
-        private void UpdateGameData()
+        private void RefreshLevelData()
         {
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
             NextLevel.SetValue(new SceneReference(LevelCollection[
