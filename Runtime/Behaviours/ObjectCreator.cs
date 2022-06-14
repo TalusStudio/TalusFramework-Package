@@ -26,7 +26,7 @@ namespace TalusFramework.Behaviours
         public bool CreateAsChild;
 
         [FoldoutGroup("Properties")]
-        [Tooltip("GameObject gonna marked as DontDestroyOnLoad"), LabelWidth(95)]
+        [Tooltip("GameObject gonna be persistent between Scenes."), LabelWidth(95)]
         [ValidateInput(nameof(ValidateDestroyInput), ValidationMessage)]
         public bool DontDestroy;
 
