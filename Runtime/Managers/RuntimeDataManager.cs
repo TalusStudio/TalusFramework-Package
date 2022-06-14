@@ -57,8 +57,9 @@ namespace TalusFramework.Managers
 
         private void RefreshLevelData()
         {
-            this.Assert(LevelText != null, $"{nameof(LevelText)} reference is null!");
+            this.Assert(LevelCollection != null, $"{nameof(LevelCollection)} reference is null!");
             this.Assert(NextLevel != null, $"{nameof(NextLevel)} reference is null!");
+            this.Assert(LevelText != null, $"{nameof(LevelText)} reference is null!");
 
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
             NextLevel.SetValue(new SceneReference(LevelCollection[
