@@ -9,7 +9,7 @@ namespace TalusFramework.Editor.CodeGenerator
     /// <summary>
     ///     imported : https://github.com/DanielEverland/ScriptableObject-Architecture
     /// </summary>
-    public static class CodeGenerator
+    internal static class CodeGenerator
     {
         private const string _DefaultTemplatesPath = "Packages/com.talus.talusframework/Editor/CodeGenerator/Templates";
         private const string _TargetFolderName = "Scripts/GENERATED_CLASS";

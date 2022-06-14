@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TalusFramework.Editor.CodeGenerator
 {
-    public class CodeGeneratorWindow : EditorWindow
+    internal class CodeGeneratorWindow : EditorWindow
     {
         /* --------- DEPENDENCY GRAPH ---------*
          * [1] Collection
