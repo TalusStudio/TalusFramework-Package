@@ -20,7 +20,7 @@ namespace TalusFramework.Events.Interfaces
         [GUIColor(0, 1, 0)]
         public void Send()
         {
-            this.Assert(EventUtility.IsValidEvent(Response) == true, "There is a broken event references!");
+            this.Assert(EventUtility.IsValidEvent(Response) == true, "There is a broken target on event!");
             Response?.Invoke();
         }
 
@@ -52,7 +52,7 @@ namespace TalusFramework.Events.Interfaces
         [GUIColor(0, 1, 0)]
         public void Send(TPlainType param)
         {
-            this.Assert(EventUtility.IsValidEvent(Response) == true, "There is a broken event references!");
+            this.Assert(EventUtility.IsValidEvent(Response) == true, "There is a broken target on event!");
             Response?.Invoke(param);
         }
 
