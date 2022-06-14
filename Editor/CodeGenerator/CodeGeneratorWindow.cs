@@ -7,20 +7,20 @@ namespace TalusFramework.Editor.CodeGenerator
     internal class CodeGeneratorWindow : EditorWindow
     {
         /* --------- DEPENDENCY GRAPH ---------*
-         * [1] Collection
-         * [2] Constant
-         * [3] Game Event Listener
-         * [4] Game Event
-         * [6] Reference
-         * [5] Variable
-         *
-         * /  1  2  3  4  5
-         * 1     X        X
-         * 2        X
-         * 3
-         * 4
-         * 5
-         */
+            * [1] Collection
+            * [2] Constant
+            * [3] Game Event Listener
+            * [4] Game Event
+            * [6] Reference
+            * [5] Variable
+            *
+            * /  1  2  3  4  5
+            * 1     X        X
+            * 2        X
+            * 3
+            * 4
+            * 5
+        */
 
         private readonly bool[,] _dependencyGraph = new bool[CodeGenerator.TYPE_COUNT, CodeGenerator.TYPE_COUNT]
         {
