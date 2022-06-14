@@ -11,9 +11,6 @@ namespace TalusFramework.Behaviours
     [AddComponentMenu("TalusFramework/Behaviours/Object Creator", 5)]
     public class ObjectCreator : BaseBehaviour
     {
-        [Tooltip("Reference for the object to be created."), LabelWidth(60)]
-        public GameObjectReference Object;
-
         [FoldoutGroup("Properties"), LabelWidth(95)]
         [Tooltip("Apply offset to position.")]
         public bool UseOffset;
@@ -25,23 +22,23 @@ namespace TalusFramework.Behaviours
 
         [FoldoutGroup("Properties")]
         [Tooltip("Create as child of this component."), LabelWidth(95)]
-        [ValidateInput(nameof(ValidateDestroyInput), "Objects with marked DontDestroy can not be a child object!")]
+        [ValidateInput(nameof(ValidateDestroyInput), ValidationMessage)]
         public bool CreateAsChild;
 
         [FoldoutGroup("Properties")]
         [Tooltip("GameObject gonna marked as DontDestroyOnLoad"), LabelWidth(95)]
-        [ValidateInput(nameof(ValidateDestroyInput), "Objects with marked DontDestroy can not be a child object!")]
+        [ValidateInput(nameof(ValidateDestroyInput), ValidationMessage)]
         public bool DontDestroy;
+
+        [Tooltip("Reference for the object to be created.")]
+        [LabelWidth(40)]
+        public GameObjectReference Object;
 
         private Transform _CachedTransform;
 
-        private void Awake()
-        {
-            _CachedTransform = GetComponent<Transform>();
-        }
-
+        [PropertySpace(SpaceBefore = 10)]
         [GUIColor(0f, 1f, 0f)]
-        [Button, DisableInEditorMode]
+        [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Create()
         {
             this.Assert(Object.Value != null, $"Spawner reference is null on {gameObject.name}!");
@@ -62,6 +59,17 @@ namespace TalusFramework.Behaviours
             }
         }
 
+        private void Awake()
+        {
+            _CachedTransform = GetComponent<Transform>();
+
+            this.Assert(ValidateDestroyInput(), ValidationMessage);
+        }
+
+        private void OnEnable()
+        { }
+
+        private const string ValidationMessage = "Objects with marked DontDestroy can not be a child object!";
         private bool ValidateDestroyInput() => !(DontDestroy && CreateAsChild);
     }
 }
