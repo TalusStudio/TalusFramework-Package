@@ -12,6 +12,7 @@ using TalusFramework.Constants;
 using TalusFramework.Variables;
 using TalusFramework.Collections;
 using TalusFramework.Utility;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Managers
 {
@@ -21,13 +22,13 @@ namespace TalusFramework.Managers
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitable
     {
-        [FoldoutGroup("Base"), Required] public StringVariable LevelText;
         [FoldoutGroup("Base"), Required] public StringConstant LevelCyclePref;
         [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelCountPref;
         [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelPref;
 
-        [LabelWidth(100), Required] public SceneVariable NextLevel;
         [LabelWidth(100), Required] public SceneCollection LevelCollection;
+        [LabelWidth(100), Required] public SceneVariable NextLevel;
+        [LabelWidth(100), Required] public StringVariable LevelText;
 
         public void Initialize()
         {
@@ -36,12 +37,17 @@ namespace TalusFramework.Managers
 
         public void LevelUp()
         {
+            this.Assert(LevelCyclePref != null, $"{nameof(LevelCyclePref)} reference is null!");
+
             PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
             RefreshLevelData();
         }
 
         public void DisableCurrentLevel()
         {
+            this.Assert(DisabledLevelPref != null, $"{nameof(DisabledLevelPref)} reference is null!");
+            this.Assert(DisabledLevelCountPref != null, $"{nameof(DisabledLevelCountPref)} reference is null!");
+
             string currentScenePath = SceneManager.GetActiveScene().path;
             if (DisabledLevels.Contains(currentScenePath)) { return; }
 
@@ -51,6 +57,9 @@ namespace TalusFramework.Managers
 
         private void RefreshLevelData()
         {
+            this.Assert(LevelText != null, $"{nameof(LevelText)} reference is null!");
+            this.Assert(NextLevel != null, $"{nameof(NextLevel)} reference is null!");
+
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
             NextLevel.SetValue(new SceneReference(LevelCollection[
                 Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % LevelCollection.Count
