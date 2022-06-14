@@ -1,5 +1,7 @@
 using Sirenix.OdinInspector;
 
+using Logger = TalusFramework.Utility.Logging.Logger;
+
 namespace TalusFramework.Base
 {
     public abstract class BaseEvent : BaseSO
@@ -8,6 +10,6 @@ namespace TalusFramework.Base
         [HideLabel]
         [LabelWidth(60)]
         [AssetList(AssetNamePrefix = "Logger_")]
-        public Utility.Logging.Logger Logger;
+        public Logger Logger;
     }
 }
