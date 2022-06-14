@@ -19,7 +19,7 @@ namespace TalusFramework.Managers
     /// <summary>
     ///     RuntimeData Manager sets next level
     /// </summary>
-    [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
+    [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "_OTHERS/Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitable
     {
         [FoldoutGroup("Base"), Required] public StringConstant LevelCyclePref;

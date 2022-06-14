@@ -13,7 +13,7 @@ namespace TalusFramework.Managers
     /// <summary>
     ///     Game Manager inits other managers
     /// </summary>
-    [CreateAssetMenu(fileName = "New Game Manager", menuName = "Managers/Game Manager", order = 0)]
+    [CreateAssetMenu(fileName = "New Game Manager", menuName = "_OTHERS/Managers/Game Manager", order = 0)]
     public class GameManager : BaseSerializedSO, IInitable
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
