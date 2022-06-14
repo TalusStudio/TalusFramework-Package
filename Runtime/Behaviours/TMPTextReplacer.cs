@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -42,6 +43,11 @@ namespace TalusFramework.Behaviours
             {
                 Text.text = stringValue.RuntimeValue;
             }
+        }
+
+        private void Awake()
+        {
+            this.Assert(Text != null, $"Text reference is null on {name}!");
         }
 
         private void OnEnable()

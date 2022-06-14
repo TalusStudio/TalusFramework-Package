@@ -24,7 +24,9 @@ namespace TalusFramework.Utility.Assertions
 #if UNITY_EDITOR
             if (!condition)
             {
-                UnityEditor.EditorApplication.isPaused = Application.isEditor && !Application.isBatchMode;
+                UnityEditor.EditorApplication.isPaused = Application.isPlaying &&
+                                                            Application.isEditor &&
+                                                            !Application.isBatchMode;
             }
 #endif
         }

@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -53,24 +54,29 @@ namespace TalusFramework.Behaviours
             _ParameterHash = Animator.StringToHash(ParameterName);
         }
 
+        private void Start()
+        {
+            this.Assert(Animator != null, $"Animator reference is null on {name}!");
+        }
+
         private void Update()
         {
             switch (ParameterType)
             {
                 case AnimatorParameterType.Float:
-                Animator.SetFloat(_ParameterHash, FloatValue);
+                    Animator.SetFloat(_ParameterHash, FloatValue);
                 break;
 
                 case AnimatorParameterType.Int:
-                Animator.SetInteger(_ParameterHash, IntValue);
+                    Animator.SetInteger(_ParameterHash, IntValue);
                 break;
 
                 case AnimatorParameterType.Bool:
-                Animator.SetBool(_ParameterHash, BoolValue);
+                    Animator.SetBool(_ParameterHash, BoolValue);
                 break;
 
                 case AnimatorParameterType.Trigger:
-                Animator.SetTrigger(_ParameterHash);
+                    Animator.SetTrigger(_ParameterHash);
                 break;
             }
         }

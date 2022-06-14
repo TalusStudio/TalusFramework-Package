@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Collections;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -13,6 +14,11 @@ namespace TalusFramework.Behaviours
         [LabelWidth(60)]
         [AssetSelector, Required]
         public GameObjectCollection Collection;
+
+        private void Awake()
+        {
+            this.Assert(Collection != null, $"Collection reference is null on {name}!");
+        }
 
         public void DisableAll()
         {

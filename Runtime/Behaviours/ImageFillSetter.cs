@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -27,6 +28,11 @@ namespace TalusFramework.Behaviours
         [Tooltip("Max value that Variable can be to fill Image.")]
         [LabelWidth(50)]
         public FloatReference Max;
+
+        private void Start()
+        {
+            this.Assert(Image != null, $"Image reference is null on {name}!");
+        }
 
         private void Update()
         {

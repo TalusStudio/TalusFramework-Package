@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -18,6 +19,11 @@ namespace TalusFramework.Behaviours
 
         [LabelWidth(100)]
         public FloatReference FloatReference;
+
+        private void Start()
+        {
+            this.Assert(Slider != null, $"Slider reference is null on {name}!");
+        }
 
         private void Update()
         {
