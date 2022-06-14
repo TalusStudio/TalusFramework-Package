@@ -11,7 +11,7 @@ namespace TalusFramework.Editor.CodeGenerator
     /// </summary>
     public static class CodeGenerator
     {
-        private const string _TemplatesPath = "Packages/com.talus.talusframework/Editor/CodeGenerator/Templates";
+        private const string _DefaultTemplatesPath = "Packages/com.talus.talusframework/Editor/CodeGenerator/Templates";
         private const string _TargetFolderName = "CodeGeneration";
 
         static CodeGenerator()
@@ -25,6 +25,7 @@ namespace TalusFramework.Editor.CodeGenerator
             _targetDirectories = new string[TYPE_COUNT]
             {
                 Application.dataPath + "/" + _TargetFolderName + "/Collections",
+                Application.dataPath + "/" + _TargetFolderName + "/Constants",
                 Application.dataPath + "/" + _TargetFolderName + "/Events",
                 Application.dataPath + "/" + _TargetFolderName + "/Events",
                 Application.dataPath + "/" + _TargetFolderName + "/References",
@@ -34,7 +35,7 @@ namespace TalusFramework.Editor.CodeGenerator
 
         private static void GatherFilePaths()
         {
-            string assetPath = _TemplatesPath;
+            string assetPath = _DefaultTemplatesPath;
             string folderToStartSearch = Directory.GetParent(assetPath).FullName;
 
             Queue<string> foldersToCheck = new Queue<string>();
@@ -72,7 +73,7 @@ namespace TalusFramework.Editor.CodeGenerator
             }
         }
 
-        public const int TYPE_COUNT = 5;
+        public const int TYPE_COUNT = 6;
 
         public struct Data
         {
@@ -84,6 +85,7 @@ namespace TalusFramework.Editor.CodeGenerator
         private static string[] _templateNames = new string[TYPE_COUNT]
         {
             "CollectionTemplate",
+            "ConstantTemplate",
             "GameEventListenerTemplate",
             "GameEventTemplate",
             "ReferenceTemplate",
@@ -93,6 +95,7 @@ namespace TalusFramework.Editor.CodeGenerator
         private static string[] _targetFileNames = new string[TYPE_COUNT]
         {
             "{0}Collection.cs",
+            "{0}Constant.cs",
             "{0}GameEventListener.cs",
             "{0}GameEvent.cs",
             "{0}Reference.cs",

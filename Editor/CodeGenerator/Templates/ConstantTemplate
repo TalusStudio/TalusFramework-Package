@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+
+using TalusFramework.Constants.Interfaces;
+
+namespace $NAMESPACE$
+{
+	[CreateAssetMenu(menuName = "CodeGeneration/Constants/$TYPE_NAME$")]
+	public sealed class $TYPE_NAME$Constant : BaseConstant<$TYPE$>
+	{ }
+}

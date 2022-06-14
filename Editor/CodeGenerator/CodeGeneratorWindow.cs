@@ -7,10 +7,11 @@ namespace TalusFramework.Editor.CodeGenerator
     public class CodeGeneratorWindow : EditorWindow
     {
         /* --------- DEPENDENCY GRAPH ---------*
-         * [1] Game Event Listener
-         * [2] Game Event
-         * [3] Reference
-         * [4] Collection
+         * [1] Collection
+         * [2] Constant
+         * [3] Game Event Listener
+         * [4] Game Event
+         * [6] Reference
          * [5] Variable
          *
          * /  1  2  3  4  5
@@ -23,17 +24,19 @@ namespace TalusFramework.Editor.CodeGenerator
 
         private readonly bool[,] _dependencyGraph = new bool[CodeGenerator.TYPE_COUNT, CodeGenerator.TYPE_COUNT]
         {
-            { false, false, false, false, false },
-            { false, false, true, false, false },
-            { false, false, false, false, false },
-            { false, false, false, false, false },
-            { false, false, false, false, false }
+            { false, false, false, false, false, false },
+            { false, false, false, false, false, false },
+            { false, false, false, true, false, false },
+            { false, false, false, false, false, false },
+            { false, false, false, false, false, false },
+            { false, false, false, false, false, false }
         };
 
         private readonly bool[] _states = new bool[CodeGenerator.TYPE_COUNT];
         private readonly string[] _names = new string[CodeGenerator.TYPE_COUNT]
         {
             "Collection",
+            "Constant",
             "Game Event Listener",
             "Game Event",
             "Reference",
