@@ -1,4 +1,4 @@
-# ![](https://img.shields.io/github/package-json/displayName/talusstudio/talusframework-package?label=Package%3A)
+# ![https://github.com/TalusStudio/TalusFramework-Package](https://img.shields.io/github/package-json/displayName/talusstudio/talusframework-package?label=Package%3A)
 - Scriptable Architecture. Ready to use behaviours, scriptable objects, utilities etc.
 
 # ❗ Requirements 
