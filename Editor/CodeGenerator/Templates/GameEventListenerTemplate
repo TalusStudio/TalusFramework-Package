@@ -1,0 +1,9 @@
+﻿using UnityEngine;
+
+using TalusFramework.Events.Interfaces;
+
+namespace $NAMESPACE$
+{
+	public class $TYPE_NAME$GameEventListener : BaseGameEventListener<$TYPE$, $TYPE_NAME$GameEvent>
+	{ }
+}

@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+
+using TalusFramework.Collections.Interfaces;
+
+namespace $NAMESPACE$
+{
+	[CreateAssetMenu]
+	public class $TYPE_NAME$Collection : BaseCollection<$TYPE$>
+	{ }
+}

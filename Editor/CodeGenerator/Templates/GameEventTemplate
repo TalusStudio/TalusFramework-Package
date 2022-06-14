@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+
+using TalusFramework.Events.Interfaces;
+
+namespace $NAMESPACE$
+{
+	[CreateAssetMenu]
+	public sealed class $TYPE_NAME$GameEvent : BaseGameEvent<$TYPE$>
+	{ }
+}
