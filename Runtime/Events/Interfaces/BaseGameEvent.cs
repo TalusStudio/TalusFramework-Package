@@ -46,7 +46,7 @@ namespace TalusFramework.Events.Interfaces
                 _Listeners[i].Send(parameter);
             }
 
-            EventHelper.LogEvent(Logger, $"{name} raised! (Type: {typeof(T).Name}, Parameter: {parameter}!)");
+            EventHelper.LogEvent(Logger, $"{name} raised! (Type: {typeof(T).Name}, Parameter: {parameter})");
         }
 
         public void AddListener(IGameEventListener<T> listener) => EventHelper.AddListener(_Listeners, listener);
