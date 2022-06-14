@@ -21,29 +21,13 @@ namespace TalusFramework.Managers
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitable
     {
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringVariable LevelText;
+        [FoldoutGroup("Base"), Required] public StringVariable LevelText;
+        [FoldoutGroup("Base"), Required] public StringConstant LevelCyclePref;
+        [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelCountPref;
+        [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelPref;
 
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant LevelCyclePref;
-
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant DisabledLevelCountPref;
-
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant DisabledLevelPref;
-
-        [LabelWidth(100)]
-        [Required]
-        public SceneVariable NextLevel;
-
-        [LabelWidth(100)]
-        [Required]
-        public SceneCollection LevelCollection;
+        [LabelWidth(100), Required] public SceneVariable NextLevel;
+        [LabelWidth(100), Required] public SceneCollection LevelCollection;
 
         public void Initialize()
         {
@@ -76,7 +60,8 @@ namespace TalusFramework.Managers
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
-        private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
+        private List<string> DisabledLevels =>
+            Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
             .ToList();
     }
