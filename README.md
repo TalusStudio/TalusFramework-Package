@@ -2,7 +2,7 @@
 - Scriptable Architecture. Ready to use behaviours, scriptable objects, utilities etc.
 
 # ❗ Requirements 
-- Unity 2020.3.9f1
+- Unity >= 2020.3.9f1
 - [Git](https://git-scm.com/downloads)
 
 # 📦 Dependencies
