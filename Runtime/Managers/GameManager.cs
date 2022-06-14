@@ -10,6 +10,9 @@ using TalusFramework.Managers.Interfaces;
 
 namespace TalusFramework.Managers
 {
+    /// <summary>
+    ///     Game Manager inits other managers
+    /// </summary>
     [CreateAssetMenu(fileName = "New Game Manager", menuName = "Managers/Game Manager", order = 0)]
     public class GameManager : BaseSerializedSO, IInitable
     {

@@ -15,6 +15,9 @@ using TalusFramework.Utility;
 
 namespace TalusFramework.Managers
 {
+    /// <summary>
+    ///     RuntimeData Manager sets next level
+    /// </summary>
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
     public class RuntimeDataManager : BaseSO, IInitable
     {
@@ -65,17 +68,13 @@ namespace TalusFramework.Managers
         private void UpdateGameData()
         {
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-            NextLevel.SetValue(new SceneReference(PlayableLevels[Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]));
+            NextLevel.SetValue(new SceneReference(LevelCollection[
+                Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % LevelCollection.Count
+            ]));
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
-
-        private List<string> PlayableLevels => (
-            from scene in LevelCollection
-            where !DisabledLevels.Contains(scene.ScenePath)
-            select scene.ScenePath
-        ).ToList();
 
         private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
