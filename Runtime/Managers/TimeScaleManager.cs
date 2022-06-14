@@ -13,7 +13,7 @@ namespace TalusFramework.Managers
         public void Initialize()
         { }
 
-        [Button]
+        [Button, GUIColor(0f, 1f, 0f)]
         public void SetTimeScale(float timeScale)
         {
             Time.timeScale = timeScale;
