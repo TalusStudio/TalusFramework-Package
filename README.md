@@ -5,7 +5,7 @@
 - Unity 2020.3.9f1
 - [Git](https://git-scm.com/downloads)
 
-# ❗ Dependencies
+# 📦 Dependencies
 - [Odin Attributes](https://odininspector.com/)
 - [Odin Serialization](https://odininspector.com/)
 - Text Mesh PRO v3.0.6
