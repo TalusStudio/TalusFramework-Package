@@ -12,7 +12,7 @@ namespace TalusFramework.Editor.CodeGenerator
     public static class CodeGenerator
     {
         private const string _DefaultTemplatesPath = "Packages/com.talus.talusframework/Editor/CodeGenerator/Templates";
-        private const string _TargetFolderName = "CodeGeneration";
+        private const string _TargetFolderName = "Scripts/GENERATED_CLASS";
 
         static CodeGenerator()
         {
