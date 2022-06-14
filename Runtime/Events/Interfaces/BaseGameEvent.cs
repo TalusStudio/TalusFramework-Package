@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
+
+using UnityEngine.Events;
+
 using Logger = TalusFramework.Utility.Logging.Logger;
 
 namespace TalusFramework.Events.Interfaces
@@ -89,6 +92,20 @@ namespace TalusFramework.Events.Interfaces
             }
 
             logger.Log(message);
+        }
+
+
+        // To inform the developer when broken event target exists.
+        public static bool IsValidEvent<T>(T response) where T : UnityEventBase
+        {
+            int badReferenceCount = 0;
+            for (int i = 0; i < response.GetPersistentEventCount(); i++)
+            {
+                if (response.GetPersistentTarget(i) != null) { continue; }
+                ++badReferenceCount;
+            }
+
+            return badReferenceCount == 0;
         }
     }
 }
