@@ -4,7 +4,7 @@ using TalusFramework.Events.Interfaces;
 
 namespace $NAMESPACE$
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "CodeGeneration/Events/$TYPE_NAME$")]
 	public sealed class $TYPE_NAME$GameEvent : BaseGameEvent<$TYPE$>
 	{ }
 }

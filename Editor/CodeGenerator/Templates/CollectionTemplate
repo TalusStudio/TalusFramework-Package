@@ -4,7 +4,7 @@ using TalusFramework.Collections.Interfaces;
 
 namespace $NAMESPACE$
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "CodeGeneration/Collections/$TYPE_NAME$")]
 	public class $TYPE_NAME$Collection : BaseCollection<$TYPE$>
 	{ }
 }

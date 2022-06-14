@@ -4,7 +4,7 @@ using TalusFramework.Variables.Interfaces;
 
 namespace $NAMESPACE$
 {
-	[CreateAssetMenu]
+	[CreateAssetMenu(menuName = "CodeGeneration/Variables/$TYPE_NAME$")]
 	public class $TYPE_NAME$Variable : BaseVariable<$TYPE$>
 	{ }
 }
