@@ -45,6 +45,7 @@ namespace TalusFramework.Editor.ScriptableObjectCreator
 
             var window = CreateInstance<ScriptableObjectCreator>();
             window.titleContent = new GUIContent("Folder:" + _CurrentPath);
+            window.minSize = new Vector2(600, 400);
             window.ShowUtility();
         }
 
