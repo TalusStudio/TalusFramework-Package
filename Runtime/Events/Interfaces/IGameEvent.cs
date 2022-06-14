@@ -1,8 +1,5 @@
 namespace TalusFramework.Events.Interfaces
 {
-    public interface IBaseEvent
-    { }
-
     public interface IGameEvent : IBaseEvent
     {
         public void AddListener(IGameEventListener listener);
