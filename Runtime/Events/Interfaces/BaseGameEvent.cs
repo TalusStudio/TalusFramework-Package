@@ -22,7 +22,7 @@ namespace TalusFramework.Events.Interfaces
                 _Listeners[i].Send();
             }
 
-            EventHelper.LogEvent(Logger, $"{name} raised!");
+            EventHelper.LogEvent(Logger, $"{name} raised! (Type: Void)");
         }
 
         public void AddListener(IGameEventListener listener) => EventHelper.AddListener(_Listeners, listener);
@@ -46,7 +46,7 @@ namespace TalusFramework.Events.Interfaces
                 _Listeners[i].Send(parameter);
             }
 
-            EventHelper.LogEvent(Logger, $"{name} raised!");
+            EventHelper.LogEvent(Logger, $"{name} raised! (Type: {typeof(T).Name}, Parameter: {parameter}!)");
         }
 
         public void AddListener(IGameEventListener<T> listener) => EventHelper.AddListener(_Listeners, listener);
