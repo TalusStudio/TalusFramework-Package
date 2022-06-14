@@ -4,10 +4,6 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 
-using UnityEngine.Events;
-
-using Logger = TalusFramework.Utility.Logging.Logger;
-
 namespace TalusFramework.Events.Interfaces
 {
     /// <summary>
@@ -26,11 +22,11 @@ namespace TalusFramework.Events.Interfaces
                 _Listeners[i].Send();
             }
 
-            EventUtility.LogEvent(Logger, $"{name} raised!");
+            EventHelper.LogEvent(Logger, $"{name} raised!");
         }
 
-        public void AddListener(IGameEventListener listener) => EventUtility.AddListener(_Listeners, listener);
-        public void RemoveListener(IGameEventListener listener) => EventUtility.RemoveListener(_Listeners, listener);
+        public void AddListener(IGameEventListener listener) => EventHelper.AddListener(_Listeners, listener);
+        public void RemoveListener(IGameEventListener listener) => EventHelper.RemoveListener(_Listeners, listener);
     }
 
     /// <summary>
@@ -50,62 +46,10 @@ namespace TalusFramework.Events.Interfaces
                 _Listeners[i].Send(parameter);
             }
 
-            EventUtility.LogEvent(Logger, $"{name} raised!");
+            EventHelper.LogEvent(Logger, $"{name} raised!");
         }
 
-        public void AddListener(IGameEventListener<T> listener) => EventUtility.AddListener(_Listeners, listener);
-        public void RemoveListener(IGameEventListener<T> listener) => EventUtility.RemoveListener(_Listeners, listener);
-    }
-
-    /// <summary>
-    ///     Helper class to populate listeners
-    /// </summary>
-    internal class EventUtility
-    {
-        public static void AddListener<TContainer, TListener>(TContainer container, TListener listener)
-            where TContainer : ICollection<TListener>
-        {
-            if (container.Contains(listener))
-            {
-                return;
-            }
-
-            container.Add(listener);
-        }
-
-        public static void RemoveListener<TContainer, TListener>(TContainer container, TListener listener)
-            where TContainer : ICollection<TListener>
-        {
-            if (!container.Contains(listener))
-            {
-                return;
-            }
-
-            container.Remove(listener);
-        }
-
-        public static void LogEvent<T>(T logger, string message) where T : Logger
-        {
-            if (logger == null)
-            {
-                return;
-            }
-
-            logger.Log(message);
-        }
-
-
-        // To inform the developer when broken event target exists.
-        public static bool IsValidEvent<T>(T response) where T : UnityEventBase
-        {
-            int badReferenceCount = 0;
-            for (int i = 0; i < response.GetPersistentEventCount(); i++)
-            {
-                if (response.GetPersistentTarget(i) != null) { continue; }
-                ++badReferenceCount;
-            }
-
-            return badReferenceCount == 0;
-        }
+        public void AddListener(IGameEventListener<T> listener) => EventHelper.AddListener(_Listeners, listener);
+        public void RemoveListener(IGameEventListener<T> listener) => EventHelper.RemoveListener(_Listeners, listener);
     }
 }
