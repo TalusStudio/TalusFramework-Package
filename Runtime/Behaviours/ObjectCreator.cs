@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -43,6 +44,8 @@ namespace TalusFramework.Behaviours
         [Button, DisableInEditorMode]
         public void Create()
         {
+            this.Assert(Object.Value != null, $"Spawner reference is null on {gameObject.name}!");
+
             GameObject obj = Instantiate(Object.Value,
                 _CachedTransform.position,
                 _CachedTransform.rotation,
