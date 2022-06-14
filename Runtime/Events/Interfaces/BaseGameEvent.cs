@@ -32,7 +32,6 @@ namespace TalusFramework.Events.Interfaces
     /// <summary>
     ///     Base Typed GameEvent
     /// </summary>
-    /// <typeparam name="T">Type</typeparam>
     public abstract class BaseGameEvent<T> : BaseEvent, IGameEvent<T>
     {
         private readonly List<IGameEventListener<T>> _Listeners = new List<IGameEventListener<T>>();

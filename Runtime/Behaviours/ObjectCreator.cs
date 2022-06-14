@@ -2,7 +2,6 @@
 
 using Sirenix.OdinInspector;
 
-using TalusFramework.Constants;
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
 
@@ -12,8 +11,7 @@ namespace TalusFramework.Behaviours
     public class ObjectCreator : BaseBehaviour
     {
         [Tooltip("Reference for the object to be created."), LabelWidth(60)]
-        [AssetSelector, Required]
-        public GameObjectConstant Object;
+        public GameObjectReference Object;
 
         [FoldoutGroup("Properties"), LabelWidth(95)]
         [Tooltip("Apply offset to position.")]
@@ -45,7 +43,7 @@ namespace TalusFramework.Behaviours
         [Button, DisableInEditorMode]
         public void Create()
         {
-            GameObject obj = Instantiate(Object.RuntimeValue,
+            GameObject obj = Instantiate(Object.Value,
                 _CachedTransform.position,
                 _CachedTransform.rotation,
                 CreateAsChild ? _CachedTransform : null);
@@ -55,7 +53,7 @@ namespace TalusFramework.Behaviours
                 obj.transform.localPosition = Offset;
             }
 
-            if (DontDestroy && !CreateAsChild)
+            if (!ValidateDestroyInput())
             {
                 DontDestroyOnLoad(obj);
             }
