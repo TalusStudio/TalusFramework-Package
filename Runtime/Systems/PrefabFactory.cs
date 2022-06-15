@@ -10,41 +10,44 @@ namespace TalusFramework.Systems
     [CreateAssetMenu(menuName = "Factory/Prefab")]
     public class PrefabFactory : AbstractFactory<GameObject>
     {
+        [ToggleGroup(nameof(_PositionOffset),  "Apply Offset", CollapseOthersOnExpand = false)]
+        [HideLabel, LabelWidth(100)]
+        [SerializeField]
+        private bool _PositionOffset = default;
+
+        [ToggleGroup(nameof(_PositionOffset), CollapseOthersOnExpand = false)]
+        [LabelWidth(50)]
+        [SerializeField]
+        private Vector3Reference _Position = default;
+
+        [ToggleGroup(nameof(_RotationOffset), "Apply Rotation", CollapseOthersOnExpand = false)]
         [LabelWidth(100)]
         [ToggleLeft]
         [SerializeField]
-        private bool _CustomTransform = default;
+        private bool _RotationOffset = default;
 
-        [ShowIf(nameof(_CustomTransform))]
-        [LabelWidth(100)]
-        public Vector3Reference Position;
-
-        [ShowIf(nameof(_CustomTransform))]
-        [LabelWidth(100)]
-        public Vector3Reference Rotation;
-
-        [ShowIf(nameof(_CustomTransform))]
-        [LabelWidth(100)]
-        public Vector3Reference Scale;
+        [ToggleGroup(nameof(_RotationOffset), CollapseOthersOnExpand = false)]
+        [LabelWidth(50)]
+        [SerializeField]
+        private Vector3Reference _Rotation = default;
 
         public override GameObject Create()
         {
-            var clone = _CustomTransform
-                ? Instantiate(Object, Position.Value, Quaternion.Euler(Rotation))
-                : Instantiate(Object);
-
-            if (_CustomTransform)
-            {
-                clone.transform.localScale = Scale;
-            }
+            var clone = Instantiate(
+                Object,
+                (_PositionOffset) ? _Position : Vector3.zero,
+                (_RotationOffset) ? Quaternion.Euler(_Rotation) : Quaternion.identity
+            );
 
             return clone;
         }
 
         public void CreateAsChild(Transform parent)
         {
-            var createdObject = Create();
+            GameObject createdObject = Create();
             createdObject.transform.SetParent(parent);
+            createdObject.transform.localPosition = _Position;
+            createdObject.transform.localRotation = Quaternion.Euler(_Rotation);
         }
     }
 }
