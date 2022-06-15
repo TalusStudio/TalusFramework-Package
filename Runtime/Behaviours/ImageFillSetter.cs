@@ -31,7 +31,7 @@ namespace TalusFramework.Behaviours
 
         private void Start()
         {
-            this.Assert(Image != null, $"Image reference is null on {name}!");
+            this.Assert(Image != null, "Invalid Reference!", typeof(Image), null);
         }
 
         private void Update()

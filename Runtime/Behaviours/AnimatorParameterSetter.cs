@@ -56,7 +56,7 @@ namespace TalusFramework.Behaviours
 
         private void Start()
         {
-            this.Assert(Animator != null, $"Animator reference is null on {name}!");
+            this.Assert(Animator != null, "Invalid Reference!", typeof(Animator), null);
         }
 
         private void Update()

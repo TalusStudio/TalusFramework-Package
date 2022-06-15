@@ -16,7 +16,7 @@ namespace TalusFramework.Behaviours
 
         private void Awake()
         {
-            this.Assert(GameObject != null, $"GameObject reference is null on {name}!");
+            this.Assert(GameObject != null, "Invalid Reference!", typeof(GameObject), null);
         }
 
         public void Enable()

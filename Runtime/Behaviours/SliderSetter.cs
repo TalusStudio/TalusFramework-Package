@@ -22,7 +22,7 @@ namespace TalusFramework.Behaviours
 
         private void Start()
         {
-            this.Assert(Slider != null, $"Slider reference is null on {name}!");
+            this.Assert(Slider != null, "Invalid Reference!", typeof(Slider), null);
         }
 
         private void Update()

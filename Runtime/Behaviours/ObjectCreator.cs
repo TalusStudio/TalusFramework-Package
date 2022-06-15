@@ -41,7 +41,7 @@ namespace TalusFramework.Behaviours
         [Button(ButtonSizes.Large), DisableInEditorMode]
         public void Create()
         {
-            this.Assert(Object.Value != null, $"Spawner reference is null on {gameObject.name}!");
+            this.Assert(Object.Value != null, "Invalid Reference!", typeof(GameObjectReference), null);
 
             GameObject obj = Instantiate(Object.Value,
                 _CachedTransform.position,

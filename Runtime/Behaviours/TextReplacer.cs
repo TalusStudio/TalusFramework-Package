@@ -47,7 +47,7 @@ namespace TalusFramework.Behaviours
 
         private void Awake()
         {
-            this.Assert(Text != null, $"Text reference is null on {name}!");
+            this.Assert(Text != null, "Invalid Reference!", typeof(Text), null);
         }
 
         private void OnEnable()

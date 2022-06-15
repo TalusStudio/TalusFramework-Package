@@ -17,7 +17,7 @@ namespace TalusFramework.Behaviours
 
         private void Awake()
         {
-            this.Assert(Collection != null, $"Collection reference is null on {name}!");
+            this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
         }
 
         public void DisableAll()
