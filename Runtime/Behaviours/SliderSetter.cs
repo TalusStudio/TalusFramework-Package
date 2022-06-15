@@ -27,7 +27,7 @@ namespace TalusFramework.Behaviours
 
         private void Update()
         {
-            if (Slider != null && FloatReference != null)
+            if (FloatReference != null)
             {
                 Slider.value = FloatReference;
             }
