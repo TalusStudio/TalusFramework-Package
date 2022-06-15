@@ -15,12 +15,12 @@ namespace TalusFramework.SceneManagement
         [AssetSelector, Required]
         public SceneEvent LevelLoadEvent;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             SceneManager.sceneLoaded += HandleSceneLoad;
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
             SceneManager.sceneLoaded -= HandleSceneLoad;
         }
