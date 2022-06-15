@@ -2,6 +2,6 @@
 {
     public interface IInitable
     {
-        void Initialize();
+        public void Initialize();
     }
 }

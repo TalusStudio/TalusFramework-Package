@@ -7,7 +7,7 @@ using TalusFramework.References;
 
 namespace TalusFramework.Systems
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName = "Factory/Prefab")]
     public class PrefabFactory : AbstractFactory<GameObject>
     {
         [LabelWidth(100)]
