@@ -20,9 +20,9 @@ namespace TalusFramework.Utility.Assertions
         public static void Assert(bool condition, string message, System.Type expected, System.Type given, Object context = null)
         {
             string givenType = (given == null) ? "Null" : given.Name;
-            Assert(condition, @$"{message}
-                Expected: <b><color=green>{expected.Name}</color></b>
-                Given: <b><color=red>{givenType}</color></b>"
+            Assert(condition, @$"<b><color=yellow>{message}</color></b>
+                    Expected: <b><color=green>{expected.Name}</color></b>
+                    Given: <b><color=red>{givenType}</color></b>"
             );
         }
 
@@ -30,9 +30,9 @@ namespace TalusFramework.Utility.Assertions
             where T : Object
         {
             string givenType = (given == null) ? "Null" : given.Name;
-            Assert(sender, condition, @$"{message} ({sender.name})
-                Expected: <b><color=green>{expected.Name}</color></b>
-                Given: <b><color=red>{givenType}</color></b>"
+            Assert(sender, condition, @$"<b><color=yellow>{message}</color></b> (<b><color=cyan>{sender.name}</color></b>)
+                    Expected: <b><color=green>{expected.Name}</color></b>
+                    Given: <b><color=red>{givenType}</color></b>"
             );
         }
 
