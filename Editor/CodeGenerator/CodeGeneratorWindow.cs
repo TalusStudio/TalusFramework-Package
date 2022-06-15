@@ -48,7 +48,7 @@ namespace TalusFramework.Editor.CodeGenerator
 
         private AnimBool _clampedValueHelpBoxAnim;
 
-        [MenuItem("TalusKit/Code Generation", priority = -999999)]
+        [MenuItem("TalusKit/Code Generation", priority = 20)]
         private static void ShowWindow()
         {
             var window = GetWindow<CodeGeneratorWindow>();

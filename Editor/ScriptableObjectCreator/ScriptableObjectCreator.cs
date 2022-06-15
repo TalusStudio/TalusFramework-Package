@@ -38,7 +38,7 @@ namespace TalusFramework.Editor.ScriptableObjectCreator
             }
         }
 
-        [MenuItem("TalusKit/SO Creator %l", false, -8000)]
+        [MenuItem("TalusKit/SO Creator %l", priority = 22)]
         private static void ShowDialog()
         {
             UpdatePath();
