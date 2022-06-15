@@ -37,13 +37,12 @@ namespace TalusFramework.References.Interfaces
                     return ConstantValue;
                 }
 
-                Variable.Assert(Variable != null, $"{GetType()} value is null!");
+                Tassert.Assert(Variable != null, $"Invalid Variable Reference on {GetType().Name}!", typeof(BaseValue), null);
 
                 var value = Variable as BaseValue<TPlainType>;
-                Variable.Assert(value != null, $@"Type mismatch in {Variable.name} reference.
-                    Expected: {typeof(TPlainType)}
-                    Given: {Variable.GetType()}"
-                );
+                Tassert.Assert(value != null, $"Type mismatch on Variable Reference! (Current Reference: {Variable.name})",
+                    typeof(TPlainType),
+                    Variable.GetType());
 
                 return value.RuntimeValue;
             }

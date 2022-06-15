@@ -14,14 +14,23 @@ namespace TalusFramework.Utility.Assertions
         [Conditional("TALUS_ASSERTS")]
         public static void Assert(bool condition, string message, Object context = null)
         {
-            Debug.Assert(condition, message, context);
+            Debug.Assert(condition, $"Assertion Failed: {message}", context);
+        }
+
+        public static void Assert(bool condition, string message, System.Type expected, System.Type given, Object context = null)
+        {
+            string givenType = (given == null) ? "Null" : given.Name;
+            Assert(condition, @$"{message}
+                Expected: {expected.Name}
+                Given: {givenType}"
+            );
         }
 
         public static void Assert<T>(this T sender, bool condition, string message, System.Type expected, System.Type given)
             where T : Object
         {
             string givenType = (given == null) ? "Null" : given.Name;
-            Assert(sender, condition, @$"Assertion Failed: {message} ({sender.name})
+            Assert(sender, condition, @$"{message} ({sender.name})
                 Expected: {expected.Name}
                 Given: {givenType}"
             );
