@@ -7,12 +7,14 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 
+using TalusFramework.Base;
+
 using TalusFramework.Editor.OdinExtensions.Attributes;
 
 namespace TalusFramework.Editor.AssetOrganizer
 {
     [CreateAssetMenu(menuName = "_OTHERS/Asset Organizer/Config")]
-    internal class AssetOrganizationConfig : ScriptableObject
+    internal class AssetOrganizationConfig : BaseSO
     {
         public enum FilterType
         {

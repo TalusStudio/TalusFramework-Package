@@ -3,12 +3,14 @@ using UnityEngine;
 
 using Sirenix.OdinInspector;
 
+using TalusFramework.Base;
+
 using TalusFramework.Editor.OdinExtensions.Attributes;
 
 namespace TalusFramework.Editor.AssetOrganizer
 {
     [CreateAssetMenu(menuName = "_OTHERS/Asset Organizer/Watched Folder")]
-    internal class AssetOrganizerWatchedFolder : ScriptableObject
+    internal class AssetOrganizerWatchedFolder : BaseSO
     {
         [FolderPath(UseBackslashes = true)]
         [ValueColor(nameof(PathStatusColor))]
