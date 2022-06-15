@@ -27,7 +27,7 @@ namespace TalusFramework.SceneManagement
 
         private void HandleSceneLoad(Scene scene, LoadSceneMode loadSceneMode)
         {
-            this.Assert(LevelLoadEvent != null, "Level Load Event is null!");
+            this.Assert(LevelLoadEvent != null, "Invalid Reference!", typeof(SceneEvent), null);
 
             LevelLoadEvent.Raise(new SceneReference(scene.path));
         }
