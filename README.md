@@ -6,8 +6,7 @@
 - [Git](https://git-scm.com/downloads)
 
 # 📦 Dependencies
-- [Odin Attributes](https://odininspector.com/)
-- [Odin Serialization](https://odininspector.com/)
+- [Odin](https://odininspector.com/)
 - Text Mesh PRO v3.0.6
 
 # 💿 Installation
