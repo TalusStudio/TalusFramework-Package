@@ -50,7 +50,7 @@ namespace TalusFramework.Behaviours
             this.Assert(Text != null, "Invalid Reference!", typeof(TMP_Text), null);
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             SetText();
         }

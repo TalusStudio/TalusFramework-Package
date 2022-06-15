@@ -20,12 +20,12 @@ namespace TalusFramework.Behaviours
             this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             Collection.Add(gameObject);
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
             Collection.Remove(gameObject);
         }

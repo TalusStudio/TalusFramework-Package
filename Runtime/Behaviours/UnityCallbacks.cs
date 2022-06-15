@@ -18,7 +18,7 @@ namespace TalusFramework.Behaviours
             OnAwakeEvent.Invoke();
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             OnEnableEvent.Invoke();
         }
