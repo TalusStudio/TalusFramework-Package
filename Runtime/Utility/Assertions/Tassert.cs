@@ -21,8 +21,8 @@ namespace TalusFramework.Utility.Assertions
         {
             string givenType = (given == null) ? "Null" : given.Name;
             Assert(condition, @$"{message}
-                Expected: {expected.Name}
-                Given: {givenType}"
+                Expected: <b><color=green>{expected.Name}</color></b>
+                Given: <b><color=red>{givenType}</color></b>"
             );
         }
 
@@ -31,8 +31,8 @@ namespace TalusFramework.Utility.Assertions
         {
             string givenType = (given == null) ? "Null" : given.Name;
             Assert(sender, condition, @$"{message} ({sender.name})
-                Expected: {expected.Name}
-                Given: {givenType}"
+                Expected: <b><color=green>{expected.Name}</color></b>
+                Given: <b><color=red>{givenType}</color></b>"
             );
         }
 
