@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Systems.Interfaces;
 using TalusFramework.References;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Systems
 {
@@ -33,6 +34,8 @@ namespace TalusFramework.Systems
 
         public override GameObject Create()
         {
+            this.Assert(Object != null, "Invalid reference!", typeof(Transform), null);
+
             var clone = Instantiate(
                 Object,
                 (_PositionOffset) ? _Position : Vector3.zero,
@@ -44,6 +47,8 @@ namespace TalusFramework.Systems
 
         public void CreateAsChild(Transform parent)
         {
+            this.Assert(parent != null, "Invalid reference!", typeof(Transform), null);
+
             GameObject createdObject = Create();
             createdObject.transform.SetParent(parent);
             createdObject.transform.localPosition = _Position;
