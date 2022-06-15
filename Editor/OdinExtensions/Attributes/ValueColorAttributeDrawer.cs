@@ -4,7 +4,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.OdinInspector.Editor.ValueResolvers;
 using Sirenix.Utilities.Editor;
 
-namespace TalusFramework.Editor.OdinExtensions
+namespace TalusFramework.Editor.OdinExtensions.Attributes
 {
     [DrawerPriority(0.4, 0.0, 0.0)]
     public class ValueColorAttributeDrawer : OdinAttributeDrawer<ValueColorAttribute>

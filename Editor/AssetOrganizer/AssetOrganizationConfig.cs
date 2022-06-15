@@ -7,7 +7,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 
-using TalusFramework.Editor.OdinExtensions;
+using TalusFramework.Editor.OdinExtensions.Attributes;
 
 namespace TalusFramework.Editor.AssetOrganizer
 {

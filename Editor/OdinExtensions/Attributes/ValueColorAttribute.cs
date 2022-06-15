@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 using UnityEngine;
 
-namespace TalusFramework.Editor.OdinExtensions
+namespace TalusFramework.Editor.OdinExtensions.Attributes
 {
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false, Inherited = true)]
