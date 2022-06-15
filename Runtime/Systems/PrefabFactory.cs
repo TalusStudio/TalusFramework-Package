@@ -40,5 +40,11 @@ namespace TalusFramework.Systems
 
             return clone;
         }
+
+        public void CreateAsChild(Transform parent)
+        {
+            var createdObject = Create();
+            createdObject.transform.SetParent(parent);
+        }
     }
 }
