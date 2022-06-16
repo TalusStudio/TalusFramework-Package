@@ -20,7 +20,7 @@ namespace TalusFramework.Behaviours
         [LabelWidth(100)]
         public FloatReference FloatReference;
 
-        private void Start()
+        protected override void Start()
         {
             this.Assert(Slider != null, "Invalid Reference!", typeof(Slider), null);
         }

@@ -14,7 +14,7 @@ namespace TalusFramework.Behaviours
         [Required]
         public GameObject GameObject;
 
-        private void Awake()
+        protected override void Awake()
         {
             this.Assert(GameObject != null, "Invalid Reference!", typeof(GameObject), null);
         }

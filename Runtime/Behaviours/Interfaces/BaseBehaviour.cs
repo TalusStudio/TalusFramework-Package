@@ -13,6 +13,12 @@ namespace TalusFramework.Behaviours.Interfaces
         public Description Description = default;
 #endif
 
+        protected virtual void Awake()
+        { }
+
+        protected virtual void Start()
+        { }
+
         protected virtual void OnEnable()
         { }
 

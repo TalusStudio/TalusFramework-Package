@@ -8,6 +8,9 @@ using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
+    /// <summary>
+    ///     To save object references on Collection.
+    /// </summary>
     [AddComponentMenu("TalusFramework/Behaviours/GameObject Adder", 1)]
     public class GameObjectAdder : BaseBehaviour
     {
@@ -15,7 +18,7 @@ namespace TalusFramework.Behaviours
         [AssetSelector, Required]
         public GameObjectCollection Collection;
 
-        private void Awake()
+        protected override void Awake()
         {
             this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
         }

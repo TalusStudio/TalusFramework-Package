@@ -17,7 +17,7 @@ namespace TalusFramework.Behaviours
         public Text Text;
 
         [LabelWidth(65)]
-        [AssetSelector, Required]
+        [Required]
         public BaseValue Value;
 
         [GUIColor(0f, 1f, 0f)]
@@ -45,7 +45,7 @@ namespace TalusFramework.Behaviours
             }
         }
 
-        private void Awake()
+        protected override void Awake()
         {
             this.Assert(Text != null, "Invalid Reference!", typeof(Text), null);
         }
@@ -55,7 +55,7 @@ namespace TalusFramework.Behaviours
             SetText();
         }
 
-        private void Start()
+        protected override void Start()
         {
             SetText();
         }

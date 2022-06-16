@@ -29,7 +29,7 @@ namespace TalusFramework.Behaviours
         [LabelWidth(50)]
         public FloatReference Max;
 
-        private void Start()
+        protected override void Start()
         {
             this.Assert(Image != null, "Invalid Reference!", typeof(Image), null);
         }

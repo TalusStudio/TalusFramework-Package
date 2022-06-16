@@ -49,12 +49,12 @@ namespace TalusFramework.Behaviours
 
         private int _ParameterHash;
 
-        private void Awake()
+        protected override void Awake()
         {
             _ParameterHash = Animator.StringToHash(ParameterName);
         }
 
-        private void Start()
+        protected override void Start()
         {
             this.Assert(Animator != null, "Invalid Reference!", typeof(Animator), null);
         }
