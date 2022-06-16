@@ -5,6 +5,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Managers.Interfaces;
+using TalusFramework.Utility.Logging;
 
 namespace TalusFramework.Managers
 {
@@ -26,7 +27,13 @@ namespace TalusFramework.Managers
 
         public override void Initialize()
         {
-            for (int i = 0; i < _SubManagers.Count; ++i)
+            if (_SubManagers.Count == 0)
+            {
+                this.LogWarning("There are no registered sub managers...");
+                return;
+            }
+
+            for (int i = _SubManagers.Count - 1; i >= 0; i--)
             {
                 _SubManagers[i].Initialize();
             }
