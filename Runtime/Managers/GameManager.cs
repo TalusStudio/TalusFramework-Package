@@ -22,13 +22,13 @@ namespace TalusFramework.Managers
 
         [Required]
         [SerializeField]
-        private List<BaseManager> _Initializables = new List<BaseManager>();
+        private List<BaseManager> _SubManagers = new List<BaseManager>();
 
         public override void Initialize()
         {
-            for (int i = 0; i < _Initializables.Count; ++i)
+            for (int i = 0; i < _SubManagers.Count; ++i)
             {
-                _Initializables[i].Initialize();
+                _SubManagers[i].Initialize();
             }
         }
     }
