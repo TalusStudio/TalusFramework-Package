@@ -19,8 +19,9 @@ namespace TalusFramework.Events.Interfaces
         public VoidEvent GameEvent;
         public UnityEvent Response;
 
-        [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
+        [Button, DisableInEditorMode]
+        [LabelText("Send Response")]
         public void Send()
         {
             this.Assert(EventHelper.IsValidEvent(Response) == true, "There is a broken target on event!");
@@ -57,13 +58,14 @@ namespace TalusFramework.Events.Interfaces
 
         public UnityEvent<TPlainType> Response;
 
-        [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
-        public void Send(TPlainType param)
+        [Button, DisableInEditorMode]
+        [LabelText("Send Response")]
+        public void Send(TPlainType parameter)
         {
             this.Assert(EventHelper.IsValidEvent(Response) == true, "There is a broken target on event!");
 
-            Response?.Invoke(param);
+            Response?.Invoke(parameter);
         }
 
         protected virtual void OnEnable()
