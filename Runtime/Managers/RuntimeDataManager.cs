@@ -20,7 +20,7 @@ namespace TalusFramework.Managers
     ///     RuntimeData Manager sets next level
     /// </summary>
     [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "_OTHERS/Managers/Runtime Manager", order = 1)]
-    public class RuntimeDataManager : BaseSO, IInitable
+    public class RuntimeDataManager : BaseManager
     {
         [FoldoutGroup("Base"), Required] public StringConstant LevelCyclePref;
         [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelCountPref;
@@ -30,7 +30,7 @@ namespace TalusFramework.Managers
         [LabelWidth(100), Required] public SceneVariable NextLevel;
         [LabelWidth(100), Required] public StringVariable LevelText;
 
-        public void Initialize()
+        public override void Initialize()
         {
             RefreshLevelData();
         }

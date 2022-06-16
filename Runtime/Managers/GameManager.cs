@@ -3,9 +3,7 @@
 using UnityEngine;
 
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 
-using TalusFramework.Base;
 using TalusFramework.Managers.Interfaces;
 
 namespace TalusFramework.Managers
@@ -14,7 +12,7 @@ namespace TalusFramework.Managers
     ///     Game Manager inits other managers
     /// </summary>
     [CreateAssetMenu(fileName = "New Game Manager", menuName = "_OTHERS/Managers/Game Manager", order = 0)]
-    public class GameManager : BaseSerializedSO, IInitable
+    public class GameManager : BaseManager
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Init()
@@ -23,10 +21,10 @@ namespace TalusFramework.Managers
         }
 
         [Required]
-        [OdinSerialize]
-        private readonly List<IInitable> _Initializables = new List<IInitable>();
+        [SerializeField]
+        private List<BaseManager> _Initializables = new List<BaseManager>();
 
-        public void Initialize()
+        public override void Initialize()
         {
             for (int i = 0; i < _Initializables.Count; ++i)
             {
