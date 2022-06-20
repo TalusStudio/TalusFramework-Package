@@ -15,8 +15,5 @@
     "name": "Talus Studio",
     "email": "info@talusstudio.com",
     "url": "http://www.talusstudio.com"
-  },
-  "dependencies": {
-    "com.unity.textmeshpro": "3.0.6"
   }
 }
