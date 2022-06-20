@@ -1,53 +1,30 @@
 using UnityEngine;
 
-using TalusFramework.Utility;
-using TalusFramework.Variables.Interfaces;
 using TalusFramework.Base;
-using TalusFramework.Utility.Assertions;
+using TalusFramework.Variables.Interfaces;
+using TalusFramework.Utility;
 
 namespace TalusFramework.Variables
 {
     [CreateAssetMenu(fileName = "New Scene Variable", menuName = "Variables/Scene", order = 10)]
     public sealed class SceneVariable : BaseVariable<SceneReference>
     {
-        public override SceneReference RuntimeValue
-        {
-            get => base.RuntimeValue;
-            protected set
-            {
-                if (!base.RuntimeValue.IsEmpty && base.RuntimeValue.Equals(value)) { return; }
-
-                base.RuntimeValue = value;
-                InvokeOnChangeEvents(value);
-            }
-        }
-
         public override void ResetRuntimeValue()
         {
-            if (Value == null || Value.IsEmpty)
-            {
-                return;
-            }
+            if (Value == null || Value.IsEmpty) { return; }
 
-            base.RuntimeValue = new SceneReference(Value);
-            InvokeOnChangeEvents(base.RuntimeValue);
+            base.SetValue(Value.Clone());
         }
 
         public override void SetValue(SceneReference value)
         {
-            RuntimeValue = new SceneReference(value);
+            base.SetValue(value.Clone());
         }
 
         public override void SetValue(BaseValue value)
         {
             var variable = value as BaseValue<SceneReference>;
-
-            this.Assert(variable != null, $@"Type mismatch in {name}.
-                Expected: {typeof(SceneReference)}
-                Given: {value.GetType()}"
-            );
-
-            RuntimeValue = new SceneReference(variable.RuntimeValue);
+            base.SetValue(variable.RuntimeValue.Clone());
         }
     }
 }

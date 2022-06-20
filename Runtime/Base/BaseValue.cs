@@ -43,5 +43,7 @@ namespace TalusFramework.Base
         {
             RuntimeValue = Value;
         }
+
+        public virtual bool AreValuesEqual(TPlainType value) => RuntimeValue.Equals(value);
     }
 }

@@ -9,27 +9,15 @@ namespace TalusFramework.Variables.Interfaces
 {
     public abstract class BaseVariable<TPlainType> : BaseValue<TPlainType>
     {
-        public override TPlainType RuntimeValue
-        {
-            get => base.RuntimeValue;
-            protected set
-            {
-                if (AreValuesEqual(value)) { return; }
-
-                base.RuntimeValue = value;
-                InvokeOnChangeEvents(value);
-            }
-        }
-
-        [ToggleGroup(nameof(UnityEvents))]
-        public bool UnityEvents;
-
-        [ToggleGroup(nameof(UnityEvents))]
-        public UnityEvent<TPlainType> OnChangeEvent;
+        [ToggleGroup(nameof(UnityEvents))] public bool UnityEvents;
+        [ToggleGroup(nameof(UnityEvents))] public UnityEvent<TPlainType> OnChangeEvent;
 
         public virtual void SetValue(TPlainType value)
         {
+            if (AreValuesEqual(value)) { return; }
+
             RuntimeValue = value;
+            InvokeOnChangeEvents(value);
         }
 
         public virtual void SetValue(BaseValue value)
@@ -41,22 +29,14 @@ namespace TalusFramework.Variables.Interfaces
                 Given: {value.GetType()}"
             );
 
-            RuntimeValue = variable.RuntimeValue;
+            SetValue(variable.RuntimeValue);
         }
 
         protected void InvokeOnChangeEvents(TPlainType value)
         {
-            if (!UnityEvents)
-            {
-                return;
-            }
+            if (!UnityEvents) { return; }
 
             OnChangeEvent?.Invoke(value);
-        }
-
-        protected virtual bool AreValuesEqual(TPlainType value)
-        {
-            return RuntimeValue.Equals(value);
         }
     }
 }
