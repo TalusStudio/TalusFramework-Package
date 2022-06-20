@@ -20,7 +20,7 @@ namespace TalusFramework.Variables.Interfaces
                     return;
                 }
 
-                if (base.RuntimeValue != null && base.RuntimeValue.Equals(value))
+                if (base.RuntimeValue.Equals(value))
                 {
                     return;
                 }
