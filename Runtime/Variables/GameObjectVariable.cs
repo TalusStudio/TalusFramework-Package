@@ -9,22 +9,14 @@ namespace TalusFramework.Variables
     [CreateAssetMenu(fileName = "New GameObject Variable", menuName = "Variables/GameObject", order = 9)]
     public sealed class GameObjectVariable : BaseVariable<GameObject>
     {
-        public override GameObject RuntimeValue
+        protected override bool AreValuesEqual(GameObject value)
         {
-            get => base.RuntimeValue;
-            protected set
-            {
-                if (!ReferenceEquals(RuntimeValue, value))
-                {
-                    base.RuntimeValue = value;
-                    InvokeOnChangeEvents(value);
-                }
-            }
+            return ReferenceEquals(RuntimeValue, value);
         }
 
         public override void SetValue(GameObject value)
         {
-            base.RuntimeValue = value;
+            RuntimeValue = value;
         }
 
         public override void SetValue(BaseValue value)
@@ -36,7 +28,7 @@ namespace TalusFramework.Variables
                 Given: {value.GetType()}"
             );
 
-            base.RuntimeValue = variable.RuntimeValue;
+            RuntimeValue = variable.RuntimeValue;
         }
     }
 }

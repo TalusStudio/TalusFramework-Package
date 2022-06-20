@@ -10,16 +10,9 @@ namespace TalusFramework.Variables
     [CreateAssetMenu(fileName = "New Float Variable", menuName = "Variables/Float", order = 2)]
     public sealed class FloatVariable : BaseVariable<float>
     {
-        public override float RuntimeValue
+        protected override bool AreValuesEqual(float value)
         {
-            get => base.RuntimeValue;
-            protected set
-            {
-                if (Mathf.Approximately(RuntimeValue, value)) { return; }
-
-                base.RuntimeValue = value;
-                InvokeOnChangeEvents(value);
-            }
+            return Mathf.Approximately(RuntimeValue, value);
         }
 
         public void Add(FloatVariable variable) => RuntimeValue += variable.RuntimeValue;

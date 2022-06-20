@@ -14,10 +14,7 @@ namespace TalusFramework.Variables.Interfaces
             get => base.RuntimeValue;
             protected set
             {
-                if (base.RuntimeValue.Equals(value))
-                {
-                    return;
-                }
+                if (AreValuesEqual(value)) { return; }
 
                 base.RuntimeValue = value;
                 InvokeOnChangeEvents(value);
@@ -55,6 +52,11 @@ namespace TalusFramework.Variables.Interfaces
             }
 
             OnChangeEvent?.Invoke(value);
+        }
+
+        protected virtual bool AreValuesEqual(TPlainType value)
+        {
+            return RuntimeValue.Equals(value);
         }
     }
 }
