@@ -56,7 +56,7 @@ namespace TalusFramework.Variables.Interfaces
 
         protected virtual bool AreValuesEqual(TPlainType value)
         {
-            return base.RuntimeValue.Equals(value);
+            return RuntimeValue.Equals(value);
         }
     }
 }
