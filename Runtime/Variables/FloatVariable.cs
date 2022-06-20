@@ -1,11 +1,9 @@
 ﻿using System;
 
-using TalusFramework.Base;
-using TalusFramework.References;
-using TalusFramework.Utility.Assertions;
-using TalusFramework.Variables.Interfaces;
-
 using UnityEngine;
+
+using TalusFramework.References;
+using TalusFramework.Variables.Interfaces;
 
 namespace TalusFramework.Variables
 {
@@ -17,26 +15,11 @@ namespace TalusFramework.Variables
             get => base.RuntimeValue;
             protected set
             {
-                if (Mathf.Abs(RuntimeValue - value) < Mathf.Epsilon)
-                {
-                    return;
-                }
+                if (Mathf.Approximately(RuntimeValue, value)) { return; }
 
                 base.RuntimeValue = value;
                 InvokeOnChangeEvents(value);
             }
-        }
-
-        public override void SetValue(BaseValue value)
-        {
-            var variable = value as BaseValue<float>;
-
-            this.Assert(variable != null, $@"Type mismatch in {name}.
-                Expected: {typeof(float)}
-                Given: {value.GetType()}"
-            );
-
-            RuntimeValue = variable.RuntimeValue;
         }
 
         public void Add(FloatVariable variable) => RuntimeValue += variable.RuntimeValue;
