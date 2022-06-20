@@ -14,7 +14,16 @@ namespace TalusFramework.Variables.Interfaces
             get => base.RuntimeValue;
             protected set
             {
-                if (base.RuntimeValue != null && base.RuntimeValue.Equals(value)) { return; }
+                if (base.RuntimeValue == null)
+                {
+                    base.RuntimeValue = value;
+                    return;
+                }
+
+                if (base.RuntimeValue != null && base.RuntimeValue.Equals(value))
+                {
+                    return;
+                }
 
                 base.RuntimeValue = value;
                 InvokeOnChangeEvents(value);
