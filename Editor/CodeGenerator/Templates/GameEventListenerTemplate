@@ -4,6 +4,6 @@ using TalusFramework.Events.Interfaces;
 
 namespace $NAMESPACE$
 {
-	public class $TYPE_NAME$GameEventListener : BaseGameEventListener<$TYPE$, $TYPE_NAME$GameEvent>
+	public class $TYPE_NAME$GameEventListener : BaseGameEventListener<$TYPE$, $TYPE_NAME$Event>
 	{ }
 }
