@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -16,7 +17,7 @@ namespace TalusFramework.Behaviours
         public Text Text;
 
         [LabelWidth(65)]
-        [AssetSelector, Required]
+        [Required]
         public BaseValue Value;
 
         [GUIColor(0f, 1f, 0f)]
@@ -44,12 +45,17 @@ namespace TalusFramework.Behaviours
             }
         }
 
-        private void OnEnable()
+        protected override void Awake()
+        {
+            this.Assert(Text != null, "Invalid Reference!", typeof(Text), null);
+        }
+
+        protected override void OnEnable()
         {
             SetText();
         }
 
-        private void Start()
+        protected override void Start()
         {
             SetText();
         }

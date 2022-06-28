@@ -11,74 +11,67 @@ using TalusFramework.Managers.Interfaces;
 using TalusFramework.Constants;
 using TalusFramework.Variables;
 using TalusFramework.Collections;
+using TalusFramework.Utility;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Managers
 {
-    [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "Managers/Runtime Manager", order = 1)]
-    public class RuntimeDataManager : BaseSO, IInitializable
+    /// <summary>
+    ///     RuntimeData Manager sets next level
+    /// </summary>
+    [CreateAssetMenu(fileName = "New Runtime Manager", menuName = "_OTHERS/Managers/Runtime Manager", order = 1)]
+    public class RuntimeDataManager : BaseManager
     {
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringVariable NextLevel;
+        [FoldoutGroup("Base"), Required] public StringConstant LevelCyclePref;
+        [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelCountPref;
+        [FoldoutGroup("Base"), Required] public StringConstant DisabledLevelPref;
 
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringVariable LevelText;
+        [LabelWidth(100), Required] public SceneCollection LevelCollection;
+        [LabelWidth(100), Required] public SceneVariable NextLevel;
+        [LabelWidth(100), Required] public StringVariable LevelText;
 
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant LevelCyclePref;
-
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant DisabledLevelCountPref;
-
-        [FoldoutGroup("Initialization")]
-        [Required]
-        public StringConstant DisabledLevelPref;
-
-        [LabelWidth(100)]
-        [Required]
-        public SceneCollection LevelCollection;
-
-        public void Initialize()
+        public override void Initialize()
         {
-            UpdateGameData();
+            RefreshLevelData();
         }
 
         public void LevelUp()
         {
+            this.Assert(LevelCyclePref != null, "Invalid Reference!", typeof(StringConstant), null);
+
             PlayerPrefs.SetInt(LevelCyclePref.RuntimeValue, CompletedLevelCount + 1);
-            UpdateGameData();
+            RefreshLevelData();
         }
 
         public void DisableCurrentLevel()
         {
-            if (DisabledLevels.Contains(SceneManager.GetActiveScene().path))
-            {
-                return;
-            }
+            this.Assert(DisabledLevelPref != null, "Invalid Reference!", typeof(StringConstant), null);
+            this.Assert(DisabledLevelCountPref != null, "Invalid Reference!", typeof(StringConstant), null);
 
-            PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, SceneManager.GetActiveScene().path);
+            string currentScenePath = SceneManager.GetActiveScene().path;
+            if (DisabledLevels.Contains(currentScenePath)) { return; }
+
+            PlayerPrefs.SetString(DisabledLevelPref.RuntimeValue + DisabledLevelCount, currentScenePath);
             PlayerPrefs.SetInt(DisabledLevelCountPref.RuntimeValue, DisabledLevelCount + 1);
         }
 
-        private void UpdateGameData()
+        private void RefreshLevelData()
         {
+            this.Assert(LevelCollection != null, "Invalid Reference!", typeof(SceneCollection), null);
+            this.Assert(NextLevel != null, "Invalid Reference!", typeof(SceneVariable), null);
+            this.Assert(LevelText != null, "Invalid Reference!", typeof(StringVariable), null);
+
             LevelText.SetValue("LEVEL " + (CompletedLevelCount + 1));
-            NextLevel.SetValue(PlayableLevels[Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % PlayableLevels.Count]);
+            NextLevel.SetValue(new SceneReference(LevelCollection[
+                Mathf.Abs(CompletedLevelCount - DisabledLevelCount) % LevelCollection.Count
+            ]));
         }
 
         private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
         private int DisabledLevelCount => PlayerPrefs.GetInt(DisabledLevelCountPref.RuntimeValue);
 
-        private List<string> PlayableLevels => (
-            from scene in LevelCollection
-            where !DisabledLevels.Contains(scene.ScenePath)
-            select scene.ScenePath
-        ).ToList();
-
-        private List<string> DisabledLevels => Enumerable.Range(0, DisabledLevelCount)
+        private List<string> DisabledLevels =>
+            Enumerable.Range(0, DisabledLevelCount)
             .Select(i => PlayerPrefs.GetString(DisabledLevelPref.RuntimeValue + i))
             .ToList();
     }

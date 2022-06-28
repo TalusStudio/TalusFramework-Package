@@ -13,17 +13,17 @@ namespace TalusFramework.Behaviours
         public UnityEvent OnStartEvent;
         public UnityEvent OnDestroyEvent;
 
-        private void Awake()
+        protected override void Awake()
         {
             OnAwakeEvent.Invoke();
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
             OnEnableEvent.Invoke();
         }
 
-        private void Start()
+        protected override void Start()
         {
             OnStartEvent.Invoke();
         }

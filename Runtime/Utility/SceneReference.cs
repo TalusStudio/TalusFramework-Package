@@ -10,7 +10,7 @@ using UnityEngine;
 namespace TalusFramework.Utility
 {
 	/// <summary>
-	/// https://github.com/NibbleByte/UnitySceneReference
+	///		imported : https://github.com/NibbleByte/UnitySceneReference
 	/// </summary>
 	[System.Serializable]
 	public class SceneReference : ISerializationCallbackReceiver

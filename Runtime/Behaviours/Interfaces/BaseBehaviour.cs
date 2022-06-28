@@ -12,5 +12,17 @@ namespace TalusFramework.Behaviours.Interfaces
 #if UNITY_EDITOR
         public Description Description = default;
 #endif
+
+        protected virtual void Awake()
+        { }
+
+        protected virtual void Start()
+        { }
+
+        protected virtual void OnEnable()
+        { }
+
+        protected virtual void OnDisable()
+        { }
     }
 }

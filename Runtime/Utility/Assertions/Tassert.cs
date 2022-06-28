@@ -14,7 +14,26 @@ namespace TalusFramework.Utility.Assertions
         [Conditional("TALUS_ASSERTS")]
         public static void Assert(bool condition, string message, Object context = null)
         {
-            Debug.Assert(condition, message, context);
+            Debug.Assert(condition, $"Assertion Failed: {message}", context);
+        }
+
+        public static void Assert(bool condition, string message, System.Type expected, System.Type given, Object context = null)
+        {
+            string givenType = (given == null) ? "Null" : given.Name;
+            Assert(condition, @$"<b><color=yellow>{message}</color></b>
+                    Expected: <b><color=green>{expected.Name}</color></b>
+                    Given: <b><color=red>{givenType}</color></b>"
+            );
+        }
+
+        public static void Assert<T>(this T sender, bool condition, string message, System.Type expected, System.Type given)
+            where T : Object
+        {
+            string givenType = (given == null) ? "Null" : given.Name;
+            Assert(sender, condition, @$"<b><color=yellow>{message}</color></b> (<b><color=cyan>{sender.name}</color></b>)
+                    Expected: <b><color=green>{expected.Name}</color></b>
+                    Given: <b><color=red>{givenType}</color></b>"
+            );
         }
 
         public static void Assert<T>(this T sender, bool condition, string message) where T : Object
@@ -24,7 +43,9 @@ namespace TalusFramework.Utility.Assertions
 #if UNITY_EDITOR
             if (!condition)
             {
-                UnityEditor.EditorApplication.isPaused = Application.isEditor && !Application.isBatchMode;
+                UnityEditor.EditorApplication.isPaused = Application.isPlaying &&
+                                                            Application.isEditor &&
+                                                            !Application.isBatchMode;
             }
 #endif
         }

@@ -12,15 +12,23 @@ using TalusFramework.Variables;
 
 namespace TalusFramework.SceneManagement
 {
-    [CreateAssetMenu(fileName = "New Scene Loader", menuName = "Others/Scene Loader", order = 1)]
+    [CreateAssetMenu(fileName = "New Scene Loader", menuName = "_OTHERS/Scene Loader", order = 1)]
     public class SceneLoader : BaseSO
     {
         [Button, DisableInEditorMode]
-        public async void LoadLevel(StringVariable scene)
+        public async void LoadLevel(SceneVariable scene)
         {
-            this.Assert(scene.RuntimeValue != string.Empty, "There is an invalid scene reference!");
+            this.Assert(!scene.RuntimeValue.IsEmpty, "There is an invalid scene reference!");
 
-            await LoadScene(scene.RuntimeValue);
+            await LoadScene(scene.RuntimeValue.ScenePath);
+        }
+
+        [Button, DisableInEditorMode]
+        public async void LoadLevel(SceneReference scene)
+        {
+            this.Assert(!scene.IsEmpty, "There is an invalid scene reference!");
+
+            await LoadScene(scene.ScenePath);
         }
 
         [Button, DisableInEditorMode]

@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.Collections;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -11,8 +12,21 @@ namespace TalusFramework.Behaviours
     public class GameObjectDisabler : BaseBehaviour
     {
         [LabelWidth(60)]
-        [AssetSelector, Required]
+        [AssetList(AssetNamePrefix = "Collection_")]
+        [Required]
         public GameObjectCollection Collection;
+
+        protected override void Awake()
+        {
+            this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
+        }
+
+        public void Disable(int index)
+        {
+            this.Assert(index <= Collection.Count - 1, "Invalid collection index!");
+
+            Collection[index].SetActive(false);
+        }
 
         public void DisableAll()
         {

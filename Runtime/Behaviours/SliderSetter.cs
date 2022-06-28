@@ -5,6 +5,7 @@ using Sirenix.OdinInspector;
 
 using TalusFramework.References;
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -19,9 +20,14 @@ namespace TalusFramework.Behaviours
         [LabelWidth(100)]
         public FloatReference FloatReference;
 
+        protected override void Start()
+        {
+            this.Assert(Slider != null, "Invalid Reference!", typeof(Slider), null);
+        }
+
         private void Update()
         {
-            if (Slider != null && FloatReference != null)
+            if (FloatReference != null)
             {
                 Slider.value = FloatReference;
             }

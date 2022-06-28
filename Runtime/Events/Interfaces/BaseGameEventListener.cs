@@ -1,73 +1,83 @@
+using UnityEngine;
+using UnityEngine.Events;
+
 using Sirenix.OdinInspector;
 
 using TalusFramework.Utility.Assertions;
 
-using UnityEngine;
-using UnityEngine.Events;
-
 namespace TalusFramework.Events.Interfaces
 {
+    /// <summary>
+    ///     Base: Void Event
+    /// </summary>
     [HideMonoScript]
     public abstract class BaseGameEventListener : MonoBehaviour, IGameEventListener
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
         [Required]
-        public GameEvent GameEvent;
-
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
+        public VoidEvent GameEvent;
         public UnityEvent Response;
 
-        [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
+        [Button, DisableInEditorMode]
+        [LabelText("Send Response")]
         public void Send()
         {
+            this.Assert(EventHelper.IsValidEvent(Response) == true, "There is a broken target on event!");
+
             Response?.Invoke();
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(GameEvent != null, "Invalid Reference!", typeof(VoidEvent), null);
 
             GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(GameEvent != null, "Invalid Reference!", typeof(VoidEvent), null);
 
             GameEvent.RemoveListener(this);
         }
     }
 
+    /// <summary>
+    ///     Base: Generic Event
+    /// </summary>
     [HideMonoScript]
-    public abstract class BaseGameEventListener<T> : MonoBehaviour, IGameEventListener<T>
+    public abstract class BaseGameEventListener<TPlainType, TEventType> : MonoBehaviour, IGameEventListener<TPlainType>
+        where TEventType : IGameEvent<TPlainType>
     {
-        [Tooltip("Event to register with."), LabelWidth(75)]
-        [AssetSelector(DropdownTitle = "Events")]
+        [LabelWidth(70)]
+        [AssetList(AssetNamePrefix = "Event_")]
         [Required]
-        public GameEvent GameEvent;
+        public TEventType GameEvent;
 
-        [Tooltip("Response to invoke when Event is raised."), PropertySpace]
-        public UnityEvent<T> Response;
+        public UnityEvent<TPlainType> Response;
 
-        [DisableInEditorMode]
         [GUIColor(0, 1, 0)]
-        public void Send(T param)
+        [Button, DisableInEditorMode]
+        [LabelText("Send Response")]
+        public void Send(TPlainType parameter)
         {
-            Response?.Invoke(param);
+            this.Assert(EventHelper.IsValidEvent(Response) == true, "There is a broken target on event!");
+
+            Response?.Invoke(parameter);
         }
 
         protected virtual void OnEnable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(GameEvent != null, "Invalid Reference!", typeof(TEventType), null);
 
             GameEvent.AddListener(this);
         }
 
         protected virtual void OnDisable()
         {
-            this.Assert(GameEvent != null, "GameEvent reference is null!");
+            this.Assert(GameEvent != null, "Invalid Reference!", typeof(TEventType), null);
 
             GameEvent.RemoveListener(this);
         }

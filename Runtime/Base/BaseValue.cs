@@ -21,13 +21,13 @@ namespace TalusFramework.Base
         [AssetsOnly]
         [SerializeField]
         [OnValueChanged(nameof(ResetRuntimeValue))]
-        private TPlainType _Value;
+        private TPlainType _Value = default;
         public TPlainType Value => _Value;
 
         [LabelWidth(90)]
         [AssetsOnly]
         [SerializeField]
-        private TPlainType _RuntimeValue;
+        private TPlainType _RuntimeValue = default;
         public virtual TPlainType RuntimeValue
         {
             get => _RuntimeValue;
@@ -43,5 +43,7 @@ namespace TalusFramework.Base
         {
             RuntimeValue = Value;
         }
+
+        public virtual bool AreValuesEqual(TPlainType value) => RuntimeValue.Equals(value);
     }
 }

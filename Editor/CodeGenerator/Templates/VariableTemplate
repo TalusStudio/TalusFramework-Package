@@ -1,0 +1,10 @@
+﻿using UnityEngine;
+
+using TalusFramework.Variables.Interfaces;
+
+namespace $NAMESPACE$
+{
+	[CreateAssetMenu(menuName = "_GENERATED/Variables/$TYPE_NAME$")]
+	public class $TYPE_NAME$Variable : BaseVariable<$TYPE$>
+	{ }
+}

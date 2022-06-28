@@ -1,0 +1,12 @@
+﻿using TalusFramework.References.Interfaces;
+
+using UnityEngine;
+
+namespace $NAMESPACE$
+{
+	[System.Serializable]
+	public sealed class $TYPE_NAME$Reference : BaseReference<$TYPE_NAME$>
+	{
+		public static implicit operator $TYPE_NAME$($TYPE_NAME$Reference reference) => reference.Value;
+	}
+}

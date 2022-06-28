@@ -3,6 +3,7 @@
 using Sirenix.OdinInspector;
 
 using TalusFramework.Behaviours.Interfaces;
+using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {
@@ -12,6 +13,11 @@ namespace TalusFramework.Behaviours
         [LabelWidth(90)]
         [Required]
         public GameObject GameObject;
+
+        protected override void Awake()
+        {
+            this.Assert(GameObject != null, "Invalid Reference!", typeof(GameObject), null);
+        }
 
         public void Enable()
         {
