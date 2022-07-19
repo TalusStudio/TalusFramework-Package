@@ -19,6 +19,9 @@ namespace TalusFramework.Behaviours
 
         [LabelWidth(100)]
         public FloatReference FloatReference;
+        
+        [LabelWidth(100)]
+        public FloatReference Smoothing;
 
         protected override void Start()
         {
@@ -29,7 +32,7 @@ namespace TalusFramework.Behaviours
         {
             if (FloatReference != null)
             {
-                Slider.value = FloatReference;
+                Slider.value = Mathf.Lerp(Slider.value, FloatReference, Smoothing);
             }
         }
     }
