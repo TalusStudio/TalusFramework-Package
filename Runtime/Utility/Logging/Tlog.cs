@@ -41,14 +41,23 @@ namespace TalusFramework.Utility.Logging
             }
         }
 
-        public static void LogError<T>(this T sender, string message) where T : Object
+        public static void Error<T>(this T sender, string message) where T : Object
         {
             sender.Log(message, LogType.Error);
         }
 
-        public static void LogWarning<T>(this T sender, string message) where T : Object
+        public static void Warning<T>(this T sender, string message) where T : Object
         {
             sender.Log(message, LogType.Warning);
         }
+
+        public static void Assert<T>(this T sender, string message) where T : Object
+        {
+            sender.Log(message, LogType.Assert);
+        }
+
+        public static void Error(string message) => Debug.LogError(message);
+        public static void Warning(string message) => Debug.LogWarning(message);
+        public static void Assert(string message) => Debug.LogAssertion(message);
     }
 }
