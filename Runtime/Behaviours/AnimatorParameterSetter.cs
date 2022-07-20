@@ -51,7 +51,7 @@ namespace TalusFramework.Behaviours
 
         protected override void Awake()
         {
-            _ParameterHash = Animator.StringToHash(ParameterName);
+            _ParameterHash = Animator.StringToHash(ParameterName.Value);
         }
 
         protected override void Start()
