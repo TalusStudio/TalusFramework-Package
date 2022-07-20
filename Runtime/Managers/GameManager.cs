@@ -29,7 +29,7 @@ namespace TalusFramework.Managers
         {
             if (_SubManagers.Count == 0)
             {
-                this.LogWarning("There are no registered sub managers...");
+                this.Warning("There are no registered sub managers...");
                 return;
             }
 

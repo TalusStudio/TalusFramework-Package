@@ -23,7 +23,7 @@ namespace TalusFramework.Base
                     {
                         IsTemporaryInstance = true;
                         _Instance = new GameObject("Temp Instance of " + typeof(T), typeof(T)).GetComponent<T>();
-                        _Instance.LogWarning("No instance of " + typeof(T) + ", a temporary one is created.");
+                        _Instance.Warning("No instance of " + typeof(T) + ", a temporary one is created.");
                     }
 
                     if (!_IsInitialized)
@@ -60,7 +60,7 @@ namespace TalusFramework.Base
             }
             else if (_Instance != this)
             {
-                this.LogError(GetType() + " singleton is already exist! Destroying self...");
+                this.Error(GetType() + " singleton is already exist! Destroying self...");
                 DestroyImmediate(this);
                 return;
             }
