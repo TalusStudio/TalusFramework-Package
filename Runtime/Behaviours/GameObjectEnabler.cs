@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+
+using UnityEngine;
 
 using Sirenix.OdinInspector;
 
@@ -21,6 +23,18 @@ namespace TalusFramework.Behaviours
 
         public void Enable()
         {
+            GameObject.SetActive(true);
+        }
+
+        public void EnableWithDelay(float delay)
+        {
+            StartCoroutine(EnableRoutine(delay));
+        }
+
+        private IEnumerator EnableRoutine(float delay)
+        {
+            yield return new WaitForSecondsRealtime(delay);
+
             GameObject.SetActive(true);
         }
     }
