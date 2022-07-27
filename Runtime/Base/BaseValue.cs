@@ -27,6 +27,7 @@ namespace TalusFramework.Base
         [LabelWidth(90)]
         [AssetsOnly]
         [SerializeField]
+        [HideDuplicateReferenceBox]
         private TPlainType _RuntimeValue = default;
         public virtual TPlainType RuntimeValue
         {
