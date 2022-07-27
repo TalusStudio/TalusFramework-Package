@@ -13,7 +13,7 @@ namespace TalusFramework.Collections.Interfaces
         [LabelText("@this.ToString()")]
         [ListDrawerSettings(DraggableItems = true,
             Expanded = true,
-            ShowIndexLabels = true,
+            ShowIndexLabels = false,
             ShowPaging = true,
             ShowItemCount = true,
             NumberOfItemsPerPage = 10
