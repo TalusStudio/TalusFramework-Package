@@ -16,6 +16,12 @@ namespace TalusFramework.SceneManagement
     public class SceneLoader : BaseSO
     {
         [Button, DisableInEditorMode]
+        public async void LoadLevel(IntVariable scene)
+        {
+            await LoadScene(scene.RuntimeValue);
+        }
+
+        [Button, DisableInEditorMode]
         public async void LoadLevel(SceneVariable scene)
         {
             this.Assert(!scene.RuntimeValue.IsEmpty, "There is an invalid scene reference!");
@@ -37,12 +43,21 @@ namespace TalusFramework.SceneManagement
             await LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        private static async Task LoadScene(string scene, LoadSceneMode loadMode = LoadSceneMode.Single)
+        private static async Task LoadScene(string sceneName, LoadSceneMode loadMode = LoadSceneMode.Single)
         {
             // wait one frame.
             await Task.Yield();
 
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene, loadMode);
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, loadMode);
+            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+        }
+
+        private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
+        {
+            // wait one frame.
+            await Task.Yield();
+
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
             await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
         }
     }
