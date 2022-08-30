@@ -49,7 +49,11 @@ namespace TalusFramework.SceneManagement
             await Task.Yield();
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName, loadMode);
-            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+            asyncOperation.allowSceneActivation = false;
+
+            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.progress >= 0.9f);
+
+            asyncOperation.allowSceneActivation = true;
         }
 
         private static async Task LoadScene(int sceneIndex, LoadSceneMode loadMode = LoadSceneMode.Single)
@@ -58,7 +62,11 @@ namespace TalusFramework.SceneManagement
             await Task.Yield();
 
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, loadMode);
-            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.isDone);
+            asyncOperation.allowSceneActivation = false;
+
+            await AsyncUtility.PollUntilAsync(16, () => asyncOperation.progress >= 0.9f);
+
+            asyncOperation.allowSceneActivation = true;
         }
     }
 }
