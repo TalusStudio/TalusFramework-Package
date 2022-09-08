@@ -97,7 +97,7 @@ namespace TalusFramework.Editor.CodeGenerator
             "{0}Collection.cs",
             "{0}Constant.cs",
             "{0}GameEventListener.cs",
-            "{0}GameEvent.cs",
+            "{0}Event.cs",
             "{0}Reference.cs",
             "{0}Variable.cs",
         };
