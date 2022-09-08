@@ -20,16 +20,13 @@ namespace TalusFramework.Behaviours
         [Required]
         public BaseValue Value;
 
-        [GUIColor(0f, 1f, 0f)]
-        [Button, DisableInEditorMode]
+        [GUIColor(0f, 1f, 0f), Button]
         public void SetText()
         {
-            Text.text = Value.ToString();
-        }
-
-        protected override void Awake()
-        {
             this.Assert(Text != null, "Invalid Reference!", typeof(Text), null);
+            this.Assert(Value != null, "Invalid Reference!", typeof(BaseValue), null);
+
+            Text.text = Value.ToString();
         }
 
         protected override void OnEnable()
