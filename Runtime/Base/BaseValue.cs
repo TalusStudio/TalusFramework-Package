@@ -46,5 +46,10 @@ namespace TalusFramework.Base
         }
 
         public virtual bool AreValuesEqual(TPlainType value) => RuntimeValue.Equals(value);
+
+        public override string ToString()
+        {
+            return RuntimeValue.ToString();
+        }
     }
 }
