@@ -10,7 +10,6 @@ using TalusFramework.Utility.Assertions;
 namespace TalusFramework.Behaviours
 {
     [AddComponentMenu("TalusFramework/Behaviours/Slider Setter", 6)]
-    [ExecuteInEditMode]
     public class SliderSetter : BaseBehaviour
     {
         [Required]
@@ -19,7 +18,7 @@ namespace TalusFramework.Behaviours
 
         [LabelWidth(100)]
         public FloatReference FloatReference;
-        
+
         [LabelWidth(100)]
         public FloatReference Smoothing;
 

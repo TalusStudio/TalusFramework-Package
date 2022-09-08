@@ -33,7 +33,7 @@ namespace TalusFramework.Behaviours
 
         private IEnumerator EnableRoutine(float delay)
         {
-            yield return new WaitForSecondsRealtime(delay);
+            yield return new WaitForSeconds(delay);
 
             GameObject.SetActive(true);
         }

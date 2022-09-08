@@ -24,25 +24,7 @@ namespace TalusFramework.Behaviours
         [Button, DisableInEditorMode]
         public void SetText()
         {
-            var intValue = Value as BaseValue<int>;
-            if (intValue != null)
-            {
-                Text.text = intValue.RuntimeValue.ToString();
-                return;
-            }
-
-            var floatValue = Value as BaseValue<float>;
-            if (floatValue != null)
-            {
-                Text.text = floatValue.RuntimeValue.ToString();
-                return;
-            }
-
-            var stringValue = Value as BaseValue<string>;
-            if (stringValue != null)
-            {
-                Text.text = stringValue.RuntimeValue;
-            }
+            Text.text = Value.ToString();
         }
 
         protected override void Awake()
