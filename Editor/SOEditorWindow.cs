@@ -8,10 +8,6 @@ using TalusFramework.Managers.Interfaces;
 using TalusFramework.Collections.Interfaces;
 using TalusFramework.Events.Interfaces;
 
-#if ENABLE_BACKEND
-using Facebook.Unity.Settings;
-#endif
-
 namespace TalusFramework.Editor
 {
     internal class SOEditorWindow : OdinMenuEditorWindow
@@ -43,17 +39,6 @@ namespace TalusFramework.Editor
             tree.AddAllAssetsAtPath(" # Variables", soPath, typeof(BaseValue), true, true)
                 .AddThumbnailIcons()
                 .SortMenuItemsByName();
-
-#if ENABLE_BACKEND
-            tree.AddAssetAtPath(
-                "# Backend/Facebook Settings",
-                AssetDatabase.GetAssetPath(FacebookSettings.Instance),
-                typeof(ScriptableObject)
-            ).AddThumbnailIcons();
-#else
-            tree.Add("# Backend (not active)/Facebook Settings", null);
-            tree.Add("# Backend (not active)/GA Settings", null);
-#endif
 
             return tree;
         }
