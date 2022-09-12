@@ -41,7 +41,7 @@ namespace TalusFramework.Editor
             foreach (KeyValuePair<System.Type, string> type in _Types)
             {
                 tree.AddAllAssetsAtPath(type.Value, _SOPath, type.Key, true, true)
-                    .AddThumbnailIcons()
+                    .AddThumbnailIcons(true)
                     .SortMenuItemsByName();
             }
 
