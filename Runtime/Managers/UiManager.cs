@@ -18,13 +18,12 @@ namespace TalusFramework.Managers
 
         [Required] public StringConstant LevelCyclePref;
 
-        private int CompletedLevelCount => PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
-
         public override void Initialize()
         {
             this.Assert(LevelText != null, "Invalid Reference!", typeof(StringVariable), null);
 
-            LevelText.SetValue($"LEVEL {CompletedLevelCount + 1}");
+            int completedLevelCount = PlayerPrefs.GetInt(LevelCyclePref.RuntimeValue);
+            LevelText.SetValue($"LEVEL {completedLevelCount + 1}");
         }
     }
 }
