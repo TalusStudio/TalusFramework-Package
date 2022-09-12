@@ -13,9 +13,9 @@ namespace TalusFramework.Managers
     public class UiManager : BaseManager
     {
         [LabelWidth(100)]
-        [Required]
-        public StringVariable LevelText;
+        [Required] public StringVariable LevelText;
 
+        [LabelWidth(100)]
         [Required] public StringConstant LevelCyclePref;
 
         public override void Initialize()
