@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +14,8 @@ namespace TalusFramework.Editor
 {
     internal class SOEditorWindow : OdinMenuEditorWindow
     {
+        private const string _SOPath = "Assets/Scriptables";
+
         [MenuItem("TalusKit/SO Editor %m", priority = 21)]
         private static void OpenWindow()
         {
@@ -23,22 +27,23 @@ namespace TalusFramework.Editor
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            var soPath = "Assets/Scriptables";
-
             var tree = new OdinMenuTree(false);
             tree.Config.DrawSearchToolbar = true;
-            tree.AddAllAssetsAtPath("# Managers", soPath, typeof(IInitable), true, true)
-                .AddThumbnailIcons()
-                .SortMenuItemsByName();
-            tree.AddAllAssetsAtPath("# Collections", soPath, typeof(ICollection), true, true)
-                .AddThumbnailIcons()
-                .SortMenuItemsByName();
-            tree.AddAllAssetsAtPath("# Events", soPath, typeof(IBaseEvent), true, true)
-                .AddThumbnailIcons()
-                .SortMenuItemsByName();
-            tree.AddAllAssetsAtPath(" # Variables", soPath, typeof(BaseValue), true, true)
-                .AddThumbnailIcons()
-                .SortMenuItemsByName();
+
+            Dictionary<System.Type, string> types = new Dictionary<System.Type, string>
+            {
+                { typeof(IInitable), "# Managers" },
+                { typeof(ICollection), "# Collections" },
+                { typeof(IBaseEvent), "# Events" },
+                { typeof(BaseValue), "# Variables" }
+            };
+
+            foreach (KeyValuePair<System.Type, string> type in types)
+            {
+                tree.AddAllAssetsAtPath(type.Value, _SOPath, type.Key, true, true)
+                    .AddThumbnailIcons()
+                    .SortMenuItemsByName();
+            }
 
             return tree;
         }
