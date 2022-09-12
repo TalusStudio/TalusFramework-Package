@@ -16,7 +16,7 @@ namespace TalusFramework.Editor
     {
         private const string _SOPath = "Assets/Scriptables";
 
-        private Dictionary<System.Type, string> _Types = new Dictionary<System.Type, string>
+        private readonly Dictionary<System.Type, string> _Types = new Dictionary<System.Type, string>
         {
             { typeof(IInitable), "# Managers" },
             { typeof(ICollection), "# Collections" },
