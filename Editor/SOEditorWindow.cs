@@ -16,6 +16,14 @@ namespace TalusFramework.Editor
     {
         private const string _SOPath = "Assets/Scriptables";
 
+        private Dictionary<System.Type, string> _Types = new Dictionary<System.Type, string>
+        {
+            { typeof(IInitable), "# Managers" },
+            { typeof(ICollection), "# Collections" },
+            { typeof(IBaseEvent), "# Events" },
+            { typeof(BaseValue), "# Variables" }
+        };
+
         [MenuItem("TalusKit/SO Editor %m", priority = 21)]
         private static void OpenWindow()
         {
@@ -30,15 +38,7 @@ namespace TalusFramework.Editor
             var tree = new OdinMenuTree(false);
             tree.Config.DrawSearchToolbar = true;
 
-            Dictionary<System.Type, string> types = new Dictionary<System.Type, string>
-            {
-                { typeof(IInitable), "# Managers" },
-                { typeof(ICollection), "# Collections" },
-                { typeof(IBaseEvent), "# Events" },
-                { typeof(BaseValue), "# Variables" }
-            };
-
-            foreach (KeyValuePair<System.Type, string> type in types)
+            foreach (KeyValuePair<System.Type, string> type in _Types)
             {
                 tree.AddAllAssetsAtPath(type.Value, _SOPath, type.Key, true, true)
                     .AddThumbnailIcons()
