@@ -1,9 +1,12 @@
 using UnityEngine;
 
+using Sirenix.OdinInspector;
+
 using TalusFramework.Utility.Logging;
 
 namespace TalusFramework.Base
 {
+    [HideMonoScript]
     public class BaseScriptableSingleton<T> : ScriptableObject where T : ScriptableObject
     {
         private static T _instance;
