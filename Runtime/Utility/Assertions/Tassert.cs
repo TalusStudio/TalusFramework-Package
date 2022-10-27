@@ -10,7 +10,6 @@ namespace TalusFramework.Utility.Assertions
     public static class Tassert
     {
         [Conditional("DEVELOPMENT_BUILD")]
-        [Conditional("UNITY_EDITOR")]
         [Conditional("TALUS_ASSERTS")]
         public static void Assert(bool condition, string message, Object context = null)
         {
