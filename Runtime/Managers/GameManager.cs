@@ -15,18 +15,28 @@ namespace TalusFramework.Managers
     [CreateAssetMenu(fileName = "New Game Manager", menuName = "_OTHERS/Managers/Game Manager", order = 0)]
     public class GameManager : BaseManager
     {
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-        private static void Init()
-        {
-            Application.targetFrameRate = 60;
-        }
+        [Space]
+        [ToggleLeft]
+        public bool _UseCustomFPS;
 
+        [EnableIf(nameof(_UseCustomFPS))]
+        [LabelWidth(30)]
+        [SerializeField]
+        private int _FPS = 60;
+
+        [Space]
         [Required]
         [SerializeField]
         private List<BaseManager> _SubManagers = new List<BaseManager>();
 
         public override void Initialize()
         {
+            if (_UseCustomFPS)
+            {
+                Application.targetFrameRate = _FPS;
+                this.Log($"Target frame rate changed to: {_FPS}");
+            }
+
             if (_SubManagers.Count == 0)
             {
                 this.Warning("There are no registered sub managers...");
