@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
-using TalusFramework.Base;
-using TalusFramework.Utility.Assertions;
+using TalusFramework.Variables.Interfaces;
 
 namespace TalusFramework.References.Interfaces
 {
@@ -9,7 +8,7 @@ namespace TalusFramework.References.Interfaces
     { }
 
     [System.Serializable]
-    public class BaseReference<TPlainType> : BaseReference
+    public class BaseReference<TPlainType, TVariableType> : BaseReference where TVariableType : BaseVariable<TPlainType>
     {
         [SerializeField]
         private bool UseConstant = true;
@@ -18,7 +17,7 @@ namespace TalusFramework.References.Interfaces
         private TPlainType ConstantValue;
 
         [SerializeField]
-        private BaseValue Variable;
+        private TVariableType Variable;
 
         public BaseReference()
         { }
@@ -37,14 +36,7 @@ namespace TalusFramework.References.Interfaces
                     return ConstantValue;
                 }
 
-                Tassert.Assert(Variable != null, $"Invalid Variable Reference on {GetType().Name}!", typeof(BaseValue), null);
-
-                var value = Variable as BaseValue<TPlainType>;
-                Tassert.Assert(value != null, $"Type mismatch on Variable Reference! (Current Reference: {Variable.name})",
-                    typeof(TPlainType),
-                    Variable.GetType());
-
-                return value.RuntimeValue;
+                return Variable.RuntimeValue;
             }
         }
     }
