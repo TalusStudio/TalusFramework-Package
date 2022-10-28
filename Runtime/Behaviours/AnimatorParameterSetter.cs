@@ -64,15 +64,15 @@ namespace TalusFramework.Behaviours
             switch (ParameterType)
             {
                 case AnimatorParameterType.Float:
-                    Animator.SetFloat(_ParameterHash, FloatValue);
+                    Animator.SetFloat(_ParameterHash, FloatValue.Value);
                 break;
 
                 case AnimatorParameterType.Int:
-                    Animator.SetInteger(_ParameterHash, IntValue);
+                    Animator.SetInteger(_ParameterHash, IntValue.Value);
                 break;
 
                 case AnimatorParameterType.Bool:
-                    Animator.SetBool(_ParameterHash, BoolValue);
+                    Animator.SetBool(_ParameterHash, BoolValue.Value);
                 break;
 
                 case AnimatorParameterType.Trigger:
