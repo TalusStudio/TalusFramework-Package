@@ -5,6 +5,6 @@ using UnityEngine;
 namespace TalusFramework.Events
 {
     [AddComponentMenu("TalusFramework/Listeners/Vector2 Listener", 3)]
-    public class Vector2Listener : BaseGameEventListener<Vector2, Vector2Event>
+    public sealed class Vector2Listener : BaseGameEventListener<Vector2, Vector2Event>
     { }
 }
