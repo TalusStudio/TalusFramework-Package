@@ -1,0 +1,25 @@
+{
+    "name": "TalusFramework.Cinemachine",
+    "rootNamespace": "",
+    "references": [
+        "TalusFramework",
+        "Cinemachine"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "TALUS_CINEMACHINE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.cinemachine",
+            "expression": "1.0.0",
+            "define": "TALUS_CINEMACHINE"
+        }
+    ],
+    "noEngineReferences": false
+}
