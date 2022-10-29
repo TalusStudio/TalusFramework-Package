@@ -1,11 +1,13 @@
-using TalusFramework.Behaviours.Interfaces;
-
+using UnityEngine;
 using UnityEngine.Events;
+
+using TalusFramework.Behaviours.Interfaces;
 
 using Cinemachine;
 
 namespace TalusFramework.Behaviours.CM
 {
+    [AddComponentMenu("TalusFramework/Behaviours/Cinemachine/Blend Finished Notifier", 0)]
     public class CmBlendFinishedNotifier : BaseBehaviour
     {
         public UnityEvent<CinemachineVirtualCameraBase> OnBlendFinished;
