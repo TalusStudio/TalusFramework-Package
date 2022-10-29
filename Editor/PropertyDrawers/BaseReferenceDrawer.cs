@@ -5,7 +5,7 @@ using TalusFramework.References.Interfaces;
 
 namespace TalusFramework.Editor.PropertyDrawers
 {
-    [CustomPropertyDrawer(typeof(BaseReference))]
+    [CustomPropertyDrawer(typeof(BaseReference), true)]
     internal class BaseReferenceDrawer : PropertyDrawer
     {
         private readonly string[] _PopupOptions = { "Use Variable", "Use Constant" };
