@@ -15,12 +15,7 @@ namespace TalusFramework.Behaviours
         [AssetList(AssetNamePrefix = "Collection_")]
         [Required]
         public GameObjectCollection Collection;
-
-        protected override void Awake()
-        {
-            this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
-        }
-
+        
         public void Disable(int index)
         {
             this.Assert(index <= Collection.Count - 1, "Invalid collection index!");

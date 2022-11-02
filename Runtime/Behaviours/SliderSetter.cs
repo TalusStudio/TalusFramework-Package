@@ -21,12 +21,7 @@ namespace TalusFramework.Behaviours
 
         [LabelWidth(100)]
         public FloatReference Smoothing;
-
-        protected override void Start()
-        {
-            this.Assert(Slider != null, "Invalid Reference!", typeof(Slider), null);
-        }
-
+        
         private void Update()
         {
             if (FloatReference != null)

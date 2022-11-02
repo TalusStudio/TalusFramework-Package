@@ -23,9 +23,6 @@ namespace TalusFramework.Behaviours
         [GUIColor(0f, 1f, 0f), Button]
         public void SetText()
         {
-            this.Assert(Text != null, "Invalid Reference!", typeof(TMP_Text), null);
-            this.Assert(Value != null, "Invalid Reference!", typeof(BaseValue), null);
-
             Text.text = Value.ToString();
         }
 
