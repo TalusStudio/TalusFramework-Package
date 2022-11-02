@@ -53,12 +53,7 @@ namespace TalusFramework.Behaviours
         {
             _ParameterHash = Animator.StringToHash(ParameterName.Value);
         }
-
-        protected override void Start()
-        {
-            this.Assert(Animator != null, "Invalid Reference!", typeof(Animator), null);
-        }
-
+        
         private void Update()
         {
             switch (ParameterType)

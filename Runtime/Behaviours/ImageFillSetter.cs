@@ -29,11 +29,6 @@ namespace TalusFramework.Behaviours
         [LabelWidth(50)]
         public FloatReference Max;
 
-        protected override void Start()
-        {
-            this.Assert(Image != null, "Invalid Reference!", typeof(Image), null);
-        }
-
         private void Update()
         {
             Image.fillAmount = Mathf.Clamp01(Mathf.InverseLerp(Min, Max, Variable));

@@ -17,12 +17,7 @@ namespace TalusFramework.Behaviours
         [LabelWidth(60)]
         [AssetSelector, Required]
         public GameObjectCollection Collection;
-
-        protected override void Awake()
-        {
-            this.Assert(Collection != null, "Invalid Reference!", typeof(GameObjectCollection), null);
-        }
-
+        
         protected override void OnEnable()
         {
             Collection.Add(gameObject);
