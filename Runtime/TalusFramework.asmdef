@@ -1,6 +1,6 @@
 {
     "name": "TalusFramework",
-    "rootNamespace": "",
+    "rootNamespace": "TalusFramework",
     "references": [
         "Unity.TextMeshPro"
     ],
