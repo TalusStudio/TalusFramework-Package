@@ -35,8 +35,13 @@ namespace TalusFramework.Editor
 
         protected override OdinMenuTree BuildMenuTree()
         {
-            var tree = new OdinMenuTree(false);
-            tree.Config.DrawSearchToolbar = true;
+            var tree = new OdinMenuTree(false)
+            {
+                Config =
+                {
+                    DrawSearchToolbar = true
+                }
+            };
 
             foreach (KeyValuePair<System.Type, string> type in _Types)
             {
