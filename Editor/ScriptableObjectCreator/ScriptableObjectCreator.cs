@@ -70,8 +70,7 @@ namespace TalusFramework.Editor.ScriptableObjectCreator
                 var customMenuItem = new ScriptableObjectCreatorMenuItem(tree, type, this);
 
                 // type.Namespace => TalusFramework.RunTime.Variables etc.
-                string[] splittedNamespaceName = type.Namespace.Split('.');
-                tree.AddMenuItemAtPath(splittedNamespaceName[splittedNamespaceName.Length - 1], customMenuItem).AddThumbnailIcons();
+                tree.AddMenuItemAtPath(type.Namespace, customMenuItem).AddThumbnailIcons();
             }
 
             tree.Selection.SelectionChanged += e =>
