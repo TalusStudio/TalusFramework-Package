@@ -17,7 +17,7 @@ namespace TalusFramework.Managers
     {
         [Space]
         [ToggleLeft]
-        public bool _UseCustomFPS;
+        public bool _UseCustomFPS = true;
 
         [EnableIf(nameof(_UseCustomFPS))]
         [LabelWidth(30)]
