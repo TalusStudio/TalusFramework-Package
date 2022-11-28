@@ -40,12 +40,10 @@ namespace TalusFramework.Utility.Assertions
             Assert(condition, message, sender);
 
 #if UNITY_EDITOR
-            if (!condition)
-            {
-                UnityEditor.EditorApplication.isPaused = Application.isPlaying &&
-                                                            Application.isEditor &&
-                                                            !Application.isBatchMode;
-            }
+            if (condition) { return; }
+
+            bool pauseEditor = !Application.isBatchMode && Application.isPlaying && Application.isEditor;
+            UnityEditor.EditorApplication.isPaused = pauseEditor;
 #endif
         }
     }
