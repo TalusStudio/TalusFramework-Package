@@ -5,7 +5,6 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 using TalusFramework.Behaviours.Interfaces;
-using TalusFramework.Utility.Assertions;
 
 namespace TalusFramework.Behaviours
 {

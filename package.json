@@ -1,6 +1,6 @@
 {
   "name": "com.talus.talusframework",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "displayName": "TalusFramework",
   "description": "Ready to use behaviours, events, scriptable objects, utilities etc.",
   "unity": "2020.3",
@@ -15,5 +15,6 @@
     "name": "Talus Studio",
     "email": "info@talusstudio.com",
     "url": "http://www.talusstudio.com"
-  }
+  },
+  "repository": "github:talusstudio/TalusFramework-Package"
 }
