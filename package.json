@@ -1,6 +1,6 @@
 {
   "name": "com.talus.talusframework",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "displayName": "TalusFramework",
   "description": "Ready to use behaviours, events, scriptable objects, utilities etc.",
   "unity": "2020.3",
@@ -9,7 +9,6 @@
     "scriptable",
     "game event",
     "odin inspector",
-    "odin serialization"
   ],
   "author": {
     "name": "Talus Studio",
