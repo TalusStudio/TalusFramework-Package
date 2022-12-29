@@ -8,7 +8,8 @@ namespace TalusFramework.References.Interfaces
     { }
 
     [System.Serializable]
-    public class BaseReference<TPlainType, TVariableType> : BaseReference where TVariableType : BaseVariable<TPlainType>
+    public class BaseReference<TPlainType, TVariableType> : BaseReference
+        where TVariableType : BaseVariable<TPlainType>
     {
         [SerializeField]
         private bool UseConstant = true;
@@ -38,6 +39,11 @@ namespace TalusFramework.References.Interfaces
 
                 return Variable.RuntimeValue;
             }
+        }
+
+        public static implicit operator TPlainType(BaseReference<TPlainType, TVariableType> reference)
+        {
+            return reference.Value;
         }
     }
 }
