@@ -18,14 +18,12 @@ namespace TalusFramework.Base
     {
         [DisableInPlayMode]
         [LabelWidth(90)]
-        [AssetsOnly]
         [SerializeField]
         [OnValueChanged(nameof(ResetRuntimeValue))]
         private TPlainType _Value = default;
         public TPlainType Value => _Value;
 
         [LabelWidth(90)]
-        [AssetsOnly]
         [SerializeField]
         [HideDuplicateReferenceBox]
         private TPlainType _RuntimeValue = default;

@@ -16,16 +16,13 @@ namespace TalusFramework.AssetManagement
     {
         [SerializeField] private List<AssetReferenceGameObject> _AssetReferences;
 
-        private readonly Dictionary<AssetReferenceGameObject, List<GameObject>> _SpawnedObjects = 
-                new Dictionary<AssetReferenceGameObject, List<GameObject>>();
-    
-        /// The Queue holds requests to spawn an instanced that were made while we are already loading the asset
-        /// They are spawned once the addressable is loaded, in the order requested
-        private readonly Dictionary<AssetReferenceGameObject, Queue<Vector3>> _QueuedSpawnRequests = 
-                new Dictionary<AssetReferenceGameObject, Queue<Vector3>>();
-    
-        private readonly Dictionary<AssetReferenceGameObject, AsyncOperationHandle<GameObject>> _AsyncOperationHandles = 
-                new Dictionary<AssetReferenceGameObject, AsyncOperationHandle<GameObject>>();
+        private readonly Dictionary<AssetReferenceGameObject, List<GameObject>> _SpawnedObjects = new();
+
+        // The Queue holds requests to spawn an instanced that were made while we are already loading the asset
+        // They are spawned once the addressable is loaded, in the order requested
+        private readonly Dictionary<AssetReferenceGameObject, Queue<Vector3>> _QueuedSpawnRequests = new();
+
+        private readonly Dictionary<AssetReferenceGameObject, AsyncOperationHandle<GameObject>> _AsyncOperationHandles = new();
 
         [Button]
         public void Spawn(int index)
@@ -37,7 +34,7 @@ namespace TalusFramework.AssetManagement
 
             AssetReferenceGameObject assetReference = _AssetReferences[index];
 
-            if (assetReference.RuntimeKeyIsValid() == false)
+            if (!assetReference.RuntimeKeyIsValid())
             {
                 this.Error("Invalid Key " + assetReference.RuntimeKey);
                 return;
@@ -80,7 +77,7 @@ namespace TalusFramework.AssetManagement
 
         private void EnqueueSpawnForAfterInitialization(AssetReferenceGameObject assetReference)
         {
-            if (_QueuedSpawnRequests.ContainsKey(assetReference) == false)
+            if (!_QueuedSpawnRequests.ContainsKey(assetReference))
             {
                 _QueuedSpawnRequests[assetReference] = new Queue<Vector3>();
             }
@@ -90,28 +87,29 @@ namespace TalusFramework.AssetManagement
 
         private void SpawnObjectFromLoadedReference(AssetReferenceGameObject assetReference, Vector3 position)
         {
-            assetReference.InstantiateAsync(position, Quaternion.identity).Completed += (asyncOperationHandle) =>
-            {
-                if (_SpawnedObjects.ContainsKey(assetReference) == false)
+            assetReference.InstantiateAsync(position, Quaternion.identity).Completed +=
+                (asyncOperationHandle) =>
                 {
-                    _SpawnedObjects[assetReference] = new List<GameObject>();
-                }
-            
-                _SpawnedObjects[assetReference].Add(asyncOperationHandle.Result);
-                var notify = asyncOperationHandle.Result.AddComponent<NotifyOnDestroy>();
-                notify.OnDestroyed += Remove;
-                notify.AssetReference = assetReference;
-            };
+                    if (!_SpawnedObjects.ContainsKey(assetReference))
+                    {
+                        _SpawnedObjects[assetReference] = new List<GameObject>();
+                    }
+
+                    _SpawnedObjects[assetReference].Add(asyncOperationHandle.Result);
+                    var notify = asyncOperationHandle.Result.AddComponent<NotifyOnDestroy>();
+                    notify.OnDestroyed += Remove;
+                    notify.AssetReference = assetReference;
+                };
         }
 
         private void Remove(AssetReferenceGameObject assetReference, NotifyOnDestroy obj)
         {
             Addressables.ReleaseInstance(obj.gameObject);
             _SpawnedObjects[assetReference].Remove(obj.gameObject);
-            
+
             if (_SpawnedObjects[assetReference].Count == 0)
             {
-                this.Warning($"Removed all {assetReference.RuntimeKey}");
+                this.Warning($"Removed all addressable instances : {assetReference.RuntimeKey}");
 
                 if (_AsyncOperationHandles[assetReference].IsValid())
                 {
