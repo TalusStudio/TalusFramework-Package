@@ -71,5 +71,10 @@ namespace TalusFramework.Base
                 _Instance.Init();
             }
         }
+
+        private void OnDestroy()
+        {
+            _Instance = null;
+        }
     }
 }
