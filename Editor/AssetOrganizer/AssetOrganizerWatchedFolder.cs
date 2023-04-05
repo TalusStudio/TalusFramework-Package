@@ -9,7 +9,7 @@ using TalusFramework.Editor.OdinExtensions.Attributes;
 
 namespace TalusFramework.Editor.AssetOrganizer
 {
-    [CreateAssetMenu(menuName = "_OTHERS/Asset Organizer/Watched Folder")]
+    [CreateAssetMenu(menuName = "Talus/Editor/Asset Organizer/Watched Folder")]
     internal class AssetOrganizerWatchedFolder : BaseSO
     {
         [FolderPath(UseBackslashes = true)]

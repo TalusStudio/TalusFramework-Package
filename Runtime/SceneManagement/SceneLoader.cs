@@ -12,7 +12,7 @@ using TalusFramework.Variables;
 
 namespace TalusFramework.SceneManagement
 {
-    [CreateAssetMenu(fileName = "New Scene Loader", menuName = "_OTHERS/Scene Loader", order = 1)]
+    [CreateAssetMenu(fileName = "New Scene Loader", menuName = "Talus/Framework/Scene Loader", order = 1)]
     public class SceneLoader : BaseSO
     {
         [Button, DisableInEditorMode]

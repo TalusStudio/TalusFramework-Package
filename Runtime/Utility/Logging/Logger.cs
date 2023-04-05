@@ -4,7 +4,7 @@ using TalusFramework.Base;
 
 namespace TalusFramework.Utility.Logging
 {
-    [CreateAssetMenu(fileName = "New Logger", menuName = "_OTHERS/Logger", order = 0)]
+    [CreateAssetMenu(fileName = "New Logger", menuName = "Talus/Framework/Logger", order = 0)]
     public class Logger : BaseSO
     {
         [Header("Settings")]

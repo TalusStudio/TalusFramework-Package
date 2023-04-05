@@ -9,7 +9,7 @@ using TalusFramework.Constants;
 
 namespace TalusFramework.Managers
 {
-    [CreateAssetMenu(fileName = "New Ui Manager", menuName = "_OTHERS/Managers/Ui Manager", order = 4)]
+    [CreateAssetMenu(fileName = "New Ui Manager", menuName = "Talus/Framework/Managers/Ui Manager", order = 4)]
     public class UiManager : BaseManager
     {
         [LabelWidth(100)]

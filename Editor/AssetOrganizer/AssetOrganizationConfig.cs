@@ -13,7 +13,7 @@ using TalusFramework.Editor.OdinExtensions.Attributes;
 
 namespace TalusFramework.Editor.AssetOrganizer
 {
-    [CreateAssetMenu(menuName = "_OTHERS/Asset Organizer/Config")]
+    [CreateAssetMenu(menuName = "Talus/Editor/Asset Organizer/Config")]
     internal class AssetOrganizationConfig : BaseSO
     {
         public enum FilterType
