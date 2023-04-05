@@ -1,8 +1,8 @@
 # [![](https://img.shields.io/github/package-json/displayName/talusstudio/talusframework-package?label=Package%3A)](https://github.com/TalusStudio/TalusFramework-Package)
 - Scriptable Architecture. Ready to use behaviours, scriptable objects, editor windows etc.
 
-# ❗ Requirements 
-- Unity3D >= 2020.3.9f1
+# ❗ Requirements
+- Unity3D >= 2021.3.5f1
 - [Git](https://git-scm.com/downloads)
 
 # 📦 Dependencies
