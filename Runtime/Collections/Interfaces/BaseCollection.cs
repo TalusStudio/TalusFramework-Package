@@ -1,13 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Sirenix.OdinInspector;
 
 using TalusFramework.Base;
 
+using UnityEngine;
+
 namespace TalusFramework.Collections.Interfaces
 {
-    public abstract class BaseCollection<T> : BaseSO, ICollection<T>, IEnumerable<T>
+    /// <summary>
+    ///     To work with UnityEditor.
+    /// </summary>
+    public abstract class BaseCollection : BaseSO
+    { }
+
+    public abstract class BaseCollection<T> : BaseCollection, ICollection<T>
     {
         [LabelWidth(45)]
         [LabelText("@this.ToString()")]
@@ -18,7 +27,9 @@ namespace TalusFramework.Collections.Interfaces
             ShowItemCount = true,
             NumberOfItemsPerPage = 10
         )]
-        public List<T> Items = new List<T>();
+        [SerializeField]
+        private List<T> _Items = default;
+        public List<T> Items => _Items;
 
         public T this[int index]
         {
@@ -28,25 +39,9 @@ namespace TalusFramework.Collections.Interfaces
 
         public int Count => Items.Count;
 
-        public bool Add(T thing)
+        public bool IsReadOnly
         {
-            if (Items.Contains(thing)) { return false; }
-
-            Items.Add(thing);
-            return true;
-        }
-
-        public bool Remove(T thing)
-        {
-            if (!Items.Contains(thing)) { return false; }
-
-            Items.Remove(thing);
-            return true;
-        }
-
-        public bool Contains(T thing)
-        {
-            return Items.Contains(thing);
+            get { return false; }
         }
 
         public void ForEach(System.Action<T> action)
@@ -55,11 +50,6 @@ namespace TalusFramework.Collections.Interfaces
             {
                 action(Items[i]);
             }
-        }
-
-        public void Clear()
-        {
-            Items.Clear();
         }
 
         public IEnumerator<T> GetEnumerator()
@@ -75,6 +65,55 @@ namespace TalusFramework.Collections.Interfaces
         public override string ToString()
         {
             return $"{typeof(T).Name} Collection";
+        }
+
+        bool ICollection<T>.Contains(T item)
+        {
+            return Items.Contains(item);
+        }
+
+        public void Add(T item)
+        {
+            if (!Items.Contains(item))
+            {
+                Items.Add(item);
+            }
+        }
+
+        public bool Remove(T item)
+        {
+            if (!Items.Contains(item)) { return false; }
+
+            Items.Remove(item);
+            return true;
+        }
+
+        public void Clear()
+        {
+            Items.Clear();
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            if (array == null)
+            {
+                throw new ArgumentNullException("The array cannot be null.");
+            }
+
+            if (arrayIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException("The starting array index cannot be negative.");
+            }
+
+            if (Count > array.Length - arrayIndex)
+            {
+                throw new ArgumentException("The destination array has fewer elements than the collection.");
+            }
+
+            for (int i = 0; i < Count; i++)
+            {
+                array[i + arrayIndex] = Items[i];
+            }
         }
     }
 }

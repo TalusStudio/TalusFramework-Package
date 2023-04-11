@@ -7,8 +7,8 @@ using Sirenix.OdinInspector.Editor;
 
 using TalusFramework.Base;
 using TalusFramework.Managers.Interfaces;
-using TalusFramework.Collections.Interfaces;
 using TalusFramework.Events.Interfaces;
+using TalusFramework.Collections.Interfaces;
 
 namespace TalusFramework.Editor
 {
@@ -19,7 +19,7 @@ namespace TalusFramework.Editor
         private readonly Dictionary<System.Type, string> _Types = new Dictionary<System.Type, string>
         {
             { typeof(IInitable), "# Managers" },
-            { typeof(ICollection), "# Collections" },
+            { typeof(BaseCollection), "# Collections" },
             { typeof(IBaseEvent), "# Events" },
             { typeof(BaseValue), "# Variables" }
         };

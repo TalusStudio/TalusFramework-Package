@@ -5,7 +5,7 @@ using Sirenix.OdinInspector;
 namespace TalusFramework.Base
 {
     /// <summary>
-    ///     To work with UnityEditor & UnityEvent.
+    ///     To work with UnityEditor.
     /// </summary>
     public abstract class BaseValue : BaseSO
     { }

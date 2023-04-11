@@ -16,7 +16,7 @@ namespace TalusFramework.Behaviours
         [LabelWidth(60)]
         [AssetSelector, Required]
         public GameObjectCollection Collection;
-        
+
         protected override void OnEnable()
         {
             Collection.Add(gameObject);
