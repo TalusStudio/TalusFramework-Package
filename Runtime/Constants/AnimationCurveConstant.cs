@@ -9,10 +9,12 @@ namespace TalusFramework.Constants
     {
         public override void ResetRuntimeValue()
         {
-            RuntimeValue = new AnimationCurve(Value?.keys)
+            if (Value == null) { return; }
+
+            RuntimeValue = new AnimationCurve(Value.keys)
             {
-                preWrapMode = (WrapMode) (Value?.preWrapMode),
-                postWrapMode = (WrapMode) (Value?.postWrapMode)
+                preWrapMode = (WrapMode) Value.preWrapMode,
+                postWrapMode = (WrapMode) Value.postWrapMode
             };
         }
     }
