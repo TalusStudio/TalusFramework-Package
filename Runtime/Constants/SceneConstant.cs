@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TalusFramework.Constants
 {
-    [CreateAssetMenu(fileName = "New Scene Constant", menuName = "Constants/Scene", order = 10)]
+    [CreateAssetMenu(fileName = "New Scene Constant", menuName = "Constants/Scene", order = 11)]
     public sealed class SceneConstant : BaseConstant<SceneReference>
     {
         public override void ResetRuntimeValue()

@@ -6,7 +6,7 @@ using TalusFramework.Utility;
 
 namespace TalusFramework.Variables
 {
-    [CreateAssetMenu(fileName = "New Scene Variable", menuName = "Variables/Scene", order = 10)]
+    [CreateAssetMenu(fileName = "New Scene Variable", menuName = "Variables/Scene", order = 11)]
     public sealed class SceneVariable : BaseVariable<SceneReference>
     {
         public override void ResetRuntimeValue()
