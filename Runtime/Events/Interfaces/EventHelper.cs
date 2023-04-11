@@ -9,40 +9,33 @@ namespace TalusFramework.Events
     /// <summary>
     ///     Helper class to populate listeners
     /// </summary>
-    internal class EventHelper
+    public static class EventHelper
     {
         public static void AddListener<TContainer, TListener>(TContainer container, TListener listener)
             where TContainer : ICollection<TListener>
         {
-            if (container.Contains(listener))
+            if (!container.Contains(listener))
             {
-                return;
+                container.Add(listener);
             }
-
-            container.Add(listener);
         }
 
         public static void RemoveListener<TContainer, TListener>(TContainer container, TListener listener)
             where TContainer : ICollection<TListener>
         {
-            if (!container.Contains(listener))
+            if (container.Contains(listener))
             {
-                return;
+                container.Remove(listener);
             }
-
-            container.Remove(listener);
         }
 
         public static void LogEvent<T>(T logger, string message) where T : Logger
         {
-            if (logger == null)
+            if (logger != null)
             {
-                return;
+                logger.Log(message);
             }
-
-            logger.Log(message);
         }
-
 
         // To inform the developer when broken event target exists.
         public static bool IsValidEvent<T>(T response) where T : UnityEventBase
