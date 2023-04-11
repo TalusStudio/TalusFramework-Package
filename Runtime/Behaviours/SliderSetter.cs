@@ -20,7 +20,7 @@ namespace TalusFramework.Behaviours
 
         [LabelWidth(100)]
         public FloatReference Smoothing;
-        
+
         private void Update()
         {
             if (FloatReference != null)

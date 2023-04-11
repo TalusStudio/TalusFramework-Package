@@ -15,7 +15,7 @@ namespace TalusFramework.Behaviours
         [AssetList(AssetNamePrefix = "Collection_")]
         [Required]
         public GameObjectCollection Collection;
-        
+
         public void Disable(int index)
         {
             this.Assert(index <= Collection.Count - 1, "Invalid collection index!");

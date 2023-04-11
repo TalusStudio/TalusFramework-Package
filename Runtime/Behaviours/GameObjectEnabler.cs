@@ -14,7 +14,7 @@ namespace TalusFramework.Behaviours
         [LabelWidth(90)]
         [Required]
         public GameObject GameObject;
-        
+
         public void Enable()
         {
             GameObject.SetActive(true);
