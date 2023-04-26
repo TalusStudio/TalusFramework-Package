@@ -20,6 +20,12 @@ namespace TalusFramework.SceneManagement
         {
             await LoadScene(scene.RuntimeValue);
         }
+        
+        [Button, DisableInEditorMode]
+        public async void LoadLevel(int sceneIndex)
+        {
+            await LoadScene(sceneIndex);
+        }
 
         [Button, DisableInEditorMode]
         public async void LoadLevel(SceneVariable scene)
